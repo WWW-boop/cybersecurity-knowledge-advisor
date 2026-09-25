@@ -1,0 +1,40 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Runtime data and downloaded corpora
+data/raw/*
+!data/raw/README.md
+data/processed/*
+!data/processed/README.md
+data/chunks/*
+!data/chunks/README.md
+data/graph/*
+!data/graph/README.md
+
+# Local service state
+.docker-data/
+*.log
+
+# Notebooks
+.ipynb_checkpoints/
