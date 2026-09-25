@@ -3,13 +3,13 @@
 from datetime import date
 from typing import Literal
 
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
 
 class SourceDefinition(BaseModel):
     """A reviewed source that may later supply one or more documents."""
 
-    source_id: str = Field(pattern=r"^[a-z0-9][a-z0-9_-]*$")
+    source_id: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9_-]*$")
     name: str
     organization: str
     base_url: HttpUrl
@@ -37,11 +37,24 @@ class DocumentMetadata(BaseModel):
     source_id: str
     source_url: HttpUrl
     language: Literal["th", "en"]
-    topic: str
+    organization: str = Field(min_length=1)
+    source_type: Literal["government", "standard", "academic", "other"]
+    topic: str = "general_cybersecurity"
     subtopic: str | None = None
     audience: str = "general"
     published_at: date | None = None
     updated_at: date | None = None
-    authority: float = Field(ge=0, le=1)
-    freshness: float = Field(ge=0, le=1)
+    authority: float | None = Field(default=None, ge=0, le=1)
+    freshness: float | None = Field(default=None, ge=0, le=1)
     content_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+
+
+class NormalizedDocument(DocumentMetadata):
+    """Validated input shared by normalization and chunking."""
+
+    model_config = ConfigDict(extra="allow")
+
+    content: str = Field(min_length=1)
+    retrieved_at: str = Field(min_length=1)
+    rights_status: str = Field(min_length=1)
+    corpus_version: str = Field(min_length=1)

@@ -1,0 +1,18 @@
+{
+  "corpus_version": "mvp-v1",
+  "retrieved_at": "2026-09-26",
+  "rights_status": "review_required",
+  "sources": [
+    {
+      "source_id": "TH-01",
+      "enabled": false,
+      "status": "downloaded",
+      "filename": "guide.pdf",
+      "sha256": "REPLACE_WITH_FILE_SHA256",
+      "canonical_url": "https://example.com/guide.pdf",
+      "organization": "REPLACE_WITH_PUBLISHER",
+      "source_type": "government",
+      "language": "th"
+    }
+  ]
+}

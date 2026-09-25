@@ -3,6 +3,9 @@
 Adaptive Hybrid RAG chatbot for answering cybersecurity questions from reviewed,
 traceable sources. The project is currently in **Phase 1: Foundation**.
 
+Follow [the course MVP scope](docs/mvp.md) for implementation priorities, ingestion
+commands, and rubric acceptance evidence. The larger plan is a future backlog.
+
 ## Requirements
 
 - [uv](https://docs.astral.sh/uv/)
@@ -37,10 +40,10 @@ Invoke-RestMethod http://localhost:8000/health
 
 ## Infrastructure
 
-Start the Phase 1 core services:
+Start the retrieval services when needed:
 
 ```powershell
-docker compose up -d qdrant neo4j postgres
+docker compose --profile rag up -d
 ```
 
 Optional services are grouped into profiles so they do not consume resources by default:
@@ -50,7 +53,7 @@ docker compose --profile cache up -d redis
 docker compose --profile sparse up -d opensearch
 ```
 
-To build and run the API in Docker with the core services:
+To build and run the API independently:
 
 ```powershell
 docker compose --profile app up -d --build
