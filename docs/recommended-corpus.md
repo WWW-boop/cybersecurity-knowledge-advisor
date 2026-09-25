@@ -2,6 +2,9 @@
 
 Research date: 2026-09-25 (Asia/Bangkok)
 
+Current MVP input policy: use PDFs with selectable text. Historical OCR suggestions
+below are superseded by [the MVP scope](mvp.md); the ingestion code has no OCR support.
+
 ## Recommendation
 
 Start with the 14-source pilot below. It is small enough to review manually, covers the

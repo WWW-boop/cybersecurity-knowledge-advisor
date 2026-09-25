@@ -1,3 +1,12 @@
+# Implementation scope
+
+The course MVP scope in [docs/mvp.md](docs/mvp.md) takes precedence over this extended
+research backlog. Implement complete Dense/Graph/Hybrid and Local/API workflows with
+basic comparative evaluation before adding advanced infrastructure or adaptive features.
+The current PDF input is text-based and does not require OCR.
+
+---
+
 # Cybersecurity Knowledge Chatbot — Full Implementation Plan
 
 ## 1. Project Overview

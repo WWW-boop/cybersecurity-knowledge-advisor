@@ -5,7 +5,7 @@ from cybersecurity_advisor.ingestion.schemas import SourceDefinition, SourceMani
 
 def test_source_is_disabled_until_reviewed() -> None:
     source = SourceDefinition(
-        source_id="candidate-source",
+        source_id="TH-01",
         name="Candidate source",
         organization="Example organization",
         base_url="https://example.com/security",
