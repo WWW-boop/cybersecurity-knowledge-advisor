@@ -3,6 +3,7 @@
 from functools import lru_cache
 from typing import Annotated, Any
 
+import httpx
 from fastapi import Depends, HTTPException
 from neo4j import GraphDatabase
 
@@ -11,6 +12,7 @@ from cybersecurity_advisor.graph.retrieval import (
     GraphRetriever,
     Neo4jGraphRepository,
 )
+from cybersecurity_advisor.jev.entity_validation import JevEntityValidator
 
 SettingsDependency = Annotated[Settings, Depends(get_settings)]
 
@@ -48,6 +50,22 @@ def get_graph_retriever() -> GraphRetriever:
     )
     if password is None:
         raise HTTPException(status_code=503, detail="Graph database credentials not configured")
+    validator = None
+    if settings.jev_entity_validation_enabled:
+        if settings.jev_api_key is None:
+            raise HTTPException(
+                status_code=503,
+                detail="JEV entity validation credentials not configured",
+            )
+        api_key = settings.jev_api_key.get_secret_value()
+        validator = JevEntityValidator(
+            httpx.Client(
+                base_url=settings.jev_api_url.rstrip("/"),
+                headers={"Authorization": f"Bearer {api_key}"},
+                timeout=settings.jev_timeout_seconds,
+            ),
+            model=settings.jev_model,
+        )
     driver = GraphDatabase.driver(
         settings.neo4j_uri,
         auth=(settings.neo4j_user, password) if password is not None else None,
@@ -55,6 +73,8 @@ def get_graph_retriever() -> GraphRetriever:
     return GraphRetriever(
         Neo4jGraphRepository(driver, database=settings.neo4j_database),
         max_per_document=settings.graph_max_per_document,
+        entity_validator=validator,
+        entity_min_confidence=settings.jev_entity_min_confidence,
     )
 
 

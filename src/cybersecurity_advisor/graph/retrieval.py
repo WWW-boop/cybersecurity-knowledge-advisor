@@ -3,7 +3,7 @@
 import re
 from collections import defaultdict, deque
 from dataclasses import dataclass
-from typing import Any, Protocol
+from typing import Any, Literal, Protocol
 
 from cybersecurity_advisor.graph.construction import ENTITIES, RELATION_TYPES, GraphRecord
 
@@ -16,6 +16,39 @@ class EntityMatch:
     name: str
     entity_type: str
     mention: str
+
+
+EntityDecision = Literal["same", "different", "uncertain"]
+
+
+@dataclass(frozen=True)
+class EntityValidation:
+    """A typed decision about one query mention and graph entity candidate."""
+
+    match: EntityMatch
+    decision: EntityDecision
+    confidence: float
+    probabilities: dict[str, float]
+    model: str
+
+    def to_dict(self) -> dict[str, Any]:
+        """Return the API-safe entity-linking evidence."""
+        return {
+            "entity_id": self.match.entity_id,
+            "name": self.match.name,
+            "entity_type": self.match.entity_type,
+            "mention": self.match.mention,
+            "decision": self.decision,
+            "confidence": self.confidence,
+            "probabilities": self.probabilities,
+            "model": self.model,
+        }
+
+
+class EntityValidator(Protocol):
+    """Validation boundary applied after entity matching and before traversal."""
+
+    def validate(self, query: str, matches: list[EntityMatch]) -> list[EntityValidation]: ...
 
 
 @dataclass(frozen=True)
@@ -44,10 +77,11 @@ class GraphRepository(Protocol):
     ) -> list[GraphCandidate]: ...
 
 
-def _find_alias(query: str, alias: str) -> bool:
+def _find_alias(query: str, alias: str) -> str | None:
     if alias.isascii():
-        return re.search(rf"(?<!\w){re.escape(alias)}(?!\w)", query, re.IGNORECASE) is not None
-    return alias in query
+        match = re.search(rf"(?<!\w){re.escape(alias)}(?!\w)", query, re.IGNORECASE)
+        return match.group(0) if match is not None else None
+    return alias if alias in query else None
 
 
 def match_query_entities(query: str, limit: int = 8) -> list[EntityMatch]:
@@ -56,7 +90,11 @@ def match_query_entities(query: str, limit: int = 8) -> list[EntityMatch]:
         raise ValueError("Query must not be empty")
     matches: list[EntityMatch] = []
     for entity in ENTITIES:
-        mentions = [alias for alias in entity.aliases if _find_alias(query, alias)]
+        mentions = [
+            mention
+            for alias in entity.aliases
+            if (mention := _find_alias(query, alias)) is not None
+        ]
         if not mentions:
             continue
         matches.append(
@@ -253,17 +291,47 @@ class InMemoryGraphRepository:
 class GraphRetriever:
     """Link a query to graph entities and rank provenance-preserving evidence."""
 
-    def __init__(self, repository: GraphRepository, max_per_document: int = 2) -> None:
+    def __init__(
+        self,
+        repository: GraphRepository,
+        max_per_document: int = 2,
+        *,
+        entity_validator: EntityValidator | None = None,
+        entity_min_confidence: float = 0.7,
+    ) -> None:
         if max_per_document < 1:
             raise ValueError("max_per_document must be positive")
+        if not 0 <= entity_min_confidence <= 1:
+            raise ValueError("entity_min_confidence must be between 0 and 1")
         self.repository = repository
         self.max_per_document = max_per_document
+        self.entity_validator = entity_validator
+        self.entity_min_confidence = entity_min_confidence
 
     def close(self) -> None:
         """Close the backing service when it owns a long-lived connection."""
         close = getattr(self.repository, "close", None)
         if close is not None:
             close()
+        close_validator = getattr(self.entity_validator, "close", None)
+        if close_validator is not None:
+            close_validator()
+
+    def validate_entities(self, query: str) -> list[EntityValidation]:
+        """Link mentions and validate candidates before graph traversal."""
+        matches = match_query_entities(query)
+        if self.entity_validator is not None:
+            return self.entity_validator.validate(query, matches)
+        return [
+            EntityValidation(
+                match=match,
+                decision="same",
+                confidence=1.0,
+                probabilities={"same": 1.0, "different": 0.0, "uncertain": 0.0},
+                model="deterministic-alias",
+            )
+            for match in matches
+        ]
 
     @staticmethod
     def _score(candidate: GraphCandidate) -> float:
@@ -284,10 +352,16 @@ class GraphRetriever:
             raise ValueError("top_k must be positive")
         if not 1 <= max_depth <= 3:
             raise ValueError("max_depth must be between 1 and 3")
-        matches = match_query_entities(query)
-        if not matches:
+        validations = self.validate_entities(query)
+        accepted = [
+            validation
+            for validation in validations
+            if validation.decision == "same" and validation.confidence >= self.entity_min_confidence
+        ]
+        if not accepted:
             return []
-        match_by_id = {match.entity_id: match for match in matches}
+        validation_by_id = {validation.match.entity_id: validation for validation in accepted}
+        match_by_id = {validation.match.entity_id: validation.match for validation in accepted}
         candidates = self.repository.find_candidates(
             list(match_by_id),
             max_depth=max_depth,
@@ -298,6 +372,8 @@ class GraphRetriever:
 
         aggregated: dict[str, dict[str, Any]] = {}
         for candidate in candidates:
+            if candidate.start_entity_id not in match_by_id:
+                continue
             chunk_id = str(candidate.chunk.get("chunk_id") or "")
             content = str(candidate.chunk.get("content") or "")
             if not chunk_id or not content.strip():
@@ -310,6 +386,7 @@ class GraphRetriever:
                     "graph_score": score,
                     "matched_entity_ids": set(),
                     "matched_entities": set(),
+                    "entity_validations": {},
                     "relationships": set(),
                     "entity_path": list(candidate.entity_path),
                     "graph_depth": candidate.depth,
@@ -318,6 +395,9 @@ class GraphRetriever:
             match = match_by_id.get(candidate.start_entity_id)
             current["matched_entity_ids"].add(candidate.start_entity_id)
             current["matched_entities"].add(match.name if match else candidate.start_entity_id)
+            validation = validation_by_id.get(candidate.start_entity_id)
+            if validation is not None:
+                current["entity_validations"][candidate.start_entity_id] = validation.to_dict()
             current["relationships"].update(candidate.relationships)
             if score > current["graph_score"]:
                 current["graph_score"] = score
@@ -336,6 +416,10 @@ class GraphRetriever:
                 continue
             row["matched_entity_ids"] = sorted(row["matched_entity_ids"])
             row["matched_entities"] = sorted(row["matched_entities"])
+            row["entity_validations"] = [
+                row["entity_validations"][entity_id]
+                for entity_id in sorted(row["entity_validations"])
+            ]
             row["relationships"] = sorted(row["relationships"])
             selected.append(row)
             document_counts[document_id] += 1

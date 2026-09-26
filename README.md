@@ -1,7 +1,8 @@
 # Cybersecurity Knowledge Advisor
 
 Adaptive Hybrid RAG chatbot for answering cybersecurity questions from reviewed,
-traceable sources. The project is currently in **Phase 1: Foundation**.
+traceable sources. The implementation currently includes Graph RAG with JEV entity validation;
+Hybrid Fusion is the next phase.
 
 Follow [the course MVP scope](docs/mvp.md) for implementation priorities, ingestion
 commands, and rubric acceptance evidence. The larger plan is a future backlog.
@@ -89,14 +90,27 @@ uv run python scripts/graph_retrieval.py "phishing and MFA" `
   --records data/graph/graph_records.jsonl --max-depth 2 --top-k 5
 ```
 
-For the Neo4j-backed path, configure `NEO4J_PASSWORD`, start the service, then re-ingest before
-querying so Chunk nodes contain evidence text:
+Graph retrieval validates mention-to-entity candidates with JEV before traversal. Configure
+`JEV_API_KEY` (or the legacy `TYPE_SAFE`) and `NEO4J_PASSWORD`, start the service, then re-ingest
+before querying so Chunk nodes contain evidence text:
 
 ```powershell
 docker compose --profile rag up -d neo4j
 uv run python scripts/build_graph.py ingest
 uv run python scripts/graph_retrieval.py "phishing and MFA"
 ```
+
+Inspect the typed `same` / `different` / `uncertain` decisions independently through:
+
+```powershell
+Invoke-RestMethod -Method Post http://localhost:8000/api/v1/graph/entities/validate `
+  -ContentType "application/json" `
+  -Body '{"query":"บัญชีถูกแฮ็กและต้องเปลี่ยนรหัสผ่าน"}'
+```
+
+Use `--skip-jev` only for an explicit no-JEV ablation run. Normal graph retrieval fails closed
+with HTTP 503 when JEV is enabled but unavailable, so unvalidated candidates never enter graph
+traversal.
 
 ## Team workflow
 

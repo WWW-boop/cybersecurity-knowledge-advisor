@@ -4,9 +4,27 @@ from fastapi.testclient import TestClient
 from neo4j.exceptions import ServiceUnavailable
 
 from cybersecurity_advisor.api.dependencies import get_graph_retriever
+from cybersecurity_advisor.graph.retrieval import EntityMatch, EntityValidation
+from cybersecurity_advisor.jev.entity_validation import JevUnavailableError
 
 
 class FakeGraphRetriever:
+    def validate_entities(self, query: str) -> list[EntityValidation]:
+        return [
+            EntityValidation(
+                match=EntityMatch(
+                    entity_id="control:mfa",
+                    name="Multi-Factor Authentication",
+                    entity_type="AuthenticationMethod",
+                    mention="MFA",
+                ),
+                decision="same",
+                confidence=0.94,
+                probabilities={"same": 0.94, "different": 0.03, "uncertain": 0.03},
+                model="jev-test",
+            )
+        ]
+
     def search(self, query: str, **kwargs) -> list[dict]:
         assert query == "phishing และ MFA"
         assert kwargs == {
@@ -25,6 +43,22 @@ class FakeGraphRetriever:
                 "url": "https://example.com/phishing",
                 "matched_entity_ids": ["threat:phishing", "control:mfa"],
                 "matched_entities": ["Multi-Factor Authentication", "Phishing"],
+                "entity_validations": [
+                    {
+                        "entity_id": "control:mfa",
+                        "name": "Multi-Factor Authentication",
+                        "entity_type": "AuthenticationMethod",
+                        "mention": "MFA",
+                        "decision": "same",
+                        "confidence": 0.94,
+                        "probabilities": {
+                            "same": 0.94,
+                            "different": 0.03,
+                            "uncertain": 0.03,
+                        },
+                        "model": "jev-test",
+                    }
+                ],
                 "relationships": ["MITIGATED_BY"],
                 "entity_path": ["threat:phishing", "control:mfa"],
                 "graph_depth": 1,
@@ -37,6 +71,9 @@ class FakeGraphRetriever:
 class UnavailableGraphRetriever:
     def search(self, query: str, **kwargs) -> list[dict]:
         raise ServiceUnavailable("offline")
+
+    def validate_entities(self, query: str):
+        raise JevUnavailableError("offline")
 
 
 class EmptyGraphRetriever:
@@ -63,8 +100,39 @@ def test_graph_retrieve_returns_paths_and_evidence(client: TestClient) -> None:
     assert body[0]["chunk_id"] == "th-01-0001"
     assert body[0]["graph_score"] == 0.8
     assert body[0]["relationships"] == ["MITIGATED_BY"]
+    assert body[0]["entity_validations"][0]["decision"] == "same"
     assert body[0]["metadata"]["language"] == "th"
     assert "matched_entity_ids" not in body[0]["metadata"]
+
+
+def test_graph_entity_validation_returns_typed_decision(client: TestClient) -> None:
+    client.app.dependency_overrides[get_graph_retriever] = FakeGraphRetriever
+
+    response = client.post(
+        "/api/v1/graph/entities/validate",
+        json={"query": "MFA protects my account"},
+    )
+
+    assert response.status_code == 200
+    assert response.json()[0] == {
+        "entity_id": "control:mfa",
+        "name": "Multi-Factor Authentication",
+        "entity_type": "AuthenticationMethod",
+        "mention": "MFA",
+        "decision": "same",
+        "confidence": 0.94,
+        "probabilities": {"same": 0.94, "different": 0.03, "uncertain": 0.03},
+        "model": "jev-test",
+    }
+
+
+def test_graph_entity_validation_reports_jev_unavailable(client: TestClient) -> None:
+    client.app.dependency_overrides[get_graph_retriever] = UnavailableGraphRetriever
+
+    response = client.post("/api/v1/graph/entities/validate", json={"query": "MFA"})
+
+    assert response.status_code == 503
+    assert response.json() == {"detail": "JEV entity validation unavailable"}
 
 
 def test_graph_retrieve_returns_empty_for_unknown_entity(client: TestClient) -> None:
