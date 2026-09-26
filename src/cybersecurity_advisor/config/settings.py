@@ -24,6 +24,7 @@ class Settings(BaseSettings):
 
     qdrant_url: str = "http://localhost:6333"
     qdrant_api_key: SecretStr | None = None
+    qdrant_collection: str = "cybersecurity_chunks"
 
     neo4j_uri: str = "bolt://localhost:7687"
     neo4j_user: str = "neo4j"
@@ -48,6 +49,9 @@ class Settings(BaseSettings):
     ollama_url: str = "http://localhost:11434"
     ollama_model: str | None = None
     embedding_model: str = "BAAI/bge-m3"
+    embedding_device: str | None = None
+    embedding_batch_size: int = Field(default=8, ge=1)
+    embedding_max_length: int = Field(default=1024, ge=128)
 
 
 @lru_cache
