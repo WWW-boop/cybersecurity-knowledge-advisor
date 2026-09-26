@@ -14,6 +14,23 @@ After starting Neo4j and configuring `NEO4J_PASSWORD`, create constraints and in
 uv run python scripts/build_graph.py ingest
 ```
 
+Re-run both commands after this feature upgrade so existing Chunk nodes receive their evidence
+text. Then test bounded graph retrieval with:
+
+```powershell
+uv run python scripts/graph_retrieval.py "phishing and MFA" --max-depth 2 --top-k 5
+```
+
+When Neo4j is not running, use the same ranking logic against generated records:
+
+```powershell
+uv run python scripts/graph_retrieval.py "phishing and MFA" `
+  --records data/graph/graph_records.jsonl --max-depth 2 --top-k 5
+```
+
+The API equivalent is `POST /api/v1/graph/retrieve`. Queries without a known curated entity
+return an empty list; Neo4j failures return HTTP 503.
+
 Each semantic relationship stores `source_chunk_id`, `source_url`, and extraction confidence.
 `graph_records.jsonl` is generated runtime data and is intentionally ignored by Git.
 

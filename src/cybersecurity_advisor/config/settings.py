@@ -29,6 +29,8 @@ class Settings(BaseSettings):
     neo4j_uri: str = "bolt://localhost:7687"
     neo4j_user: str = "neo4j"
     neo4j_password: SecretStr | None = None
+    neo4j_database: str = "neo4j"
+    graph_max_per_document: int = Field(default=2, ge=1, le=10)
 
     postgres_url: str = "postgresql://postgres:postgres@localhost:5432/cyber_rag"
     redis_url: str = "redis://localhost:6379/0"
