@@ -11,9 +11,11 @@ Implemented: API health endpoints, text extraction, validated document metadata,
 section/page-aware chunking, GTE/Qdrant dense retrieval, `POST /api/v1/retrieve`, deterministic
 graph construction with chunk-level provenance, bounded entity-aware graph retrieval through
 `POST /api/v1/graph/retrieve`, JEV entity validation before traversal with typed decisions through
-`POST /api/v1/graph/entities/validate`, and synthetic pipeline tests. The recorded Neo4j ingestion
+`POST /api/v1/graph/entities/validate`, normalized Dense + Graph hybrid retrieval through
+`POST /api/v1/hybrid/retrieve`, and synthetic pipeline tests. Hybrid supports naive, RRF, and
+weighted fusion with chunk deduplication and per-document diversity. The recorded Neo4j ingestion
 contains 999 chunks and 162 semantic facts and must be re-ingested after graph schema changes.
-Fusion, answer generation, and final experiment results are still to be completed.
+Answer generation and final experiment results are still to be completed.
 
 ## Smallest complete workflow
 
