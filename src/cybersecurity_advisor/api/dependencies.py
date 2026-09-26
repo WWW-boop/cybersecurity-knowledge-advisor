@@ -13,6 +13,7 @@ from cybersecurity_advisor.graph.retrieval import (
     Neo4jGraphRepository,
 )
 from cybersecurity_advisor.jev.entity_validation import JevEntityValidator
+from cybersecurity_advisor.retrieval.hybrid import HybridRetriever
 
 SettingsDependency = Annotated[Settings, Depends(get_settings)]
 
@@ -81,8 +82,27 @@ def get_graph_retriever() -> GraphRetriever:
 GraphRetrieverDependency = Annotated[GraphRetriever, Depends(get_graph_retriever)]
 
 
+@lru_cache
+def get_hybrid_retriever() -> HybridRetriever:
+    """Compose the cached Dense and Graph retrievers with configured fusion."""
+    settings = get_settings()
+    return HybridRetriever(
+        get_dense_retriever(),
+        get_graph_retriever(),
+        dense_weight=settings.hybrid_dense_weight,
+        graph_weight=settings.hybrid_graph_weight,
+        rrf_k=settings.hybrid_rrf_k,
+        max_per_document=settings.hybrid_max_per_document,
+        default_method=settings.hybrid_fusion_method,
+    )
+
+
+HybridRetrieverDependency = Annotated[HybridRetriever, Depends(get_hybrid_retriever)]
+
+
 def close_graph_retriever() -> None:
     """Release a cached Neo4j driver without creating one during shutdown."""
+    get_hybrid_retriever.cache_clear()
     if get_graph_retriever.cache_info().currsize:
         get_graph_retriever().close()
         get_graph_retriever.cache_clear()

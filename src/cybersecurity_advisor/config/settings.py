@@ -1,6 +1,7 @@
 """Environment-backed application settings."""
 
 from functools import lru_cache
+from typing import Literal
 
 from pydantic import AliasChoices, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -31,6 +32,12 @@ class Settings(BaseSettings):
     neo4j_password: SecretStr | None = None
     neo4j_database: str = "neo4j"
     graph_max_per_document: int = Field(default=2, ge=1, le=10)
+
+    hybrid_fusion_method: Literal["naive", "rrf", "weighted"] = "rrf"
+    hybrid_dense_weight: float = Field(default=0.6, ge=0)
+    hybrid_graph_weight: float = Field(default=0.4, ge=0)
+    hybrid_rrf_k: int = Field(default=60, ge=1)
+    hybrid_max_per_document: int = Field(default=2, ge=1, le=10)
 
     postgres_url: str = "postgresql://postgres:postgres@localhost:5432/cyber_rag"
     redis_url: str = "redis://localhost:6379/0"

@@ -1,8 +1,8 @@
 # Cybersecurity Knowledge Advisor
 
 Adaptive Hybrid RAG chatbot for answering cybersecurity questions from reviewed,
-traceable sources. The implementation currently includes Graph RAG with JEV entity validation;
-Hybrid Fusion is the next phase.
+traceable sources. The implementation currently includes Dense RAG, Graph RAG with JEV entity
+validation, and normalized Hybrid Fusion.
 
 Follow [the course MVP scope](docs/mvp.md) for implementation priorities, ingestion
 commands, and rubric acceptance evidence. The larger plan is a future backlog.
@@ -111,6 +111,21 @@ Invoke-RestMethod -Method Post http://localhost:8000/api/v1/graph/entities/valid
 Use `--skip-jev` only for an explicit no-JEV ablation run. Normal graph retrieval fails closed
 with HTTP 503 when JEV is enabled but unavailable, so unvalidated candidates never enter graph
 traversal.
+
+## Hybrid retrieval
+
+Hybrid retrieval combines Dense and validated Graph candidates, deduplicates identical evidence,
+limits repeated chunks from one document, and returns normalized scores. RRF is the default;
+`naive` and `weighted` are available for comparative experiments:
+
+```powershell
+uv run python scripts/hybrid_retrieval.py "บัญชีถูกแฮ็ก ต้องเปลี่ยนรหัสผ่านอย่างไร" `
+  --language th --fusion-method rrf --top-k 5
+```
+
+The API equivalent is `POST /api/v1/hybrid/retrieve`. Configure the default method, weights,
+RRF constant, and diversity limit with the `HYBRID_*` values in `.env`. Request-level overrides
+make the same query reproducible across fusion experiments.
 
 ## Team workflow
 

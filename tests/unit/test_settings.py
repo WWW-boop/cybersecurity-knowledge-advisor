@@ -32,3 +32,13 @@ def test_gte_is_the_default_embedding_model() -> None:
     assert settings.embedding_model == "Alibaba-NLP/gte-multilingual-base"
     assert settings.embedding_trust_remote_code is True
     assert settings.qdrant_collection == "cybersecurity_chunks_gte"
+
+
+def test_rrf_is_the_default_hybrid_fusion_policy() -> None:
+    settings = Settings(_env_file=None)
+
+    assert settings.hybrid_fusion_method == "rrf"
+    assert settings.hybrid_dense_weight == 0.6
+    assert settings.hybrid_graph_weight == 0.4
+    assert settings.hybrid_rrf_k == 60
+    assert settings.hybrid_max_per_document == 2
