@@ -76,7 +76,7 @@ def test_manifest_to_chunks_and_failed_rebuild_preserves_outputs(tmp_path, monke
     manifest.write_text(
         json.dumps(
             {
-                "sources": [source],
+                "sources": [{**source, "source_id": "TH-00", "enabled": False}, source],
                 "retrieved_at": "2026-09-26",
                 "rights_status": "review_required",
                 "corpus_version": "test",

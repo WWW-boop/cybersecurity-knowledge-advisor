@@ -174,8 +174,10 @@ def build_documents() -> Iterator[dict[str, object]]:
         ".pdf": extract_pdf,
     }
     for source in manifest["sources"]:
-        if source.get("enabled") is not True or source["status"] != "downloaded":
-            raise ValueError(f"Source must be enabled and downloaded: {source['source_id']}")
+        if source.get("enabled") is not True:
+            continue
+        if source["status"] != "downloaded":
+            raise ValueError(f"Enabled source is not downloaded: {source['source_id']}")
         entries = [source]
         if source.get("companion_filename"):
             entries.append(
