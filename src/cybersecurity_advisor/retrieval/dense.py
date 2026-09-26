@@ -1,4 +1,4 @@
-"""BGE-M3 dense indexing and retrieval backed by Qdrant."""
+"""Dense indexing and retrieval backed by Qdrant."""
 
 import json
 import uuid
@@ -15,8 +15,10 @@ class DenseRetriever:
     def __init__(
         self,
         client: QdrantClient,
-        collection_name: str = "cybersecurity_chunks",
-        model_name: str = "BAAI/bge-m3",
+        collection_name: str = "cybersecurity_chunks_gte",
+        model_name: str = "Alibaba-NLP/gte-multilingual-base",
+        model_revision: str | None = "9bbca17d9273fd0d03d5725c7a4b0f6b45142062",
+        trust_remote_code: bool = True,
         device: str | None = None,
         batch_size: int = 8,
         max_length: int = 1024,
@@ -25,8 +27,13 @@ class DenseRetriever:
         self.client = client
         self.collection_name = collection_name
         self.batch_size = batch_size
-        self.model = model or SentenceTransformer(model_name, device=device)
-        self.model.max_seq_length = max_length
+        self.model = model or SentenceTransformer(
+            model_name,
+            device=device,
+            revision=model_revision,
+            trust_remote_code=trust_remote_code,
+        )
+        self.model.max_seq_length = min(self.model.max_seq_length, max_length)
 
     @property
     def vector_size(self) -> int:

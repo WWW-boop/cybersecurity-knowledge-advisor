@@ -1,4 +1,4 @@
-"""Index and query BGE-M3 dense vectors in Qdrant."""
+"""Index and query dense vectors in Qdrant."""
 
 import argparse
 import json
@@ -50,6 +50,8 @@ def retriever(local_path: Path | None) -> DenseRetriever:
         client=client,
         collection_name=settings.qdrant_collection,
         model_name=settings.embedding_model,
+        model_revision=settings.embedding_revision,
+        trust_remote_code=settings.embedding_trust_remote_code,
         device=settings.embedding_device,
         batch_size=settings.embedding_batch_size,
         max_length=settings.embedding_max_length,

@@ -24,7 +24,7 @@ class Settings(BaseSettings):
 
     qdrant_url: str = "http://localhost:6333"
     qdrant_api_key: SecretStr | None = None
-    qdrant_collection: str = "cybersecurity_chunks"
+    qdrant_collection: str = "cybersecurity_chunks_gte"
 
     neo4j_uri: str = "bolt://localhost:7687"
     neo4j_user: str = "neo4j"
@@ -48,7 +48,9 @@ class Settings(BaseSettings):
 
     ollama_url: str = "http://localhost:11434"
     ollama_model: str | None = None
-    embedding_model: str = "BAAI/bge-m3"
+    embedding_model: str = "Alibaba-NLP/gte-multilingual-base"
+    embedding_revision: str = "9bbca17d9273fd0d03d5725c7a4b0f6b45142062"
+    embedding_trust_remote_code: bool = True
     embedding_device: str | None = None
     embedding_batch_size: int = Field(default=8, ge=1)
     embedding_max_length: int = Field(default=1024, ge=128)

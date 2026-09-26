@@ -105,7 +105,7 @@ The implementation and evaluation should answer:
         |                                     |
         v                                     v
  Dense Retrieval                        Entity Extraction
- BGE-M3 + Qdrant                               |
+ GTE multilingual + Qdrant                       |
         |                                      v
         |                              Graph Entity Candidates
         |                                    Neo4j
@@ -169,7 +169,7 @@ The implementation and evaluation should answer:
 
 ## Dense Retrieval
 
-- Embedding Model: `BAAI/bge-m3`
+- Embedding Model: `Alibaba-NLP/gte-multilingual-base`
 - Vector Database: Qdrant
 
 ## Graph RAG
@@ -284,7 +284,7 @@ cybersecurity-rag/
 |   |   `-- pipeline.py
 |   |
 |   |-- embeddings/
-|   |   |-- bge_m3.py
+|   |   |-- gte_multilingual.py
 |   |   `-- service.py
 |   |
 |   |-- vector_store/
@@ -599,7 +599,7 @@ Dense retrieval pipeline:
 User Query
     |
     v
-BGE-M3 Query Embedding
+Configured Query Embedding
     |
     v
 Qdrant Search
@@ -607,6 +607,51 @@ Qdrant Search
     v
 Dense Candidate Chunks
 ```
+
+## Embedding model selection
+
+`Alibaba-NLP/gte-multilingual-base` is selected for the MVP from the GPU comparison below.
+Revalidate the choice before production using a larger, reviewed evaluation set:
+
+| Model | Languages / context | Output | Advantages | Costs and risks |
+|---|---|---:|---|---|
+| [`BAAI/bge-m3`](https://huggingface.co/BAAI/bge-m3) | 100+ languages; 8,192 tokens | 1,024 dimensions | One model for Thai/English and cross-language retrieval; also supports sparse and multi-vector retrieval if later experiments need them | Higher runtime cost than GTE; 1,024-dimensional vectors require more storage than GTE |
+| [`Alibaba-NLP/gte-multilingual-base`](https://huggingface.co/Alibaba-NLP/gte-multilingual-base) | 70+ languages; 8,192 tokens | 768 dimensions | Smaller 305M model, lower vector storage, and dense/sparse support | Requires `trust_remote_code=True`; adds a code-trust and deployment constraint |
+| [`kornwtp/ConGen-paraphrase-multilingual-mpnet-base-v2`](https://huggingface.co/kornwtp/ConGen-paraphrase-multilingual-mpnet-base-v2) | Thai-focused; 510 usable tokens | 768 dimensions | Direct Sentence Transformers support; trained for Thai sentence representations using multilingual MPNet as teacher | Shorter context; Thai similarity evidence does not establish English, cross-language, or RAG retrieval quality |
+
+The comparison covers three distinct hypotheses: BGE-M3 is the broad multilingual and long-context
+baseline, GTE tests retrieval quality at lower vector and runtime cost, and ConGen tests whether
+Thai-focused training improves Thai retrieval. Published results alone do not prove which model is
+best for this cybersecurity corpus, so the decision uses the local benchmark.
+
+Evaluate all three on the same frozen chunks and reviewed question set. Use a separate Qdrant
+collection per model because vector dimensions differ. Keep chunking, distance metric, filters,
+and fixed `top_k=5` identical, and record:
+
+- Recall@5 as the primary metric, reported separately for Thai, English, and cross-language queries;
+- MRR@5, embedding/index time, p50/p95 query latency, peak memory, and vector storage;
+- model name, exact revision, device, batch size, and maximum input length.
+
+Preliminary GPU smoke test (RTX 3050 Laptop GPU, 999 frozen chunks, 15 draft questions,
+`top_k=5`):
+
+| Model | Macro Recall@5 | Thai | English | Cross-language | MRR@5 | Corpus encode | P95 query | Peak VRAM |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| BGE-M3 | 0.806 | 0.917 | 0.833 | 0.667 | 0.900 | 49.37 s | 43.61 ms | 2,450 MiB |
+| GTE multilingual base | **0.935** | **1.000** | 0.806 | **1.000** | **0.967** | **20.66 s** | 34.64 ms | 1,567 MiB |
+| ConGen multilingual MPNet | 0.759 | 0.750 | 0.694 | 0.833 | 0.900 | 26.53 s | **32.03 ms** | **563 MiB** |
+
+The MVP therefore uses GTE: it has the best macro Recall@5 and MRR@5 while
+encoding the corpus faster than the other two. ConGen uses the least VRAM and has the lowest p95
+query latency, but its retrieval score is lower. A reviewer must still validate the expected
+sources before GTE is frozen as the production model; 15 draft questions are not sufficient for
+that decision. Raw results and the comparison chart are in
+`data/evaluation/model-benchmark/`.
+
+Select the model with the best macro-average Recall@5 across the language groups, provided it
+retrieves evidence for every safety-critical evaluation question. If retrieval quality is tied,
+choose the model with lower p95 latency and memory use. Do not adopt sparse or multi-vector mode
+merely because a model supports it; add it only when the dense baseline shows a measured gap.
 
 Support:
 
@@ -2074,7 +2119,7 @@ A source document produces validated chunk JSON.
 
 Implement:
 
-- BGE-M3
+- GTE multilingual base embedding model
 - Qdrant indexing
 - query embedding
 - dense retrieval
@@ -2243,7 +2288,7 @@ For the first working MVP, implement:
 
 ```text
 ETDA / NIST / CISA data
-BGE-M3
+GTE multilingual base
 Qdrant
 Neo4j
 Dense Retrieval

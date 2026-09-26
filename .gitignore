@@ -5,6 +5,7 @@
 
 # Python
 .venv/
+.training-site/
 .tools/
 .uv-cache/
 .local/

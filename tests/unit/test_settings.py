@@ -24,3 +24,11 @@ def test_settings_accept_type_safe_as_jev_api_key_alias(monkeypatch) -> None:
     assert settings.jev_api_url == "https://api.typesafe.ai"
     assert settings.jev_api_key is not None
     assert settings.jev_api_key.get_secret_value() == "legacy-test-secret"
+
+
+def test_gte_is_the_default_embedding_model() -> None:
+    settings = Settings(_env_file=None)
+
+    assert settings.embedding_model == "Alibaba-NLP/gte-multilingual-base"
+    assert settings.embedding_trust_remote_code is True
+    assert settings.qdrant_collection == "cybersecurity_chunks_gte"

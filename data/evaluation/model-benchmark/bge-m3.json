@@ -1,0 +1,681 @@
+{
+  "name": "bge-m3",
+  "model_id": "BAAI/bge-m3",
+  "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "device": "cuda",
+  "hardware": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "peak_device_memory_mib": 2450.080078125,
+  "parameters": 567754752,
+  "dimensions": 1024,
+  "max_sequence_length": 1024,
+  "chunks": 999,
+  "questions": 15,
+  "load_seconds": 6.32098760000008,
+  "corpus_encode_seconds": 49.37375250000014,
+  "p50_query_latency_ms": 33.95329999966634,
+  "p95_query_latency_ms": 43.606229999932104,
+  "estimated_vector_storage_mib": 3.90234375,
+  "recall_at_5": 0.8333333333333334,
+  "mrr_at_5": 0.9,
+  "recall_at_5_by_language": {
+    "cross": 0.6666666666666666,
+    "en": 0.8333333333333333,
+    "th": 0.9166666666666666
+  },
+  "per_query": [
+    {
+      "query_id": "th-remote-app",
+      "language_group": "th",
+      "query": "ถ้าเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ควรทำอย่างไร",
+      "expected_source_ids": [
+        "TH-03",
+        "TH-10"
+      ],
+      "recall_at_5": 0.5,
+      "mrr_at_5": 1.0,
+      "latency_ms": 46.178799999779585,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "th-03-0006",
+          "source_id": "TH-03",
+          "score": 0.7415193319320679
+        },
+        {
+          "rank": 2,
+          "chunk_id": "th-03-0001",
+          "source_id": "TH-03",
+          "score": 0.6761066913604736
+        },
+        {
+          "rank": 3,
+          "chunk_id": "th-11-0015",
+          "source_id": "TH-11",
+          "score": 0.646934986114502
+        },
+        {
+          "rank": 4,
+          "chunk_id": "en-23-0014",
+          "source_id": "EN-23",
+          "score": 0.6465342044830322
+        },
+        {
+          "rank": 5,
+          "chunk_id": "th-03-0005",
+          "source_id": "TH-03",
+          "score": 0.6351877450942993
+        }
+      ]
+    },
+    {
+      "query_id": "th-sms-url",
+      "language_group": "th",
+      "query": "มีบริการอะไรที่ใช้ตรวจสอบข้อความ SMS และ URL น่าสงสัยก่อนกดลิงก์",
+      "expected_source_ids": [
+        "TH-05"
+      ],
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.5,
+      "latency_ms": 37.215699999705976,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "th-13-0005",
+          "source_id": "TH-13",
+          "score": 0.6695352792739868
+        },
+        {
+          "rank": 2,
+          "chunk_id": "th-05-0006",
+          "source_id": "TH-05",
+          "score": 0.6587104797363281
+        },
+        {
+          "rank": 3,
+          "chunk_id": "th-05-0002",
+          "source_id": "TH-05",
+          "score": 0.6536930203437805
+        },
+        {
+          "rank": 4,
+          "chunk_id": "th-05-0010",
+          "source_id": "TH-05",
+          "score": 0.6454655528068542
+        },
+        {
+          "rank": 5,
+          "chunk_id": "th-13-0007",
+          "source_id": "TH-13",
+          "score": 0.6431254744529724
+        }
+      ]
+    },
+    {
+      "query_id": "th-captivecrunch",
+      "language_group": "th",
+      "query": "CaptiveCrunch โจมตีผู้ใช้ Wi-Fi ผ่าน captive portal อย่างไร",
+      "expected_source_ids": [
+        "TH-12"
+      ],
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "latency_ms": 25.13360000011744,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "th-12-0003",
+          "source_id": "TH-12",
+          "score": 0.7378441691398621
+        },
+        {
+          "rank": 2,
+          "chunk_id": "th-12-0001",
+          "source_id": "TH-12",
+          "score": 0.7149513959884644
+        },
+        {
+          "rank": 3,
+          "chunk_id": "th-12-0012",
+          "source_id": "TH-12",
+          "score": 0.7089109420776367
+        },
+        {
+          "rank": 4,
+          "chunk_id": "th-12-0002",
+          "source_id": "TH-12",
+          "score": 0.6992912292480469
+        },
+        {
+          "rank": 5,
+          "chunk_id": "th-12-0004",
+          "source_id": "TH-12",
+          "score": 0.6747397184371948
+        }
+      ]
+    },
+    {
+      "query_id": "th-premium-sms",
+      "language_group": "th",
+      "query": "มัลแวร์ Android ที่แอบสมัครบริการ Premium SMS โดยไม่ได้รับอนุญาตทำงานอย่างไร",
+      "expected_source_ids": [
+        "TH-13"
+      ],
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "latency_ms": 23.978799999895273,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "th-13-0002",
+          "source_id": "TH-13",
+          "score": 0.8115324974060059
+        },
+        {
+          "rank": 2,
+          "chunk_id": "th-13-0001",
+          "source_id": "TH-13",
+          "score": 0.8058578372001648
+        },
+        {
+          "rank": 3,
+          "chunk_id": "th-13-0007",
+          "source_id": "TH-13",
+          "score": 0.7626194953918457
+        },
+        {
+          "rank": 4,
+          "chunk_id": "th-13-0005",
+          "source_id": "TH-13",
+          "score": 0.7512409090995789
+        },
+        {
+          "rank": 5,
+          "chunk_id": "th-13-0003",
+          "source_id": "TH-13",
+          "score": 0.7312769889831543
+        }
+      ]
+    },
+    {
+      "query_id": "th-llm-phishing",
+      "language_group": "th",
+      "query": "มิจฉาชีพใช้ LLM สร้างข้อความฟิชชิงรูปแบบใหม่อย่างไร",
+      "expected_source_ids": [
+        "TH-14"
+      ],
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "latency_ms": 38.901699999769335,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "th-14-0001",
+          "source_id": "TH-14",
+          "score": 0.7109110355377197
+        },
+        {
+          "rank": 2,
+          "chunk_id": "th-14-0003",
+          "source_id": "TH-14",
+          "score": 0.6586817502975464
+        },
+        {
+          "rank": 3,
+          "chunk_id": "th-14-0002",
+          "source_id": "TH-14",
+          "score": 0.6388608813285828
+        },
+        {
+          "rank": 4,
+          "chunk_id": "en-09-0004",
+          "source_id": "EN-09",
+          "score": 0.5354933142662048
+        },
+        {
+          "rank": 5,
+          "chunk_id": "en-09-0005",
+          "source_id": "EN-09",
+          "score": 0.5218477845191956
+        }
+      ]
+    },
+    {
+      "query_id": "th-fortune-teller",
+      "language_group": "th",
+      "query": "มิจฉาชีพในคราบหมอดูออนไลน์หลอกขอข้อมูลและเงินจากเหยื่ออย่างไร",
+      "expected_source_ids": [
+        "TH-15"
+      ],
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "latency_ms": 28.574200000093697,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "th-15-0001",
+          "source_id": "TH-15",
+          "score": 0.7155102491378784
+        },
+        {
+          "rank": 2,
+          "chunk_id": "th-09-0004",
+          "source_id": "TH-09",
+          "score": 0.5935905575752258
+        },
+        {
+          "rank": 3,
+          "chunk_id": "en-19-0006",
+          "source_id": "EN-19",
+          "score": 0.590364933013916
+        },
+        {
+          "rank": 4,
+          "chunk_id": "th-06-0002",
+          "source_id": "TH-06",
+          "score": 0.5806845426559448
+        },
+        {
+          "rank": 5,
+          "chunk_id": "th-06-0003",
+          "source_id": "TH-06",
+          "score": 0.5803622007369995
+        }
+      ]
+    },
+    {
+      "query_id": "en-phishing",
+      "language_group": "en",
+      "query": "How can someone recognize and report a phishing message?",
+      "expected_source_ids": [
+        "EN-01",
+        "EN-06",
+        "EN-09"
+      ],
+      "recall_at_5": 0.6666666666666666,
+      "mrr_at_5": 1.0,
+      "latency_ms": 31.116999999994732,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "en-06-0010",
+          "source_id": "EN-06",
+          "score": 0.7766317129135132
+        },
+        {
+          "rank": 2,
+          "chunk_id": "en-01-0009",
+          "source_id": "EN-01",
+          "score": 0.7454825639724731
+        },
+        {
+          "rank": 3,
+          "chunk_id": "en-01-0007",
+          "source_id": "EN-01",
+          "score": 0.7442933320999146
+        },
+        {
+          "rank": 4,
+          "chunk_id": "en-01-0003",
+          "source_id": "EN-01",
+          "score": 0.740464448928833
+        },
+        {
+          "rank": 5,
+          "chunk_id": "en-06-0002",
+          "source_id": "EN-06",
+          "score": 0.7389911413192749
+        }
+      ]
+    },
+    {
+      "query_id": "en-mfa",
+      "language_group": "en",
+      "query": "Why does multi-factor authentication protect an account after a password is stolen?",
+      "expected_source_ids": [
+        "EN-03",
+        "EN-10",
+        "EN-13"
+      ],
+      "recall_at_5": 0.6666666666666666,
+      "mrr_at_5": 1.0,
+      "latency_ms": 41.171100000156,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "en-10-0007",
+          "source_id": "EN-10",
+          "score": 0.7495101094245911
+        },
+        {
+          "rank": 2,
+          "chunk_id": "en-02-0017",
+          "source_id": "EN-02",
+          "score": 0.7429018616676331
+        },
+        {
+          "rank": 3,
+          "chunk_id": "en-13-0003",
+          "source_id": "EN-13",
+          "score": 0.7409586906433105
+        },
+        {
+          "rank": 4,
+          "chunk_id": "en-01-0015",
+          "source_id": "EN-01",
+          "score": 0.7394243478775024
+        },
+        {
+          "rank": 5,
+          "chunk_id": "en-10-0005",
+          "source_id": "EN-10",
+          "score": 0.7391819953918457
+        }
+      ]
+    },
+    {
+      "query_id": "en-ransomware",
+      "language_group": "en",
+      "query": "What should an organization do to prevent and recover from ransomware?",
+      "expected_source_ids": [
+        "EN-11",
+        "EN-12"
+      ],
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "latency_ms": 35.379099999772734,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "en-12-0009",
+          "source_id": "EN-12",
+          "score": 0.6984613537788391
+        },
+        {
+          "rank": 2,
+          "chunk_id": "en-12-0056",
+          "source_id": "EN-12",
+          "score": 0.6977860927581787
+        },
+        {
+          "rank": 3,
+          "chunk_id": "en-11-0005",
+          "source_id": "EN-11",
+          "score": 0.6973260045051575
+        },
+        {
+          "rank": 4,
+          "chunk_id": "en-11-0007",
+          "source_id": "EN-11",
+          "score": 0.688110888004303
+        },
+        {
+          "rank": 5,
+          "chunk_id": "en-12-0067",
+          "source_id": "EN-12",
+          "score": 0.6830618381500244
+        }
+      ]
+    },
+    {
+      "query_id": "en-public-wifi",
+      "language_group": "en",
+      "query": "Is public Wi-Fi safe, and what precautions should a user take?",
+      "expected_source_ids": [
+        "EN-14",
+        "EN-21",
+        "EN-24"
+      ],
+      "recall_at_5": 0.6666666666666666,
+      "mrr_at_5": 1.0,
+      "latency_ms": 42.50369999999748,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "en-24-0007",
+          "source_id": "EN-24",
+          "score": 0.7458940744400024
+        },
+        {
+          "rank": 2,
+          "chunk_id": "en-14-0001",
+          "source_id": "EN-14",
+          "score": 0.7323139905929565
+        },
+        {
+          "rank": 3,
+          "chunk_id": "en-14-0002",
+          "source_id": "EN-14",
+          "score": 0.7053428888320923
+        },
+        {
+          "rank": 4,
+          "chunk_id": "en-24-0008",
+          "source_id": "EN-24",
+          "score": 0.6773662567138672
+        },
+        {
+          "rank": 5,
+          "chunk_id": "en-24-0011",
+          "source_id": "EN-24",
+          "score": 0.6257273554801941
+        }
+      ]
+    },
+    {
+      "query_id": "en-backup",
+      "language_group": "en",
+      "query": "How should offline backups be secured and tested for recovery?",
+      "expected_source_ids": [
+        "EN-22"
+      ],
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "latency_ms": 33.95329999966634,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "en-22-0041",
+          "source_id": "EN-22",
+          "score": 0.7136199474334717
+        },
+        {
+          "rank": 2,
+          "chunk_id": "en-22-0042",
+          "source_id": "EN-22",
+          "score": 0.6763521432876587
+        },
+        {
+          "rank": 3,
+          "chunk_id": "en-12-0009",
+          "source_id": "EN-12",
+          "score": 0.6400238275527954
+        },
+        {
+          "rank": 4,
+          "chunk_id": "en-22-0040",
+          "source_id": "EN-22",
+          "score": 0.6357870697975159
+        },
+        {
+          "rank": 5,
+          "chunk_id": "en-22-0043",
+          "source_id": "EN-22",
+          "score": 0.621421754360199
+        }
+      ]
+    },
+    {
+      "query_id": "en-password-manager",
+      "language_group": "en",
+      "query": "How should a password manager and its master password be secured?",
+      "expected_source_ids": [
+        "EN-25"
+      ],
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "latency_ms": 22.75149999968562,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "en-25-0005",
+          "source_id": "EN-25",
+          "score": 0.7307988405227661
+        },
+        {
+          "rank": 2,
+          "chunk_id": "en-25-0002",
+          "source_id": "EN-25",
+          "score": 0.7244691252708435
+        },
+        {
+          "rank": 3,
+          "chunk_id": "en-25-0006",
+          "source_id": "EN-25",
+          "score": 0.7224459052085876
+        },
+        {
+          "rank": 4,
+          "chunk_id": "en-04-0014",
+          "source_id": "EN-04",
+          "score": 0.7039146423339844
+        },
+        {
+          "rank": 5,
+          "chunk_id": "en-03-0015",
+          "source_id": "EN-03",
+          "score": 0.6960740685462952
+        }
+      ]
+    },
+    {
+      "query_id": "cross-th-to-en-backup",
+      "language_group": "cross",
+      "query": "การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้อย่างไร",
+      "expected_source_ids": [
+        "EN-22"
+      ],
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "latency_ms": 39.274899999782065,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "en-22-0041",
+          "source_id": "EN-22",
+          "score": 0.7645914554595947
+        },
+        {
+          "rank": 2,
+          "chunk_id": "en-22-0042",
+          "source_id": "EN-22",
+          "score": 0.710737943649292
+        },
+        {
+          "rank": 3,
+          "chunk_id": "en-12-0044",
+          "source_id": "EN-12",
+          "score": 0.6777132749557495
+        },
+        {
+          "rank": 4,
+          "chunk_id": "en-12-0009",
+          "source_id": "EN-12",
+          "score": 0.6555233001708984
+        },
+        {
+          "rank": 5,
+          "chunk_id": "en-12-0072",
+          "source_id": "EN-12",
+          "score": 0.6519576907157898
+        }
+      ]
+    },
+    {
+      "query_id": "cross-en-to-th-scam-shield",
+      "language_group": "cross",
+      "query": "What Thai service checks suspicious SMS messages and URLs before users click?",
+      "expected_source_ids": [
+        "TH-05"
+      ],
+      "recall_at_5": 0.0,
+      "mrr_at_5": 0.0,
+      "latency_ms": 25.098999999954685,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "th-13-0001",
+          "source_id": "TH-13",
+          "score": 0.6508799195289612
+        },
+        {
+          "rank": 2,
+          "chunk_id": "th-13-0003",
+          "source_id": "TH-13",
+          "score": 0.6471499800682068
+        },
+        {
+          "rank": 3,
+          "chunk_id": "th-13-0014",
+          "source_id": "TH-13",
+          "score": 0.6354286670684814
+        },
+        {
+          "rank": 4,
+          "chunk_id": "th-13-0005",
+          "source_id": "TH-13",
+          "score": 0.6346594095230103
+        },
+        {
+          "rank": 5,
+          "chunk_id": "th-13-0007",
+          "source_id": "TH-13",
+          "score": 0.6284891366958618
+        }
+      ]
+    },
+    {
+      "query_id": "cross-th-to-en-authentication",
+      "language_group": "cross",
+      "query": "NIST แนะนำวิธี authentication แบบใดที่ต้าน phishing ได้",
+      "expected_source_ids": [
+        "EN-08",
+        "EN-10"
+      ],
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "latency_ms": 32.20929999997679,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "en-08-0145",
+          "source_id": "EN-08",
+          "score": 0.736412525177002
+        },
+        {
+          "rank": 2,
+          "chunk_id": "en-09-0008",
+          "source_id": "EN-09",
+          "score": 0.6851238012313843
+        },
+        {
+          "rank": 3,
+          "chunk_id": "en-08-0377",
+          "source_id": "EN-08",
+          "score": 0.6815155148506165
+        },
+        {
+          "rank": 4,
+          "chunk_id": "en-10-0008",
+          "source_id": "EN-10",
+          "score": 0.6803519129753113
+        },
+        {
+          "rank": 5,
+          "chunk_id": "en-09-0007",
+          "source_id": "EN-09",
+          "score": 0.678307294845581
+        }
+      ]
+    }
+  ]
+}
