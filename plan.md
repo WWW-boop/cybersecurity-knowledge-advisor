@@ -2117,6 +2117,9 @@ A source document produces validated chunk JSON.
 
 ## Phase 3 — Dense RAG
 
+Status: implemented and smoke-tested with GTE multilingual base on 999 chunks. The HTTP API is
+available at `POST /api/v1/retrieve`; the reviewed evaluation set remains outstanding.
+
 Implement:
 
 - GTE multilingual base embedding model

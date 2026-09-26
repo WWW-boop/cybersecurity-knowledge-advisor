@@ -8,8 +8,9 @@ on demonstrated results, not the number of technologies installed.
 ## Current state
 
 Implemented: API health endpoints, text extraction, validated document metadata,
-section/page-aware chunking, and synthetic pipeline tests. Dense retrieval, graph
-retrieval, fusion, answer generation, and experiment results are still to be implemented.
+section/page-aware chunking, GTE/Qdrant dense retrieval, `POST /api/v1/retrieve`, and
+synthetic pipeline tests. Graph retrieval, fusion, answer generation, and final experiment
+results are still to be implemented.
 
 ## Smallest complete workflow
 
