@@ -44,8 +44,7 @@ def summarize(per_query: list[dict]) -> dict[str, float | dict[str, float]]:
     for row in per_query:
         groups[row["language_group"]].append(row)
     recall_by_language = {
-        group: mean(row["recall_at_5"] for row in rows)
-        for group, rows in sorted(groups.items())
+        group: mean(row["recall_at_5"] for row in rows) for group, rows in sorted(groups.items())
     }
     return {
         "recall_at_5": mean(row["recall_at_5"] for row in per_query),
@@ -246,9 +245,7 @@ def write_chart(results: list[dict], output: Path) -> None:
     ):
         values = [result["recall_at_5_by_language"][group] for group in groups]
         offset = (index - (len(results) - 1) / 2) * width
-        bars = language_axis.bar(
-            positions + offset, values, width, label=label, color=color
-        )
+        bars = language_axis.bar(positions + offset, values, width, label=label, color=color)
         language_axis.bar_label(bars, fmt="%.2f", fontsize=8, padding=2)
     language_axis.set_title("Recall@5 by language ↑")
     language_axis.set_xticks(positions, ["Thai", "English", "Cross-language"])
@@ -323,9 +320,7 @@ def main() -> None:
                 and result["chunks"] == len(chunks)
                 and result["questions"] == len(questions)
             ):
-                result["macro_recall_at_5"] = mean(
-                    result["recall_at_5_by_language"].values()
-                )
+                result["macro_recall_at_5"] = mean(result["recall_at_5_by_language"].values())
                 print(f"using checkpoint for {name}", flush=True)
                 results.append(result)
                 continue
