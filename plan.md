@@ -2139,6 +2139,9 @@ works end-to-end.
 
 ## Phase 4 — Graph Construction
 
+Status: complete for the MVP. Neo4j contains 999 chunks and 162 semantic facts with entity,
+relation, and chunk-level provenance. The extraction produced 1,265 entity mentions.
+
 Implement:
 
 - Neo4j schema
