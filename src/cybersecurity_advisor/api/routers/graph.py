@@ -7,6 +7,7 @@ from neo4j.exceptions import Neo4jError, ServiceUnavailable
 from pydantic import BaseModel, Field, StringConstraints
 
 from cybersecurity_advisor.api.dependencies import GraphRetrieverDependency
+from cybersecurity_advisor.jev.entity_validation import JevError
 
 router = APIRouter(prefix="/api/v1/graph", tags=["retrieval"])
 Query = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1)]
@@ -31,10 +32,43 @@ class GraphRetrievalResult(BaseModel):
     citation: str
     url: str
     matched_entities: list[str]
+    entity_validations: list["EntityValidationResult"]
     relationships: list[str]
     entity_path: list[str]
     graph_depth: int
     metadata: dict[str, Any]
+
+
+class EntityValidationRequest(BaseModel):
+    """A query whose deterministic entity candidates should be checked by JEV."""
+
+    query: Query
+
+
+class EntityValidationResult(BaseModel):
+    """A typed JEV decision for one mention-to-entity candidate."""
+
+    entity_id: str
+    name: str
+    entity_type: str
+    mention: str
+    decision: Literal["same", "different", "uncertain"]
+    confidence: float = Field(ge=0, le=1)
+    probabilities: dict[str, float]
+    model: str
+
+
+@router.post("/entities/validate", response_model=list[EntityValidationResult])
+def validate_graph_entities(
+    request: EntityValidationRequest,
+    retriever: GraphRetrieverDependency,
+) -> list[EntityValidationResult]:
+    """Expose entity-link decisions independently from evidence traversal."""
+    try:
+        validations = retriever.validate_entities(request.query)
+    except JevError as error:
+        raise HTTPException(status_code=503, detail="JEV entity validation unavailable") from error
+    return [EntityValidationResult.model_validate(item.to_dict()) for item in validations]
 
 
 @router.post("/retrieve", response_model=list[GraphRetrievalResult])
@@ -51,6 +85,8 @@ def retrieve_graph(
             language=request.language,
             topic=request.topic,
         )
+    except JevError as error:
+        raise HTTPException(status_code=503, detail="JEV entity validation unavailable") from error
     except (Neo4jError, ServiceUnavailable) as error:
         raise HTTPException(status_code=503, detail="Graph database unavailable") from error
     excluded = {
@@ -61,6 +97,7 @@ def retrieve_graph(
         "url",
         "matched_entity_ids",
         "matched_entities",
+        "entity_validations",
         "relationships",
         "entity_path",
         "graph_depth",
@@ -73,6 +110,7 @@ def retrieve_graph(
             citation=row["citation"],
             url=row["url"],
             matched_entities=row["matched_entities"],
+            entity_validations=row["entity_validations"],
             relationships=row["relationships"],
             entity_path=row["entity_path"],
             graph_depth=row["graph_depth"],

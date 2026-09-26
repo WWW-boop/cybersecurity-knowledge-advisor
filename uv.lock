@@ -285,6 +285,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
+    { name = "httpx" },
     { name = "neo4j" },
     { name = "pydantic-settings" },
     { name = "qdrant-client" },
@@ -296,7 +297,6 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "httpx" },
     { name = "langchain-text-splitters" },
     { name = "matplotlib" },
     { name = "pymupdf" },
@@ -312,6 +312,7 @@ ingestion = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", specifier = ">=0.115,<1.0" },
+    { name = "httpx", specifier = ">=0.28,<1.0" },
     { name = "neo4j", specifier = ">=5.26,<6" },
     { name = "pydantic-settings", specifier = ">=2.7,<3.0" },
     { name = "qdrant-client", specifier = ">=1.15,<2" },
@@ -323,7 +324,6 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "httpx", specifier = ">=0.28,<1.0" },
     { name = "langchain-text-splitters", specifier = ">=1.0,<2.0" },
     { name = "matplotlib", specifier = ">=3.9,<4.0" },
     { name = "pymupdf", specifier = ">=1.28,<2.0" },

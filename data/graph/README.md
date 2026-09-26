@@ -28,8 +28,13 @@ uv run python scripts/graph_retrieval.py "phishing and MFA" `
   --records data/graph/graph_records.jsonl --max-depth 2 --top-k 5
 ```
 
-The API equivalent is `POST /api/v1/graph/retrieve`. Queries without a known curated entity
-return an empty list; Neo4j failures return HTTP 503.
+Normal retrieval also requires `JEV_API_KEY` (or `TYPE_SAFE`). Candidate entities are validated by
+JEV before traversal, and only a `same` decision meeting `JEV_ENTITY_MIN_CONFIDENCE` proceeds. Use
+`--skip-jev` only when running the no-JEV ablation baseline.
+
+The API equivalents are `POST /api/v1/graph/entities/validate` for the typed entity-linking output
+and `POST /api/v1/graph/retrieve` for validated graph evidence. Queries without a known curated
+entity return an empty list; JEV or Neo4j failures return HTTP 503.
 
 Each semantic relationship stores `source_chunk_id`, `source_url`, and extraction confidence.
 `graph_records.jsonl` is generated runtime data and is intentionally ignored by Git.

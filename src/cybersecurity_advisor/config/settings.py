@@ -41,6 +41,10 @@ class Settings(BaseSettings):
         default=None,
         validation_alias=AliasChoices("JEV_API_KEY", "TYPE_SAFE"),
     )
+    jev_model: str = "jev-latest"
+    jev_timeout_seconds: float = Field(default=15.0, gt=0, le=120)
+    jev_entity_validation_enabled: bool = True
+    jev_entity_min_confidence: float = Field(default=0.7, ge=0, le=1)
 
     openai_api_key: SecretStr | None = None
     openai_model: str | None = None

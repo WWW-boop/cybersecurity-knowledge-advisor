@@ -1,6 +1,7 @@
 """Graph entity linking, bounded traversal, and ranking tests."""
 
 from cybersecurity_advisor.graph.retrieval import (
+    EntityValidation,
     GraphCandidate,
     GraphRetriever,
     InMemoryGraphRepository,
@@ -45,6 +46,24 @@ class FakeRepository:
         return self.candidates
 
 
+class FakeEntityValidator:
+    def __init__(self, decisions: dict[str, tuple[str, float]]) -> None:
+        self.decisions = decisions
+
+    def validate(self, query, matches):
+        assert query
+        return [
+            EntityValidation(
+                match=match,
+                decision=self.decisions[match.entity_id][0],
+                confidence=self.decisions[match.entity_id][1],
+                probabilities={"same": 0.8, "different": 0.1, "uncertain": 0.1},
+                model="jev-test",
+            )
+            for match in matches
+        ]
+
+
 class FakeDriver:
     def __init__(self) -> None:
         self.calls = []
@@ -86,6 +105,52 @@ def test_returns_no_evidence_when_query_has_no_known_entity() -> None:
     repository = FakeRepository([])
 
     assert GraphRetriever(repository).search("อธิบายเรื่องที่ไม่อยู่ในกราฟ") == []
+    assert repository.call is None
+
+
+def test_validates_entities_before_traversal_and_exposes_decision() -> None:
+    repository = FakeRepository(
+        [
+            candidate("phish-1", "document-a"),
+            candidate("mfa-1", "document-b", start_entity_id="control:mfa"),
+        ]
+    )
+    validator = FakeEntityValidator(
+        {
+            "threat:phishing": ("different", 0.95),
+            "control:mfa": ("same", 0.91),
+        }
+    )
+
+    rows = GraphRetriever(repository, entity_validator=validator).search("phishing and MFA")
+
+    assert repository.call[0] == ["control:mfa"]
+    assert [row["chunk_id"] for row in rows] == ["mfa-1"]
+    assert rows[0]["entity_validations"] == [
+        {
+            "entity_id": "control:mfa",
+            "name": "Multi-Factor Authentication",
+            "entity_type": "AuthenticationMethod",
+            "mention": "MFA",
+            "decision": "same",
+            "confidence": 0.91,
+            "probabilities": {"same": 0.8, "different": 0.1, "uncertain": 0.1},
+            "model": "jev-test",
+        }
+    ]
+
+
+def test_skips_traversal_when_same_decision_is_below_threshold() -> None:
+    repository = FakeRepository([])
+    validator = FakeEntityValidator({"threat:phishing": ("same", 0.49)})
+
+    rows = GraphRetriever(
+        repository,
+        entity_validator=validator,
+        entity_min_confidence=0.7,
+    ).search("phishing")
+
+    assert rows == []
     assert repository.call is None
 
 
