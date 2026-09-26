@@ -214,6 +214,12 @@ def extract_graph_record(chunk: dict[str, Any]) -> GraphRecord:
                 "topic",
                 "citation",
                 "url",
+                "content",
+                "page_start",
+                "page_end",
+                "source_type",
+                "authority",
+                "freshness",
             )
         },
         entities=entities,

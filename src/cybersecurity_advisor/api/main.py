@@ -7,6 +7,8 @@ import structlog
 from fastapi import FastAPI
 
 from cybersecurity_advisor import __version__
+from cybersecurity_advisor.api.dependencies import close_graph_retriever
+from cybersecurity_advisor.api.routers.graph import router as graph_router
 from cybersecurity_advisor.api.routers.health import router as health_router
 from cybersecurity_advisor.api.routers.retrieval import router as retrieval_router
 from cybersecurity_advisor.config.logging import configure_logging
@@ -20,8 +22,11 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     configure_logging(settings.log_level)
     logger = structlog.get_logger(__name__)
     logger.info("application_started", environment=settings.app_env)
-    yield
-    logger.info("application_stopped")
+    try:
+        yield
+    finally:
+        close_graph_retriever()
+        logger.info("application_stopped")
 
 
 def create_app() -> FastAPI:
@@ -32,6 +37,7 @@ def create_app() -> FastAPI:
         version=__version__,
         lifespan=lifespan,
     )
+    application.include_router(graph_router)
     application.include_router(health_router)
     application.include_router(retrieval_router)
     return application

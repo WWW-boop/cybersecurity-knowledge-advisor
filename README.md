@@ -78,6 +78,26 @@ Downloaded/raw documents and generated artifacts under `data/` are ignored by Gi
 only manifests, documentation, small test fixtures with clear permission, and labeled
 evaluation data intended for version control.
 
+## Graph retrieval
+
+Generated chunk corpora belong at `data/chunks/chunks.jsonl`; this runtime artifact is ignored by
+Git. Build graph records and run an offline smoke query with:
+
+```powershell
+uv run python scripts/build_graph.py extract
+uv run python scripts/graph_retrieval.py "phishing and MFA" `
+  --records data/graph/graph_records.jsonl --max-depth 2 --top-k 5
+```
+
+For the Neo4j-backed path, configure `NEO4J_PASSWORD`, start the service, then re-ingest before
+querying so Chunk nodes contain evidence text:
+
+```powershell
+docker compose --profile rag up -d neo4j
+uv run python scripts/build_graph.py ingest
+uv run python scripts/graph_retrieval.py "phishing and MFA"
+```
+
 ## Team workflow
 
 Use short-lived feature branches and pull requests; do not push feature work directly to

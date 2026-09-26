@@ -40,6 +40,9 @@ def test_extracts_semantic_facts_with_chunk_provenance() -> None:
         ("PROTECTS", "asset:account"),
     }
     assert all(fact.source_chunk_id == "en-01-0007" for fact in record.facts)
+    assert record.chunk["content"] == (
+        "Report the phish and enable multi-factor authentication on your account."
+    )
 
 
 def test_store_creates_schema_and_typed_relationships() -> None:
