@@ -6,6 +6,11 @@ from typing import Any, Literal, Protocol
 
 import httpx
 
+from cybersecurity_advisor.retrieval.dynamic_topk import (
+    choose_retrieval_budget,
+    select_dynamic_context,
+)
+
 ProviderName = Literal["openai", "ollama"]
 
 SYSTEM_PROMPT = """You are a cybersecurity knowledge assistant for general users.
@@ -185,15 +190,44 @@ class OllamaProvider:
 class AnswerService:
     """Run hybrid retrieval and one configured generator end to end."""
 
-    def __init__(self, retriever: Any, provider_factory: Any, *, max_context_chars: int) -> None:
+    def __init__(
+        self,
+        retriever: Any,
+        provider_factory: Any,
+        *,
+        max_context_chars: int,
+        pregen_filter: Any | None = None,
+    ) -> None:
         self.retriever = retriever
         self.provider_factory = provider_factory
         self.max_context_chars = max_context_chars
+        self.pregen_filter = pregen_filter
 
     def answer(self, query: str, provider_name: ProviderName, **retrieval: Any) -> dict[str, Any]:
+        dynamic_budget = None
+        if self.pregen_filter is not None and retrieval.get("dynamic_k"):
+            dynamic_budget = choose_retrieval_budget(query)
+            retrieval = {
+                **retrieval,
+                "top_k": dynamic_budget.fusion_k,
+                "dense_k": dynamic_budget.dense_k,
+                "graph_k": dynamic_budget.graph_k,
+                "max_depth": dynamic_budget.graph_depth,
+                "dynamic_k": False,
+            }
         retrieval_started = perf_counter()
         rows = self.retriever.search(query, **retrieval)
         retrieval_ms = (perf_counter() - retrieval_started) * 1000
+        jev_filter_ms = 0.0
+        jev_summary = None
+        if self.pregen_filter is not None:
+            filter_started = perf_counter()
+            result = self.pregen_filter.filter(query, rows)
+            jev_filter_ms = (perf_counter() - filter_started) * 1000
+            rows = result.rows
+            jev_summary = result.summary()
+        if dynamic_budget is not None:
+            rows = select_dynamic_context(rows, dynamic_budget)
         context, sources = build_context(rows, max_chars=self.max_context_chars)
         if not sources:
             raise GenerationError("No evidence found for this question")
@@ -211,5 +245,8 @@ class AnswerService:
             "output_tokens": generated.output_tokens,
             "retrieval_latency_ms": retrieval_ms,
             "generation_latency_ms": generation_ms,
-            "total_latency_ms": retrieval_ms + generation_ms,
+            "jev_filter_latency_ms": jev_filter_ms,
+            "jev_filter": jev_summary,
+            "total_latency_ms": retrieval_ms + jev_filter_ms + generation_ms,
+            "retrieval_budget": rows[0].get("retrieval_budget"),
         }

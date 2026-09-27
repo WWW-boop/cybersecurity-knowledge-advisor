@@ -184,3 +184,15 @@ def test_rejects_invalid_fusion_weights() -> None:
             dense_weight=0,
             graph_weight=0,
         )
+
+
+def test_dynamic_search_applies_query_budget_to_both_retrievers() -> None:
+    dense = FakeDenseRetriever([dense_row("dense", "doc-d", 0.9)])
+    graph = FakeGraphRetriever([graph_row("graph", "doc-g", 0.8)])
+
+    rows = HybridRetriever(dense, graph).search("What is phishing?", dynamic_k=True)
+
+    assert dense.call[1]["top_k"] == 5
+    assert graph.call[1]["top_k"] == 5
+    assert graph.call[1]["max_depth"] == 1
+    assert rows[0]["retrieval_budget"]["intent"] == "definition"

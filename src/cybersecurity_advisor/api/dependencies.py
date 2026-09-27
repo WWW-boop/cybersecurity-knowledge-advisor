@@ -20,6 +20,7 @@ from cybersecurity_advisor.graph.retrieval import (
     Neo4jGraphRepository,
 )
 from cybersecurity_advisor.jev.entity_validation import JevEntityValidator
+from cybersecurity_advisor.jev.pregen_filter import JevPreGenerationFilter
 from cybersecurity_advisor.retrieval.hybrid import HybridRetriever
 
 SettingsDependency = Annotated[Settings, Depends(get_settings)]
@@ -107,6 +108,29 @@ def get_hybrid_retriever() -> HybridRetriever:
 HybridRetrieverDependency = Annotated[HybridRetriever, Depends(get_hybrid_retriever)]
 
 
+@lru_cache
+def get_jev_pregen_filter() -> JevPreGenerationFilter | None:
+    """Build the process-wide JEV evidence filter when enabled."""
+    settings = get_settings()
+    if not settings.jev_pregen_filter_enabled:
+        return None
+    if settings.jev_api_key is None:
+        raise HTTPException(status_code=503, detail="JEV pre-generation credentials not configured")
+    return JevPreGenerationFilter(
+        httpx.Client(
+            base_url=settings.jev_api_url.rstrip("/"),
+            headers={"Authorization": f"Bearer {settings.jev_api_key.get_secret_value()}"},
+            timeout=settings.jev_timeout_seconds,
+        ),
+        model=settings.jev_model,
+        max_candidates=settings.jev_candidate_max,
+        relevance_threshold=settings.jev_relevance_threshold,
+        evidence_threshold=settings.jev_evidence_threshold,
+        contradiction_threshold=settings.jev_contradiction_threshold,
+        injection_threshold=settings.jev_injection_threshold,
+    )
+
+
 def get_answer_service(
     retriever: HybridRetrieverDependency,
     settings: SettingsDependency,
@@ -140,6 +164,7 @@ def get_answer_service(
         retriever,
         provider_factory,
         max_context_chars=settings.generation_max_context_chars,
+        pregen_filter=get_jev_pregen_filter(),
     )
 
 
@@ -152,3 +177,8 @@ def close_graph_retriever() -> None:
     if get_graph_retriever.cache_info().currsize:
         get_graph_retriever().close()
         get_graph_retriever.cache_clear()
+    if get_jev_pregen_filter.cache_info().currsize:
+        evidence_filter = get_jev_pregen_filter()
+        if evidence_filter is not None:
+            evidence_filter.close()
+        get_jev_pregen_filter.cache_clear()

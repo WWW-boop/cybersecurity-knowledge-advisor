@@ -52,6 +52,12 @@ class Settings(BaseSettings):
     jev_timeout_seconds: float = Field(default=15.0, gt=0, le=120)
     jev_entity_validation_enabled: bool = True
     jev_entity_min_confidence: float = Field(default=0.7, ge=0, le=1)
+    jev_pregen_filter_enabled: bool = True
+    jev_candidate_max: int = Field(default=12, ge=1, le=25)
+    jev_relevance_threshold: float = Field(default=0.6, ge=0, le=1)
+    jev_evidence_threshold: float = Field(default=0.6, ge=0, le=1)
+    jev_contradiction_threshold: float = Field(default=0.5, ge=0, le=1)
+    jev_injection_threshold: float = Field(default=0.5, ge=0, le=1)
 
     openai_api_key: SecretStr | None = None
     openai_model: str | None = None

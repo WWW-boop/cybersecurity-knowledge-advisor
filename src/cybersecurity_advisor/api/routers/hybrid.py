@@ -29,6 +29,7 @@ class HybridRetrievalRequest(BaseModel):
     dense_weight: float | None = Field(default=None, ge=0)
     graph_weight: float | None = Field(default=None, ge=0)
     rrf_k: int | None = Field(default=None, ge=1, le=1000)
+    dynamic_k: bool = False
 
 
 class HybridRetrievalResult(BaseModel):
@@ -69,6 +70,7 @@ def retrieve_hybrid(
             dense_weight=request.dense_weight,
             graph_weight=request.graph_weight,
             rrf_k=request.rrf_k,
+            dynamic_k=request.dynamic_k,
         )
     except JevError as error:
         raise HTTPException(status_code=503, detail="JEV entity validation unavailable") from error

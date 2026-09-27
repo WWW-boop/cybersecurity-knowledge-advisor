@@ -21,6 +21,7 @@ class FakeHybridRetriever:
             "dense_weight": 0.7,
             "graph_weight": 0.3,
             "rrf_k": 40,
+            "dynamic_k": True,
         }
         return [
             {
@@ -71,6 +72,7 @@ def test_hybrid_retrieve_returns_normalized_candidate(client: TestClient) -> Non
             "dense_weight": 0.7,
             "graph_weight": 0.3,
             "rrf_k": 40,
+            "dynamic_k": True,
         },
     )
 

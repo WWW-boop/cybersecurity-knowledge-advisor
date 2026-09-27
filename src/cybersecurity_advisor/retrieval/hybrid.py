@@ -5,6 +5,11 @@ import re
 from collections import defaultdict
 from typing import Any, Literal, Protocol
 
+from cybersecurity_advisor.retrieval.dynamic_topk import (
+    choose_retrieval_budget,
+    select_dynamic_context,
+)
+
 FusionMethod = Literal["naive", "rrf", "weighted"]
 
 
@@ -239,12 +244,18 @@ class HybridRetriever:
         dense_weight: float | None = None,
         graph_weight: float | None = None,
         rrf_k: int | None = None,
+        dynamic_k: bool = False,
     ) -> list[dict[str, Any]]:
         """Run both retrievers and return normalized, diverse hybrid evidence."""
         if not query.strip():
             raise ValueError("Query must not be empty")
         if dense_k < 1 or graph_k < 1:
             raise ValueError("retrieval candidate limits must be positive")
+        budget = choose_retrieval_budget(query) if dynamic_k else None
+        if budget is not None:
+            dense_k = budget.dense_k
+            graph_k = budget.graph_k
+            max_depth = budget.graph_depth
         dense_rows = self.dense_retriever.search(
             query,
             top_k=dense_k,
@@ -259,12 +270,13 @@ class HybridRetriever:
             language=language,
             topic=topic,
         )
-        return self.fuse(
+        rows = self.fuse(
             dense_rows,
             graph_rows,
-            top_k=top_k,
+            top_k=budget.fusion_k if budget is not None else top_k,
             method=method,
             dense_weight=dense_weight,
             graph_weight=graph_weight,
             rrf_k=rrf_k,
         )
+        return select_dynamic_context(rows, budget) if budget is not None else rows

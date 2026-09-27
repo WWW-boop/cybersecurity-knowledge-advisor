@@ -2268,6 +2268,12 @@ Hybrid retrieval returns normalized ranked candidates.
 
 ## Phase 8 — Dynamic Top-K
 
+Status: **complete**. Hybrid retrieval now has an opt-in `dynamic_k` policy that classifies query
+intent and complexity, selects separate Dense/Graph/fusion/context budgets, controls graph depth,
+and applies minimum/maximum K, score threshold, score-gap, and estimated multilingual token-budget
+cutoffs. Fixed Top-K remains the default baseline for the Phase 12 ablation. Enable it through
+`dynamic_k=true` in Hybrid/Chat APIs or `--dynamic-k` in `scripts/hybrid_retrieval.py`.
+
 Implement:
 
 - query complexity
@@ -2283,6 +2289,14 @@ Different query types produce different retrieval budgets.
 ---
 
 ## Phase 9 — JEV Pre-generation Filtering
+
+Status: **complete and live-tested**. Chat generation now sends fused candidates to JEV in one batched typed request,
+records calibrated relevance, answer-evidence, contradiction, and prompt-injection probabilities,
+and only passes `include` evidence to the context builder. Failures are closed with HTTP 503. The
+thresholds and candidate limit are configurable for Phase 12 calibration and ablation. When Dynamic
+Top-K is enabled, final score-gap/token selection correctly runs after JEV filtering.
+The live smoke test with `jev-1.13.0` included the relevant MFA passage (relevance 0.98,
+answer evidence 0.96) and dropped a synthetic prompt-injection passage (injection 0.99).
 
 Implement:
 

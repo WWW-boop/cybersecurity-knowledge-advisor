@@ -7,6 +7,7 @@ from cybersecurity_advisor.api.dependencies import (
     get_dense_retriever,
     get_graph_retriever,
     get_hybrid_retriever,
+    get_jev_pregen_filter,
 )
 from cybersecurity_advisor.api.main import create_app
 from cybersecurity_advisor.config.settings import get_settings
@@ -18,9 +19,11 @@ def client() -> TestClient:
     get_dense_retriever.cache_clear()
     get_graph_retriever.cache_clear()
     get_hybrid_retriever.cache_clear()
+    get_jev_pregen_filter.cache_clear()
     with TestClient(create_app()) as test_client:
         yield test_client
     get_settings.cache_clear()
     get_dense_retriever.cache_clear()
     get_graph_retriever.cache_clear()
     get_hybrid_retriever.cache_clear()
+    get_jev_pregen_filter.cache_clear()

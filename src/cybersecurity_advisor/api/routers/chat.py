@@ -28,6 +28,7 @@ class ChatRequest(BaseModel):
     topic: str | None = None
     score_threshold: float | None = Field(default=None, ge=-1, le=1)
     fusion_method: Literal["naive", "rrf", "weighted"] | None = None
+    dynamic_k: bool = False
 
 
 class Source(BaseModel):
@@ -47,8 +48,11 @@ class ChatResponse(BaseModel):
     input_tokens: int | None
     output_tokens: int | None
     retrieval_latency_ms: float = Field(ge=0)
+    jev_filter_latency_ms: float = Field(default=0, ge=0)
+    jev_filter: dict[str, Any] | None = None
     generation_latency_ms: float = Field(ge=0)
     total_latency_ms: float = Field(ge=0)
+    retrieval_budget: dict[str, Any] | None = None
 
 
 @router.post("/chat", response_model=ChatResponse)
@@ -66,6 +70,7 @@ def chat(request: ChatRequest, service: AnswerServiceDependency) -> dict[str, An
             topic=request.topic,
             score_threshold=request.score_threshold,
             method=request.fusion_method,
+            dynamic_k=request.dynamic_k,
         )
     except GenerationError as error:
         raise HTTPException(status_code=503, detail=str(error)) from error

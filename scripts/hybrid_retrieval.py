@@ -30,6 +30,11 @@ def parser() -> argparse.ArgumentParser:
     command.add_argument("--graph-weight", type=float)
     command.add_argument("--rrf-k", type=int)
     command.add_argument(
+        "--dynamic-k",
+        action="store_true",
+        help="Choose retrieval and context budgets from query intent and complexity",
+    )
+    command.add_argument(
         "--skip-jev",
         action="store_true",
         help="Disable JEV entity validation for an explicit ablation run",
@@ -110,6 +115,7 @@ def main() -> None:
                 dense_weight=args.dense_weight,
                 graph_weight=args.graph_weight,
                 rrf_k=args.rrf_k,
+                dynamic_k=args.dynamic_k,
             )
     except JevError as error:
         argument_parser.error(str(error))
