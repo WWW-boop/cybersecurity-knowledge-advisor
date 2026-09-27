@@ -11,12 +11,20 @@ from statistics import mean
 
 import numpy as np
 
+from cybersecurity_advisor.retrieval.dense import apply_transformers_v5_compatibility
+
 MODELS = {
-    "bge-m3": ("BAAI/bge-m3", False, None),
-    "gte-multilingual-base": ("Alibaba-NLP/gte-multilingual-base", True, None),
+    "bge-m3": ("BAAI/bge-m3", False, None, None),
+    "gte-multilingual-base": (
+        "Alibaba-NLP/gte-multilingual-base",
+        True,
+        None,
+        "40ced75c3017eb27626c9d4ea981bde21a2662f4",
+    ),
     "congen-multilingual-mpnet": (
         "kornwtp/ConGen-paraphrase-multilingual-mpnet-base-v2",
         False,
+        None,
         None,
     ),
 }
@@ -80,6 +88,7 @@ def evaluate_model(
     name: str,
     model_id: str,
     trust_remote_code: bool,
+    code_revision: str | None,
     chunks: list[dict],
     questions: list[dict],
     batch_size: int,
@@ -100,7 +109,10 @@ def evaluate_model(
         device=device,
         trust_remote_code=trust_remote_code,
         local_files_only=local_files_only,
+        model_kwargs={"code_revision": code_revision} if code_revision else None,
+        config_kwargs={"code_revision": code_revision} if code_revision else None,
     )
+    apply_transformers_v5_compatibility(model)
     config = model._first_module().auto_model.config
     position_limit = max(1, getattr(config, "max_position_embeddings", max_length) - 2)
     model.max_seq_length = min(
@@ -311,7 +323,7 @@ def main() -> None:
 
     results = []
     for name in args.models:
-        model_id, trust_remote_code, model_max_length = MODELS[name]
+        model_id, trust_remote_code, model_max_length, code_revision = MODELS[name]
         checkpoint = args.output / f"{name}.json"
         if args.resume and checkpoint.exists():
             result = json.loads(checkpoint.read_text(encoding="utf-8"))
@@ -329,6 +341,7 @@ def main() -> None:
             name,
             model_id,
             trust_remote_code,
+            code_revision,
             chunks,
             questions,
             args.batch_size,

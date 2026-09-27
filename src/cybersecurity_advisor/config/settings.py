@@ -19,7 +19,6 @@ class Settings(BaseSettings):
 
     app_env: str = "development"
     app_name: str = "Cybersecurity Knowledge Advisor"
-    app_host: str = "0.0.0.0"
     app_port: int = 8000
     log_level: str = "INFO"
 
@@ -86,6 +85,7 @@ class Settings(BaseSettings):
     generation_temperature: float = Field(default=0.1, ge=0, le=2)
     embedding_model: str = "Alibaba-NLP/gte-multilingual-base"
     embedding_revision: str = "9bbca17d9273fd0d03d5725c7a4b0f6b45142062"
+    embedding_code_revision: str = "40ced75c3017eb27626c9d4ea981bde21a2662f4"
     embedding_trust_remote_code: bool = True
     embedding_device: str | None = None
     embedding_batch_size: int = Field(default=8, ge=1)

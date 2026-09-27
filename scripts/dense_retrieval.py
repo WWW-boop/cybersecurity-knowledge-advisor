@@ -51,6 +51,7 @@ def retriever(local_path: Path | None) -> DenseRetriever:
         collection_name=settings.qdrant_collection,
         model_name=settings.embedding_model,
         model_revision=settings.embedding_revision,
+        model_code_revision=settings.embedding_code_revision,
         trust_remote_code=settings.embedding_trust_remote_code,
         device=settings.embedding_device,
         batch_size=settings.embedding_batch_size,

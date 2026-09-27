@@ -1,9 +1,13 @@
 """Dense retrieval behavior without downloading a production embedding model."""
 
 import numpy as np
+import torch
 from qdrant_client import QdrantClient
 
-from cybersecurity_advisor.retrieval.dense import DenseRetriever
+from cybersecurity_advisor.retrieval.dense import (
+    DenseRetriever,
+    apply_transformers_v5_compatibility,
+)
 
 
 class FakeModel:
@@ -21,6 +25,22 @@ class FakeModel:
         if isinstance(texts, str):
             return np.array(vector(texts))
         return np.array([vector(text) for text in texts])
+
+
+def test_transformers_v5_compatibility_restores_gte_model() -> None:
+    embeddings = torch.nn.Module()
+    embeddings.register_buffer("position_ids", torch.tensor([0, 99, 0]), persistent=False)
+    auto_model = type("AutoModel", (), {"embeddings": embeddings, "dtype": torch.float32})()
+    first_module = type("FirstModule", (), {"auto_model": auto_model})()
+    model = type("Model", (), {"_first_module": lambda self: first_module})()
+
+    apply_transformers_v5_compatibility(model)
+
+    assert torch.equal(embeddings.position_ids, torch.arange(3))
+    mask = auto_model.get_extended_attention_mask(torch.tensor([[1, 0]]), (1, 2))
+    assert mask.shape == (1, 1, 1, 2)
+    assert mask[0, 0, 0, 0] == 0
+    assert mask[0, 0, 0, 1] == torch.finfo(torch.float32).min
 
 
 def test_index_then_query_returns_relevant_chunk(tmp_path) -> None:

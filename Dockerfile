@@ -12,6 +12,13 @@ RUN uv sync --locked --no-dev --no-install-project
 COPY src ./src
 RUN uv sync --locked --no-dev
 
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN addgroup --system app && adduser --system --ingroup app app
+USER app
+
 EXPOSE 8000
 
 CMD ["uvicorn", "cybersecurity_advisor.api.main:app", "--host", "0.0.0.0", "--port", "8000"]

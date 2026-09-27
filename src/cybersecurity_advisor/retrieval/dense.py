@@ -3,10 +3,51 @@
 import json
 import uuid
 from pathlib import Path
+from types import MethodType
 from typing import Any
 
 from qdrant_client import QdrantClient, models
 from sentence_transformers import SentenceTransformer
+
+
+def apply_transformers_v5_compatibility(model: Any) -> None:
+    """Apply GTE compatibility fixes removed from the Transformers v5 base model."""
+    first_module = getattr(model, "_first_module", None)
+    if not callable(first_module):
+        return
+    auto_model = getattr(first_module(), "auto_model", None)
+    embeddings = getattr(auto_model, "embeddings", None)
+    position_ids = getattr(embeddings, "position_ids", None)
+    if position_ids is None or position_ids.ndim != 1 or auto_model is None:
+        return
+
+    import torch
+
+    expected = torch.arange(
+        position_ids.numel(), device=position_ids.device, dtype=position_ids.dtype
+    )
+    if not torch.equal(position_ids, expected):
+        embeddings.register_buffer("position_ids", expected, persistent=True)
+
+    if not hasattr(auto_model, "get_extended_attention_mask"):
+
+        def get_extended_attention_mask(
+            owner: Any, attention_mask: Any, input_shape: tuple[int, ...]
+        ) -> Any:
+            if attention_mask.ndim == 3:
+                extended = attention_mask[:, None, :, :]
+            elif attention_mask.ndim == 2:
+                extended = attention_mask[:, None, None, :]
+            else:
+                raise ValueError(
+                    f"Wrong attention_mask shape {tuple(attention_mask.shape)} "
+                    f"for input shape {input_shape}"
+                )
+            dtype = getattr(owner, "dtype", torch.float32)
+            extended = extended.to(dtype=dtype)
+            return (1.0 - extended) * torch.finfo(dtype).min
+
+        auto_model.get_extended_attention_mask = MethodType(get_extended_attention_mask, auto_model)
 
 
 class DenseRetriever:
@@ -18,6 +59,7 @@ class DenseRetriever:
         collection_name: str = "cybersecurity_chunks_gte",
         model_name: str = "Alibaba-NLP/gte-multilingual-base",
         model_revision: str | None = "9bbca17d9273fd0d03d5725c7a4b0f6b45142062",
+        model_code_revision: str | None = "40ced75c3017eb27626c9d4ea981bde21a2662f4",
         trust_remote_code: bool = True,
         device: str | None = None,
         batch_size: int = 8,
@@ -32,7 +74,10 @@ class DenseRetriever:
             device=device,
             revision=model_revision,
             trust_remote_code=trust_remote_code,
+            model_kwargs={"code_revision": model_code_revision},
+            config_kwargs={"code_revision": model_code_revision},
         )
+        apply_transformers_v5_compatibility(self.model)
         self.model.max_seq_length = min(self.model.max_seq_length, max_length)
 
     @property

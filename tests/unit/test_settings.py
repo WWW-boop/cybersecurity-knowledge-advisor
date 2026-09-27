@@ -45,6 +45,7 @@ def test_gte_is_the_default_embedding_model() -> None:
     settings = Settings(_env_file=None)
 
     assert settings.embedding_model == "Alibaba-NLP/gte-multilingual-base"
+    assert settings.embedding_code_revision == "40ced75c3017eb27626c9d4ea981bde21a2662f4"
     assert settings.embedding_trust_remote_code is True
     assert settings.qdrant_collection == "cybersecurity_chunks_gte"
 
