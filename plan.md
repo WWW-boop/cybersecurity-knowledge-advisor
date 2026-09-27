@@ -2337,6 +2337,14 @@ Both Local and API LLM can answer using identical context.
 
 ## Phase 11 — JEV Citation Validation
 
+Status: **complete and live-tested**. Generated answers are split into factual sentence/line claims, missing and
+fabricated source IDs are rejected deterministically, and valid claim/source pairs are evaluated in
+one typed JEV request as `supports`, `contradicts`, `says_nothing`, or `uncertain`. Every claim gets
+a validation status and `/api/v1/chat` returns citation coverage, groundedness, unsupported claims,
+contradictions, individual judgments, and separate citation-validation latency for Phase 12.
+The live `jev-1.13.0` smoke test verified a supported MFA claim with confidence 1.00 and marked an
+unrelated ransomware claim as `unsupported` / `says_nothing` with confidence 0.99.
+
 Implement:
 
 - claim extraction

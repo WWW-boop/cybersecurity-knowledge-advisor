@@ -66,6 +66,7 @@ def build_context(
                 "url": row["url"],
                 "retrievers": row["retrievers"],
                 "score": row["hybrid_score"],
+                "evidence_text": content,
             }
         )
     return "\n\n".join(blocks), sources
@@ -197,11 +198,13 @@ class AnswerService:
         *,
         max_context_chars: int,
         pregen_filter: Any | None = None,
+        citation_validator: Any | None = None,
     ) -> None:
         self.retriever = retriever
         self.provider_factory = provider_factory
         self.max_context_chars = max_context_chars
         self.pregen_filter = pregen_filter
+        self.citation_validator = citation_validator
 
     def answer(self, query: str, provider_name: ProviderName, **retrieval: Any) -> dict[str, Any]:
         dynamic_budget = None
@@ -236,6 +239,13 @@ class AnswerService:
         generation_started = perf_counter()
         generated = provider.generate(SYSTEM_PROMPT, build_prompt(query, context))
         generation_ms = (perf_counter() - generation_started) * 1000
+        citation_validation_ms = 0.0
+        citation_summary = None
+        if self.citation_validator is not None:
+            citation_started = perf_counter()
+            citation_result = self.citation_validator.validate(generated.answer, sources)
+            citation_validation_ms = (perf_counter() - citation_started) * 1000
+            citation_summary = citation_result.summary()
         return {
             "answer": generated.answer,
             "provider": provider_name,
@@ -247,6 +257,10 @@ class AnswerService:
             "generation_latency_ms": generation_ms,
             "jev_filter_latency_ms": jev_filter_ms,
             "jev_filter": jev_summary,
-            "total_latency_ms": retrieval_ms + jev_filter_ms + generation_ms,
+            "citation_validation_latency_ms": citation_validation_ms,
+            "citation_validation": citation_summary,
+            "total_latency_ms": (
+                retrieval_ms + jev_filter_ms + generation_ms + citation_validation_ms
+            ),
             "retrieval_budget": rows[0].get("retrieval_budget"),
         }

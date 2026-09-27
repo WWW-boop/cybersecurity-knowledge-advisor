@@ -51,6 +51,8 @@ class ChatResponse(BaseModel):
     jev_filter_latency_ms: float = Field(default=0, ge=0)
     jev_filter: dict[str, Any] | None = None
     generation_latency_ms: float = Field(ge=0)
+    citation_validation_latency_ms: float = Field(default=0, ge=0)
+    citation_validation: dict[str, Any] | None = None
     total_latency_ms: float = Field(ge=0)
     retrieval_budget: dict[str, Any] | None = None
 
@@ -75,7 +77,7 @@ def chat(request: ChatRequest, service: AnswerServiceDependency) -> dict[str, An
     except GenerationError as error:
         raise HTTPException(status_code=503, detail=str(error)) from error
     except JevError as error:
-        raise HTTPException(status_code=503, detail="JEV entity validation unavailable") from error
+        raise HTTPException(status_code=503, detail="JEV validation unavailable") from error
     except (ApiException, ResponseHandlingException) as error:
         raise HTTPException(status_code=503, detail="Vector database unavailable") from error
     except (Neo4jError, ServiceUnavailable) as error:

@@ -19,6 +19,7 @@ from cybersecurity_advisor.graph.retrieval import (
     GraphRetriever,
     Neo4jGraphRepository,
 )
+from cybersecurity_advisor.jev.citation_validation import JevCitationValidator
 from cybersecurity_advisor.jev.entity_validation import JevEntityValidator
 from cybersecurity_advisor.jev.pregen_filter import JevPreGenerationFilter
 from cybersecurity_advisor.retrieval.hybrid import HybridRetriever
@@ -131,6 +132,25 @@ def get_jev_pregen_filter() -> JevPreGenerationFilter | None:
     )
 
 
+@lru_cache
+def get_jev_citation_validator() -> JevCitationValidator | None:
+    """Build the process-wide semantic citation validator when enabled."""
+    settings = get_settings()
+    if not settings.jev_citation_validation_enabled:
+        return None
+    if settings.jev_api_key is None:
+        raise HTTPException(status_code=503, detail="JEV citation credentials not configured")
+    return JevCitationValidator(
+        httpx.Client(
+            base_url=settings.jev_api_url.rstrip("/"),
+            headers={"Authorization": f"Bearer {settings.jev_api_key.get_secret_value()}"},
+            timeout=settings.jev_timeout_seconds,
+        ),
+        model=settings.jev_model,
+        min_confidence=settings.jev_citation_min_confidence,
+    )
+
+
 def get_answer_service(
     retriever: HybridRetrieverDependency,
     settings: SettingsDependency,
@@ -165,6 +185,7 @@ def get_answer_service(
         provider_factory,
         max_context_chars=settings.generation_max_context_chars,
         pregen_filter=get_jev_pregen_filter(),
+        citation_validator=get_jev_citation_validator(),
     )
 
 
@@ -182,3 +203,8 @@ def close_graph_retriever() -> None:
         if evidence_filter is not None:
             evidence_filter.close()
         get_jev_pregen_filter.cache_clear()
+    if get_jev_citation_validator.cache_info().currsize:
+        citation_validator = get_jev_citation_validator()
+        if citation_validator is not None:
+            citation_validator.close()
+        get_jev_citation_validator.cache_clear()

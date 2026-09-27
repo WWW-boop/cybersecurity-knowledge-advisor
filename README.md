@@ -142,9 +142,11 @@ Invoke-RestMethod -Method Post http://localhost:8000/api/v1/chat `
 The response contains the answer, numbered sources, provider-reported token counts, and separate
 retrieval/JEV/generation latency. Before generation, JEV checks every fused candidate for relevance,
 answer evidence, contradiction, and prompt injection; only `include` candidates reach the prompt.
-Use `dynamic_k=true` to apply the final score-gap/token cutoff after this filter. Until JEV
-credentials are available, set both `JEV_ENTITY_VALIDATION_ENABLED=false` and
-`JEV_PREGEN_FILTER_ENABLED=false` only for the documented no-JEV baseline.
+Use `dynamic_k=true` to apply the final score-gap/token cutoff after this filter. Generated factual
+claims then receive deterministic citation checks and batched JEV semantic verdicts in the
+`citation_validation` response field. Until JEV credentials are available, disable all three
+`JEV_ENTITY_VALIDATION_ENABLED`, `JEV_PREGEN_FILTER_ENABLED`, and
+`JEV_CITATION_VALIDATION_ENABLED` flags only for the documented no-JEV baseline.
 
 ## Team workflow
 
