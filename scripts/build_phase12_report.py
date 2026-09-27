@@ -19,9 +19,7 @@ def value(row: dict[str, Any], key: str) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--root", type=Path, default=Path("data/evaluation/results")
-    )
+    parser.add_argument("--root", type=Path, default=Path("data/evaluation/results"))
     parser.add_argument(
         "--dataset", type=Path, default=Path("data/evaluation/questions.v0.1.jsonl")
     )

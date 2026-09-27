@@ -188,9 +188,7 @@ class JevPreGenerationFilter:
                     answer = answers[f"candidate_{index}_{metric}"]
                     if answer["type"] != "choice" or answer["choice"] not in {"yes", "no"}:
                         raise JevResponseError("JEV returned an invalid evidence decision")
-                    scores[metric] = self._probability(
-                        answer["probabilities"]["yes"], metric
-                    )
+                    scores[metric] = self._probability(answer["probabilities"]["yes"], metric)
                     confidences.append(self._probability(answer["confidence"], "confidence"))
                 decision = EvidenceDecision(
                     chunk_id=str(row["chunk_id"]),

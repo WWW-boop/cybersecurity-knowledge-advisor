@@ -212,9 +212,7 @@ def summarize(rows: list[dict[str, Any]], top_k: int) -> list[dict[str, Any]]:
     return summaries
 
 
-def write_outputs(
-    output: Path, rows: list[dict[str, Any]], summary: list[dict[str, Any]]
-) -> None:
+def write_outputs(output: Path, rows: list[dict[str, Any]], summary: list[dict[str, Any]]) -> None:
     """Write reproducible machine-readable evaluation artifacts."""
     output.mkdir(parents=True, exist_ok=True)
     (output / "results.json").write_text(

@@ -13,9 +13,7 @@ from cybersecurity_advisor.jev.entity_validation import (
 )
 
 Verdict = Literal["supports", "contradicts", "says_nothing", "uncertain"]
-ClaimStatus = Literal[
-    "verified", "reject", "unsupported", "review", "uncited", "invalid_citation"
-]
+ClaimStatus = Literal["verified", "reject", "unsupported", "review", "uncited", "invalid_citation"]
 
 _CITATION = re.compile(r"\[([A-Za-z]+\d+)\]", re.IGNORECASE)
 _SPLIT = re.compile(r"(?<=[.!?。！？])(?:\s+|$)|\n+")
@@ -175,9 +173,7 @@ class JevCitationValidator:
             return "unsupported"
         return "review"
 
-    def validate(
-        self, answer: str, sources: list[dict[str, Any]]
-    ) -> CitationValidationResult:
+    def validate(self, answer: str, sources: list[dict[str, Any]]) -> CitationValidationResult:
         """Give every extracted claim a deterministic or semantic validation status."""
         claims = extract_claims(answer)
         source_by_id = {str(source.get("source_id")): source for source in sources}
@@ -262,6 +258,4 @@ class JevCitationValidator:
                     judgments,
                     [],
                 )
-        return CitationValidationResult(
-            [completed[claim.claim_id] for claim in claims], model
-        )
+        return CitationValidationResult([completed[claim.claim_id] for claim in claims], model)

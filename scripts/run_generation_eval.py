@@ -99,8 +99,7 @@ def evaluate_experiment(
             and (input_cost_per_million or output_cost_per_million)
         ):
             cost = (
-                input_tokens * input_cost_per_million
-                + output_tokens * output_cost_per_million
+                input_tokens * input_cost_per_million + output_tokens * output_cost_per_million
             ) / 1_000_000
         source_ids = [source.get("corpus_source_id") for source in body["sources"]]
         expected = set(question.relevant_documents)
@@ -162,9 +161,7 @@ def error_detail(response: httpx.Response) -> str:
         return response.text or "unknown"
 
 
-def summarize(
-    rows: list[dict[str, Any]], skipped: list[dict[str, Any]]
-) -> list[dict[str, Any]]:
+def summarize(rows: list[dict[str, Any]], skipped: list[dict[str, Any]]) -> list[dict[str, Any]]:
     summaries = []
     for experiment in dict.fromkeys(row["experiment"] for row in rows):
         group = [row for row in rows if row["experiment"] == experiment]

@@ -25,6 +25,7 @@ say so clearly. Answer in the same language as the user's question."""
 def process_memory_mib() -> float | None:
     """Return process memory using only platform APIs from the standard library."""
     if sys.platform == "win32":
+
         class Counters(ctypes.Structure):
             _fields_ = [
                 ("cb", ctypes.c_ulong),
