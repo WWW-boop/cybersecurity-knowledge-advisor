@@ -22,3 +22,15 @@ uv run python scripts/benchmark_embeddings.py --device cuda --resume
 
 The generated `model-benchmark/comparison.png`, `summary.csv`, and `results.json` contain the
 GPU comparison. `--resume` reuses compatible per-model checkpoints.
+
+Compare Ollama answer-generation models on the exact same Hybrid RAG context with:
+
+```powershell
+uv run uvicorn cybersecurity_advisor.api.main:app
+# In another terminal:
+uv run python scripts/benchmark_ollama_models.py
+```
+
+The benchmark writes `ollama-benchmark/results.json`, `summary.csv`, `manual_review.csv`, and a
+Matplotlib `comparison.png`. Automatic metrics cover latency, throughput, language matching, and
+citation syntax. Fill in the manual review scores before deciding which answer is most correct.

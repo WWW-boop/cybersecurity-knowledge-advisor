@@ -55,12 +55,17 @@ class Settings(BaseSettings):
 
     openai_api_key: SecretStr | None = None
     openai_model: str | None = None
+    openai_base_url: str = "https://api.openai.com/v1"
     azure_openai_endpoint: str | None = None
     azure_openai_api_key: SecretStr | None = None
     azure_openai_deployment: str | None = None
 
     ollama_url: str = "http://localhost:11434"
     ollama_model: str | None = None
+    generation_timeout_seconds: float = Field(default=120, gt=0, le=600)
+    generation_max_output_tokens: int = Field(default=500, ge=1, le=8192)
+    generation_max_context_chars: int = Field(default=12000, ge=1000, le=100000)
+    generation_temperature: float = Field(default=0.1, ge=0, le=2)
     embedding_model: str = "Alibaba-NLP/gte-multilingual-base"
     embedding_revision: str = "9bbca17d9273fd0d03d5725c7a4b0f6b45142062"
     embedding_trust_remote_code: bool = True

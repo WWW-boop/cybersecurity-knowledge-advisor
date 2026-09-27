@@ -8,6 +8,7 @@ from fastapi import FastAPI
 
 from cybersecurity_advisor import __version__
 from cybersecurity_advisor.api.dependencies import close_graph_retriever
+from cybersecurity_advisor.api.routers.chat import router as chat_router
 from cybersecurity_advisor.api.routers.graph import router as graph_router
 from cybersecurity_advisor.api.routers.health import router as health_router
 from cybersecurity_advisor.api.routers.hybrid import router as hybrid_router
@@ -38,6 +39,7 @@ def create_app() -> FastAPI:
         version=__version__,
         lifespan=lifespan,
     )
+    application.include_router(chat_router)
     application.include_router(graph_router)
     application.include_router(health_router)
     application.include_router(hybrid_router)

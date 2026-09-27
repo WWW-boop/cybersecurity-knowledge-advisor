@@ -206,7 +206,9 @@ JEV must be used in three roles:
 ## Local LLM
 
 - Ollama
-- Qwen or Llama family model suitable for available hardware
+- **Selected baseline: `qwen3.5:4b`**
+- Configure `OLLAMA_MODEL=qwen3.5:4b`
+- Selection evidence: `data/evaluation/ollama-benchmark/`
 
 ## API LLM
 
@@ -1378,6 +1380,59 @@ The generator must be instructed to:
 
 # 30. Local LLM Integration
 
+## Selected Local Model
+
+Use **`qwen3.5:4b` through Ollama** as the default Local LLM baseline. Do not select a
+different default without recording a new benchmark using the same questions, retrieved
+context, prompt, and generation settings.
+
+The model was selected on the project machine (NVIDIA GeForce RTX 3050 Laptop GPU,
+6 GB VRAM) after comparing six balanced Thai, English, and cross-language RAG questions:
+
+| Model | Average latency | Generation speed | Model VRAM | Completed before 300-token limit |
+|---|---:|---:|---:|---:|
+| `qwen3.5:4b` | 7.16 s | 36.9 tokens/s | 2,983 MiB | 5/6 |
+| `gemma3:4b` | 7.04 s | 41.0 tokens/s | 2,742 MiB | 6/6 |
+| `llama3.2:3b` | 5.48 s | 52.7 tokens/s | 2,436 MiB | 3/6 |
+
+All three models produced valid citation labels and used the question language. `qwen3.5:4b`
+was selected for the strongest overall answer quality. `gemma3:4b` produced one
+safety-critical inverted airplane-mode instruction, while `llama3.2:3b` was fastest but reached
+the output limit on three of six answers.
+
+A confirmation run then compared Qwen and Gemma on all 15 seed questions with identical hybrid
+context, deterministic generation, and a 500-token output limit:
+
+| Model | Average latency | Generation speed | Model VRAM | Completed before limit |
+|---|---:|---:|---:|---:|
+| `qwen3.5:4b` | 10.29 s | 37.1 tokens/s | 2,983 MiB | 14/15 |
+| `gemma3:4b` | 6.66 s | 41.0 tokens/s | 2,742 MiB | 15/15 |
+
+Gemma is the performance winner, but it repeated the same safety-critical inversion: it told the
+user to **turn off airplane mode** although the retrieved Bank of Thailand evidence says to
+**turn on airplane mode** to disconnect a compromised phone. Qwen preserved that instruction.
+Therefore `qwen3.5:4b` remains the safety-oriented implementation baseline. Reconsider Gemma only
+after adding an action-polarity safety regression or a reliable groundedness check.
+
+Required local configuration:
+
+```env
+OLLAMA_MODEL=qwen3.5:4b
+```
+
+Reproducible evidence:
+
+- script: `scripts/benchmark_ollama_models.py`
+- chart: `data/evaluation/ollama-benchmark/comparison.png`
+- raw answers: `data/evaluation/ollama-benchmark/results.json`
+- summary: `data/evaluation/ollama-benchmark/summary.csv`
+- analysis: `data/evaluation/ollama-benchmark/analysis.md`
+- expanded Qwen/Gemma confirmation: `data/evaluation/ollama-qwen-gemma-15/analysis.md`
+- expanded chart: `data/evaluation/ollama-qwen-gemma-15/comparison.png`
+
+This is the implementation baseline. Confirm it on the reviewed 20–30 question evaluation set
+before reporting it as the final research result.
+
 Implement a generic interface:
 
 ```python
@@ -2238,6 +2293,14 @@ Only validated evidence reaches generator context.
 ---
 
 ## Phase 10 — LLM Layer
+
+Status: **complete**. The shared context/prompt pipeline, OpenAI Responses API provider, Ollama
+provider, `/api/v1/chat`, citations, token usage, and latency reporting are implemented and tested.
+The live Ollama GPU benchmark selected `qwen3.5:4b` as the local baseline. A live end-to-end smoke
+test returned HTTP 200 with five hybrid sources, token usage, and latency while Ollama reported the
+model fully loaded on the GPU. Qwen thinking is disabled so the configured output budget is used
+for the grounded answer. The OpenAI adapter is covered with a deterministic provider test; a live
+OpenAI smoke test remains optional until API credentials are configured.
 
 Implement:
 

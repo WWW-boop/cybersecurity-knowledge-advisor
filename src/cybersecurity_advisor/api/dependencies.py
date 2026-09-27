@@ -8,6 +8,13 @@ from fastapi import Depends, HTTPException
 from neo4j import GraphDatabase
 
 from cybersecurity_advisor.config.settings import Settings, get_settings
+from cybersecurity_advisor.generation.answering import (
+    AnswerService,
+    GenerationError,
+    OllamaProvider,
+    OpenAIResponsesProvider,
+    ProviderName,
+)
 from cybersecurity_advisor.graph.retrieval import (
     GraphRetriever,
     Neo4jGraphRepository,
@@ -98,6 +105,45 @@ def get_hybrid_retriever() -> HybridRetriever:
 
 
 HybridRetrieverDependency = Annotated[HybridRetriever, Depends(get_hybrid_retriever)]
+
+
+def get_answer_service(
+    retriever: HybridRetrieverDependency,
+    settings: SettingsDependency,
+) -> AnswerService:
+    """Compose hybrid retrieval with the requested configured LLM provider."""
+
+    def provider_factory(provider: ProviderName) -> OpenAIResponsesProvider | OllamaProvider:
+        common = {
+            "timeout": settings.generation_timeout_seconds,
+            "max_output_tokens": settings.generation_max_output_tokens,
+        }
+        if provider == "openai":
+            if settings.openai_api_key is None or not settings.openai_model:
+                raise GenerationError("OpenAI credentials and model are not configured")
+            return OpenAIResponsesProvider(
+                api_key=settings.openai_api_key.get_secret_value(),
+                model=settings.openai_model,
+                base_url=settings.openai_base_url,
+                **common,
+            )
+        if not settings.ollama_model:
+            raise GenerationError("Ollama model is not configured")
+        return OllamaProvider(
+            model=settings.ollama_model,
+            base_url=settings.ollama_url,
+            temperature=settings.generation_temperature,
+            **common,
+        )
+
+    return AnswerService(
+        retriever,
+        provider_factory,
+        max_context_chars=settings.generation_max_context_chars,
+    )
+
+
+AnswerServiceDependency = Annotated[AnswerService, Depends(get_answer_service)]
 
 
 def close_graph_retriever() -> None:

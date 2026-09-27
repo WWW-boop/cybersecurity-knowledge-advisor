@@ -127,6 +127,22 @@ The API equivalent is `POST /api/v1/hybrid/retrieve`. Configure the default meth
 RRF constant, and diversity limit with the `HYBRID_*` values in `.env`. Request-level overrides
 make the same query reproducible across fusion experiments.
 
+## Answer generation
+
+Configure either `OLLAMA_MODEL` for a local model or `OPENAI_API_KEY` and `OPENAI_MODEL` for the
+OpenAI Responses API. The same hybrid evidence and grounded prompt are used by both providers:
+
+```powershell
+$body = @{ query = "phishing and MFA"; provider = "ollama"; fusion_method = "rrf" } |
+  ConvertTo-Json
+Invoke-RestMethod -Method Post http://localhost:8000/api/v1/chat `
+  -ContentType "application/json" -Body $body
+```
+
+The response contains the answer, numbered sources, provider-reported token counts, and separate
+retrieval/generation latency. Until JEV credentials are available, set
+`JEV_ENTITY_VALIDATION_ENABLED=false` only for the documented no-JEV baseline.
+
 ## Team workflow
 
 Use short-lived feature branches and pull requests; do not push feature work directly to

@@ -1,0 +1,1238 @@
+[
+  {
+    "model": "qwen3.5:4b",
+    "query_id": "th-remote-app",
+    "language_group": "th",
+    "question": "ถ้าเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ควรทำอย่างไร",
+    "answer": "หากเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ให้ดำเนินการตามขั้นตอนดังนี้:\n\n1. **ห้ามกดยืนยันหรือทำสิ่งใด ๆ เพิ่มเติมทันที** หากพยายามรีเซตเครื่องแล้วเข้าไม่ได้ หรือหน้าจอเด้งกลับหน้าหลัก แสดงว่าถูกควบคุมไปแล้ว [S1]\n2. **ตัดการเชื่อมต่ออินเทอร์เน็ตของโทรศัพท์ทันที** โดยเปิดโหมดเครื่องบิน (Airplane mode), ปิดเครื่อง, ถอดซิม หรือถอดแบตเตอรี่ เพื่อหยุดการสื่อสารกับมิจฉาชีพ [S1]\n3. **ติดต่อธนาคารหรือหน่วยงานที่เกี่ยวข้อง** เพื่อระงับบัญชีและแจ้งเหตุ หากมีการโอนเงินผิดปกติ [S3]\n4. **ตรวจสอบแอปพลิเคชันที่ติดตั้ง** ว่ามาจากแหล่งที่น่าเชื่อถือหรือไม่ โดยควรดาวน์โหลดจาก Play Store หรือ App Store เท่านั้น ไม่ควรดาวน์โหลดจากลิงก์ภายนอกที่ไม่ได้ควบคุมความปลอดภัย [S3]\n\nหากต้องการตรวจสอบว่าถูกควบคุมไปแล้วหรือยัง ให้ลองเข้าหน้าการตั้งค่าและทดลองรีเซตเครื่อง หากเข้าไม่ได้หรือหน้าจอเด้งกลับ แสดงว่าถูกโจมตีแล้ว [S1]",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "th-03-0006",
+        "citation": "คู่มือแก้ปัญหา ถ้าตกเป็นเหยื่อภัยการเงิน, ",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-3/theknowledge_manualforfinancialfraud.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "th-03-0005",
+        "citation": "คู่มือแก้ปัญหา ถ้าตกเป็นเหยื่อภัยการเงิน, Step 2 ไม่คลิกลิงก์หรือดาวน์โหลดแอปฯ ที่คนแปลกหน้าส่งให้",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-3/theknowledge_manualforfinancialfraud.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "th-10-0007",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ป้องกันตัวจากกลลวงหลอก",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4841269841269841
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "th-11-0008",
+        "citation": "เช็กแอปเงินกู้, o รู้ทัน ระวังภัย ไม่ตกเป็นเหยื่อของมิจฉาชีพ",
+        "url": "https://www.bot.or.th/th/license-loan.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4765625
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "th-10-0005",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ป้องกันตัวจากกลลวงหลอก",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4621212121212121
+      }
+    ],
+    "wall_latency_ms": 6871.790699995472,
+    "prompt_tokens": 1183,
+    "output_tokens": 213,
+    "tokens_per_second": 36.757701515038555,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2983.1299982070923,
+    "hit_output_limit": false
+  },
+  {
+    "model": "qwen3.5:4b",
+    "query_id": "th-sms-url",
+    "language_group": "th",
+    "question": "มีบริการอะไรที่ใช้ตรวจสอบข้อความ SMS และ URL น่าสงสัยก่อนกดลิงก์",
+    "answer": "มีบริการที่ช่วยตรวจสอบข้อความ SMS และ URL ที่น่าสงสัยได้ ดังนี้:\n\n1. **Cyber Scammer Shield** ของ ThaiCERT (Thailand Computer Emergency Response Team) ซึ่งสามารถช่วยตรวจสอบก่อนคลิกเพื่อลดความเสี่ยงจากภัยหลอกลวงออนไลน์ โดยประชาชนสามารถคัดลอกข้อความ SMS ที่น่าสงสัยมาตรวจสอบในระบบเพื่อประเมินความเสี่ยงว่าเข้าข่ายการหลอกลวงหรือไม่ [S1][S2]\n\n2. **มาตรการทางกฎหมายและนโยบาย** จาก ธปท. และ TB-CERT ซึ่งทำงานร่วมกับ กสทช. เพื่อลดโอกาสในการติดต่อเหยื่อผ่านโทรศัพท์มือถือ โดยมีการแลกเปลี่ยนข้อมูลหมายเลขโทรศัพท์ต้องสงสัยระหว่างผู้ให้บริการเครือข่ายโทรศัพท์และหน่วยงานที่เกี่ยวข้อง [S3]\n\nอย่างไรก็ตาม ข้อมูลในหลักฐานไม่ได้ระบุชื่อบริการเฉพาะสำหรับตรวจสอบ URL โดยตรง แต่เน้นไปที่การตรวจสอบ SMS และการป้องกันมัลแวร์ที่อาจแอบสมัครบริการเสียค่าใช้จ่ายผ่าน Premium SMS หรือช่องทางอื่นๆ บน Android [S4][S5]",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "th-05-0017",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบก่อนคลิก ลดความเสี่ยงจากภัยหลอกลวงออนไลน์",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "th-05-0005",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบข้อความ SMS ได้ทันที",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "th-10-0009",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ต้านภัย ปราบคนโกง",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.46923076923076923
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "th-13-0007",
+        "citation": "แจ้งเตือน! มัลแวร์บน Android แอบสมัครบริการเสียค่าใช้จ่ายผ่าน Premium SMS โดยไม่ได้รับความยินยอม ผู้ใช้งานเร่งตรวจสอบและป้องกันความเสี่ยง - Thailand Computer Emergency Response Team (ThaiCERT), 2.5 ส่ง SMS ไปยังหมายเลข Short Code เพื่อสมัครบริการ Premium SMS หรือบริการที่มีค่าใช้จ่ายเพิ่มเติม",
+        "url": "https://www.thaicert.or.th/2026/05/25/%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B9%80%E0%B8%95%E0%B8%B7%E0%B8%AD%E0%B8%99-%E0%B8%A1%E0%B8%B1%E0%B8%A5%E0%B9%81%E0%B8%A7%E0%B8%A3%E0%B9%8C%E0%B8%9A%E0%B8%99-android-%E0%B9%81%E0%B8%AD%E0%B8%9A/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4621212121212121
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "th-13-0005",
+        "citation": "แจ้งเตือน! มัลแวร์บน Android แอบสมัครบริการเสียค่าใช้จ่ายผ่าน Premium SMS โดยไม่ได้รับความยินยอม ผู้ใช้งานเร่งตรวจสอบและป้องกันความเสี่ยง - Thailand Computer Emergency Response Team (ThaiCERT), 2.3 เปิด Hidden WebView และใช้ JavaScript Automation เพื่อกดสมัครบริการหรือดำเนินการบนหน้าเว็บโดยอัตโนมัติ",
+        "url": "https://www.thaicert.or.th/2026/05/25/%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B9%80%E0%B8%95%E0%B8%B7%E0%B8%AD%E0%B8%99-%E0%B8%A1%E0%B8%B1%E0%B8%A5%E0%B9%81%E0%B8%A7%E0%B8%A3%E0%B9%8C%E0%B8%9A%E0%B8%99-android-%E0%B9%81%E0%B8%AD%E0%B8%9A/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4552238805970149
+      }
+    ],
+    "wall_latency_ms": 6209.881700007827,
+    "prompt_tokens": 1151,
+    "output_tokens": 191,
+    "tokens_per_second": 36.9114579156235,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2983.1299982070923,
+    "hit_output_limit": false
+  },
+  {
+    "model": "qwen3.5:4b",
+    "query_id": "en-phishing",
+    "language_group": "en",
+    "question": "How can someone recognize and report a phishing message?",
+    "answer": "To recognize and report a phishing message, you should look for specific red flags and follow established reporting procedures.\n\n**Recognizing Phishing Messages**\nPhishing messages often appear to come from trusted sources but use suspicious email addresses (e.g., an email claiming to be from Chase but ending in `@gmail.com`) [S1]. They frequently request sensitive information such as bank account details or Social Security numbers [S1]. Scammers may craft a story to trick you into clicking links or opening attachments, often pretending to notice suspicious activity or login attempts [S4]. These attacks can arrive via email, text messages, phone calls, social media, or even physical mail [S1].\n\n**Reporting Phishing Messages**\nIf you believe you have been targeted, do not engage with the sender and delete the message without clicking any links [S1]. You can report phishing crimes to the FBI's Internet Crime Complaint Center [S1]. For specific reporting channels:\n*   Forward a phishing email to the Anti-Phishing Working Group at `reportphishing@apwg.org` [S2].\n*   Forward a phishing text message to SPAM (7726) [S2].\n*   Report the attempt to the Federal Trade Commission (FTC) at `ReportFraud.ftc.gov` [S2].",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "en-09-0006",
+        "citation": "Phishing | NISTLock, Phishing",
+        "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/phishing",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9049450549450548
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "en-06-0010",
+        "citation": "How To Recognize and Avoid Phishing Scams | Consumer Advice, How To Report Phishing",
+        "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "en-01-0002",
+        "citation": "Recognize and Report Phishing | CISALock, Recognize and Report Phishing",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "en-06-0002",
+        "citation": "How To Recognize and Avoid Phishing Scams | Consumer Advice, How To Recognize Phishing",
+        "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "en-01-0003",
+        "citation": "Recognize and Report Phishing | CISALock, Don’t Take the Bait",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.4919354838709677
+      }
+    ],
+    "wall_latency_ms": 8288.369899993995,
+    "prompt_tokens": 978,
+    "output_tokens": 274,
+    "tokens_per_second": 37.15923355419118,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2983.1299982070923,
+    "hit_output_limit": false
+  },
+  {
+    "model": "qwen3.5:4b",
+    "query_id": "en-mfa",
+    "language_group": "en",
+    "question": "Why does multi-factor authentication protect an account after a password is stolen?",
+    "answer": "Multi-factor authentication (MFA) protects an account after a password is stolen by creating a **second barrier** that requires additional verification beyond just the username and password [S1]. Even if a threat actor obtains your credentials through methods like phishing, they cannot access your systems or data without also possessing this second factor, such as a security key, a text code, or biometric data [S1][S4].\n\nFor example, in a scenario where a user enters their username and password into a fake website due to a phishing attack, MFA prevents unauthorized access because the criminal lacks the required secondary element (like a physical security key) [S1]. This extra step ensures that **two or more steps** are needed to verify identity, making it significantly harder for attackers to compromise the account even if the password is compromised [S5].\n\nWhile strong passwords and password managers are also important defenses [S2][S5], MFA specifically mitigates the risk posed by stolen passwords by requiring something the attacker does not have.",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "en-10-0007",
+        "citation": "Multi-Factor Authentication | NISTLock, What is Multi-Factor Authentication (MFA)?",
+        "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/multi-factor-authentication",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "en-01-0014",
+        "citation": "Recognize and Report Phishing | CISALock, ",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "en-13-0012",
+        "citation": "Use Two-Factor Authentication To Protect Your Accounts | Consumer Advice, Turning On Two-Factor Authentication",
+        "url": "https://consumer.ftc.gov/articles/use-two-factor-authentication-protect-your-accounts",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "en-01-0015",
+        "citation": "Recognize and Report Phishing | CISALock, ",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "en-25-0005",
+        "citation": "Password managers | Cyber.gov.au, Secure your password manager",
+        "url": "https://www.cyber.gov.au/protect-yourself/securing-your-accounts/password-managers",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4841269841269841
+      }
+    ],
+    "wall_latency_ms": 6485.504799988121,
+    "prompt_tokens": 891,
+    "output_tokens": 209,
+    "tokens_per_second": 37.059063636263694,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2983.1299982070923,
+    "hit_output_limit": false
+  },
+  {
+    "model": "qwen3.5:4b",
+    "query_id": "cross-th-to-en-backup",
+    "language_group": "cross",
+    "question": "การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้อย่างไร",
+    "answer": "การสำรองข้อมูลแบบ **offline** (ที่ไม่เชื่อมต่ออินเทอร์เน็ตหรืออุปกรณ์เครือข่าย) ช่วยในการกู้คืนจาก ransomware ได้ด้วยเหตุผลหลักคือ การป้องกันไม่ให้มัลแวร์หรือ ransomware แพร่กระจายไปยังไฟล์สำรองข้อมูลนั้น [S1] โดยปกติแล้ว ransomware มักจะพยายามเข้ารหัสไฟล์บนฮาร์ดไดรฟ์ที่เชื่อมต่อกับเครื่องคอมพิวเตอร์หรือระบบคลาวด์ แต่หากไฟล์สำรองข้อมูลถูกเก็บไว้ในสภาพที่ไม่เชื่อมต่อเครือข่าย (offline) มัลแวร์จะไม่สามารถเข้าถึงและเข้ารหัสไฟล์เหล่านั้นได้ [S1]\n\nเมื่อเกิดเหตุโจมตี ผู้ใช้สามารถกู้คืนข้อมูลได้โดย:\n1.  **การมีไฟล์สำรองที่ปลอดภัย**: การมีอย่างน้อยหนึ่งชุดของข้อมูลสำรองแบบ offline จะทำให้มั่นใจได้ว่ายังมีข้อมูลที่ไม่ถูกเข้ารหัสไว้เสมอ [S1]\n2.  **การหมุนเวียนอุปกรณ์**: สามารถใช้วิธีการเปลี่ยนฮาร์ดไดรฟ์ที่ใช้ในการสำรองข้อมูลเป็นระยะ เพื่อให้แน่ใจว่ามีการสำรองข้อมูลล่าสุดที่เป็น offline อยู่เสมอ [S1]\n3.  **การเก็บรักษาในสถานที่ห่างไกล**: เพื่อเพิ่มความปลอดภัยยิ่งขึ้น ควรเก็บข้อมูลสำรองแบบ offline ไว้ในอาคารหรือสถานที่ที่แตกต่างกันจากสถานที่หลัก [S1]\n\nนอกจากนี้ แม้บริการคลาวด์บางแห่งอาจไม่จำเป็นต้องใช้การสำรองข้อมูลแบบ offline หากพวกเขาเก็บเวอร์ชันเก่าของข้อมูลไว้ แต่หากต้องการความมั่นใจสูงสุดในการกู้คืนจาก ransomware การใช้บริการคลาวด์ที่รองรับการกู้คืนจาก ransomware หรือยังคงใช้หลักการของข้อมูลสำรองแบบ offline (",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "en-22-0041",
+        "citation": "How to back up your files and devices, Secure your backups",
+        "url": "https://www.cyber.gov.au/protect-yourself/securing-your-devices/how-back-up-your-files-and-devices",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9841269841269842
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "en-22-0042",
+        "citation": "How to back up your files and devices, Secure your backups",
+        "url": "https://www.cyber.gov.au/protect-yourself/securing-your-devices/how-back-up-your-files-and-devices",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9684979838709676
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "en-11-0002",
+        "citation": "Ransomware | NISTLock, Small Business Cybersecurity Corner",
+        "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/ransomware",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9462481962481962
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "en-12-0010",
+        "citation": "#StopRansomware Guide | CISALock, Preparing for Ransomware and Data Extortion Incidents",
+        "url": "https://www.cisa.gov/stopransomware/ransomware-guide",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "en-12-0040",
+        "citation": "#StopRansomware Guide | CISALock, General Best Practices and Hardening Guidance",
+        "url": "https://www.cisa.gov/stopransomware/ransomware-guide",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.4919354838709677
+      }
+    ],
+    "wall_latency_ms": 9044.217900009244,
+    "prompt_tokens": 908,
+    "output_tokens": 300,
+    "tokens_per_second": 36.90761887667233,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2983.1299982070923,
+    "hit_output_limit": true
+  },
+  {
+    "model": "qwen3.5:4b",
+    "query_id": "cross-en-to-th-scam-shield",
+    "language_group": "cross",
+    "question": "What Thai service checks suspicious SMS messages and URLs before users click?",
+    "answer": "The Thai service that checks suspicious SMS messages and URLs before users click is **Cyber Scammer Shield**, operated by the Thailand Computer Emergency Response Team (**ThaiCERT**).\n\nAccording to the evidence, this system allows users to copy suspicious SMS messages or URLs into it for immediate analysis to assess the risk of online fraud [S1][S2]. Additionally, ThaiCERT advises that legitimate police reports must be made through official channels (such as thaipoliceonline.go.th) and never via chat apps like Facebook or Line [S3].\n\nWhile other organizations like the Bank of Thailand (BOT) also contribute to security by blocking suspicious phone numbers (+697, +698) and working with telecom providers to intercept fraudulent SMS and websites [S4][S5], **Cyber Scammer Shield** is the specific tool designed for users to manually check messages and links.",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "th-05-0017",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบก่อนคลิก ลดความเสี่ยงจากภัยหลอกลวงออนไลน์",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "th-05-0005",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบข้อความ SMS ได้ทันที",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "th-06-0004",
+        "citation": "อ่านก่อนโอน 5 ขั้นตอนกลโกง “รับแจ้งความออนไลน์ปลอม“ ภัยไซเบอร์ที่ต้องระวัง - Thailand Computer Emergency Response Team (ThaiCERT)",
+        "url": "https://www.thaicert.or.th/2026/04/17/%E0%B8%AD%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%AD%E0%B8%99-5-%E0%B8%82%E0%B8%B1%E0%B9%89%E0%B8%99%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%81%E0%B8%A5%E0%B9%82/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4765625
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "th-10-0007",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ป้องกันตัวจากกลลวงหลอก",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4621212121212121
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "th-10-0009",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ต้านภัย ปราบคนโกง",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4552238805970149
+      }
+    ],
+    "wall_latency_ms": 6047.808399991482,
+    "prompt_tokens": 1207,
+    "output_tokens": 180,
+    "tokens_per_second": 36.81097523316685,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2983.1299982070923,
+    "hit_output_limit": false
+  },
+  {
+    "model": "gemma3:4b",
+    "query_id": "th-remote-app",
+    "language_group": "th",
+    "question": "ถ้าเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ควรทำอย่างไร",
+    "answer": "หากเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ควรทำดังนี้:\n\n1.  **ตรวจสอบว่าถูกควบคุมหรือไม่:** เข้าไปที่หน้าการตั้งค่าในโทรศัพท์และลองรีเซ็ตเครื่อง [S1]. หากหน้าจอเด้งออกมาที่หน้าหลัก แสดงว่าถูกควบคุมแล้ว\n2.  **ปิดการรับสัญญาณอินเทอร์เน็ต:** ปิด airplane mode, ถอดซิม, ถอดแบตเตอรี่ หรือปิดเครื่อง [S1].\n3.  **อย่ากดยืนยัน:** หากแน่ใจว่าถูกควบคุมแล้ว ห้ามกดยืนยันใด ๆ เด็ดขาด [S1].\n4.  **ระวังการดาวน์โหลด:** อย่าคลิกลิงก์หรือดาวน์โหลดแอปฯ ที่คนแปลกหน้าส่งให้ [S2, S3].\n5.  **ตรวจสอบแหล่งที่มาของแอป:** ตรวจสอบว่าแอปฯ มาจากแหล่งที่น่าเชื่อถือ เช่น Play Store หรือ App Store หรือไม่ [S3].\n6.  **หากรู้ตัวว่าโดนหลอก:** มิจฉาชีพจะบล็อกไลน์เพื่อตัดการติดต่อ [S4].\n\nข้อมูลเพิ่มเติมจากธนาคารแห่งประเทศไทยพบว่าความเสียหายจากแอปฯ ดูดเงินเพิ่มขึ้น โดยเฉพาะในปี 2565 [S5].",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "th-03-0006",
+        "citation": "คู่มือแก้ปัญหา ถ้าตกเป็นเหยื่อภัยการเงิน, ",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-3/theknowledge_manualforfinancialfraud.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "th-03-0005",
+        "citation": "คู่มือแก้ปัญหา ถ้าตกเป็นเหยื่อภัยการเงิน, Step 2 ไม่คลิกลิงก์หรือดาวน์โหลดแอปฯ ที่คนแปลกหน้าส่งให้",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-3/theknowledge_manualforfinancialfraud.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "th-10-0007",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ป้องกันตัวจากกลลวงหลอก",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4841269841269841
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "th-11-0008",
+        "citation": "เช็กแอปเงินกู้, o รู้ทัน ระวังภัย ไม่ตกเป็นเหยื่อของมิจฉาชีพ",
+        "url": "https://www.bot.or.th/th/license-loan.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4765625
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "th-10-0005",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ป้องกันตัวจากกลลวงหลอก",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4621212121212121
+      }
+    ],
+    "wall_latency_ms": 18392.60269999795,
+    "prompt_tokens": 1472,
+    "output_tokens": 282,
+    "tokens_per_second": 40.7960023389708,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2742.3099994659424,
+    "hit_output_limit": false
+  },
+  {
+    "model": "gemma3:4b",
+    "query_id": "th-sms-url",
+    "language_group": "th",
+    "question": "มีบริการอะไรที่ใช้ตรวจสอบข้อความ SMS และ URL น่าสงสัยก่อนกดลิงก์",
+    "answer": "ระบบ Cyber Scammer Shield ของ ThaiCERT ช่วยตรวจสอบข้อความ SMS หรือ URL ที่น่าสงสัย [S1, S2]. คุณสามารถคัดลอกข้อความ SMS ที่น่าสงสัยมาตรวจสอบในระบบเพื่อประเมินความเสี่ยง [S2]. นอกจากนี้ ระบบยังช่วยในการตรวจสอบ URL ที่น่าสงสัยด้วย [S1].",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "th-05-0017",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบก่อนคลิก ลดความเสี่ยงจากภัยหลอกลวงออนไลน์",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "th-05-0005",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบข้อความ SMS ได้ทันที",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "th-10-0009",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ต้านภัย ปราบคนโกง",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.46923076923076923
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "th-13-0007",
+        "citation": "แจ้งเตือน! มัลแวร์บน Android แอบสมัครบริการเสียค่าใช้จ่ายผ่าน Premium SMS โดยไม่ได้รับความยินยอม ผู้ใช้งานเร่งตรวจสอบและป้องกันความเสี่ยง - Thailand Computer Emergency Response Team (ThaiCERT), 2.5 ส่ง SMS ไปยังหมายเลข Short Code เพื่อสมัครบริการ Premium SMS หรือบริการที่มีค่าใช้จ่ายเพิ่มเติม",
+        "url": "https://www.thaicert.or.th/2026/05/25/%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B9%80%E0%B8%95%E0%B8%B7%E0%B8%AD%E0%B8%99-%E0%B8%A1%E0%B8%B1%E0%B8%A5%E0%B9%81%E0%B8%A7%E0%B8%A3%E0%B9%8C%E0%B8%9A%E0%B8%99-android-%E0%B9%81%E0%B8%AD%E0%B8%9A/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4621212121212121
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "th-13-0005",
+        "citation": "แจ้งเตือน! มัลแวร์บน Android แอบสมัครบริการเสียค่าใช้จ่ายผ่าน Premium SMS โดยไม่ได้รับความยินยอม ผู้ใช้งานเร่งตรวจสอบและป้องกันความเสี่ยง - Thailand Computer Emergency Response Team (ThaiCERT), 2.3 เปิด Hidden WebView และใช้ JavaScript Automation เพื่อกดสมัครบริการหรือดำเนินการบนหน้าเว็บโดยอัตโนมัติ",
+        "url": "https://www.thaicert.or.th/2026/05/25/%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B9%80%E0%B8%95%E0%B8%B7%E0%B8%AD%E0%B8%99-%E0%B8%A1%E0%B8%B1%E0%B8%A5%E0%B9%81%E0%B8%A7%E0%B8%A3%E0%B9%8C%E0%B8%9A%E0%B8%99-android-%E0%B9%81%E0%B8%AD%E0%B8%9A/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4552238805970149
+      }
+    ],
+    "wall_latency_ms": 2835.051800007932,
+    "prompt_tokens": 1419,
+    "output_tokens": 72,
+    "tokens_per_second": 39.819815335606386,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2742.3099994659424,
+    "hit_output_limit": false
+  },
+  {
+    "model": "gemma3:4b",
+    "query_id": "en-phishing",
+    "language_group": "en",
+    "question": "How can someone recognize and report a phishing message?",
+    "answer": "Here’s how you can recognize and report a phishing message, based on the provided evidence:\n\nFirst, be wary of suspicious-looking source email addresses [S1]. For example, would your bank actually email you from Chase@gmail.com? [S4]\n\nSecond, watch out for requests for sensitive information like bank account details or your Social Security number [S1, S4].\n\nThird, don’t engage with the sender and absolutely do not click any links in the email, including unsubscribe links [S1]. Just delete the message [S1].\n\nYou can report phishing crimes to the FBI’s Internet Crime Complaint Center [S1].\n\nTo report phishing emails, you can forward them to the Anti-Phishing Working Group at reportphishing@apwg.org [S2]. You can also forward phishing text messages to SPAM (7726) [S2]. Finally, you can report the attempt to the FTC at ReportFraud.ftc.gov [S2]. [S2]",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "en-09-0006",
+        "citation": "Phishing | NISTLock, Phishing",
+        "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/phishing",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9049450549450548
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "en-06-0010",
+        "citation": "How To Recognize and Avoid Phishing Scams | Consumer Advice, How To Report Phishing",
+        "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "en-01-0002",
+        "citation": "Recognize and Report Phishing | CISALock, Recognize and Report Phishing",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "en-06-0002",
+        "citation": "How To Recognize and Avoid Phishing Scams | Consumer Advice, How To Recognize Phishing",
+        "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "en-01-0003",
+        "citation": "Recognize and Report Phishing | CISALock, Don’t Take the Bait",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.4919354838709677
+      }
+    ],
+    "wall_latency_ms": 5961.044899988337,
+    "prompt_tokens": 1009,
+    "output_tokens": 214,
+    "tokens_per_second": 41.40456673023106,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2742.3099994659424,
+    "hit_output_limit": false
+  },
+  {
+    "model": "gemma3:4b",
+    "query_id": "en-mfa",
+    "language_group": "en",
+    "question": "Why does multi-factor authentication protect an account after a password is stolen?",
+    "answer": "Multi-factor authentication protects an account after a password is stolen by creating a second barrier [S1, S4, S5]. Specifically, it requires something *more* than just the password, such as a security key or a code sent to your phone [S1, S4, S5]. This makes it much harder for a threat actor who has stolen the password to gain access to your systems and data [S1].",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "en-10-0007",
+        "citation": "Multi-Factor Authentication | NISTLock, What is Multi-Factor Authentication (MFA)?",
+        "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/multi-factor-authentication",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "en-01-0014",
+        "citation": "Recognize and Report Phishing | CISALock, ",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "en-13-0012",
+        "citation": "Use Two-Factor Authentication To Protect Your Accounts | Consumer Advice, Turning On Two-Factor Authentication",
+        "url": "https://consumer.ftc.gov/articles/use-two-factor-authentication-protect-your-accounts",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "en-01-0015",
+        "citation": "Recognize and Report Phishing | CISALock, ",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "en-25-0005",
+        "citation": "Password managers | Cyber.gov.au, Secure your password manager",
+        "url": "https://www.cyber.gov.au/protect-yourself/securing-your-accounts/password-managers",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4841269841269841
+      }
+    ],
+    "wall_latency_ms": 2877.995299990289,
+    "prompt_tokens": 917,
+    "output_tokens": 89,
+    "tokens_per_second": 41.69678753973342,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2742.3099994659424,
+    "hit_output_limit": false
+  },
+  {
+    "model": "gemma3:4b",
+    "query_id": "cross-th-to-en-backup",
+    "language_group": "cross",
+    "question": "การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้อย่างไร",
+    "answer": "การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้อย่างไร\n\nการสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้ เนื่องจาก ransomware และ malware สามารถแพร่กระจายไปยังฮาร์ดไดรฟ์หรือคลาวด์สโตร์ที่เชื่อมต่ออยู่ได้ [S1] การมีสำรองข้อมูลที่ไม่ได้เชื่อมต่อกับอุปกรณ์หรือเครือข่ายใดๆ จะช่วยให้คุณสามารถกู้คืนข้อมูลได้เสมอ [S1] นอกจากนี้ การเก็บสำรองข้อมูล offline ในสถานที่ที่แตกต่างกัน เช่น อาคารอื่น ๆ จะช่วยเพิ่มการป้องกัน [S1] \n\nนอกจากนี้ การใช้ “golden images” และ IaC เพื่อสร้างและอัปเดตทรัพยากรคลาวด์ รวมถึงการเก็บสำรองไฟล์ template ไว้ในรูปแบบ offline ก็เป็นวิธีที่ช่วยให้สามารถกู้คืนระบบได้เร็วขึ้น [S4] และการเก็บสำเนาของ source code หรือ executables ไว้ในรูปแบบ offline ก็เป็นประโยชน์เช่นกัน [S4] การมีเอกสารการจัดการสินทรัพย์ IT และการเก็บสำเนา offline ก็มีความสำคัญเช่นกัน [S5]",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "en-22-0041",
+        "citation": "How to back up your files and devices, Secure your backups",
+        "url": "https://www.cyber.gov.au/protect-yourself/securing-your-devices/how-back-up-your-files-and-devices",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9841269841269842
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "en-22-0042",
+        "citation": "How to back up your files and devices, Secure your backups",
+        "url": "https://www.cyber.gov.au/protect-yourself/securing-your-devices/how-back-up-your-files-and-devices",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9684979838709676
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "en-11-0002",
+        "citation": "Ransomware | NISTLock, Small Business Cybersecurity Corner",
+        "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/ransomware",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9462481962481962
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "en-12-0010",
+        "citation": "#StopRansomware Guide | CISALock, Preparing for Ransomware and Data Extortion Incidents",
+        "url": "https://www.cisa.gov/stopransomware/ransomware-guide",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "en-12-0040",
+        "citation": "#StopRansomware Guide | CISALock, General Best Practices and Hardening Guidance",
+        "url": "https://www.cisa.gov/stopransomware/ransomware-guide",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.4919354838709677
+      }
+    ],
+    "wall_latency_ms": 6324.125200000708,
+    "prompt_tokens": 938,
+    "output_tokens": 233,
+    "tokens_per_second": 41.419026514220946,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2742.3099994659424,
+    "hit_output_limit": false
+  },
+  {
+    "model": "gemma3:4b",
+    "query_id": "cross-en-to-th-scam-shield",
+    "language_group": "cross",
+    "question": "What Thai service checks suspicious SMS messages and URLs before users click?",
+    "answer": "The ThaiCERT’s Cyber Scammer Shield helps to check suspicious SMS messages and URLs [S1, S2]. You can use the system to check SMS messages or URLs that seem suspicious and improve your digital security [S1, S2]. \n\nAccording to Thailand Computer Emergency Response Team (ThaiCERT), it is important to verify SMS messages and URLs to assess the risk of deception [S2, S4]. The Bank of Thailand (BOT) advises checking SMS alerts from your bank and contacting them immediately if anything seems unusual [S4]. \n\nFurthermore, ThaiCERT, in collaboration with the National Broadcasting and Telecommunications Commission (NBTC) and the Ministry of Digital Economy and Society (MDES), is working to block suspicious SMS messages and fake websites that lead to malicious applications [S5]. They are also working to exchange information about suspicious phone numbers between network operators and relevant agencies to reduce the chances of criminals using phones to contact victims [S5].",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "th-05-0017",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบก่อนคลิก ลดความเสี่ยงจากภัยหลอกลวงออนไลน์",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "th-05-0005",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบข้อความ SMS ได้ทันที",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "th-06-0004",
+        "citation": "อ่านก่อนโอน 5 ขั้นตอนกลโกง “รับแจ้งความออนไลน์ปลอม“ ภัยไซเบอร์ที่ต้องระวัง - Thailand Computer Emergency Response Team (ThaiCERT)",
+        "url": "https://www.thaicert.or.th/2026/04/17/%E0%B8%AD%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%AD%E0%B8%99-5-%E0%B8%82%E0%B8%B1%E0%B9%89%E0%B8%99%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%81%E0%B8%A5%E0%B9%82/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4765625
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "th-10-0007",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ป้องกันตัวจากกลลวงหลอก",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4621212121212121
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "th-10-0009",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ต้านภัย ปราบคนโกง",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4552238805970149
+      }
+    ],
+    "wall_latency_ms": 5855.200899997726,
+    "prompt_tokens": 1487,
+    "output_tokens": 196,
+    "tokens_per_second": 40.87597208171107,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2742.3099994659424,
+    "hit_output_limit": false
+  },
+  {
+    "model": "llama3.2:3b",
+    "query_id": "th-remote-app",
+    "language_group": "th",
+    "question": "ถ้าเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ควรทำอย่างไร",
+    "answer": "ถ้าเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ควรทำอย่างต่อไป\n\n1. หากต้องการตรวจสอบว่าถูกควบคุมโทรศัพท์ไปหรือยัง ทำได้โดยเข้าไปที่หน้าการตั้งค่า และทดลองรีเซตเครื่อง ถ้าเข้าไม่ได้ หรือเข้าแล้วหน้าจอเด้งออกมาที่หน้าหลัก แสดงว่าถูกควบคุมหรือโจมตีไปแล้ว เพราะฉะนั้น ห้าม! กดยืนยันใด ๆ เด็ดขาด แล้วรีบทำตามข้อต่อไป [S1]\n2. หากแน่ใจว่าถูกควบคุมโทรศัพท์ ให้รีบปิดการรับสัญญาณอินเทอร์เน็ตของโทรศัพท์มือถือ จะเปิด airplane mode หรือจะปิดเครื่อง ถอดซิม ถอดแบตเตอรี่ ก็สามารถทำได้เช่นเดียวกัน เพื่อตัดการเชื่อมต่อจากอุปกรณ์ของมิจฉาชีพมาที่โทรศัพท์ของเรา [S1]\n\nและควรปฏิบัติตามข้อแนะนำจากคู่มือแก้ปัญหา [S2] และ [S3] เช่น:\n\n- ไม่คลิกลิงก",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "th-03-0006",
+        "citation": "คู่มือแก้ปัญหา ถ้าตกเป็นเหยื่อภัยการเงิน, ",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-3/theknowledge_manualforfinancialfraud.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "th-03-0005",
+        "citation": "คู่มือแก้ปัญหา ถ้าตกเป็นเหยื่อภัยการเงิน, Step 2 ไม่คลิกลิงก์หรือดาวน์โหลดแอปฯ ที่คนแปลกหน้าส่งให้",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-3/theknowledge_manualforfinancialfraud.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "th-10-0007",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ป้องกันตัวจากกลลวงหลอก",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4841269841269841
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "th-11-0008",
+        "citation": "เช็กแอปเงินกู้, o รู้ทัน ระวังภัย ไม่ตกเป็นเหยื่อของมิจฉาชีพ",
+        "url": "https://www.bot.or.th/th/license-loan.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4765625
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "th-10-0005",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ป้องกันตัวจากกลลวงหลอก",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4621212121212121
+      }
+    ],
+    "wall_latency_ms": 6868.924299997161,
+    "prompt_tokens": 1887,
+    "output_tokens": 300,
+    "tokens_per_second": 51.20308474690827,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2436.359998703003,
+    "hit_output_limit": true
+  },
+  {
+    "model": "llama3.2:3b",
+    "query_id": "th-sms-url",
+    "language_group": "th",
+    "question": "มีบริการอะไรที่ใช้ตรวจสอบข้อความ SMS และ URL น่าสงสัยก่อนกดลิงก์",
+    "answer": "มีบริการ Cyber Scammer Shield ที่ใช้ตรวจสอบข้อความ SMS และ URL น่าสงสัยก่อนกดลิงก์ เพื่อช่วยลดความเสี่ยงจากภัยหลอกลวงออนไลน์ [S1]",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "th-05-0017",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบก่อนคลิก ลดความเสี่ยงจากภัยหลอกลวงออนไลน์",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "th-05-0005",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบข้อความ SMS ได้ทันที",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "th-10-0009",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ต้านภัย ปราบคนโกง",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.46923076923076923
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "th-13-0007",
+        "citation": "แจ้งเตือน! มัลแวร์บน Android แอบสมัครบริการเสียค่าใช้จ่ายผ่าน Premium SMS โดยไม่ได้รับความยินยอม ผู้ใช้งานเร่งตรวจสอบและป้องกันความเสี่ยง - Thailand Computer Emergency Response Team (ThaiCERT), 2.5 ส่ง SMS ไปยังหมายเลข Short Code เพื่อสมัครบริการ Premium SMS หรือบริการที่มีค่าใช้จ่ายเพิ่มเติม",
+        "url": "https://www.thaicert.or.th/2026/05/25/%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B9%80%E0%B8%95%E0%B8%B7%E0%B8%AD%E0%B8%99-%E0%B8%A1%E0%B8%B1%E0%B8%A5%E0%B9%81%E0%B8%A7%E0%B8%A3%E0%B9%8C%E0%B8%9A%E0%B8%99-android-%E0%B9%81%E0%B8%AD%E0%B8%9A/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4621212121212121
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "th-13-0005",
+        "citation": "แจ้งเตือน! มัลแวร์บน Android แอบสมัครบริการเสียค่าใช้จ่ายผ่าน Premium SMS โดยไม่ได้รับความยินยอม ผู้ใช้งานเร่งตรวจสอบและป้องกันความเสี่ยง - Thailand Computer Emergency Response Team (ThaiCERT), 2.3 เปิด Hidden WebView และใช้ JavaScript Automation เพื่อกดสมัครบริการหรือดำเนินการบนหน้าเว็บโดยอัตโนมัติ",
+        "url": "https://www.thaicert.or.th/2026/05/25/%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B9%80%E0%B8%95%E0%B8%B7%E0%B8%AD%E0%B8%99-%E0%B8%A1%E0%B8%B1%E0%B8%A5%E0%B9%81%E0%B8%A7%E0%B8%A3%E0%B9%8C%E0%B8%9A%E0%B8%99-android-%E0%B9%81%E0%B8%AD%E0%B8%9A/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4552238805970149
+      }
+    ],
+    "wall_latency_ms": 1840.737500009709,
+    "prompt_tokens": 1553,
+    "output_tokens": 56,
+    "tokens_per_second": 53.346390548302196,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2436.359998703003,
+    "hit_output_limit": false
+  },
+  {
+    "model": "llama3.2:3b",
+    "query_id": "en-phishing",
+    "language_group": "en",
+    "question": "How can someone recognize and report a phishing message?",
+    "answer": "To recognize and report a phishing message, follow these steps:\n\n1. **Check the sender's email address**: Be cautious of suspicious-looking source email addresses, such as \"Chase@gmail.com\" instead of the bank's official email address. [S1]\n2. **Look for red flags**: Scammers often use tactics like telling a story to trick you into clicking on a link or opening an attachment. Be wary of unexpected emails or text messages that seem too good (or bad) to be true. [S4]\n3. **Verify the sender's identity**: Scammers may claim to be from a trusted company or organization, but it's essential to verify the sender's identity before responding. [S4]\n4. **Don't take the bait**: If you receive a phishing message, don't engage with the sender or click on any links or attachments. Instead, delete the message. [S5]\n5. **Report the phishing attempt**: If you believe you've received a phishing message, report it to the relevant authorities, such as:\n\t* Forwarding the email to the Anti-Phishing Working Group at reportphishing@apwg.org. [S2]\n\t* Forwarding the text message to SPAM (7726). [S2]\n\t* Reporting the phishing attempt to the FTC at ReportFraud.ftc.gov. [S2]\n\t* Reporting the phishing attempt to the FBI's Internet Crime Complaint Center. [S1]\n6.",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "en-09-0006",
+        "citation": "Phishing | NISTLock, Phishing",
+        "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/phishing",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9049450549450548
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "en-06-0010",
+        "citation": "How To Recognize and Avoid Phishing Scams | Consumer Advice, How To Report Phishing",
+        "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "en-01-0002",
+        "citation": "Recognize and Report Phishing | CISALock, Recognize and Report Phishing",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "en-06-0002",
+        "citation": "How To Recognize and Avoid Phishing Scams | Consumer Advice, How To Recognize Phishing",
+        "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "en-01-0003",
+        "citation": "Recognize and Report Phishing | CISALock, Don’t Take the Bait",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.4919354838709677
+      }
+    ],
+    "wall_latency_ms": 6196.473399992101,
+    "prompt_tokens": 961,
+    "output_tokens": 300,
+    "tokens_per_second": 53.28575980697766,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2436.359998703003,
+    "hit_output_limit": true
+  },
+  {
+    "model": "llama3.2:3b",
+    "query_id": "en-mfa",
+    "language_group": "en",
+    "question": "Why does multi-factor authentication protect an account after a password is stolen?",
+    "answer": "Multi-factor authentication (MFA) protects an account after a password is stolen by creating a second barrier that makes it much harder for the threat actor to access the system and data [S1]. This additional layer of security prevents unauthorized access, even if the password is compromised.\n\nMFA adds an extra layer of security that protects against phishing threats, such as One Time Pins (OTPs) and SMS-based codes, which can be susceptible to phishing attacks [S2]. By using MFA, the threat actor would need to obtain both the password and the security key, making it much more difficult to gain access to the account.\n\nEnabling MFA on all accounts that offer it is essential for reducing cybersecurity risks, but some forms of MFA are more secure than others [S1]. Using strong passwords and a password manager can also help protect against identity theft and online security threats [S3].\n\nTo secure your password manager, use multi-factor authentication (MFA) if available, and make your master password as strong as possible [S5]. A weak master password is like leaving the unlock code beside the door, making it easy for someone to gain access to all your accounts.\n\nIn summary, MFA provides an additional layer of security that protects against password theft and phishing attacks, making it a crucial step in online security and identity theft prevention.",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "en-10-0007",
+        "citation": "Multi-Factor Authentication | NISTLock, What is Multi-Factor Authentication (MFA)?",
+        "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/multi-factor-authentication",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "en-01-0014",
+        "citation": "Recognize and Report Phishing | CISALock, ",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "en-13-0012",
+        "citation": "Use Two-Factor Authentication To Protect Your Accounts | Consumer Advice, Turning On Two-Factor Authentication",
+        "url": "https://consumer.ftc.gov/articles/use-two-factor-authentication-protect-your-accounts",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "en-01-0015",
+        "citation": "Recognize and Report Phishing | CISALock, ",
+        "url": "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "en-25-0005",
+        "citation": "Password managers | Cyber.gov.au, Secure your password manager",
+        "url": "https://www.cyber.gov.au/protect-yourself/securing-your-accounts/password-managers",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4841269841269841
+      }
+    ],
+    "wall_latency_ms": 6421.372600001632,
+    "prompt_tokens": 877,
+    "output_tokens": 271,
+    "tokens_per_second": 53.56983658432396,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2436.359998703003,
+    "hit_output_limit": false
+  },
+  {
+    "model": "llama3.2:3b",
+    "query_id": "cross-th-to-en-backup",
+    "language_group": "cross",
+    "question": "การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้อย่างไร",
+    "answer": "การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้อย่างไร\n\nการสำรองข้อมูลแบบ offline สามารถช่วยให้กู้คืนจาก ransomware ได้โดยการเก็บสำรองข้อมูลที่ไม่เชื่อมต่อกับเครือข่ายหรืออุปกรณ์ใดๆ [S1]. การเก็บสำรองข้อมูลแบบ offline จะช่วยให้คุณสามารถฟื้นฟูข้อมูลหลังจากการโจมตี ransomware ได้\n\nนอกจากนี้ การใช้ cloud backup service ที่มีการรักษาความปลอดภัยจาก ransomware จะช่วยให้คุณสามารถฟื้นฟูข้อมูลจากเวอร์ชันเก่าได้ [S2]. บาง cloud backup service จะเก็บเวอร์ชันเก่าของข้อมูลเพื่อให้คุณสามารถฟื้นฟูข้อมูลได้แม้ว่า backup จะถูกโจมตีโดย ransomware หรือ malware [S2]\n\nการรักษาความปลอดภัยจาก ransomware ยังรวมถึงการรักษาความปลอดภัยของระบบและข้อมูลที่สำคัญ [S3]. การรักษาความปลอดภัยของระบบและข้อมูลที่สำคัญสามารถช่วยให้คุณสามารถฟื้นฟูข้อมูลได้แม้ว่าระบบหรือข้อมูลจะถูกโจมตีโดย",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "en-22-0041",
+        "citation": "How to back up your files and devices, Secure your backups",
+        "url": "https://www.cyber.gov.au/protect-yourself/securing-your-devices/how-back-up-your-files-and-devices",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9841269841269842
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "en-22-0042",
+        "citation": "How to back up your files and devices, Secure your backups",
+        "url": "https://www.cyber.gov.au/protect-yourself/securing-your-devices/how-back-up-your-files-and-devices",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9684979838709676
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "en-11-0002",
+        "citation": "Ransomware | NISTLock, Small Business Cybersecurity Corner",
+        "url": "https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/ransomware",
+        "retrievers": [
+          "dense",
+          "graph"
+        ],
+        "score": 0.9462481962481962
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "en-12-0010",
+        "citation": "#StopRansomware Guide | CISALock, Preparing for Ransomware and Data Extortion Incidents",
+        "url": "https://www.cisa.gov/stopransomware/ransomware-guide",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "en-12-0040",
+        "citation": "#StopRansomware Guide | CISALock, General Best Practices and Hardening Guidance",
+        "url": "https://www.cisa.gov/stopransomware/ransomware-guide",
+        "retrievers": [
+          "graph"
+        ],
+        "score": 0.4919354838709677
+      }
+    ],
+    "wall_latency_ms": 6094.369499987806,
+    "prompt_tokens": 918,
+    "output_tokens": 300,
+    "tokens_per_second": 53.262751901746554,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2436.359998703003,
+    "hit_output_limit": true
+  },
+  {
+    "model": "llama3.2:3b",
+    "query_id": "cross-en-to-th-scam-shield",
+    "language_group": "cross",
+    "question": "What Thai service checks suspicious SMS messages and URLs before users click?",
+    "answer": "Based on the provided evidence, it appears that there is a Thai service called \"Cyber Scammer Shield\" that checks suspicious SMS messages and URLs before users click on them. This service is provided by the Thailand Computer Emergency Response Team (ThaiCERT).\n\nAccording to [S1], Cyber Scammer Shield is a system that helps to check SMS messages and URLs that are suspicious, and it can be accessed by the public to help reduce the risk of online scams.\n\nAdditionally, [S2] states that citizens can copy and paste suspicious SMS messages into the system to assess the risk of being a scam.\n\nHowever, it is unclear whether this service is actively checking all SMS messages and URLs in real-time, or if it is only checking messages that have been reported by users.\n\nIt is also worth noting that while Cyber Scammer Shield may be able to check SMS messages and URLs, it is not a foolproof solution, and users should still exercise caution when clicking on links or responding to messages from unknown senders.\n\nIn general, it appears that ThaiCERT is taking steps to educate the public about online scams and provide tools to help prevent them, but more information is needed to determine the effectiveness of these efforts.",
+    "sources": [
+      {
+        "source_id": "S1",
+        "chunk_id": "th-05-0017",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบก่อนคลิก ลดความเสี่ยงจากภัยหลอกลวงออนไลน์",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.5
+      },
+      {
+        "source_id": "S2",
+        "chunk_id": "th-05-0005",
+        "citation": "Cyber Scammer Shield - Thailand Computer Emergency Response Team (ThaiCERT), ตรวจสอบข้อความ SMS ได้ทันที",
+        "url": "https://www.thaicert.or.th/cyber-scammer-shield-th/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4919354838709677
+      },
+      {
+        "source_id": "S3",
+        "chunk_id": "th-06-0004",
+        "citation": "อ่านก่อนโอน 5 ขั้นตอนกลโกง “รับแจ้งความออนไลน์ปลอม“ ภัยไซเบอร์ที่ต้องระวัง - Thailand Computer Emergency Response Team (ThaiCERT)",
+        "url": "https://www.thaicert.or.th/2026/04/17/%E0%B8%AD%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%AD%E0%B8%99-5-%E0%B8%82%E0%B8%B1%E0%B9%89%E0%B8%99%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%81%E0%B8%A5%E0%B9%82/",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4765625
+      },
+      {
+        "source_id": "S4",
+        "chunk_id": "th-10-0007",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ป้องกันตัวจากกลลวงหลอก",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4621212121212121
+      },
+      {
+        "source_id": "S5",
+        "chunk_id": "th-10-0009",
+        "citation": "รับมือให้ปลอดภัยจากกลโกงทางการเงินและโจรไซเบอร์, ต้านภัย ปราบคนโกง",
+        "url": "https://www.bot.or.th/th/research-and-publications/articles-and-publications/bot-magazine-issues/Phrasiam-66-1/The-Knowledge-66-1-4.html",
+        "retrievers": [
+          "dense"
+        ],
+        "score": 0.4552238805970149
+      }
+    ],
+    "wall_latency_ms": 5473.501800006488,
+    "prompt_tokens": 1744,
+    "output_tokens": 242,
+    "tokens_per_second": 51.63857521062457,
+    "citation_validity": 1.0,
+    "citation_coverage": 1.0,
+    "language_match": 1.0,
+    "model_vram_mib": 2436.359998703003,
+    "hit_output_limit": false
+  }
+]

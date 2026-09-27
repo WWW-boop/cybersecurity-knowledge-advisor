@@ -1,0 +1,125 @@
+﻿model,query_id,question,answer,correctness_1_to_5,groundedness_1_to_5,language_quality_1_to_5,notes
+qwen3.5:4b,th-remote-app,ถ้าเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ควรทำอย่างไร,"หากเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ให้ดำเนินการตามขั้นตอนดังนี้:
+
+1. **ห้ามกดยืนยันหรือทำสิ่งใด ๆ เพิ่มเติมทันที** หากพยายามรีเซตเครื่องแล้วเข้าไม่ได้ หรือหน้าจอเด้งกลับหน้าหลัก แสดงว่าถูกควบคุมไปแล้ว [S1]
+2. **ตัดการเชื่อมต่ออินเทอร์เน็ตของโทรศัพท์ทันที** โดยเปิดโหมดเครื่องบิน (Airplane mode), ปิดเครื่อง, ถอดซิม หรือถอดแบตเตอรี่ เพื่อหยุดการสื่อสารกับมิจฉาชีพ [S1]
+3. **ติดต่อธนาคารหรือหน่วยงานที่เกี่ยวข้อง** เพื่อระงับบัญชีและแจ้งเหตุ หากมีการโอนเงินผิดปกติ [S3]
+4. **ตรวจสอบแอปพลิเคชันที่ติดตั้ง** ว่ามาจากแหล่งที่น่าเชื่อถือหรือไม่ โดยควรดาวน์โหลดจาก Play Store หรือ App Store เท่านั้น ไม่ควรดาวน์โหลดจากลิงก์ภายนอกที่ไม่ได้ควบคุมความปลอดภัย [S3]
+
+หากต้องการตรวจสอบว่าถูกควบคุมไปแล้วหรือยัง ให้ลองเข้าหน้าการตั้งค่าและทดลองรีเซตเครื่อง หากเข้าไม่ได้หรือหน้าจอเด้งกลับ แสดงว่าถูกโจมตีแล้ว [S1]",,,,
+qwen3.5:4b,th-sms-url,มีบริการอะไรที่ใช้ตรวจสอบข้อความ SMS และ URL น่าสงสัยก่อนกดลิงก์,"มีบริการที่ช่วยตรวจสอบข้อความ SMS และ URL ที่น่าสงสัยได้ ดังนี้:
+
+1. **Cyber Scammer Shield** ของ ThaiCERT (Thailand Computer Emergency Response Team) ซึ่งสามารถช่วยตรวจสอบก่อนคลิกเพื่อลดความเสี่ยงจากภัยหลอกลวงออนไลน์ โดยประชาชนสามารถคัดลอกข้อความ SMS ที่น่าสงสัยมาตรวจสอบในระบบเพื่อประเมินความเสี่ยงว่าเข้าข่ายการหลอกลวงหรือไม่ [S1][S2]
+
+2. **มาตรการทางกฎหมายและนโยบาย** จาก ธปท. และ TB-CERT ซึ่งทำงานร่วมกับ กสทช. เพื่อลดโอกาสในการติดต่อเหยื่อผ่านโทรศัพท์มือถือ โดยมีการแลกเปลี่ยนข้อมูลหมายเลขโทรศัพท์ต้องสงสัยระหว่างผู้ให้บริการเครือข่ายโทรศัพท์และหน่วยงานที่เกี่ยวข้อง [S3]
+
+อย่างไรก็ตาม ข้อมูลในหลักฐานไม่ได้ระบุชื่อบริการเฉพาะสำหรับตรวจสอบ URL โดยตรง แต่เน้นไปที่การตรวจสอบ SMS และการป้องกันมัลแวร์ที่อาจแอบสมัครบริการเสียค่าใช้จ่ายผ่าน Premium SMS หรือช่องทางอื่นๆ บน Android [S4][S5]",,,,
+qwen3.5:4b,en-phishing,How can someone recognize and report a phishing message?,"To recognize and report a phishing message, you should look for specific red flags and follow established reporting procedures.
+
+**Recognizing Phishing Messages**
+Phishing messages often appear to come from trusted sources but use suspicious email addresses (e.g., an email claiming to be from Chase but ending in `@gmail.com`) [S1]. They frequently request sensitive information such as bank account details or Social Security numbers [S1]. Scammers may craft a story to trick you into clicking links or opening attachments, often pretending to notice suspicious activity or login attempts [S4]. These attacks can arrive via email, text messages, phone calls, social media, or even physical mail [S1].
+
+**Reporting Phishing Messages**
+If you believe you have been targeted, do not engage with the sender and delete the message without clicking any links [S1]. You can report phishing crimes to the FBI's Internet Crime Complaint Center [S1]. For specific reporting channels:
+*   Forward a phishing email to the Anti-Phishing Working Group at `reportphishing@apwg.org` [S2].
+*   Forward a phishing text message to SPAM (7726) [S2].
+*   Report the attempt to the Federal Trade Commission (FTC) at `ReportFraud.ftc.gov` [S2].",,,,
+qwen3.5:4b,en-mfa,Why does multi-factor authentication protect an account after a password is stolen?,"Multi-factor authentication (MFA) protects an account after a password is stolen by creating a **second barrier** that requires additional verification beyond just the username and password [S1]. Even if a threat actor obtains your credentials through methods like phishing, they cannot access your systems or data without also possessing this second factor, such as a security key, a text code, or biometric data [S1][S4].
+
+For example, in a scenario where a user enters their username and password into a fake website due to a phishing attack, MFA prevents unauthorized access because the criminal lacks the required secondary element (like a physical security key) [S1]. This extra step ensures that **two or more steps** are needed to verify identity, making it significantly harder for attackers to compromise the account even if the password is compromised [S5].
+
+While strong passwords and password managers are also important defenses [S2][S5], MFA specifically mitigates the risk posed by stolen passwords by requiring something the attacker does not have.",,,,
+qwen3.5:4b,cross-th-to-en-backup,การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้อย่างไร,"การสำรองข้อมูลแบบ **offline** (ที่ไม่เชื่อมต่ออินเทอร์เน็ตหรืออุปกรณ์เครือข่าย) ช่วยในการกู้คืนจาก ransomware ได้ด้วยเหตุผลหลักคือ การป้องกันไม่ให้มัลแวร์หรือ ransomware แพร่กระจายไปยังไฟล์สำรองข้อมูลนั้น [S1] โดยปกติแล้ว ransomware มักจะพยายามเข้ารหัสไฟล์บนฮาร์ดไดรฟ์ที่เชื่อมต่อกับเครื่องคอมพิวเตอร์หรือระบบคลาวด์ แต่หากไฟล์สำรองข้อมูลถูกเก็บไว้ในสภาพที่ไม่เชื่อมต่อเครือข่าย (offline) มัลแวร์จะไม่สามารถเข้าถึงและเข้ารหัสไฟล์เหล่านั้นได้ [S1]
+
+เมื่อเกิดเหตุโจมตี ผู้ใช้สามารถกู้คืนข้อมูลได้โดย:
+1.  **การมีไฟล์สำรองที่ปลอดภัย**: การมีอย่างน้อยหนึ่งชุดของข้อมูลสำรองแบบ offline จะทำให้มั่นใจได้ว่ายังมีข้อมูลที่ไม่ถูกเข้ารหัสไว้เสมอ [S1]
+2.  **การหมุนเวียนอุปกรณ์**: สามารถใช้วิธีการเปลี่ยนฮาร์ดไดรฟ์ที่ใช้ในการสำรองข้อมูลเป็นระยะ เพื่อให้แน่ใจว่ามีการสำรองข้อมูลล่าสุดที่เป็น offline อยู่เสมอ [S1]
+3.  **การเก็บรักษาในสถานที่ห่างไกล**: เพื่อเพิ่มความปลอดภัยยิ่งขึ้น ควรเก็บข้อมูลสำรองแบบ offline ไว้ในอาคารหรือสถานที่ที่แตกต่างกันจากสถานที่หลัก [S1]
+
+นอกจากนี้ แม้บริการคลาวด์บางแห่งอาจไม่จำเป็นต้องใช้การสำรองข้อมูลแบบ offline หากพวกเขาเก็บเวอร์ชันเก่าของข้อมูลไว้ แต่หากต้องการความมั่นใจสูงสุดในการกู้คืนจาก ransomware การใช้บริการคลาวด์ที่รองรับการกู้คืนจาก ransomware หรือยังคงใช้หลักการของข้อมูลสำรองแบบ offline (",,,,
+qwen3.5:4b,cross-en-to-th-scam-shield,What Thai service checks suspicious SMS messages and URLs before users click?,"The Thai service that checks suspicious SMS messages and URLs before users click is **Cyber Scammer Shield**, operated by the Thailand Computer Emergency Response Team (**ThaiCERT**).
+
+According to the evidence, this system allows users to copy suspicious SMS messages or URLs into it for immediate analysis to assess the risk of online fraud [S1][S2]. Additionally, ThaiCERT advises that legitimate police reports must be made through official channels (such as thaipoliceonline.go.th) and never via chat apps like Facebook or Line [S3].
+
+While other organizations like the Bank of Thailand (BOT) also contribute to security by blocking suspicious phone numbers (+697, +698) and working with telecom providers to intercept fraudulent SMS and websites [S4][S5], **Cyber Scammer Shield** is the specific tool designed for users to manually check messages and links.",,,,
+gemma3:4b,th-remote-app,ถ้าเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ควรทำอย่างไร,"หากเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ควรทำดังนี้:
+
+1.  **ตรวจสอบว่าถูกควบคุมหรือไม่:** เข้าไปที่หน้าการตั้งค่าในโทรศัพท์และลองรีเซ็ตเครื่อง [S1]. หากหน้าจอเด้งออกมาที่หน้าหลัก แสดงว่าถูกควบคุมแล้ว
+2.  **ปิดการรับสัญญาณอินเทอร์เน็ต:** ปิด airplane mode, ถอดซิม, ถอดแบตเตอรี่ หรือปิดเครื่อง [S1].
+3.  **อย่ากดยืนยัน:** หากแน่ใจว่าถูกควบคุมแล้ว ห้ามกดยืนยันใด ๆ เด็ดขาด [S1].
+4.  **ระวังการดาวน์โหลด:** อย่าคลิกลิงก์หรือดาวน์โหลดแอปฯ ที่คนแปลกหน้าส่งให้ [S2, S3].
+5.  **ตรวจสอบแหล่งที่มาของแอป:** ตรวจสอบว่าแอปฯ มาจากแหล่งที่น่าเชื่อถือ เช่น Play Store หรือ App Store หรือไม่ [S3].
+6.  **หากรู้ตัวว่าโดนหลอก:** มิจฉาชีพจะบล็อกไลน์เพื่อตัดการติดต่อ [S4].
+
+ข้อมูลเพิ่มเติมจากธนาคารแห่งประเทศไทยพบว่าความเสียหายจากแอปฯ ดูดเงินเพิ่มขึ้น โดยเฉพาะในปี 2565 [S5].",,,,
+gemma3:4b,th-sms-url,มีบริการอะไรที่ใช้ตรวจสอบข้อความ SMS และ URL น่าสงสัยก่อนกดลิงก์,"ระบบ Cyber Scammer Shield ของ ThaiCERT ช่วยตรวจสอบข้อความ SMS หรือ URL ที่น่าสงสัย [S1, S2]. คุณสามารถคัดลอกข้อความ SMS ที่น่าสงสัยมาตรวจสอบในระบบเพื่อประเมินความเสี่ยง [S2]. นอกจากนี้ ระบบยังช่วยในการตรวจสอบ URL ที่น่าสงสัยด้วย [S1].",,,,
+gemma3:4b,en-phishing,How can someone recognize and report a phishing message?,"Here’s how you can recognize and report a phishing message, based on the provided evidence:
+
+First, be wary of suspicious-looking source email addresses [S1]. For example, would your bank actually email you from Chase@gmail.com? [S4]
+
+Second, watch out for requests for sensitive information like bank account details or your Social Security number [S1, S4].
+
+Third, don’t engage with the sender and absolutely do not click any links in the email, including unsubscribe links [S1]. Just delete the message [S1].
+
+You can report phishing crimes to the FBI’s Internet Crime Complaint Center [S1].
+
+To report phishing emails, you can forward them to the Anti-Phishing Working Group at reportphishing@apwg.org [S2]. You can also forward phishing text messages to SPAM (7726) [S2]. Finally, you can report the attempt to the FTC at ReportFraud.ftc.gov [S2]. [S2]",,,,
+gemma3:4b,en-mfa,Why does multi-factor authentication protect an account after a password is stolen?,"Multi-factor authentication protects an account after a password is stolen by creating a second barrier [S1, S4, S5]. Specifically, it requires something *more* than just the password, such as a security key or a code sent to your phone [S1, S4, S5]. This makes it much harder for a threat actor who has stolen the password to gain access to your systems and data [S1].",,,,
+gemma3:4b,cross-th-to-en-backup,การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้อย่างไร,"การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้อย่างไร
+
+การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้ เนื่องจาก ransomware และ malware สามารถแพร่กระจายไปยังฮาร์ดไดรฟ์หรือคลาวด์สโตร์ที่เชื่อมต่ออยู่ได้ [S1] การมีสำรองข้อมูลที่ไม่ได้เชื่อมต่อกับอุปกรณ์หรือเครือข่ายใดๆ จะช่วยให้คุณสามารถกู้คืนข้อมูลได้เสมอ [S1] นอกจากนี้ การเก็บสำรองข้อมูล offline ในสถานที่ที่แตกต่างกัน เช่น อาคารอื่น ๆ จะช่วยเพิ่มการป้องกัน [S1] 
+
+นอกจากนี้ การใช้ “golden images” และ IaC เพื่อสร้างและอัปเดตทรัพยากรคลาวด์ รวมถึงการเก็บสำรองไฟล์ template ไว้ในรูปแบบ offline ก็เป็นวิธีที่ช่วยให้สามารถกู้คืนระบบได้เร็วขึ้น [S4] และการเก็บสำเนาของ source code หรือ executables ไว้ในรูปแบบ offline ก็เป็นประโยชน์เช่นกัน [S4] การมีเอกสารการจัดการสินทรัพย์ IT และการเก็บสำเนา offline ก็มีความสำคัญเช่นกัน [S5]",,,,
+gemma3:4b,cross-en-to-th-scam-shield,What Thai service checks suspicious SMS messages and URLs before users click?,"The ThaiCERT’s Cyber Scammer Shield helps to check suspicious SMS messages and URLs [S1, S2]. You can use the system to check SMS messages or URLs that seem suspicious and improve your digital security [S1, S2]. 
+
+According to Thailand Computer Emergency Response Team (ThaiCERT), it is important to verify SMS messages and URLs to assess the risk of deception [S2, S4]. The Bank of Thailand (BOT) advises checking SMS alerts from your bank and contacting them immediately if anything seems unusual [S4]. 
+
+Furthermore, ThaiCERT, in collaboration with the National Broadcasting and Telecommunications Commission (NBTC) and the Ministry of Digital Economy and Society (MDES), is working to block suspicious SMS messages and fake websites that lead to malicious applications [S5]. They are also working to exchange information about suspicious phone numbers between network operators and relevant agencies to reduce the chances of criminals using phones to contact victims [S5].",,,,
+llama3.2:3b,th-remote-app,ถ้าเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ควรทำอย่างไร,"ถ้าเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ควรทำอย่างต่อไป
+
+1. หากต้องการตรวจสอบว่าถูกควบคุมโทรศัพท์ไปหรือยัง ทำได้โดยเข้าไปที่หน้าการตั้งค่า และทดลองรีเซตเครื่อง ถ้าเข้าไม่ได้ หรือเข้าแล้วหน้าจอเด้งออกมาที่หน้าหลัก แสดงว่าถูกควบคุมหรือโจมตีไปแล้ว เพราะฉะนั้น ห้าม! กดยืนยันใด ๆ เด็ดขาด แล้วรีบทำตามข้อต่อไป [S1]
+2. หากแน่ใจว่าถูกควบคุมโทรศัพท์ ให้รีบปิดการรับสัญญาณอินเทอร์เน็ตของโทรศัพท์มือถือ จะเปิด airplane mode หรือจะปิดเครื่อง ถอดซิม ถอดแบตเตอรี่ ก็สามารถทำได้เช่นเดียวกัน เพื่อตัดการเชื่อมต่อจากอุปกรณ์ของมิจฉาชีพมาที่โทรศัพท์ของเรา [S1]
+
+และควรปฏิบัติตามข้อแนะนำจากคู่มือแก้ปัญหา [S2] และ [S3] เช่น:
+
+- ไม่คลิกลิงก",,,,
+llama3.2:3b,th-sms-url,มีบริการอะไรที่ใช้ตรวจสอบข้อความ SMS และ URL น่าสงสัยก่อนกดลิงก์,มีบริการ Cyber Scammer Shield ที่ใช้ตรวจสอบข้อความ SMS และ URL น่าสงสัยก่อนกดลิงก์ เพื่อช่วยลดความเสี่ยงจากภัยหลอกลวงออนไลน์ [S1],,,,
+llama3.2:3b,en-phishing,How can someone recognize and report a phishing message?,"To recognize and report a phishing message, follow these steps:
+
+1. **Check the sender's email address**: Be cautious of suspicious-looking source email addresses, such as ""Chase@gmail.com"" instead of the bank's official email address. [S1]
+2. **Look for red flags**: Scammers often use tactics like telling a story to trick you into clicking on a link or opening an attachment. Be wary of unexpected emails or text messages that seem too good (or bad) to be true. [S4]
+3. **Verify the sender's identity**: Scammers may claim to be from a trusted company or organization, but it's essential to verify the sender's identity before responding. [S4]
+4. **Don't take the bait**: If you receive a phishing message, don't engage with the sender or click on any links or attachments. Instead, delete the message. [S5]
+5. **Report the phishing attempt**: If you believe you've received a phishing message, report it to the relevant authorities, such as:
+	* Forwarding the email to the Anti-Phishing Working Group at reportphishing@apwg.org. [S2]
+	* Forwarding the text message to SPAM (7726). [S2]
+	* Reporting the phishing attempt to the FTC at ReportFraud.ftc.gov. [S2]
+	* Reporting the phishing attempt to the FBI's Internet Crime Complaint Center. [S1]
+6.",,,,
+llama3.2:3b,en-mfa,Why does multi-factor authentication protect an account after a password is stolen?,"Multi-factor authentication (MFA) protects an account after a password is stolen by creating a second barrier that makes it much harder for the threat actor to access the system and data [S1]. This additional layer of security prevents unauthorized access, even if the password is compromised.
+
+MFA adds an extra layer of security that protects against phishing threats, such as One Time Pins (OTPs) and SMS-based codes, which can be susceptible to phishing attacks [S2]. By using MFA, the threat actor would need to obtain both the password and the security key, making it much more difficult to gain access to the account.
+
+Enabling MFA on all accounts that offer it is essential for reducing cybersecurity risks, but some forms of MFA are more secure than others [S1]. Using strong passwords and a password manager can also help protect against identity theft and online security threats [S3].
+
+To secure your password manager, use multi-factor authentication (MFA) if available, and make your master password as strong as possible [S5]. A weak master password is like leaving the unlock code beside the door, making it easy for someone to gain access to all your accounts.
+
+In summary, MFA provides an additional layer of security that protects against password theft and phishing attacks, making it a crucial step in online security and identity theft prevention.",,,,
+llama3.2:3b,cross-th-to-en-backup,การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้อย่างไร,"การสำรองข้อมูลแบบ offline ช่วยให้กู้คืนจาก ransomware ได้อย่างไร
+
+การสำรองข้อมูลแบบ offline สามารถช่วยให้กู้คืนจาก ransomware ได้โดยการเก็บสำรองข้อมูลที่ไม่เชื่อมต่อกับเครือข่ายหรืออุปกรณ์ใดๆ [S1]. การเก็บสำรองข้อมูลแบบ offline จะช่วยให้คุณสามารถฟื้นฟูข้อมูลหลังจากการโจมตี ransomware ได้
+
+นอกจากนี้ การใช้ cloud backup service ที่มีการรักษาความปลอดภัยจาก ransomware จะช่วยให้คุณสามารถฟื้นฟูข้อมูลจากเวอร์ชันเก่าได้ [S2]. บาง cloud backup service จะเก็บเวอร์ชันเก่าของข้อมูลเพื่อให้คุณสามารถฟื้นฟูข้อมูลได้แม้ว่า backup จะถูกโจมตีโดย ransomware หรือ malware [S2]
+
+การรักษาความปลอดภัยจาก ransomware ยังรวมถึงการรักษาความปลอดภัยของระบบและข้อมูลที่สำคัญ [S3]. การรักษาความปลอดภัยของระบบและข้อมูลที่สำคัญสามารถช่วยให้คุณสามารถฟื้นฟูข้อมูลได้แม้ว่าระบบหรือข้อมูลจะถูกโจมตีโดย",,,,
+llama3.2:3b,cross-en-to-th-scam-shield,What Thai service checks suspicious SMS messages and URLs before users click?,"Based on the provided evidence, it appears that there is a Thai service called ""Cyber Scammer Shield"" that checks suspicious SMS messages and URLs before users click on them. This service is provided by the Thailand Computer Emergency Response Team (ThaiCERT).
+
+According to [S1], Cyber Scammer Shield is a system that helps to check SMS messages and URLs that are suspicious, and it can be accessed by the public to help reduce the risk of online scams.
+
+Additionally, [S2] states that citizens can copy and paste suspicious SMS messages into the system to assess the risk of being a scam.
+
+However, it is unclear whether this service is actively checking all SMS messages and URLs in real-time, or if it is only checking messages that have been reported by users.
+
+It is also worth noting that while Cyber Scammer Shield may be able to check SMS messages and URLs, it is not a foolproof solution, and users should still exercise caution when clicking on links or responding to messages from unknown senders.
+
+In general, it appears that ThaiCERT is taking steps to educate the public about online scams and provide tools to help prevent them, but more information is needed to determine the effectiveness of these efforts.",,,,
