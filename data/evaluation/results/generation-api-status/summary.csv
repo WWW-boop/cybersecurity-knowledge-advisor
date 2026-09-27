@@ -1,0 +1,2 @@
+﻿experiment,status,provider,jev_mode,dynamic_k,questions,reason
+openai-none-fixed,skipped,openai,none,False,0,HTTP 503: OpenAI credentials and model are not configured

@@ -1,0 +1,11 @@
+[
+  {
+    "experiment": "openai-none-fixed",
+    "status": "skipped",
+    "provider": "openai",
+    "jev_mode": "none",
+    "dynamic_k": false,
+    "questions": 0,
+    "reason": "HTTP 503: OpenAI credentials and model are not configured"
+  }
+]

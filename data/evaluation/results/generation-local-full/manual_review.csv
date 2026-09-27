@@ -1,0 +1,244 @@
+﻿experiment,question_id,answer,reference_answer,correctness_1_to_5,groundedness_1_to_5,language_quality_1_to_5,reviewer,notes
+ollama-all-dynamic,th-remote-app,"หากเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ ให้ดำเนินการตามขั้นตอนดังนี้:
+
+1. **ห้ามกดยืนยันหรือทำสิ่งใด ๆ** หากพยายามเข้าตั้งค่าเครื่องแล้วหน้าจอเด้งกลับหน้าหลัก แสดงว่าถูกควบคุมไปแล้ว [S1]
+2. **รีบตัดการเชื่อมต่ออินเทอร์เน็ตทันที** โดยเปิดโหมดเครื่องบิน (Airplane mode), ปิดเครื่อง, ถอดซิม หรือถอดแบตเตอรี่ เพื่อหยุดมิจฉาชีพในการยักย้ายเงินจากบัญชีธนาคาร [S1]",หยุดกดยืนยันและตัดอินเทอร์เน็ตทันทีด้วยการเปิดโหมดเครื่องบิน ปิดเครื่อง ถอดซิม หรือถอดแบตเตอรี่ จากนั้นติดต่อธนาคารและหน่วยงานที่เกี่ยวข้อง,,,,,
+ollama-all-dynamic,th-sms-url,"มีบริการที่เรียกว่า **Cyber Scammer Shield** จาก ThaiCERT (Thailand Computer Emergency Response Team) ที่สามารถช่วยตรวจสอบข้อความ SMS และ URL ที่น่าสงสัยได้ [S1][S2]
+
+บริการนี้ช่วยให้ผู้ใช้:
+*   คัดลอกข้อความ SMS ที่น่าสงสัยมาตรวจสอบเพื่อประเมินความเสี่ยงว่าเข้าข่ายการหลอกลวงหรือไม่ [S2]
+*   ตรวจสอบก่อนคลิก (Check before click) เพื่อลดความเสี่ยงจากภัยหลอกลวงออนไลน์ ทั้งในส่วนของ SMS และ URL [S1]
+
+คุณสามารถเข้าใช้งานระบบได้ที่ลิงก์: https://www.thaicert.or.th/cyber-scammer-shield-th/ [S1][S2]",บริการ Cyber Scammer Shield ของ ThaiCERT ใช้ตรวจสอบข้อความ SMS และ URL ที่น่าสงสัยก่อนคลิกลิงก์,,,,,
+ollama-all-dynamic,th-captivecrunch,"ปฏิบัติการ **CaptiveCrunch** โจมตีผู้ใช้ผ่าน Wi-Fi โดยอาศัยระบบ **Captive Portal** (หน้าเว็บยินยอมการใช้งานอินเทอร์เน็ต) ของเครือข่าย Wi-Fi ในโรงแรมหรือสถานที่พักเป็นช่องทางหลัก [S1][S2] โดยมีขั้นตอนการโจมตีดังนี้:
+
+1.  **การเข้าถึงจุดเริ่มต้น:** ผู้โจมตีใช้เครือข่าย Wi-Fi ที่ถูกบุกรุกในโรงแรมหรือสถานที่สำคัญอื่นๆ เป็นจุดเริ่มต้นของการโจมตี โดยอาศัยระบบ Captive Portal เพื่อหลอกลวงผู้ใช้งาน [S2].
+2.  **การใช้ Social Engineering:** กลุ่มผู้โจมตี (ซึ่งเชื่อมโยงกับ Midnight Blizzard หรือ APT29) ใช้เทคนิคการหลอกลวงทางสังคม (Social Engineering) ผ่านหน้าเว็บ Captive Portal เพื่อดึงดูดให้ผู้ใช้ติดตั้งซอฟต์แวร์ปลอมหรืออัปเดตเบราว์เซอร์ที่ไม่ถูกต้อง [S1][S2].
+3.  **การติดตั้งมัลแวร์:** เมื่อผู้ใช้งานกดยอมรับหรือติดตั้งตามคำล่อลวง มัลแวร์ชื่อ **CornFlake** จะถูกติดตั้งลงบนเครื่องคอมพิวเตอร์หรืออุปกรณ์ของเหยื่อทันที [S1].
+4.  **การขโมยข้อมูลและการเข้าถึงระบบ:** มัลแวร์ CornFlake มีความสามารถในการเข้าถึงเครื่องเหยื่อเพื่อทำการบันทึกภาพจากเว็บแคม เสียงจากไมโครโฟน และข้อมูลการกดแป้นพิมพ์ (Keylogging) [S1] รวมถึงขโมยข้อมูลรับรอง (Credentials), Session Cookies, และ Access Tokens ซึ่งสามารถนำไปใช้เพื่อเข้าถึงบริการสำคัญขององค์กร เช่น Microsoft 365 หรือ Microsoft Entra ID ได้ [S1].
+
+สรุปคือ การโจมตีนี้ไม่ได้อาศัยช่องโหว่ทางเทคนิคโดยตรงของอุปกรณ์ แต่ใช้ **Captive Portal** เป็นเครื่องมือในการหลอกให้ผู้ใช้ทำการติดตั้งมัลแวร์เองโดยไม่รู้ตัว [S2].",ผู้โจมตีควบคุม captive portal และแก้ไข DNS เพื่อพาเหยื่อไปหน้าเว็บปลอมที่หลอกให้อัปเดตซอฟต์แวร์ รันคำสั่ง หรือกรอก device code จนนำไปสู่การติดตั้งมัลแวร์หรือการยึดบัญชี,,,,,
+ollama-all-dynamic,th-premium-sms,"มัลแวร์ Android ที่แอบสมัครบริการ Premium SMS โดยไม่ได้รับอนุญาตทำงานผ่านกระบวนการหลักๆ ดังนี้:
+
+1.  **การติดตั้งและดำเนินการอัตโนมัติ:** หลังจากผู้ใช้งานติดตั้งแล้ว มัลแวร์จะดำเนินการสมัครบริการ Premium SMS หรือบริการที่มีการเรียกเก็บค่าบริการเพิ่มเติมโดยอัตโนมัติ [S2]
+2.  **การใช้ API ของ Android:** มัลแวร์พยายามดักรับรหัสยืนยัน เช่น OTP หรือ TAC ผ่านการใช้ฟังก์ชันของ Android API เพื่อยืนยันการสมัครบริการหรือธุรกรรมต่างๆ โดยที่ผู้ใช้งานไม่ทราบหรือไม่ได้ให้ความยินยอม [S2]
+3.  **เทคนิค Social Engineering:** ผู้โจมตีใช้เทคนิคหลอกให้ผู้ใช้งานดาวน์โหลดไฟล์ APK จากแหล่งภายนอกหรือเว็บไซต์ปลอมที่แอบอ้างเป็นแอปพลิเคชันยอดนิยมก่อนเริ่มกระบวนการโจมตี [S2]
+
+ผลลัพธ์คือผู้เสียหายอาจถูกเรียกเก็บค่าบริการโดยไม่ทราบสาเหตุ และเพิ่มความเสี่ยงต่อการถูกเข้าถึงข้อมูลสำคัญบนอุปกรณ์ [S2]",มัลแวร์หลอกให้ติดตั้งแอป Android แล้วใช้สิทธิ์ของอุปกรณ์เพื่อสมัครหรือยืนยันบริการ Premium SMS โดยเจ้าของเครื่องไม่รู้ตัว ทำให้ถูกเรียกเก็บค่าบริการ,,,,,
+ollama-all-dynamic,th-llm-phishing,"มิจฉาชีพใช้ Large Language Models (LLMs) ในการสร้างข้อความฟิชชิงรูปแบบใหม่โดยการประยุกต์ใช้เทคนิคคล้ายกับ ""SEO poisoning"" หรือการหลอกล่อผลการค้นหา โดยอาศัยความสามารถของ AI ในการเขียนเนื้อหาที่ดูน่าเชื่อถือทั้งต่อมนุษย์และต่อระบบ [S1][S2] กระบวนการนี้ประกอบด้วยขั้นตอนสำคัญดังนี้:
+
+1.  **การสอบถามโมเดลเพื่อหาโดเมนเป้าหมาย:** ผู้โจมตีจะส่งคำสั่งแบบธรรมชาติให้ LLM (เช่น GPT-4.1) เพื่อค้นหาหน้าเข้าสู่ระบบของแบรนด์ต่างๆ จำนวนมาก โดยไม่ระบุชื่อแบรนด์ที่เจาะจง แต่ให้หาลิงก์แทน [S2]
+2.  **การคัดกรองและใช้โดเมนว่างเปล่า:** ผลลัพธ์จากโมเดลมักแนะนำลิงก์จำนวนมาก ซึ่งกว่า 34% เป็นโดเมนที่ไม่เกี่ยวข้องกับแบรนด์ที่ถาม บางส่วนอาจเป็นโดเมนที่ยังไม่มีการจดทะเบียนหรือไม่มีเนื้อหา [S2] โดเมนเหล่านี้สามารถถูกจดทะเบียนโดยผู้โจมตีเพื่อใช้ในแคมเปญฟิชชิงขนาดใหญ่ได้ เนื่องจากผู้ใช้มักจะไว้วางใจในผลลัพธ์ที่มาจากเครื่องมือ AI [S1][S2]
+3.  **การสร้างเนื้อหา ""AI-optimized"":** ผู้โจมตียังใช้ LLM สร้างเนื้อหาสำหรับหน้าเว็บฟิชชิ่งที่ออกแบบมาเพื่อเพิ่มการมองเห็นของโดเมนที่เป็นอันตราย ทำให้ AI ดึงข้อมูลและแนะนำลิงก์ฟิชชิ่งแก่ผู้ใช้งานต่อไป [S1][S2]
+
+ตัวอย่างเช่น มีการรายงานว่าผู้โจมตีเคยสร้างหน้าฟิชชิ่งที่เขียนโดย AI จำนวนกว่า 17,000 หน้าเพื่อหลอกผู้ใช้คริปโต และกำลังเริ่มขยายเป้าหมายไปยังภาคส่วนอื่นๆ เช่น การท่องเที่ยวด้วย [S2]",มิจฉาชีพใช้ LLM สร้างข้อความที่เป็นธรรมชาติและน่าเชื่อถือ ปรับภาษาและบริบทให้ตรงกลุ่มเป้าหมาย และผลิตเนื้อหาได้จำนวนมากเพื่อพาเหยื่อไปยังลิงก์หรือหน้าเข้าสู่ระบบปลอม,,,,,
+ollama-all-dynamic,th-fortune-teller,"มิจฉาชีพในคราบหมอดูออนไลน์มักหลอกขอข้อมูลส่วนตัวและเงินจากเหยื่อโดยอ้างว่าต้องการใช้เพื่อ ""เปิดดวง"" หรือทำนายอนาคต [S1] หากพบสัญญาณอันตรายที่หมอดูขอสิ่งเหล่านี้ ให้สันนิษฐานว่าเป็นมิจฉาชีพทันที ดังนี้:
+
+*   **เลขบัตรประจำตัวประชาชน**
+*   **วัน/เดือน/ปีเกิด ชื่อ–นามสกุล**
+*   **เบอร์โทรศัพท์ และที่อยู่**
+*   **ข้อมูลบัตรเครดิต และเลข CVV (Card Verification Value)**
+*   **รหัสผ่านสำหรับธุรกรรมทางการเงิน** [S1]
+
+หากถูกหลอกลวง สามารถแจ้งเหตุได้ที่สายด่วน AOC 1441 หรือแจ้งความออนไลน์ที่ thaipoliceonline.go.th [S1]",มิจฉาชีพสร้างความน่าเชื่อถือในคราบหมอดู แล้วขอข้อมูลส่วนตัวหรือข้อมูลการเงินและอ้างค่าครู ค่าทำพิธี หรือค่าแก้เคราะห์เพื่อให้เหยื่อโอนเงินเพิ่มเติม,,,,,
+ollama-all-dynamic,en-phishing,"To recognize and report a phishing message, follow these steps based on available evidence:
+
+### How to Recognize Phishing Messages
+Phishing messages are designed to trick you into clicking links or opening attachments that steal personal information like passwords, account numbers, or Social Security numbers [S2]. Common tactics include:
+*   **Familiar Sources:** The message may appear to come from a trusted company (e.g., a bank, credit card issuer, or utility) but often uses a suspicious email address (e.g., `Chase@gmail.com` instead of the official domain) [S4].
+*   **Urgency and Suspicious Activity:** Scammers often claim they have noticed ""suspicious activity"" or failed login attempts to pressure you into acting quickly [S2].
+*   **Unexpected Content:** You might receive an unexpected email or text that asks for sensitive information or contains harmful links/attachments [S5].
+*   **Multiple Channels:** Phishing can occur via email, text messages, social media direct messages, phone calls, or even physical mail [S4].
+
+### How to Report Phishing Messages
+If you suspect a message is phishing:
+1.  **Do Not Engage:** Do not click any links or open attachments, and do not reply to the sender [S4][S5].
+2.  **Forward Specific Reports:**
+    *   If it is an **email**, forward it to the Anti-Phishing Working Group at `reportphishing@apwg.org` [S1].
+    *   If it is a **text message**, forward it to `SPAM` (send it to the number 7726) [S1].
+3.  **Report to Authorities:** You can report the attempt to the Federal Trade Commission (FTC) at `ReportFraud.ftc.gov` [S1] or the FBI's Internet Crime Complaint Center [S4].
+
+### Additional Protection
+If you believe you have already fallen victim to a phishing attack, teach others how to spot it and consider deploying up-to-date anti-virus software to prevent malware installation [S4]. If in doubt, contact the company using a known phone number or website rather than clicking links in the message [S5].","Check for suspicious sender addresses, urgent requests, sensitive-data requests, links, and attachments. Do not engage or click; report the message through the relevant provider or authority and then delete it.",,,,,
+ollama-all-dynamic,en-mfa,"Multi-Factor Authentication (MFA) protects an account after a password is stolen by creating a **second barrier** that requires additional verification beyond just the username and password [S1]. Even if a threat actor obtains your credentials through methods like phishing, they cannot access your systems or data without also possessing this second factor [S1].
+
+For example, in a scenario where a user enters their username and password into a fake website due to a phishing attack, MFA prevents unauthorized access because the criminal lacks the required security key or authentication code [S1]. This second step typically involves something you have (like a security key) or something you are (like a fingerprint), which makes it much harder for attackers to log in even if they know your password [S2][S4].
+
+In summary, MFA ensures that stealing a password alone is insufficient for gaining access; the attacker must also bypass the additional authentication factor, which significantly reduces the risk of account compromise [S3][S5].","MFA requires another independent factor in addition to the stolen password, so possession of the password alone is insufficient to access the account.",,,,,
+ollama-all-dynamic,en-ransomware,"To prevent and recover from ransomware, an organization should implement the following measures based on the provided evidence:
+
+**Prevention Strategies**
+
+*   **Asset Management:** Establish a comprehensive asset management approach that includes inventories of logical (data, software) and physical (hardware) assets [S1]. Identify which data or systems are critical for health, safety, revenue, or other services to determine restoration priorities [S1]. Apply more comprehensive security controls to these critical assets [S1].
+*   **Detection and Analysis:** Regularly examine existing detection or prevention systems (e.g., antivirus, EDR, IDS) and logs to identify evidence of precursor malware such as Bumblebee, Dridex, Emotet, QakBot, or Anchor [S2]. Recognize that a ransomware event may indicate a previous, unresolved network compromise where malicious actors have already exfiltrated data [S2].
+*   **Backup Security:** Maintain at least one offline backup that is not connected to any devices or networks [S3]. Store this offline backup in a different building or location for extra protection [S3]. Alternatively, utilize cloud backup services that offer recovery from ransomware by allowing the restoration of previous data versions [S4].
+*   **Access Control:** Implement proper access controls. For Windows devices, add new accounts as ""standard"" users rather than administrators [S5]. For Mac devices, follow Apple's guidance on setting up users and groups [S5]. Ensure that antivirus products with ransomware protection are enabled [S5].
+
+**Recovery Strategies**
+
+*   **Prioritization:** Keep track of systems and devices not perceived to be impacted so they can be deprioritized for restoration, enabling the organization to get back to business more efficiently [S2].
+*   **Restoration:** Use offline backups or cloud services with versioning capabilities to restore data from a previous state before infection [S3][S4].
+
+**Note:** The provided evidence does not contain specific instructions on how to *prevent* ransomware beyond general hardening and backup practices, nor does it detail the step-by-step technical process for *recovering* (e.g., isolating infected systems) other than relying on clean backups.","Maintain asset inventories, patch and monitor systems, use endpoint protection, restrict access, and keep tested offline backups. If attacked, isolate affected systems, investigate the incident, and restore clean systems and data from verified backups.",,,,,
+ollama-all-dynamic,en-public-wifi,"Public Wi-Fi is generally safer today than in the past due to widespread encryption, but it still carries risks that require user precautions [S1][S2].
+
+**Current Safety Status**
+While most websites now use encryption (indicated by a lock symbol or ""https"" in the address bar) which protects data from being easily read by hackers [S1], public Wi-Fi networks remain risky because information sent over them can still be intercepted [S3]. Attackers may also intercept connections to send users to malicious webpages [S3].
+
+**Precautions Users Should Take**
+To protect your personal information, consider the following steps:
+
+*   **Avoid Sensitive Transactions:** Do not send sensitive data (such as passwords, credit card details, or banking information) while connected to public Wi-Fi, as this information may not be private [S3]. Ideally, use cellular data instead [S3].
+*   **Use a VPN:** Consider using a Virtual Private Network (VPN) on your phone when using public Wi-Fi to keep your information and device secure [S4].
+*   **Verify Hotspot Names:** Always confirm the official hotspot name with venue staff before connecting, as attackers often create fake networks with similar names [S4].
+*   **Disable Auto-Connect:** Do not let your device automatically connect to public Wi-Fi networks; you can turn this off in your phone's settings [S3].
+*   **Disconnect After Use:** Remember to disconnect from any public Wi-Fi networks and clear them from your phone after you have finished using them [S4].","Public Wi-Fi carries risks even when websites use HTTPS. Verify the network name, disable automatic connection, prefer cellular data for sensitive activity, keep software updated, and disconnect and forget the network after use.",,,,,
+ollama-all-dynamic,en-backup,"To secure and test offline backups, you should follow these steps based on the provided evidence:
+
+*   **Maintain an offline backup:** Keep at least one backup that is not connected to any devices or networks [S1]. This ensures data is available for restoration even after a malware or ransomware attack, as such threats can infect files on connected hard drives or cloud storage [S1].
+*   **Use multiple storage devices:** You can maintain an offline backup by using multiple storage devices, such as hard drives [S1]. Regularly swap over the hard drive being used to ensure you always have a recent, offline backup available [S1].
+*   **Store in different locations:** For extra protection, store the offline backup in a different building or location [S1].
+*   **Test recovery (implied):** While the provided text does not explicitly detail a ""testing"" procedure other than the act of swapping drives to ensure availability, it emphasizes that having an offline backup allows you to restore data after an attack [S1].
+
+Note: Some cloud backup services may offer protection without requiring a physical offline backup if they provide recovery from previous versions of your data; however, for true offline security, physical storage is recommended [S1].","Keep at least one backup disconnected from devices and networks, rotate media, protect a copy in a separate location, restrict access, and regularly perform documented restore tests to confirm that the data is usable.",,,,,
+ollama-all-dynamic,en-password-manager,"To secure a password manager and its master password, you should follow these steps based on the provided evidence:
+
+1.  **Use Multi-Factor Authentication (MFA):** If available, enable MFA on your password manager to add an extra layer of security requiring two or more verification steps (e.g., your master password plus an authentication code) [S2].
+2.  **Create a Strong Master Password:** Use the strongest password you can remember; a passphrase consisting of random words (e.g., 'crystal onion clay pretzel') is recommended as it is easier to remember but harder to guess [S3]. Avoid including personal details like your street address or pet name, and never share your passphrase with anyone [S2][S3].
+3.  **Protect the Device:** Ensure your device automatically locks after a short period of inactivity (such as 5 minutes) so that no one can access your accounts if you leave it unlocked [S3].
+4.  **Require Authentication for Use:** Configure your password manager to always ask for your master password or biometrics when used, preventing unauthorized access even if the device is unlocked [S3].
+5.  **Choose a Reputable Manager:** Select a reputable third-party password manager by reading expert reviews [S1].
+
+*Note: While browsers and devices can save passwords automatically, it remains crucial to protect your master password as you would any other sensitive information [S1].*","Choose a reputable password manager, protect it with a long unique master passphrase, enable MFA, keep the device and software updated, and never reuse or share the master password.",,,,,
+ollama-all-dynamic,cross-th-to-en-backup,"การสำรองข้อมูลแบบ offline ช่วยในการกู้คืนจาก ransomware ได้โดยการป้องกันไม่ให้มัลแวร์หรือ ransomware แพร่กระจายไปยังไฟล์ข้อมูลสำรองนั้น [S1] เนื่องจาก ransomware และมัลแวร์สามารถติดเชื้อไฟล์ในไดรฟ์แข็งที่เชื่อมต่ออยู่หรือระบบเก็บข้อมูลบนคลาวด์ได้ แต่หากมีการสำรองข้อมูลไว้ในสภาพที่ไม่เชื่อมต่อกับอุปกรณ์หรือเครือข่ายใดๆ (offline backup) ข้อมูลเหล่านั้นจะปลอดภัยจากการโจมตีดังกล่าว [S1]
+
+เพื่อให้มั่นใจว่ามีการสำรองข้อมูลแบบ offline อยู่เสมอ ผู้ใช้ควรใช้วิธีการสลับระหว่างไดรฟ์แข็งหลายตัวอย่างสม่ำเสมอ โดยเก็บไดรฟ์ที่ใช้งานล่าสุดไว้เป็น offline เสมอ [S1] นอกจากนี้ การเก็บรักษาข้อมูลสำรองแบบ offline ไว้ในสถานที่หรืออาคารที่แตกต่างกันจะช่วยเพิ่มความปลอดภัยยิ่งขึ้น [S1]
+
+นอกจากนี้ แนวทางอื่นที่เกี่ยวข้องกับการเตรียมพร้อมเพื่อรับมือกับ ransomware ยังรวมถึงการบำรุงรักษาและอัปเดต ""golden images"" ของระบบสำคัญอย่างสม่ำเสมอ ซึ่งคือเทมเพลตที่มีระบบปฏิบัติการและซอฟต์แวร์ที่ติดตั้งไว้ล่วงหน้าสำหรับการสร้างระบบใหม่ได้รวดเร็ว [S2] การใช้ Infrastructure as Code (IaC) เพื่อจัดการทรัพยากรบนคลาวด์และการเก็บสำรองไฟล์เทมเพลตแบบ offline จะช่วยให้สามารถ redeploy ทรัพยากรได้เร็วขึ้น [S2] การมีฮาร์ดแวร์สำรองสำหรับสร้างระบบใหม่ก็ถือเป็นทางเลือกอื่นหากไม่ต้องการสร้างระบบหลักขึ้นมาใหม่ [S2]",สำเนา offline ไม่ได้เชื่อมต่อกับเครื่องหรือเครือข่ายที่ ransomware เข้ารหัส จึงใช้กู้คืนข้อมูลหลังทำความสะอาดหรือสร้างระบบใหม่ได้ โดยต้องเก็บอย่างปลอดภัยและทดสอบการกู้คืนเป็นประจำ,,,,,
+ollama-all-dynamic,cross-en-to-th-scam-shield,"The Thai service that checks suspicious SMS messages and URLs before users click is **Cyber Scammer Shield**, operated by the Thailand Computer Emergency Response Team (ThaiCERT) [S1]. This system allows users to copy suspicious SMS text or URLs into it for immediate analysis to assess the risk of online fraud [S2].",ThaiCERT's Cyber Scammer Shield checks suspicious SMS messages and URLs before users click them.,,,,,
+ollama-all-dynamic,cross-th-to-en-authentication,"NIST แนะนำให้ผู้ใช้ตรวจสอบการตั้งค่าความปลอดภัยของบัญชีออนไลน์ที่มีความสำคัญสูงเพื่อหาว่ามี **ผู้ยืนยันตัวตนแบบหลายปัจจัยที่ต้านการฟิชชิ่ง (phishing-resistant authenticators)** หรือไม่ และควรใช้เครื่องมือเหล่านี้หากมี [S1] โดยระบุว่าเครื่องมือเหล่านี้มักใช้งานง่าย รวดเร็ว และสะดวกกว่าวิธีการเดิม เช่น รหัสข้อความ SMS [S1]
+
+นอกจากนี้ NIST ยังแนะนำให้พิจารณาวิธีจัดการการเข้าถึงระบบและข้อมูลอื่นๆ นอกเหนือจาก MFA เพื่อเพิ่มความปลอดภัย [S1]",NIST แนะนำตัวตรวจสอบแบบ phishing-resistant ที่ใช้การเข้ารหัสและผูกกับโดเมนของบริการ เช่น FIDO2/WebAuthn security key หรือ passkey แทนวิธีที่ผู้ใช้ต้องกรอกรหัสซึ่งอาจถูกหลอกขโมยได้,,,,,
+ollama-all-dynamic,en-definition-phishing,"**Phishing** is a cyberattack tactic where criminals use convincing messages to trick victims into opening harmful links, downloading malicious software, or sharing sensitive personal information [S1]. These messages are often disguised as coming from trusted sources, such as banks, credit card companies, or business leaders [S1].
+
+Attackers can utilize several communication channels to deliver phishing attempts:
+*   **Emails**: This is the most common method used to send harmful links or attachments [S1][S2].
+*   **Text messages (SMS)**: Phishing messages can also arrive via text [S2].
+*   **Social media direct messages**: Attackers may use platforms like Facebook, Twitter, or LinkedIn to send deceptive content [S2].
+*   **Phone calls**: Voice-based phishing attempts are also possible [S2].
+
+Additionally, modern attackers increasingly use **artificial intelligence (AI)** to craft these messages, making them more convincing and harder to spot [S1].","Phishing is social engineering that impersonates a trusted person or organization to make someone reveal information, open a harmful attachment, or follow a malicious link. It can arrive through email, text, social media, or phone calls.",,,,,
+ollama-all-dynamic,en-definition-malware,"Malware is defined as any type of code or program used for a malicious purpose [S1]. It is frequently employed by cybercriminals as just one stage in a larger attack, such as stealing sensitive information to facilitate extortion or identity theft, or recording keystrokes to capture usernames and passwords for unauthorized access [S1]. Common types include info stealers, adware, keyloggers, worms, ransomware, spyware, trojans, and viruses [S1].
+
+Regarding how commonly malware reaches devices, the provided evidence does not contain specific statistics or frequency data. It only advises following a guide to ""significantly reduce your risk of being affected by malware"" but does not quantify the prevalence of attacks [S1].","Malware is software designed to damage, disrupt, spy on, or gain unauthorized access to a device. It commonly arrives through unsafe downloads, malicious links or attachments, untrusted applications, and infected removable media.",,,,,
+ollama-all-dynamic,th-definition-data-breach,"เหตุข้อมูลส่วนบุคคลรั่วไหล คือสถานการณ์ที่ผู้ประสงค์ร้ายสามารถเข้าถึงข้อมูลส่วนบุคคลของผู้ใดคนหนึ่งโดยไม่ตั้งใจหรือโดยไม่ได้ยินยอม [S1] ซึ่งอาจรวมถึงข้อมูลเช่น เพศวิถี อายุ สัญชาติ ศาสนา [S1] การรั่วไหลนี้มักเกิดขึ้นเมื่อการรักษาความมั่นคงปลอดภัยไซเบอร์ขององค์กรหรือระบบอ่อนแอ [S1]
+
+ความเสี่ยงต่อเจ้าของข้อมูลมีดังนี้:
+1. **การถูกขโมยข้อมูลไปใช้:** ข้อมูลที่ถูกเข้าถึงอาจนำไปใช้เพื่อขโมยข้อมูลสำคัญอื่น ๆ เช่น รหัสบัตร ATM หรือข้อมูลบัตรเครดิต [S1]
+2. **การสวมรอยเป็นเจ้าของข้อมูล:** ผู้ร้ายอาจใช้ข้อมูลที่รั่วไหลไปสวมรอยเป็นเจ้าของข้อมูลเพื่อทำกิจกรรมต่าง ๆ [S1]
+3. **การถูกเรียกค่าไถ่:** เจ้าของข้อมูลอาจถูกบังคับให้จ่ายค่าไถ่ภายใต้เงื่อนไขที่ไม่เปิดเผยข้อมูลเพิ่มเติม [S1]",เหตุข้อมูลส่วนบุคคลรั่วไหลคือการที่ข้อมูลถูกเข้าถึง เปิดเผย สูญหาย หรือใช้โดยไม่ได้รับอนุญาต ซึ่งอาจนำไปสู่การสวมรอย ยึดบัญชี ฟิชชิงแบบเจาะจง หรือความเสียหายทางการเงิน,,,,,
+ollama-all-dynamic,en-hacked-account-recovery,"If you discover that an email or social media account has been hacked, you should take the following steps based on available guidance:
+
+1.  **Secure Your Device**: First, ensure your computer security software is up to date and run a scan. If the scan identifies suspicious software, delete it and restart your computer [S1].
+2.  **Change Passwords**: Immediately change the password for any affected accounts. If this password was used for other online accounts, change the passwords for those accounts as well to something unique and strong [S3].
+3.  **Use Strong Authentication**: Enable multi-factor authentication (MFA) on your accounts, ideally implementing phishing-resistant authentication methods [S3].
+4.  **Follow Recovery Instructions**: Follow the specific account recovery instructions provided by the service provider (e.g., Facebook, Google, Microsoft) to regain access [S1].
+5.  **Contact Relevant Authorities or Institutions**:
+    *   If a financial institution's account was compromised, contact their fraud department immediately and monitor for unauthorized transactions [S3].
+    *   If a personal account was involved in a breach, consider contacting the three major credit bureaus to enable fraud alerts [S3].
+6.  **Notify Your Organization**: If this incident involves your company, follow your organization's incident response plan to ensure appropriate personnel are aware of the breach [S3].
+
+*Note: The provided evidence outlines general recovery steps but does not offer a comprehensive checklist for every specific platform or scenario.*","Use the provider's recovery process, change the password to a unique one, sign out unknown sessions, remove unfamiliar recovery details or applications, enable MFA, check account activity, and warn contacts about messages sent by the attacker.",,,,,
+ollama-all-dynamic,en-qr-phishing,"Malicious QR-code scams work by hiding harmful links that lead to spoofed websites designed to steal your information [S1]. Scammers often pretend there is a problem with your account, such as suspicious activity, and create a sense of urgency to trick you into scanning the code without thinking [S2]. Once scanned, these codes can direct you to a fake site where they steal data you enter, or they may install malware that steals information before you realize it [S2]. Additionally, fraudulent QR codes can lead to malicious downloads, ransomware demands, or background ad campaigns that drain your battery [S1].
+
+To avoid these scams:
+*   **Inspect the URL:** If you see a QR code in an unexpected place, inspect the URL before opening it. Look for misspellings or switched letters that indicate a spoofed site [S2].
+*   **Verify the source:** Be cautious if someone claims there is suspicious activity on your account; these are often lies used to manipulate you into acting quickly [S2].
+*   **Avoid scanning unknown codes:** It is generally safer not to scan QR codes from untrusted sources, especially when asked to enter sensitive information like passwords or credit card numbers [S1].","A malicious QR code hides a destination that leads to a fake site or malware. Treat unexpected QR codes like suspicious links, inspect the displayed URL before opening it, and navigate to the organization through a known website or application instead.",,,,,
+ollama-all-dynamic,en-tech-support-scam,"To recognize and respond to a tech-support scam, you should look for specific warning signs and follow established safety protocols.
+
+**Recognizing the Scam**
+Tech support scammers often use bogus warnings about computer problems, such as fake pop-ups that resemble well-known companies or unsolicited calls/texts pretending to be from technicians [S1]. They may also manipulate search results or display ads to lure victims into calling their numbers [S1]. A key indicator is that legitimate tech companies **do not** contact you by phone, email, or text to claim there is a problem with your computer [S2]. Additionally, real security pop-ups will never ask you to call a phone number; instead, they direct you to official websites [S2].
+
+Phishing scams often accompany these tactics. Signs include emails with generic greetings, claims that your account is on hold due to billing issues, or requests for personal and financial information [S3]. Scammers may also claim suspicious activity or log-in attempts have been detected without providing proof [S3].
+
+**Responding Safely**
+If you suspect a scam, do not provide financial information or money to the caller [S2]. Instead, update your computer's security software and run a scan to check for actual issues [S2]. If you believe there is a problem, seek help from someone you trust, such as a friend, family member, or neighbor [S2]. You can also contact legitimate support channels directly through official websites or in-person at authorized stores [S2].
+
+If you receive a suspicious email, be wary of links that may contain malware and avoid clicking them [S3]. Remember that if an email claims you are eligible for a government refund or offers a coupon for free stuff, it is likely a scam [S3].","Unexpected calls or pop-ups claiming an urgent device problem and asking for payment, credentials, or remote access are warning signs. Do not call the supplied number or grant access; close the message and contact the company through a verified channel.",,,,,
+ollama-all-dynamic,cross-recovery-scam,"บริการกู้เงินคืนที่ถูกต้องแตกต่างจากมิจฉาชีพในหลายประเด็นสำคัญ ดังนี้:
+
+1. **การเรียกเก็บเงินล่วงหน้า**: มิจฉาชีพจะขอให้คุณจ่ายค่าดำเนินการหรือค่าธรรมเนียมก่อนเพื่อรับเงินคืน [S2] ในขณะที่หน่วยงานราชการหรือองค์กรที่น่าเชื่อถือจะไม่เคยขอเงินล่วงหน้าสำหรับการคืนเงินหรือการช่วยเหลือด้านกฎหมาย [S2]
+2. **ข้อมูลส่วนตัวและทางการเงิน**: มิจฉาชีพมักขอข้อมูลอ่อนไหว เช่น เลขบัตรประชาชน, ข้อมูลบัญชีธนาคาร หรือบัตรเครดิต เพื่อใช้ทำธุรกรรมเพิ่มเติม [S2] ส่วนบริการที่ถูกต้องจะไม่ขอข้อมูลเหล่านี้เว้นแต่จะผ่านช่องทางทางการอย่างปลอดภัย
+3. **วิธีการชำระเงิน**: หากมีการบังคับให้จ่ายด้วยเงินสด, การ์ดของขวัญ, คริปโทเคอร์เรนซี, การโอนเงินข้ามประเทศ (เช่น Western Union) หรือแอปพลิเคชันชำระเงินเฉพาะทาง มักเป็นสัญญาณของมิจฉาชีพ [S2]
+4. **การอ้างตัวตน**: มิจฉาชีพมักปลอมตัวว่าเป็นหน่วยงานรัฐบาล กลุ่มคุ้มครองผู้บริโภค หรือบริษัทผู้เสียหายเดิมเพื่อสร้างความน่าเชื่อถือ [S1] ในขณะที่บริการที่ถูกต้องจะระบุตัวตนชัดเจนและตรวจสอบได้ผ่านช่องทางทางการ
+
+หากคุณถูกหลอก ให้ติดต่อหน่วยงานที่เกี่ยวข้องโดยตรง เช่น ศูนย์ช่วยเหลือผู้บริโภคหรือกรมการค้าต่างประเทศ เพื่อรับคำแนะนำที่ถูกต้อง",มิจฉาชีพมักติดต่อหาเหยื่อเอง รับประกันว่าจะได้เงินคืน และเรียกค่าธรรมเนียมหรือข้อมูลการเงินล่วงหน้า ส่วนการแจ้งเหตุที่ถูกต้องต้องเริ่มจากช่องทางทางการที่ตรวจสอบได้และไม่รับประกันผลหรือขอให้โอนเงินเพื่อปลดล็อกเงินคืน,,,,,
+ollama-all-dynamic,en-home-router-security,"To make a home router and connected devices safer, you should implement the following basic changes based on available evidence:
+
+**Router-Specific Changes**
+*   **Change default credentials:** Update the default administrative username, password, and network name (SSID) to something unique that does not include your personal information or the router brand [S2]. You should also change the default username and password on individual devices connected to the router [S1].
+*   **Enable encryption:** Activate wireless encryption settings within your router's administrative interface [S2].
+*   **Check for updates:** Regularly check for and install hardware and software updates for your router to fix known weaknesses [S2].
+
+**Device-Specific Changes**
+*   **Update devices:** Turn on automatic updates for all connected devices to ensure security upgrades fix known vulnerabilities in systems or apps [S3].
+*   **Use two-factor authentication (2FA):** Enable 2FA on devices that offer it, which adds a layer of protection by requiring something other than just a password (e.g., a code sent to your phone) [S1].
+*   **Configure security features:** Set up specific security features on each device, such as enabling encryption or setting up a passcode lockout [S1].
+
+**General Best Practices**
+*   **Avoid reused passwords:** When setting new passwords for devices, do not reuse passwords from other accounts to prevent hackers from using stolen credentials from data breaches [S1].","Change default administrator credentials, use strong Wi-Fi encryption and a unique password, install firmware and device updates, disable unused remote-management features, and review which devices are connected to the network.",,,,,
+ollama-all-dynamic,en-mobile-phone-security,"To protect a mobile phone and its data, users should enable the following controls based on the provided evidence:
+
+*   **Keep the phone locked and physically secure.** Users should treat their phone like a wallet and keep it safe or with them at all times [S1]. Additionally, they should set the phone to lock when not in use and create a PIN or passcode to unlock it, using at least a 6-digit passcode [S2][S3].
+*   **Encrypt the data on the phone.** Even if the phone is locked, someone could access onboard data storage without encryption. Users should ensure that encryption options are enabled; most modern devices (iOS 3.0 and Android 4.0 and later) include this feature and often have it turned on by default using the normal PIN or screen lock passphrase [S1].
+*   **Enable remote tracking features.** Users should activate features like Apple's ""Find My iPhone"" or Google's ""Find Your Phone"" to help locate a lost device or remotely erase its contents [S1].
+*   **Update the software.** Keeping the phone's software up to date is recommended to protect against hackers [S2].
+*   **Back up data.** Users should back up their data to prevent loss [S2].","Use a strong screen lock, enable automatic updates and device-location or remote-wipe features, install applications only from trusted stores, review permissions, back up important data, and avoid automatically joining unknown Wi-Fi networks.",,,,,
+ollama-all-dynamic,en-identity-theft-response,"If you notice signs of identity theft, you should act quickly to protect your personal information. First, if you believe someone is using your personal information, go to **IdentityTheft.gov** to report the issue and obtain a personalized recovery plan [S1]. Additionally, if you suspect that a scammer has obtained sensitive data such as your Social Security number, credit card number, or bank account details, you should also visit IdentityTheft.gov for specific steps based on what information was compromised [S2].
+
+If you think you may have installed malware by clicking a link or opening an attachment from a phishing email, update your computer's security software and run a scan to remove any harmful software identified [S2].","Contact affected institutions, secure compromised accounts, preserve evidence, report the identity theft through the applicable official channel, review financial or credit records, and use fraud alerts or a credit freeze where those controls apply.",,,,,
+ollama-all-dynamic,th-fake-police-report,"มิจฉาชีพที่แอบอ้างรับแจ้งความออนไลน์มักใช้วิธีการหลอกเหยื่อตามขั้นตอน 5 ขั้นตอนหลัก ดังนี้ [S1][S2]:
+
+1.  **พบโฆษณาปลอมบนบ้านฟ้า:** มิจฉาชีพจะยิงโฆษณาชวนเชื่อบน Facebook เพื่อดึงดูดผู้เสียหายที่กำลังเดือดร้อน (เช่น ถูกโกงซื้อของออนไลน์) โดยสร้างเพจปลอมชื่อ ""ศูนย์ช่วยเหลือเหยื่อไซเบอร์"" หรือคล้ายกัน พร้อมข้อความล่อแหลมว่า ""โดนโกงมาทางนี้! รับแจ้งความออนไลน์ ช่วยตามเงินคืน 100% ดำเนินการรวดเร็ว"" [S1]
+2.  **หลอกถามข้อมูลส่วนตัวเพื่อลงทะเบียน:** หลังจากผู้เสียหายทักแชทเข้าไป มิจฉาชีพจะขอข้อมูลส่วนตัวต่างๆ เพื่อสร้างภาพลักษณ์ว่าเป็นหน่วยงานจริงและเตรียมดำเนินการต่อ [S1]
+
+**ช่องทางที่ควรตรวจสอบและใช้แทน:**
+*   การแจ้งความออนไลน์ของจริง **ต้องทำผ่านเว็บไซต์อย่างเป็นทางการของสำนักงานตำรวจแห่งชาติเท่านั้น** ซึ่งคือ `thaipoliceonline.go.th` [S2]
+*   หรือติดต่อสายด่วน AOC 1441 ได้ตลอด 24 ชั่วโมง [S2]
+
+**สิ่งที่ต้องระวัง:** ไม่มีนโยบายรับแจ้งความหรือติดตามเงินคืนผ่านช่องทางแชท Facebook หรือ Line เด็ดขาด [S2]",มิจฉาชีพสร้างเพจหรือบัญชีปลอม อ้างเป็นตำรวจหรือเจ้าหน้าที่และเรียกเงินหรือข้อมูลเพื่อรับแจ้งเหตุหรือติดตามเงินคืน ควรหยุดติดต่อและตรวจสอบผ่านเว็บไซต์ Thai Police Online หรือสายด่วน 1441 ที่เข้าถึงเอง,,,,,
+ollama-all-dynamic,th-data-breach-response,"หากพบว่าข้อมูลส่วนบุคคลรั่วไหล ควรดำเนินการจัดการบัญชีและธุรกรรมการเงินดังนี้:
+
+1.  **ตรวจสอบประวัติการทำธุรกรรมทางการเงิน:** หมั่นตรวจสอบข้อมูลหรือประวัติการโอนเงินเข้าออกว่ามีการเคลื่อนไหวที่ผิดปกติหรือไม่ [S1] หากพบความผิดปกติให้รีบติดต่อธนาคารทันที [S1]
+2.  **แจ้งธนาคารเกี่ยวกับเหตุการรั่วไหล:** แจ้งธนาคารทราบทันทีว่าข้อมูลสำคัญได้รั่วไหล เพื่อให้ธนาคารสามารถเพิ่มกลไกการตรวจสอบตัวตน (Authentication) หรือให้คำแนะนำที่เหมาะสมกับสถานการณ์ของคุณ [S1]
+3.  **หยุดการโอนเงินหรือให้ข้อมูล:** หยุดการโอนเงินหรือการให้ข้อมูลส่วนบุคคล/สำคัญให้กับบุคคลที่ไม่รู้จักที่ติดต่อมาทางอีเมล, SMS หรือโทรศัพท์ เพราะผู้ไม่หวังดีอาจใช้ข้อมูลที่รั่วไหลปลอมตัวเป็นเจ้าหน้าที่เพื่อหลอกให้คุณดำเนินการทางการเงิน [S2]
+4.  **หลีกเลี่ยงการคลิกลิงก์หรือไฟล์แนบ:** หลีกเลี่ยงการเปิดลิงก์หรือไฟล์แนบจากอีเมลหรือ SMS ที่ไม่รู้จัก เพื่อป้องกันไม่ให้ติดตั้งมัลแวร์ (Malware) ซึ่งอาจถูกใช้ขโมยข้อมูลสำคัญไปทำธุรกรรมการเงินต่อได้ [S2]
+
+หากได้รับการติดต่อจากบุคคลที่ไม่แน่ใจว่าเป็นตัวจริง ให้หยุดดำเนินการทันที ตรวจสอบข้อมูลกับหน่วยงานที่เกี่ยวข้องก่อนจึงจะดำเนินการต่อ [S2]",เปลี่ยนรหัสผ่านที่เกี่ยวข้องและไม่ใช้รหัสเดิมซ้ำ เปิด MFA ตรวจสอบและออกจากเซสชันที่ไม่รู้จัก เฝ้าดูธุรกรรม ติดต่อธนาคารทันทีเมื่อพบความผิดปกติ และเก็บหลักฐานเพื่อแจ้งหน่วยงานที่เกี่ยวข้อง,,,,,
+ollama-all-dynamic,en-compare-mfa-methods,"Based on the provided evidence, there are significant differences in phishing resistance between SMS codes (one-time passcodes via text/email), authenticator apps, and security keys:
+
+*   **SMS/Email Codes:** These are generally considered **not phishing-resistant** because they rely on manual entry of a code that is not bound to the specific session being authenticated. An attacker can relay the code from a victim to a verifier at a phishing site, successfully authenticating the user [S2]. While using an SMS code is better than nothing if no other option exists, it is still vulnerable to social engineering tricks where scammers trick users into sharing the verification passcode [S3].
+*   **Authenticator Apps:** Similar to SMS codes, authenticator apps that require manual entry of an output (such as out-of-band or OTP authenticators) are **not considered phishing-resistant** [S2]. The reason is that the manual entry does not bind the code to the specific session; an impostor verifier can relay the generated code to a victim and then forward it to the server for authentication.
+*   **Security Keys:** Unlike the other two methods, security keys are designed to provide **phishing resistance**. They utilize cryptographic authentication where the key binds the authentication output to the specific session (often containing the URL of the service provider in addition to the binding code) [S1]. This prevents an attacker from simply relaying a code or tricking a user into entering credentials at a fake site, as the physical key must be presented in conjunction with the correct session context.
+
+In summary, while SMS codes and authenticator apps are susceptible to phishing attacks due to the ability of attackers to relay codes manually, security keys offer stronger protection by cryptographically binding the authentication to the legitimate service session [S2].",SMS codes add protection but can be exposed by SIM swapping or entered into a phishing site. Authenticator-app codes avoid the mobile network but can still be phished. Origin-bound security keys or passkeys provide stronger phishing resistance because they authenticate the legitimate service cryptographically.,,,,,
+ollama-all-dynamic,en-multihop-ransomware-backup,"Ransomware recovery must combine system isolation, clean rebuilding, and tested offline backups because relying on a single method leaves organizations vulnerable to reinfection or data loss.
+
+First, **system isolation** is critical because ransomware and malware can infect backup files if they are connected to devices or networks [S1]. If backups reside in the same network as the infected system, attackers may spread their encryption to these storage locations, rendering them useless for recovery. Therefore, maintaining an offline backup—one that is not connected to any devices or networks—is essential to ensure a clean copy of data exists [S1].
+
+Second, **clean rebuilding** addresses the issue of corrupted or compromised operating systems and software. Maintaining and regularly updating ""golden images"" of critical systems allows for the quick deployment of preconfigured operating systems and applications to rebuild a system, such as a virtual machine or server [S2]. Using infrastructure as code (IaC) further ensures that resources can be redeployed consistently, with template files kept offline to prevent tampering [S2].
+
+Finally, **tested offline backups** provide the assurance that recovery is possible. While some cloud services offer versioning, not all do, and attackers may target connected cloud storage [S1]. Having at least one backup kept offline, ideally stored in a different building or location, guarantees that a recent, uninfected copy of data is available to restore from [S1]. Additionally, retaining backup hardware allows for system reconstruction even if rebuilding the primary system is not preferred [S2].
+
+In summary, combining these three elements ensures that:
+1.  Data is protected from infection via isolation and offline storage [S1].
+2.  The environment itself can be restored to a known good state using clean images [S2].
+3.  The recovery process has been validated through testing and maintains version control and audit trails [S2].","Isolation limits further encryption and spread, while clean rebuilding removes persistence before data is restored. A disconnected backup avoids being encrypted with production data, and prior restore testing confirms that the backup is complete and usable.",,,,,
+ollama-all-dynamic,cross-captive-account-takeover,"การโจมตีแบบ **Captive Portal ปลอม** (Fake Captive Portal) สามารถนำไปสู่การยึดบัญชีได้ผ่านกระบวนการดังนี้: เมื่อผู้ใช้อินเทอร์เน็ตสาธารณะหรือ Wi-Fi ในสถานที่ต่างๆ เข้าถึงระบบเครือข่าย พวกเขาอาจถูกบังคับให้เข้าสู่เว็บไซต์เพื่อรับรหัสผ่านอินเทอร์เน็ต หากผู้โจมตีสร้างเว็บไซต์ปลอมที่คล้ายคลึงกับเว็บไซต์จริงของผู้ให้บริการเครือข่าย ผู้ใช้จะหลงเชื่อและกรอกข้อมูล учет (ชื่อผู้ใช้และรหัสผ่าน) ลงในเว็บปลอม [S1]
+
+เมื่อได้ข้อมูล учетแล้ว ผู้โจมตีสามารถพยายามเข้าถึงบัญชีนั้นต่อไป แต่ความเสี่ยงจะถูกลดทอนลงอย่างมากหากมีการใช้ **MFA แบบต้านการฟิชชิ่ง** (Phishing-Resistant MFA) ซึ่งรวมถึง:
+1.  **การใช้กุญแจความปลอดภัย (Security Keys):** เช่น USB หรือแอปพลิเคชันบนมือถือที่ตรวจสอบตัวตนผ่านฮาร์ดแวร์ ทำให้ผู้โจมตีไม่สามารถเข้าถึงได้แม้จะรู้รหัสผ่าน [S1]
+2.  **การยืนยันตัวตนแบบไร้รหัสผ่าน (Password-less MFA):** ที่ใช้ปัจจัยหลายอย่างเช่น ลายนิ้วมือ, การจดจำใบหน้า, รหัส PIN ของอุปกรณ์ หรือกุญแจเข้ารหัส แทนที่จะพึ่งพารหัสผ่านเพียงอย่างเดียว [S2]
+
+รูปแบบ MFA ที่มีความเสี่ยงสูงต่อการโจมตีแบบนี้คือ **OTP แบบ SMS** และ **รหัสครั้งเดียวใช้ (One Time Pins)** เนื่องจากสามารถถูกขโมยหรือคาดเดาได้ง่ายในกรณีที่ถูกหลอกให้กรอกลงในเว็บปลอม [S1]",หน้า captive portal ปลอมอาจหลอกให้เหยื่อรันคำสั่ง ติดตั้งมัลแวร์ หรือกรอก device code ทำให้ผู้โจมตีขโมยข้อมูลรับรองหรือ token แล้วเข้าบัญชีได้ การใช้ security key หรือ passkey แบบ WebAuthn ที่ผูกกับโดเมนช่วยต้านหน้าฟิชชิงได้ดีกว่ารหัสที่ผู้ใช้ต้องกรอก,,,,,

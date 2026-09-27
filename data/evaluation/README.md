@@ -23,8 +23,30 @@ uv run --no-sync python scripts/run_eval.py
 ```
 
 The runner compares Dense, Graph, and Hybrid retrieval at K=5 and writes per-question results plus
-JSON/CSV summaries to `results/retrieval-baseline/`. It performs an untimed warm-up before measuring
-latency. Current scores use draft document labels and must not be reported as final research results.
+Dynamic Hybrid results, JSON/CSV summaries, a Matplotlib chart, and a Markdown report. It performs
+an untimed warm-up before measuring latency. Current scores use draft document labels and must not
+be reported as final research results.
+
+Run Local/API generation, Fixed/Dynamic, and JEV ablations with:
+
+```powershell
+uv run --no-sync python scripts/run_generation_eval.py
+```
+
+The runner exports automatic generation/system metrics, claim-groundedness metrics, token and
+resource usage, API cost when price arguments are supplied, a manual-review sheet, and a Matplotlib
+chart. JEV ablation overrides are rejected when `APP_ENV=production`.
+
+Prepare the evidence-label review queue and combine the experiment artifacts with:
+
+```powershell
+uv run --no-sync python scripts/prepare_eval_review.py
+uv run --no-sync python scripts/build_phase12_report.py
+```
+
+The review queue must be completed by a named human reviewer before changing dataset records from
+`draft` to `reviewed`. Missing API credentials are recorded as `skipped`; the runner never invents
+provider results.
 
 Run the three-model comparison and generate JSON, CSV, and a Matplotlib PNG with:
 

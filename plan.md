@@ -2359,15 +2359,21 @@ Every factual claim receives validation status.
 
 ## Phase 12 — Evaluation
 
-Status: **in progress**. The versioned evaluation-question schema and JSONL loader are implemented.
-The existing seed set has been expanded into 30 Thai, English, and cross-language questions in
-`data/evaluation/questions.v0.1.jsonl`. Every planned question category is represented with draft
-document labels and reference answers. Human review, relevant-chunk completion, and later
-expansion toward the full 100–200 question target remain pending before final research claims.
-The first `scripts/run_eval.py` baseline now exports per-question and summary JSON/CSV for Dense,
-Graph, and Hybrid document retrieval, including Recall@K, Precision@K, Hit Rate@K, MRR, NDCG, and
-warm latency statistics. Its preliminary draft-label results are stored under
-`data/evaluation/results/retrieval-baseline/`.
+Status: **implementation complete and locally evaluated; final sign-off pending external inputs**.
+The 30-question Thai, English, and cross-language dataset covers every planned category. Retrieval
+evaluation now compares Dense, Graph, fixed Hybrid, and Dynamic Hybrid with document/chunk/entity,
+ranking, latency, and adaptive-budget metrics. Generation evaluation covers reference-token F1,
+answer relevance, context recall, citation accuracy/coverage, groundedness, unsupported claims,
+stage latency, tokens, CPU, RAM, GPU/VRAM, and configured API cost. Fixed/Dynamic and all four JEV
+ablation paths export JSON, CSV, Markdown, manual-review sheets, and Matplotlib charts.
+
+The live 30-question retrieval run found Recall@5 of 0.822 Dense, 0.256 Graph, 0.844 fixed Hybrid,
+and 0.850 Dynamic Hybrid. The live Qwen 3.5 4B + Dynamic Hybrid + all-JEV run completed all 30
+questions with preliminary JEV groundedness 0.752, citation coverage 0.874, unsupported-claim rate
+0.176, average latency 15.30 seconds, and P95 latency 22.06 seconds. These are not final research
+claims: all 30 labels/answers still require a named independent human reviewer, and Local-vs-API
+execution is recorded as skipped until OpenAI credentials are supplied. The runnable comparison
+code is complete; no API or human-review result is fabricated.
 
 Implement:
 

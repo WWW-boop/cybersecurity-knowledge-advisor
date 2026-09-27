@@ -18,6 +18,7 @@ ENDPOINTS = {
     "dense": "/api/v1/retrieve",
     "graph": "/api/v1/graph/retrieve",
     "hybrid": "/api/v1/hybrid/retrieve",
+    "hybrid_dynamic": "/api/v1/hybrid/retrieve",
 }
 METRICS = ("recall_at_k", "precision_at_k", "hit_rate_at_k", "mrr_at_k", "ndcg_at_k")
 
@@ -61,14 +62,46 @@ def request_payload(question: EvaluationQuestion, retriever: str, top_k: int) ->
     }
     if retriever == "graph":
         payload["max_depth"] = 2
-    elif retriever == "hybrid":
+    elif retriever in {"hybrid", "hybrid_dynamic"}:
         payload.update(
             dense_k=max(10, top_k * 2),
             graph_k=max(10, top_k * 2),
             max_depth=2,
             fusion_method="rrf",
+            dynamic_k=retriever == "hybrid_dynamic",
         )
     return payload
+
+
+def entity_metrics(
+    question: EvaluationQuestion, results: list[dict[str, Any]]
+) -> dict[str, float | None]:
+    """Score accepted graph entities against the dataset's expected entity labels."""
+
+    def normalize(value: str) -> str:
+        return "".join(character for character in value.casefold() if character.isalnum())
+
+    expected = {normalize(value) for value in question.expected_entities}
+    predicted = {
+        normalize(str(validation.get("name") or ""))
+        for row in results
+        for validation in (
+            row.get("entity_validations")
+            or (row.get("metadata") or {}).get("entity_validations")
+            or []
+        )
+        if validation.get("decision") == "same"
+    }
+    if not expected:
+        return {"entity_precision": None, "entity_recall": None, "entity_f1": None}
+    correct = len(expected & predicted)
+    precision = correct / len(predicted) if predicted else 0.0
+    recall = correct / len(expected)
+    return {
+        "entity_precision": precision,
+        "entity_recall": recall,
+        "entity_f1": 2 * precision * recall / (precision + recall) if precision + recall else 0.0,
+    }
 
 
 def evaluate(
@@ -97,6 +130,9 @@ def evaluate(
             latency_ms = (time.perf_counter() - started) * 1000
             results = response.json()
             ranked = deduplicate_source_ids(results)
+            budget = (
+                (results[0].get("metadata") or {}).get("retrieval_budget") if results else None
+            ) or {}
             rows.append(
                 {
                     "retriever": retriever,
@@ -106,7 +142,29 @@ def evaluate(
                     "expected_documents": question.relevant_documents,
                     "retrieved_documents": ranked[:top_k],
                     "retrieved_chunks": [row["chunk_id"] for row in results],
+                    "review_status": question.review_status,
                     "latency_ms": latency_ms,
+                    "dense_k": budget.get("dense_k"),
+                    "graph_k": budget.get("graph_k"),
+                    "graph_depth": budget.get("graph_depth"),
+                    "fusion_k": budget.get("fusion_k"),
+                    "final_context_k": budget.get("selected_context_k", len(results)),
+                    "context_tokens": budget.get("estimated_context_tokens"),
+                    "chunk_recall_at_k": (
+                        len(set(question.relevant_chunks) & {row["chunk_id"] for row in results})
+                        / len(question.relevant_chunks)
+                        if question.relevant_chunks
+                        else None
+                    ),
+                    **(
+                        entity_metrics(question, results)
+                        if retriever != "dense"
+                        else {
+                            "entity_precision": None,
+                            "entity_recall": None,
+                            "entity_f1": None,
+                        }
+                    ),
                     **retrieval_metrics(set(question.relevant_documents), ranked, k=top_k),
                 }
             )
@@ -122,8 +180,12 @@ def percentile(values: list[float], percentile_value: float) -> float:
 
 def summarize(rows: list[dict[str, Any]], top_k: int) -> list[dict[str, Any]]:
     """Build one macro-average row per retrieval method."""
-    return [
-        {
+    summaries = []
+    for retriever in ENDPOINTS:
+        group = [row for row in rows if row["retriever"] == retriever]
+        if not group:
+            continue
+        summary = {
             "retriever": retriever,
             "questions": len(group),
             "top_k": top_k,
@@ -132,9 +194,22 @@ def summarize(rows: list[dict[str, Any]], top_k: int) -> list[dict[str, Any]]:
             "p50_latency_ms": median(row["latency_ms"] for row in group),
             "p95_latency_ms": percentile([row["latency_ms"] for row in group], 0.95),
         }
-        for retriever in ENDPOINTS
-        if (group := [row for row in rows if row["retriever"] == retriever])
-    ]
+        for key in (
+            "chunk_recall_at_k",
+            "entity_precision",
+            "entity_recall",
+            "entity_f1",
+            "dense_k",
+            "graph_k",
+            "graph_depth",
+            "fusion_k",
+            "final_context_k",
+            "context_tokens",
+        ):
+            values = [row[key] for row in group if row[key] is not None]
+            summary[f"avg_{key}"] = mean(values) if values else None
+        summaries.append(summary)
+    return summaries
 
 
 def write_outputs(
@@ -152,6 +227,50 @@ def write_outputs(
         writer = csv.DictWriter(file, fieldnames=list(summary[0]))
         writer.writeheader()
         writer.writerows(summary)
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    names = [row["retriever"] for row in summary]
+    figure, axes = plt.subplots(2, 2, figsize=(12, 8))
+    charts = (
+        ("recall_at_k", "Document Recall@K", "ratio", 1),
+        ("mrr_at_k", "MRR@K", "ratio", 1),
+        ("avg_latency_ms", "Average retrieval latency", "seconds", 0.001),
+        ("avg_final_context_k", "Average final context K", "chunks", 1),
+    )
+    for axis, (key, title, unit, scale) in zip(axes.flat, charts, strict=True):
+        values = [(row.get(key) or 0) * scale for row in summary]
+        bars = axis.bar(names, values, color=("#2563eb", "#7c3aed", "#16a34a", "#f59e0b"))
+        axis.set_title(title)
+        axis.set_ylabel(unit)
+        axis.tick_params(axis="x", rotation=15)
+        axis.bar_label(bars, fmt="%.2f", padding=3)
+    figure.suptitle("Retrieval and Dynamic Top-K comparison")
+    figure.tight_layout()
+    figure.savefig(output / "comparison.png", dpi=180, bbox_inches="tight")
+    plt.close(figure)
+
+    review_note = (
+        "All labels reviewed."
+        if all(row["review_status"] == "reviewed" for row in rows)
+        else "PRELIMINARY: dataset labels are draft and require human review."
+    )
+    lines = [
+        "# Retrieval evaluation",
+        "",
+        review_note,
+        "",
+        "| Method | Recall@K | MRR@K | Avg latency (s) |",
+        "|---|---:|---:|---:|",
+    ]
+    lines.extend(
+        f"| {row['retriever']} | {row['recall_at_k']:.3f} | "
+        f"{row['mrr_at_k']:.3f} | {row['avg_latency_ms'] / 1000:.3f} |"
+        for row in summary
+    )
+    (output / "report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def parser() -> argparse.ArgumentParser:

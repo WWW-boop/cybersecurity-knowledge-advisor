@@ -317,10 +317,12 @@ class GraphRetriever:
         if close_validator is not None:
             close_validator()
 
-    def validate_entities(self, query: str) -> list[EntityValidation]:
+    def validate_entities(
+        self, query: str, *, use_validator: bool = True
+    ) -> list[EntityValidation]:
         """Link mentions and validate candidates before graph traversal."""
         matches = match_query_entities(query)
-        if self.entity_validator is not None:
+        if self.entity_validator is not None and use_validator:
             return self.entity_validator.validate(query, matches)
         return [
             EntityValidation(
@@ -347,12 +349,13 @@ class GraphRetriever:
         max_depth: int = 2,
         language: str | None = None,
         topic: str | None = None,
+        use_entity_validation: bool = True,
     ) -> list[dict[str, Any]]:
         if top_k < 1:
             raise ValueError("top_k must be positive")
         if not 1 <= max_depth <= 3:
             raise ValueError("max_depth must be between 1 and 3")
-        validations = self.validate_entities(query)
+        validations = self.validate_entities(query, use_validator=use_entity_validation)
         accepted = [
             validation
             for validation in validations

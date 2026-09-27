@@ -106,6 +106,7 @@ def test_build_context_numbers_sources_and_respects_limit() -> None:
             "retrievers": ["dense", "graph"],
             "score": 0.9,
             "evidence_text": "Use multi-factor authentication.",
+            "corpus_source_id": None,
         }
     ]
 

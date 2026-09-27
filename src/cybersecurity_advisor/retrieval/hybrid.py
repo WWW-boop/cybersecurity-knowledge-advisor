@@ -245,6 +245,7 @@ class HybridRetriever:
         graph_weight: float | None = None,
         rrf_k: int | None = None,
         dynamic_k: bool = False,
+        use_entity_validation: bool = True,
     ) -> list[dict[str, Any]]:
         """Run both retrievers and return normalized, diverse hybrid evidence."""
         if not query.strip():
@@ -263,13 +264,15 @@ class HybridRetriever:
             topic=topic,
             score_threshold=score_threshold,
         )
-        graph_rows = self.graph_retriever.search(
-            query,
-            top_k=graph_k,
-            max_depth=max_depth,
-            language=language,
-            topic=topic,
-        )
+        graph_options = {
+            "top_k": graph_k,
+            "max_depth": max_depth,
+            "language": language,
+            "topic": topic,
+        }
+        if not use_entity_validation:
+            graph_options["use_entity_validation"] = False
+        graph_rows = self.graph_retriever.search(query, **graph_options)
         rows = self.fuse(
             dense_rows,
             graph_rows,

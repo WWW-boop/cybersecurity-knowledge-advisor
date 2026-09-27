@@ -1,0 +1,4430 @@
+[
+  {
+    "retriever": "dense",
+    "question_id": "th-remote-app",
+    "language_group": "th",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "TH-03",
+      "TH-10"
+    ],
+    "retrieved_documents": [
+      "TH-03",
+      "TH-10",
+      "TH-11"
+    ],
+    "retrieved_chunks": [
+      "th-03-0006",
+      "th-03-0005",
+      "th-10-0007",
+      "th-11-0008",
+      "th-03-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 63.2878000033088,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": 1.0,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "th-sms-url",
+    "language_group": "th",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-05"
+    ],
+    "retrieved_documents": [
+      "TH-05",
+      "TH-10"
+    ],
+    "retrieved_chunks": [
+      "th-05-0017",
+      "th-05-0005",
+      "th-05-0010",
+      "th-05-0002",
+      "th-10-0009"
+    ],
+    "review_status": "draft",
+    "latency_ms": 63.49440000485629,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": 1.0,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "th-captivecrunch",
+    "language_group": "th",
+    "question_type": "malware",
+    "expected_documents": [
+      "TH-12"
+    ],
+    "retrieved_documents": [
+      "TH-12"
+    ],
+    "retrieved_chunks": [
+      "th-12-0002",
+      "th-12-0001",
+      "th-12-0003",
+      "th-12-0005",
+      "th-12-0012"
+    ],
+    "review_status": "draft",
+    "latency_ms": 62.00790000730194,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": 1.0,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "th-premium-sms",
+    "language_group": "th",
+    "question_type": "malware",
+    "expected_documents": [
+      "TH-13"
+    ],
+    "retrieved_documents": [
+      "TH-13"
+    ],
+    "retrieved_chunks": [
+      "th-13-0001",
+      "th-13-0002",
+      "th-13-0007",
+      "th-13-0017",
+      "th-13-0013"
+    ],
+    "review_status": "draft",
+    "latency_ms": 59.287700001732446,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "th-llm-phishing",
+    "language_group": "th",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-14"
+    ],
+    "retrieved_documents": [
+      "TH-14",
+      "TH-05",
+      "TH-09"
+    ],
+    "retrieved_chunks": [
+      "th-14-0001",
+      "th-14-0002",
+      "th-14-0003",
+      "th-05-0012",
+      "th-09-0008"
+    ],
+    "review_status": "draft",
+    "latency_ms": 59.43969999498222,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "th-fortune-teller",
+    "language_group": "th",
+    "question_type": "scam",
+    "expected_documents": [
+      "TH-15"
+    ],
+    "retrieved_documents": [
+      "TH-15",
+      "TH-10",
+      "TH-11"
+    ],
+    "retrieved_chunks": [
+      "th-15-0001",
+      "th-10-0009",
+      "th-11-0008",
+      "th-10-0007",
+      "th-10-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 80.24509999086149,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-phishing",
+    "language_group": "en",
+    "question_type": "phishing",
+    "expected_documents": [
+      "EN-01",
+      "EN-06",
+      "EN-09"
+    ],
+    "retrieved_documents": [
+      "EN-06",
+      "EN-01",
+      "EN-09"
+    ],
+    "retrieved_chunks": [
+      "en-06-0010",
+      "en-06-0002",
+      "en-01-0007",
+      "en-06-0008",
+      "en-09-0006"
+    ],
+    "review_status": "draft",
+    "latency_ms": 56.1879000015324,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": 0.6666666666666666,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.6,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-mfa",
+    "language_group": "en",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-03",
+      "EN-10",
+      "EN-13"
+    ],
+    "retrieved_documents": [
+      "EN-10",
+      "EN-13",
+      "EN-25",
+      "EN-05"
+    ],
+    "retrieved_chunks": [
+      "en-10-0007",
+      "en-13-0012",
+      "en-25-0005",
+      "en-05-0007",
+      "en-13-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 61.60640000598505,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 0.6666666666666666,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.7653606369886217
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-ransomware",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-11",
+      "EN-12"
+    ],
+    "retrieved_documents": [
+      "EN-12"
+    ],
+    "retrieved_chunks": [
+      "en-12-0059",
+      "en-12-0056",
+      "en-12-0040",
+      "en-12-0057",
+      "en-12-0060"
+    ],
+    "review_status": "draft",
+    "latency_ms": 56.138699990697205,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.6131471927654584
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-public-wifi",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-14",
+      "EN-21",
+      "EN-24"
+    ],
+    "retrieved_documents": [
+      "EN-14",
+      "EN-24",
+      "EN-05"
+    ],
+    "retrieved_chunks": [
+      "en-14-0002",
+      "en-14-0001",
+      "en-24-0007",
+      "en-24-0008",
+      "en-05-0003"
+    ],
+    "review_status": "draft",
+    "latency_ms": 66.25309999799356,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 0.6666666666666666,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.7653606369886217
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-backup",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-22"
+    ],
+    "retrieved_chunks": [
+      "en-22-0041",
+      "en-22-0042",
+      "en-22-0043",
+      "en-22-0044",
+      "en-22-0045"
+    ],
+    "review_status": "draft",
+    "latency_ms": 51.69049999676645,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-password-manager",
+    "language_group": "en",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-25"
+    ],
+    "retrieved_documents": [
+      "EN-25",
+      "EN-05"
+    ],
+    "retrieved_chunks": [
+      "en-25-0005",
+      "en-25-0006",
+      "en-25-0002",
+      "en-25-0004",
+      "en-05-0006"
+    ],
+    "review_status": "draft",
+    "latency_ms": 53.16960001073312,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "cross-th-to-en-backup",
+    "language_group": "cross",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-22",
+      "EN-11",
+      "EN-12"
+    ],
+    "retrieved_chunks": [
+      "en-22-0041",
+      "en-22-0042",
+      "en-11-0002",
+      "en-12-0009",
+      "en-12-0044"
+    ],
+    "review_status": "draft",
+    "latency_ms": 57.369400004972704,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "cross-en-to-th-scam-shield",
+    "language_group": "cross",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-05"
+    ],
+    "retrieved_documents": [
+      "TH-05",
+      "TH-06"
+    ],
+    "retrieved_chunks": [
+      "th-05-0017",
+      "th-05-0005",
+      "th-05-0002",
+      "th-06-0004",
+      "th-05-0010"
+    ],
+    "review_status": "draft",
+    "latency_ms": 59.565900010056794,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": 1.0,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "cross-th-to-en-authentication",
+    "language_group": "cross",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-08",
+      "EN-10"
+    ],
+    "retrieved_documents": [
+      "EN-09",
+      "EN-08",
+      "EN-10"
+    ],
+    "retrieved_chunks": [
+      "en-09-0002",
+      "en-08-0001",
+      "en-08-0239",
+      "en-08-0155",
+      "en-10-0009"
+    ],
+    "review_status": "draft",
+    "latency_ms": 53.8142000004882,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.6934264036172708
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-definition-phishing",
+    "language_group": "en",
+    "question_type": "definition",
+    "expected_documents": [
+      "EN-01",
+      "EN-09"
+    ],
+    "retrieved_documents": [
+      "EN-09",
+      "EN-04"
+    ],
+    "retrieved_chunks": [
+      "en-09-0004",
+      "en-09-0002",
+      "en-09-0006",
+      "en-04-0013",
+      "en-09-0005"
+    ],
+    "review_status": "draft",
+    "latency_ms": 68.47860000561923,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.6131471927654584
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-definition-malware",
+    "language_group": "en",
+    "question_type": "definition",
+    "expected_documents": [
+      "EN-23"
+    ],
+    "retrieved_documents": [
+      "EN-23"
+    ],
+    "retrieved_chunks": [
+      "en-23-0001",
+      "en-23-0003",
+      "en-23-0002",
+      "en-23-0004",
+      "en-23-0005"
+    ],
+    "review_status": "draft",
+    "latency_ms": 57.06370000552852,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "th-definition-data-breach",
+    "language_group": "th",
+    "question_type": "definition",
+    "expected_documents": [
+      "TH-02"
+    ],
+    "retrieved_documents": [
+      "TH-02"
+    ],
+    "retrieved_chunks": [
+      "th-02-0002",
+      "th-02-0011",
+      "th-02-0005",
+      "th-02-0003",
+      "th-02-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 55.322400003205985,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-hacked-account-recovery",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-07"
+    ],
+    "retrieved_documents": [
+      "EN-07"
+    ],
+    "retrieved_chunks": [
+      "en-07-0007",
+      "en-07-0006",
+      "en-07-0003",
+      "en-07-0005",
+      "en-07-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 68.18020000355318,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-qr-phishing",
+    "language_group": "en",
+    "question_type": "phishing",
+    "expected_documents": [
+      "EN-18"
+    ],
+    "retrieved_documents": [
+      "EN-18"
+    ],
+    "retrieved_chunks": [
+      "en-18-0010",
+      "en-18-0002",
+      "en-18-0001",
+      "en-18-0003",
+      "en-18-0011"
+    ],
+    "review_status": "draft",
+    "latency_ms": 64.6071000082884,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-tech-support-scam",
+    "language_group": "en",
+    "question_type": "scam",
+    "expected_documents": [
+      "EN-19"
+    ],
+    "retrieved_documents": [
+      "EN-19"
+    ],
+    "retrieved_chunks": [
+      "en-19-0003",
+      "en-19-0010",
+      "en-19-0004",
+      "en-19-0006",
+      "en-19-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 56.36790000426117,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "cross-recovery-scam",
+    "language_group": "cross",
+    "question_type": "comparison",
+    "expected_documents": [
+      "TH-06",
+      "EN-20"
+    ],
+    "retrieved_documents": [
+      "TH-11",
+      "EN-20"
+    ],
+    "retrieved_chunks": [
+      "th-11-0007",
+      "th-11-0013",
+      "en-20-0003",
+      "en-20-0006",
+      "en-20-0005"
+    ],
+    "review_status": "draft",
+    "latency_ms": 62.799299994367175,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.38685280723454163
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-home-router-security",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-15"
+    ],
+    "retrieved_documents": [
+      "EN-15",
+      "EN-05"
+    ],
+    "retrieved_chunks": [
+      "en-15-0003",
+      "en-15-0002",
+      "en-05-0003",
+      "en-15-0004",
+      "en-15-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 56.42789999546949,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-mobile-phone-security",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-16",
+      "EN-24"
+    ],
+    "retrieved_documents": [
+      "EN-24",
+      "EN-16"
+    ],
+    "retrieved_chunks": [
+      "en-24-0001",
+      "en-24-0003",
+      "en-24-0002",
+      "en-16-0001",
+      "en-16-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 61.39419999090023,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-identity-theft-response",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-17"
+    ],
+    "retrieved_documents": [
+      "EN-17"
+    ],
+    "retrieved_chunks": [
+      "en-17-0003",
+      "en-17-0014",
+      "en-17-0010",
+      "en-17-0016",
+      "en-17-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 54.15160000848118,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "th-fake-police-report",
+    "language_group": "th",
+    "question_type": "scam",
+    "expected_documents": [
+      "TH-04",
+      "TH-06"
+    ],
+    "retrieved_documents": [
+      "TH-06",
+      "TH-03",
+      "TH-10"
+    ],
+    "retrieved_chunks": [
+      "th-06-0001",
+      "th-06-0004",
+      "th-03-0003",
+      "th-10-0002",
+      "th-10-0004"
+    ],
+    "review_status": "draft",
+    "latency_ms": 66.65939999220427,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.6131471927654584
+  },
+  {
+    "retriever": "dense",
+    "question_id": "th-data-breach-response",
+    "language_group": "th",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "TH-02",
+      "TH-03"
+    ],
+    "retrieved_documents": [
+      "TH-02"
+    ],
+    "retrieved_chunks": [
+      "th-02-0005",
+      "th-02-0003",
+      "th-02-0011",
+      "th-02-0002",
+      "th-02-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 62.401999995927326,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.6131471927654584
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-compare-mfa-methods",
+    "language_group": "en",
+    "question_type": "comparison",
+    "expected_documents": [
+      "EN-10",
+      "EN-13"
+    ],
+    "retrieved_documents": [
+      "EN-08",
+      "EN-06"
+    ],
+    "retrieved_chunks": [
+      "en-08-0183",
+      "en-06-0002",
+      "en-06-0006",
+      "en-08-0146",
+      "en-08-0145"
+    ],
+    "review_status": "draft",
+    "latency_ms": 67.8191000042716,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "dense",
+    "question_id": "en-multihop-ransomware-backup",
+    "language_group": "en",
+    "question_type": "multi_hop",
+    "expected_documents": [
+      "EN-11",
+      "EN-12",
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-12"
+    ],
+    "retrieved_chunks": [
+      "en-12-0060",
+      "en-12-0070",
+      "en-12-0058",
+      "en-12-0056",
+      "en-12-0009"
+    ],
+    "review_status": "draft",
+    "latency_ms": 60.24259999685455,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 0.3333333333333333,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.46927872602275644
+  },
+  {
+    "retriever": "dense",
+    "question_id": "cross-captive-account-takeover",
+    "language_group": "cross",
+    "question_type": "multi_hop",
+    "expected_documents": [
+      "TH-12",
+      "EN-10"
+    ],
+    "retrieved_documents": [
+      "EN-21",
+      "EN-10",
+      "EN-12",
+      "EN-03"
+    ],
+    "retrieved_chunks": [
+      "en-21-0003",
+      "en-10-0007",
+      "en-12-0026",
+      "en-03-0011",
+      "en-03-0003"
+    ],
+    "review_status": "draft",
+    "latency_ms": 62.64620000729337,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": null,
+    "entity_recall": null,
+    "entity_f1": null,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.38685280723454163
+  },
+  {
+    "retriever": "graph",
+    "question_id": "th-remote-app",
+    "language_group": "th",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "TH-03",
+      "TH-10"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 2.8488000098150223,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": 0.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "th-sms-url",
+    "language_group": "th",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-05"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 2.526399999624118,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": 0.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "th-captivecrunch",
+    "language_group": "th",
+    "question_type": "malware",
+    "expected_documents": [
+      "TH-12"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 2.5889000098686665,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": 0.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "th-premium-sms",
+    "language_group": "th",
+    "question_type": "malware",
+    "expected_documents": [
+      "TH-13"
+    ],
+    "retrieved_documents": [
+      "TH-08",
+      "TH-12",
+      "TH-13"
+    ],
+    "retrieved_chunks": [
+      "th-08-0009",
+      "th-08-0010",
+      "th-12-0003",
+      "th-12-0008",
+      "th-13-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 1303.8178000133485,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.3333333333333333,
+    "ndcg_at_k": 0.5
+  },
+  {
+    "retriever": "graph",
+    "question_id": "th-llm-phishing",
+    "language_group": "th",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-14"
+    ],
+    "retrieved_documents": [
+      "TH-02",
+      "TH-05",
+      "TH-08"
+    ],
+    "retrieved_chunks": [
+      "th-02-0003",
+      "th-05-0016",
+      "th-08-0007",
+      "th-08-0010",
+      "th-02-0005"
+    ],
+    "review_status": "draft",
+    "latency_ms": 309.3574000085937,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "th-fortune-teller",
+    "language_group": "th",
+    "question_type": "scam",
+    "expected_documents": [
+      "TH-15"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 3.2189000048674643,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-phishing",
+    "language_group": "en",
+    "question_type": "phishing",
+    "expected_documents": [
+      "EN-01",
+      "EN-06",
+      "EN-09"
+    ],
+    "retrieved_documents": [
+      "EN-01",
+      "EN-02",
+      "EN-03"
+    ],
+    "retrieved_chunks": [
+      "en-01-0002",
+      "en-01-0003",
+      "en-02-0016",
+      "en-03-0009",
+      "en-03-0014"
+    ],
+    "review_status": "draft",
+    "latency_ms": 359.8636000097031,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": 0.3333333333333333,
+    "entity_precision": 1.0,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.5,
+    "recall_at_k": 0.3333333333333333,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.46927872602275644
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-mfa",
+    "language_group": "en",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-03",
+      "EN-10",
+      "EN-13"
+    ],
+    "retrieved_documents": [
+      "EN-01",
+      "EN-02",
+      "EN-03"
+    ],
+    "retrieved_chunks": [
+      "en-01-0014",
+      "en-01-0015",
+      "en-02-0002",
+      "en-02-0003",
+      "en-03-0005"
+    ],
+    "review_status": "draft",
+    "latency_ms": 514.7593000001507,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.3333333333333333,
+    "entity_recall": 0.5,
+    "entity_f1": 0.4,
+    "recall_at_k": 0.3333333333333333,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.3333333333333333,
+    "ndcg_at_k": 0.23463936301137822
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-ransomware",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-11",
+      "EN-12"
+    ],
+    "retrieved_documents": [
+      "EN-12",
+      "EN-22",
+      "EN-11"
+    ],
+    "retrieved_chunks": [
+      "en-12-0010",
+      "en-12-0040",
+      "en-22-0041",
+      "en-22-0042",
+      "en-11-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 336.2561999965692,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.5,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.9197207891481876
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-public-wifi",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-14",
+      "EN-21",
+      "EN-24"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 3.3862999989651144,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-backup",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-12",
+      "EN-22"
+    ],
+    "retrieved_chunks": [
+      "en-12-0010",
+      "en-12-0040",
+      "en-22-0041",
+      "en-22-0042"
+    ],
+    "review_status": "draft",
+    "latency_ms": 323.5065000044415,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 4,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.6309297535714575
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-password-manager",
+    "language_group": "en",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-25"
+    ],
+    "retrieved_documents": [
+      "EN-01",
+      "EN-02",
+      "EN-03",
+      "EN-04"
+    ],
+    "retrieved_chunks": [
+      "en-01-0014",
+      "en-02-0002",
+      "en-02-0003",
+      "en-03-0015",
+      "en-04-0014"
+    ],
+    "review_status": "draft",
+    "latency_ms": 400.37719999963883,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.5,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.4,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "cross-th-to-en-backup",
+    "language_group": "cross",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-12",
+      "EN-22",
+      "EN-11"
+    ],
+    "retrieved_chunks": [
+      "en-12-0010",
+      "en-12-0040",
+      "en-22-0041",
+      "en-22-0042",
+      "en-11-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 325.8356000005733,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.6309297535714575
+  },
+  {
+    "retriever": "graph",
+    "question_id": "cross-en-to-th-scam-shield",
+    "language_group": "cross",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-05"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 2.3895000049378723,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": 0.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "cross-th-to-en-authentication",
+    "language_group": "cross",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-08",
+      "EN-10"
+    ],
+    "retrieved_documents": [
+      "EN-01",
+      "EN-02",
+      "EN-03"
+    ],
+    "retrieved_chunks": [
+      "en-01-0002",
+      "en-01-0003",
+      "en-02-0016",
+      "en-03-0009",
+      "en-03-0014"
+    ],
+    "review_status": "draft",
+    "latency_ms": 419.65470000286587,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-definition-phishing",
+    "language_group": "en",
+    "question_type": "definition",
+    "expected_documents": [
+      "EN-01",
+      "EN-09"
+    ],
+    "retrieved_documents": [
+      "EN-01",
+      "EN-02",
+      "EN-03"
+    ],
+    "retrieved_chunks": [
+      "en-01-0002",
+      "en-01-0003",
+      "en-02-0016",
+      "en-03-0009",
+      "en-03-0014"
+    ],
+    "review_status": "draft",
+    "latency_ms": 347.5791999953799,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.6131471927654584
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-definition-malware",
+    "language_group": "en",
+    "question_type": "definition",
+    "expected_documents": [
+      "EN-23"
+    ],
+    "retrieved_documents": [
+      "EN-04",
+      "EN-05",
+      "EN-07",
+      "EN-08"
+    ],
+    "retrieved_chunks": [
+      "en-04-0003",
+      "en-04-0009",
+      "en-05-0003",
+      "en-07-0002",
+      "en-08-0211"
+    ],
+    "review_status": "draft",
+    "latency_ms": 382.08209999720566,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.5,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.4,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "th-definition-data-breach",
+    "language_group": "th",
+    "question_type": "definition",
+    "expected_documents": [
+      "TH-02"
+    ],
+    "retrieved_documents": [
+      "TH-02",
+      "TH-05",
+      "TH-08"
+    ],
+    "retrieved_chunks": [
+      "th-02-0003",
+      "th-02-0005",
+      "th-05-0016",
+      "th-08-0006",
+      "th-08-0007"
+    ],
+    "review_status": "draft",
+    "latency_ms": 314.31960000190884,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-hacked-account-recovery",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-07"
+    ],
+    "retrieved_documents": [
+      "EN-01",
+      "EN-02",
+      "EN-03"
+    ],
+    "retrieved_chunks": [
+      "en-01-0015",
+      "en-02-0012",
+      "en-02-0017",
+      "en-03-0005",
+      "en-03-0008"
+    ],
+    "review_status": "draft",
+    "latency_ms": 357.29539999738336,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-qr-phishing",
+    "language_group": "en",
+    "question_type": "phishing",
+    "expected_documents": [
+      "EN-18"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 3.846400009933859,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-tech-support-scam",
+    "language_group": "en",
+    "question_type": "scam",
+    "expected_documents": [
+      "EN-19"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 3.6360999947646633,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "cross-recovery-scam",
+    "language_group": "cross",
+    "question_type": "comparison",
+    "expected_documents": [
+      "TH-06",
+      "EN-20"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 3.0620000034105033,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-home-router-security",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-15"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 3.4371000074315816,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-mobile-phone-security",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-16",
+      "EN-24"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 4.060199993546121,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-identity-theft-response",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-17"
+    ],
+    "retrieved_documents": [
+      "EN-05",
+      "EN-07",
+      "EN-09",
+      "EN-13"
+    ],
+    "retrieved_chunks": [
+      "en-05-0010",
+      "en-07-0002",
+      "en-07-0008",
+      "en-09-0009",
+      "en-13-0012"
+    ],
+    "review_status": "draft",
+    "latency_ms": 333.2741999911377,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.5,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "th-fake-police-report",
+    "language_group": "th",
+    "question_type": "scam",
+    "expected_documents": [
+      "TH-04",
+      "TH-06"
+    ],
+    "retrieved_documents": [],
+    "retrieved_chunks": [],
+    "review_status": "draft",
+    "latency_ms": 4.201499992632307,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 0,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "th-data-breach-response",
+    "language_group": "th",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "TH-02",
+      "TH-03"
+    ],
+    "retrieved_documents": [
+      "TH-02",
+      "TH-05",
+      "TH-08"
+    ],
+    "retrieved_chunks": [
+      "th-02-0003",
+      "th-02-0005",
+      "th-05-0016",
+      "th-08-0006",
+      "th-08-0007"
+    ],
+    "review_status": "draft",
+    "latency_ms": 356.5598000132013,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.6131471927654584
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-compare-mfa-methods",
+    "language_group": "en",
+    "question_type": "comparison",
+    "expected_documents": [
+      "EN-10",
+      "EN-13"
+    ],
+    "retrieved_documents": [
+      "EN-01",
+      "EN-02",
+      "EN-03"
+    ],
+    "retrieved_chunks": [
+      "en-01-0002",
+      "en-01-0003",
+      "en-02-0016",
+      "en-03-0009",
+      "en-03-0014"
+    ],
+    "review_status": "draft",
+    "latency_ms": 375.20280000171624,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "en-multihop-ransomware-backup",
+    "language_group": "en",
+    "question_type": "multi_hop",
+    "expected_documents": [
+      "EN-11",
+      "EN-12",
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-12",
+      "EN-22",
+      "EN-11"
+    ],
+    "retrieved_chunks": [
+      "en-12-0010",
+      "en-12-0040",
+      "en-22-0041",
+      "en-22-0042",
+      "en-11-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 300.70349999004975,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.6,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "graph",
+    "question_id": "cross-captive-account-takeover",
+    "language_group": "cross",
+    "question_type": "multi_hop",
+    "expected_documents": [
+      "TH-12",
+      "EN-10"
+    ],
+    "retrieved_documents": [
+      "EN-01",
+      "EN-02",
+      "EN-03"
+    ],
+    "retrieved_chunks": [
+      "en-01-0015",
+      "en-02-0012",
+      "en-02-0017",
+      "en-03-0005",
+      "en-03-0008"
+    ],
+    "review_status": "draft",
+    "latency_ms": 481.58690000127535,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "th-remote-app",
+    "language_group": "th",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "TH-03",
+      "TH-10"
+    ],
+    "retrieved_documents": [
+      "TH-03",
+      "TH-10",
+      "TH-11"
+    ],
+    "retrieved_chunks": [
+      "th-03-0006",
+      "th-03-0005",
+      "th-10-0007",
+      "th-11-0008",
+      "th-10-0005"
+    ],
+    "review_status": "draft",
+    "latency_ms": 58.97269998968113,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": 1.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "th-sms-url",
+    "language_group": "th",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-05"
+    ],
+    "retrieved_documents": [
+      "TH-05",
+      "TH-10",
+      "TH-13"
+    ],
+    "retrieved_chunks": [
+      "th-05-0017",
+      "th-05-0005",
+      "th-10-0009",
+      "th-13-0007",
+      "th-13-0005"
+    ],
+    "review_status": "draft",
+    "latency_ms": 56.34700000518933,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": 1.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "th-captivecrunch",
+    "language_group": "th",
+    "question_type": "malware",
+    "expected_documents": [
+      "TH-12"
+    ],
+    "retrieved_documents": [
+      "TH-12"
+    ],
+    "retrieved_chunks": [
+      "th-12-0002",
+      "th-12-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 62.936400005128235,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 2,
+    "context_tokens": null,
+    "chunk_recall_at_k": 0.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "th-premium-sms",
+    "language_group": "th",
+    "question_type": "malware",
+    "expected_documents": [
+      "TH-13"
+    ],
+    "retrieved_documents": [
+      "TH-13",
+      "TH-08",
+      "TH-12"
+    ],
+    "retrieved_chunks": [
+      "th-13-0001",
+      "th-13-0002",
+      "th-08-0009",
+      "th-08-0010",
+      "th-12-0003"
+    ],
+    "review_status": "draft",
+    "latency_ms": 404.9783000082243,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "th-llm-phishing",
+    "language_group": "th",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-14"
+    ],
+    "retrieved_documents": [
+      "TH-14",
+      "TH-02",
+      "TH-05",
+      "TH-08"
+    ],
+    "retrieved_chunks": [
+      "th-14-0001",
+      "th-02-0003",
+      "th-14-0002",
+      "th-05-0016",
+      "th-08-0007"
+    ],
+    "review_status": "draft",
+    "latency_ms": 396.19430000311695,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "th-fortune-teller",
+    "language_group": "th",
+    "question_type": "scam",
+    "expected_documents": [
+      "TH-15"
+    ],
+    "retrieved_documents": [
+      "TH-15",
+      "TH-10",
+      "TH-11",
+      "TH-06"
+    ],
+    "retrieved_chunks": [
+      "th-15-0001",
+      "th-10-0009",
+      "th-11-0008",
+      "th-10-0007",
+      "th-06-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 75.46690000162926,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-phishing",
+    "language_group": "en",
+    "question_type": "phishing",
+    "expected_documents": [
+      "EN-01",
+      "EN-06",
+      "EN-09"
+    ],
+    "retrieved_documents": [
+      "EN-09",
+      "EN-06",
+      "EN-01"
+    ],
+    "retrieved_chunks": [
+      "en-09-0006",
+      "en-06-0010",
+      "en-01-0002",
+      "en-06-0002",
+      "en-01-0003"
+    ],
+    "review_status": "draft",
+    "latency_ms": 444.14390000747517,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": 0.6666666666666666,
+    "entity_precision": 1.0,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.5,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.6,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-mfa",
+    "language_group": "en",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-03",
+      "EN-10",
+      "EN-13"
+    ],
+    "retrieved_documents": [
+      "EN-10",
+      "EN-01",
+      "EN-13",
+      "EN-25"
+    ],
+    "retrieved_chunks": [
+      "en-10-0007",
+      "en-01-0014",
+      "en-13-0012",
+      "en-01-0015",
+      "en-25-0005"
+    ],
+    "review_status": "draft",
+    "latency_ms": 673.4358000103384,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.3333333333333333,
+    "entity_recall": 0.5,
+    "entity_f1": 0.4,
+    "recall_at_k": 0.6666666666666666,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.7039180890341347
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-ransomware",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-11",
+      "EN-12"
+    ],
+    "retrieved_documents": [
+      "EN-12",
+      "EN-11",
+      "EN-22"
+    ],
+    "retrieved_chunks": [
+      "en-12-0040",
+      "en-11-0002",
+      "en-12-0059",
+      "en-22-0041",
+      "en-22-0042"
+    ],
+    "review_status": "draft",
+    "latency_ms": 380.2655000035884,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.5,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-public-wifi",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-14",
+      "EN-21",
+      "EN-24"
+    ],
+    "retrieved_documents": [
+      "EN-14",
+      "EN-24",
+      "EN-05"
+    ],
+    "retrieved_chunks": [
+      "en-14-0002",
+      "en-14-0001",
+      "en-24-0007",
+      "en-24-0008",
+      "en-05-0003"
+    ],
+    "review_status": "draft",
+    "latency_ms": 71.95449998835102,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.6666666666666666,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.7653606369886217
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-backup",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-22",
+      "EN-12"
+    ],
+    "retrieved_chunks": [
+      "en-22-0041",
+      "en-22-0042",
+      "en-12-0010",
+      "en-12-0040"
+    ],
+    "review_status": "draft",
+    "latency_ms": 367.03309998847544,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 4,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-password-manager",
+    "language_group": "en",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-25"
+    ],
+    "retrieved_documents": [
+      "EN-05",
+      "EN-25",
+      "EN-01",
+      "EN-02"
+    ],
+    "retrieved_chunks": [
+      "en-05-0006",
+      "en-25-0005",
+      "en-01-0014",
+      "en-25-0006",
+      "en-02-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 445.93129999702796,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.5,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.4,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.6309297535714575
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "cross-th-to-en-backup",
+    "language_group": "cross",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-22",
+      "EN-11",
+      "EN-12"
+    ],
+    "retrieved_chunks": [
+      "en-22-0041",
+      "en-22-0042",
+      "en-11-0002",
+      "en-12-0010",
+      "en-12-0040"
+    ],
+    "review_status": "draft",
+    "latency_ms": 414.9792000098387,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "cross-en-to-th-scam-shield",
+    "language_group": "cross",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-05"
+    ],
+    "retrieved_documents": [
+      "TH-05",
+      "TH-06",
+      "TH-10"
+    ],
+    "retrieved_chunks": [
+      "th-05-0017",
+      "th-05-0005",
+      "th-06-0004",
+      "th-10-0007",
+      "th-10-0009"
+    ],
+    "review_status": "draft",
+    "latency_ms": 80.36979999451432,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": 1.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "cross-th-to-en-authentication",
+    "language_group": "cross",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-08",
+      "EN-10"
+    ],
+    "retrieved_documents": [
+      "EN-09",
+      "EN-01",
+      "EN-08"
+    ],
+    "retrieved_chunks": [
+      "en-09-0002",
+      "en-01-0002",
+      "en-08-0001",
+      "en-01-0003",
+      "en-08-0239"
+    ],
+    "review_status": "draft",
+    "latency_ms": 456.9532000023173,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.3333333333333333,
+    "ndcg_at_k": 0.3065735963827292
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-definition-phishing",
+    "language_group": "en",
+    "question_type": "definition",
+    "expected_documents": [
+      "EN-01",
+      "EN-09"
+    ],
+    "retrieved_documents": [
+      "EN-02",
+      "EN-04",
+      "EN-09",
+      "EN-03"
+    ],
+    "retrieved_chunks": [
+      "en-02-0016",
+      "en-04-0013",
+      "en-09-0006",
+      "en-03-0014",
+      "en-09-0004"
+    ],
+    "review_status": "draft",
+    "latency_ms": 478.97379999631085,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.3333333333333333,
+    "ndcg_at_k": 0.3065735963827292
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-definition-malware",
+    "language_group": "en",
+    "question_type": "definition",
+    "expected_documents": [
+      "EN-23"
+    ],
+    "retrieved_documents": [
+      "EN-11",
+      "EN-23",
+      "EN-04"
+    ],
+    "retrieved_chunks": [
+      "en-11-0006",
+      "en-23-0001",
+      "en-04-0003",
+      "en-23-0003",
+      "en-04-0009"
+    ],
+    "review_status": "draft",
+    "latency_ms": 477.6337999937823,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.5,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.4,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.6309297535714575
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "th-definition-data-breach",
+    "language_group": "th",
+    "question_type": "definition",
+    "expected_documents": [
+      "TH-02"
+    ],
+    "retrieved_documents": [
+      "TH-02",
+      "TH-05",
+      "TH-08"
+    ],
+    "retrieved_chunks": [
+      "th-02-0003",
+      "th-02-0005",
+      "th-05-0016",
+      "th-08-0006",
+      "th-08-0007"
+    ],
+    "review_status": "draft",
+    "latency_ms": 440.92320000345353,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-hacked-account-recovery",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-07"
+    ],
+    "retrieved_documents": [
+      "EN-07",
+      "EN-01",
+      "EN-02"
+    ],
+    "retrieved_chunks": [
+      "en-07-0003",
+      "en-07-0001",
+      "en-01-0015",
+      "en-02-0012",
+      "en-02-0017"
+    ],
+    "review_status": "draft",
+    "latency_ms": 484.33269999804907,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-qr-phishing",
+    "language_group": "en",
+    "question_type": "phishing",
+    "expected_documents": [
+      "EN-18"
+    ],
+    "retrieved_documents": [
+      "EN-18"
+    ],
+    "retrieved_chunks": [
+      "en-18-0010",
+      "en-18-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 82.07409999158699,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 2,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-tech-support-scam",
+    "language_group": "en",
+    "question_type": "scam",
+    "expected_documents": [
+      "EN-19"
+    ],
+    "retrieved_documents": [
+      "EN-19"
+    ],
+    "retrieved_chunks": [
+      "en-19-0003",
+      "en-19-0010"
+    ],
+    "review_status": "draft",
+    "latency_ms": 66.3090000016382,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 2,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "cross-recovery-scam",
+    "language_group": "cross",
+    "question_type": "comparison",
+    "expected_documents": [
+      "TH-06",
+      "EN-20"
+    ],
+    "retrieved_documents": [
+      "TH-11",
+      "EN-20"
+    ],
+    "retrieved_chunks": [
+      "th-11-0007",
+      "th-11-0013",
+      "en-20-0003",
+      "en-20-0006"
+    ],
+    "review_status": "draft",
+    "latency_ms": 64.52689999423455,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 4,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.38685280723454163
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-home-router-security",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-15"
+    ],
+    "retrieved_documents": [
+      "EN-15",
+      "EN-05",
+      "EN-21",
+      "EN-08"
+    ],
+    "retrieved_chunks": [
+      "en-15-0003",
+      "en-15-0002",
+      "en-05-0003",
+      "en-21-0002",
+      "en-08-0163"
+    ],
+    "review_status": "draft",
+    "latency_ms": 56.89930000517052,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-mobile-phone-security",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-16",
+      "EN-24"
+    ],
+    "retrieved_documents": [
+      "EN-24",
+      "EN-16"
+    ],
+    "retrieved_chunks": [
+      "en-24-0001",
+      "en-24-0003",
+      "en-16-0001",
+      "en-16-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 62.28570001258049,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 4,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-identity-theft-response",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-17"
+    ],
+    "retrieved_documents": [
+      "EN-05",
+      "EN-17",
+      "EN-07"
+    ],
+    "retrieved_chunks": [
+      "en-05-0010",
+      "en-17-0007",
+      "en-17-0003",
+      "en-07-0002",
+      "en-07-0008"
+    ],
+    "review_status": "draft",
+    "latency_ms": 399.07029998721555,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.5,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.6309297535714575
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "th-fake-police-report",
+    "language_group": "th",
+    "question_type": "scam",
+    "expected_documents": [
+      "TH-04",
+      "TH-06"
+    ],
+    "retrieved_documents": [
+      "TH-06",
+      "TH-03",
+      "TH-10"
+    ],
+    "retrieved_chunks": [
+      "th-06-0001",
+      "th-06-0004",
+      "th-03-0003",
+      "th-10-0002",
+      "th-10-0004"
+    ],
+    "review_status": "draft",
+    "latency_ms": 84.09970000502653,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.6131471927654584
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "th-data-breach-response",
+    "language_group": "th",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "TH-02",
+      "TH-03"
+    ],
+    "retrieved_documents": [
+      "TH-02",
+      "TH-05",
+      "TH-08"
+    ],
+    "retrieved_chunks": [
+      "th-02-0005",
+      "th-02-0003",
+      "th-05-0016",
+      "th-08-0006",
+      "th-08-0007"
+    ],
+    "review_status": "draft",
+    "latency_ms": 455.8770000003278,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.6131471927654584
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-compare-mfa-methods",
+    "language_group": "en",
+    "question_type": "comparison",
+    "expected_documents": [
+      "EN-10",
+      "EN-13"
+    ],
+    "retrieved_documents": [
+      "EN-06",
+      "EN-08",
+      "EN-01"
+    ],
+    "retrieved_chunks": [
+      "en-06-0006",
+      "en-08-0183",
+      "en-01-0002",
+      "en-06-0002",
+      "en-01-0003"
+    ],
+    "review_status": "draft",
+    "latency_ms": 472.30120000313036,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "en-multihop-ransomware-backup",
+    "language_group": "en",
+    "question_type": "multi_hop",
+    "expected_documents": [
+      "EN-11",
+      "EN-12",
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-22",
+      "EN-11",
+      "EN-12"
+    ],
+    "retrieved_chunks": [
+      "en-22-0041",
+      "en-22-0042",
+      "en-11-0002",
+      "en-12-0060",
+      "en-12-0010"
+    ],
+    "review_status": "draft",
+    "latency_ms": 450.70549999945797,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.6,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid",
+    "question_id": "cross-captive-account-takeover",
+    "language_group": "cross",
+    "question_type": "multi_hop",
+    "expected_documents": [
+      "TH-12",
+      "EN-10"
+    ],
+    "retrieved_documents": [
+      "EN-21",
+      "EN-01",
+      "EN-10",
+      "EN-02",
+      "EN-12"
+    ],
+    "retrieved_chunks": [
+      "en-21-0003",
+      "en-01-0015",
+      "en-10-0007",
+      "en-02-0012",
+      "en-12-0026"
+    ],
+    "review_status": "draft",
+    "latency_ms": 525.7789999886882,
+    "dense_k": null,
+    "graph_k": null,
+    "graph_depth": null,
+    "fusion_k": null,
+    "final_context_k": 5,
+    "context_tokens": null,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.3333333333333333,
+    "ndcg_at_k": 0.3065735963827292
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "th-remote-app",
+    "language_group": "th",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "TH-03",
+      "TH-10"
+    ],
+    "retrieved_documents": [
+      "TH-03",
+      "TH-10",
+      "TH-11"
+    ],
+    "retrieved_chunks": [
+      "th-03-0006",
+      "th-03-0005",
+      "th-10-0007",
+      "th-11-0008",
+      "th-10-0005"
+    ],
+    "review_status": "draft",
+    "latency_ms": 71.54299999820068,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 5,
+    "context_tokens": 2640,
+    "chunk_recall_at_k": 1.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "th-sms-url",
+    "language_group": "th",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-05"
+    ],
+    "retrieved_documents": [
+      "TH-05",
+      "TH-10",
+      "TH-13",
+      "TH-11"
+    ],
+    "retrieved_chunks": [
+      "th-05-0017",
+      "th-05-0005",
+      "th-10-0009",
+      "th-13-0007",
+      "th-13-0005",
+      "th-11-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 65.70570000621956,
+    "dense_k": 15,
+    "graph_k": 12,
+    "graph_depth": 2,
+    "fusion_k": 25,
+    "final_context_k": 6,
+    "context_tokens": 1557,
+    "chunk_recall_at_k": 1.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "th-captivecrunch",
+    "language_group": "th",
+    "question_type": "malware",
+    "expected_documents": [
+      "TH-12"
+    ],
+    "retrieved_documents": [
+      "TH-12"
+    ],
+    "retrieved_chunks": [
+      "th-12-0002",
+      "th-12-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 64.58419999398757,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 2,
+    "context_tokens": 1200,
+    "chunk_recall_at_k": 0.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "th-premium-sms",
+    "language_group": "th",
+    "question_type": "malware",
+    "expected_documents": [
+      "TH-13"
+    ],
+    "retrieved_documents": [
+      "TH-13"
+    ],
+    "retrieved_chunks": [
+      "th-13-0001",
+      "th-13-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 441.3996000075713,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 2,
+    "context_tokens": 1228,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "th-llm-phishing",
+    "language_group": "th",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-14"
+    ],
+    "retrieved_documents": [
+      "TH-14",
+      "TH-02",
+      "TH-05"
+    ],
+    "retrieved_chunks": [
+      "th-14-0001",
+      "th-02-0003",
+      "th-14-0002",
+      "th-05-0016"
+    ],
+    "review_status": "draft",
+    "latency_ms": 490.6920000066748,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 4,
+    "context_tokens": 2443,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "th-fortune-teller",
+    "language_group": "th",
+    "question_type": "scam",
+    "expected_documents": [
+      "TH-15"
+    ],
+    "retrieved_documents": [
+      "TH-15",
+      "TH-10",
+      "TH-11",
+      "TH-06"
+    ],
+    "retrieved_chunks": [
+      "th-15-0001",
+      "th-10-0009",
+      "th-11-0008",
+      "th-10-0007",
+      "th-06-0001"
+    ],
+    "review_status": "draft",
+    "latency_ms": 86.70369999890681,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 5,
+    "context_tokens": 2793,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-phishing",
+    "language_group": "en",
+    "question_type": "phishing",
+    "expected_documents": [
+      "EN-01",
+      "EN-06",
+      "EN-09"
+    ],
+    "retrieved_documents": [
+      "EN-06",
+      "EN-01",
+      "EN-02"
+    ],
+    "retrieved_chunks": [
+      "en-06-0010",
+      "en-01-0002",
+      "en-06-0002",
+      "en-01-0003",
+      "en-02-0016"
+    ],
+    "review_status": "draft",
+    "latency_ms": 431.0838999954285,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 5,
+    "context_tokens": 456,
+    "chunk_recall_at_k": 0.3333333333333333,
+    "entity_precision": 1.0,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.5,
+    "recall_at_k": 0.6666666666666666,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.7653606369886217
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-mfa",
+    "language_group": "en",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-03",
+      "EN-10",
+      "EN-13"
+    ],
+    "retrieved_documents": [
+      "EN-10",
+      "EN-01",
+      "EN-13",
+      "EN-25",
+      "EN-02"
+    ],
+    "retrieved_chunks": [
+      "en-10-0007",
+      "en-01-0014",
+      "en-13-0012",
+      "en-01-0015",
+      "en-25-0005",
+      "en-02-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 8987.980000005336,
+    "dense_k": 20,
+    "graph_k": 15,
+    "graph_depth": 3,
+    "fusion_k": 25,
+    "final_context_k": 6,
+    "context_tokens": 556,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.3333333333333333,
+    "entity_recall": 0.5,
+    "entity_f1": 0.4,
+    "recall_at_k": 0.6666666666666666,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.7039180890341347
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-ransomware",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-11",
+      "EN-12"
+    ],
+    "retrieved_documents": [
+      "EN-12",
+      "EN-11"
+    ],
+    "retrieved_chunks": [
+      "en-12-0040",
+      "en-11-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 493.17479999444913,
+    "dense_k": 15,
+    "graph_k": 12,
+    "graph_depth": 2,
+    "fusion_k": 25,
+    "final_context_k": 2,
+    "context_tokens": 170,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.5,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-public-wifi",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-14",
+      "EN-21",
+      "EN-24"
+    ],
+    "retrieved_documents": [
+      "EN-14",
+      "EN-24",
+      "EN-05"
+    ],
+    "retrieved_chunks": [
+      "en-14-0002",
+      "en-14-0001",
+      "en-24-0007",
+      "en-24-0008",
+      "en-05-0003"
+    ],
+    "review_status": "draft",
+    "latency_ms": 75.16480000049341,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 5,
+    "context_tokens": 636,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.6666666666666666,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.7653606369886217
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-backup",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-22"
+    ],
+    "retrieved_chunks": [
+      "en-22-0041",
+      "en-22-0042"
+    ],
+    "review_status": "draft",
+    "latency_ms": 381.61729999410454,
+    "dense_k": 15,
+    "graph_k": 12,
+    "graph_depth": 2,
+    "fusion_k": 25,
+    "final_context_k": 2,
+    "context_tokens": 237,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-password-manager",
+    "language_group": "en",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-25"
+    ],
+    "retrieved_documents": [
+      "EN-05",
+      "EN-25",
+      "EN-01",
+      "EN-02"
+    ],
+    "retrieved_chunks": [
+      "en-05-0006",
+      "en-25-0005",
+      "en-01-0014",
+      "en-25-0006",
+      "en-02-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 614.6157000039238,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 5,
+    "context_tokens": 544,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.5,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.4,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.6309297535714575
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "cross-th-to-en-backup",
+    "language_group": "cross",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-22",
+      "EN-11"
+    ],
+    "retrieved_chunks": [
+      "en-22-0041",
+      "en-22-0042",
+      "en-11-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 412.14299999410287,
+    "dense_k": 15,
+    "graph_k": 12,
+    "graph_depth": 2,
+    "fusion_k": 25,
+    "final_context_k": 3,
+    "context_tokens": 243,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "cross-en-to-th-scam-shield",
+    "language_group": "cross",
+    "question_type": "phishing",
+    "expected_documents": [
+      "TH-05"
+    ],
+    "retrieved_documents": [
+      "TH-05",
+      "TH-06",
+      "TH-10"
+    ],
+    "retrieved_chunks": [
+      "th-05-0017",
+      "th-05-0005",
+      "th-06-0004",
+      "th-10-0007",
+      "th-10-0009"
+    ],
+    "review_status": "draft",
+    "latency_ms": 65.45019999612123,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 5,
+    "context_tokens": 2330,
+    "chunk_recall_at_k": 1.0,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "cross-th-to-en-authentication",
+    "language_group": "cross",
+    "question_type": "password_mfa",
+    "expected_documents": [
+      "EN-08",
+      "EN-10"
+    ],
+    "retrieved_documents": [
+      "EN-09",
+      "EN-01",
+      "EN-08"
+    ],
+    "retrieved_chunks": [
+      "en-09-0002",
+      "en-01-0002",
+      "en-08-0001",
+      "en-01-0003",
+      "en-08-0239"
+    ],
+    "review_status": "draft",
+    "latency_ms": 466.5697000018554,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 5,
+    "context_tokens": 275,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.3333333333333333,
+    "ndcg_at_k": 0.3065735963827292
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-definition-phishing",
+    "language_group": "en",
+    "question_type": "definition",
+    "expected_documents": [
+      "EN-01",
+      "EN-09"
+    ],
+    "retrieved_documents": [
+      "EN-09",
+      "EN-01"
+    ],
+    "retrieved_chunks": [
+      "en-09-0004",
+      "en-01-0002",
+      "en-09-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 359.47319999104366,
+    "dense_k": 5,
+    "graph_k": 5,
+    "graph_depth": 1,
+    "fusion_k": 10,
+    "final_context_k": 3,
+    "context_tokens": 215,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-definition-malware",
+    "language_group": "en",
+    "question_type": "definition",
+    "expected_documents": [
+      "EN-23"
+    ],
+    "retrieved_documents": [
+      "EN-23",
+      "EN-04"
+    ],
+    "retrieved_chunks": [
+      "en-23-0001",
+      "en-04-0003",
+      "en-23-0003"
+    ],
+    "review_status": "draft",
+    "latency_ms": 379.8448000015924,
+    "dense_k": 5,
+    "graph_k": 5,
+    "graph_depth": 1,
+    "fusion_k": 10,
+    "final_context_k": 3,
+    "context_tokens": 352,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "th-definition-data-breach",
+    "language_group": "th",
+    "question_type": "definition",
+    "expected_documents": [
+      "TH-02"
+    ],
+    "retrieved_documents": [
+      "TH-02"
+    ],
+    "retrieved_chunks": [
+      "th-02-0003",
+      "th-02-0005"
+    ],
+    "review_status": "draft",
+    "latency_ms": 412.2586999874329,
+    "dense_k": 5,
+    "graph_k": 5,
+    "graph_depth": 1,
+    "fusion_k": 10,
+    "final_context_k": 2,
+    "context_tokens": 1398,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-hacked-account-recovery",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-07"
+    ],
+    "retrieved_documents": [
+      "EN-07",
+      "EN-02",
+      "EN-09"
+    ],
+    "retrieved_chunks": [
+      "en-07-0003",
+      "en-07-0001",
+      "en-02-0012",
+      "en-09-0008"
+    ],
+    "review_status": "draft",
+    "latency_ms": 561.4266000047792,
+    "dense_k": 15,
+    "graph_k": 12,
+    "graph_depth": 2,
+    "fusion_k": 25,
+    "final_context_k": 4,
+    "context_tokens": 497,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-qr-phishing",
+    "language_group": "en",
+    "question_type": "phishing",
+    "expected_documents": [
+      "EN-18"
+    ],
+    "retrieved_documents": [
+      "EN-18"
+    ],
+    "retrieved_chunks": [
+      "en-18-0010",
+      "en-18-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 79.48190000024624,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 2,
+    "context_tokens": 382,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-tech-support-scam",
+    "language_group": "en",
+    "question_type": "scam",
+    "expected_documents": [
+      "EN-19"
+    ],
+    "retrieved_documents": [
+      "EN-19",
+      "EN-20",
+      "EN-06"
+    ],
+    "retrieved_chunks": [
+      "en-19-0003",
+      "en-19-0010",
+      "en-20-0005",
+      "en-06-0008",
+      "en-20-0003",
+      "en-06-0003"
+    ],
+    "review_status": "draft",
+    "latency_ms": 60.39030000101775,
+    "dense_k": 15,
+    "graph_k": 12,
+    "graph_depth": 2,
+    "fusion_k": 25,
+    "final_context_k": 6,
+    "context_tokens": 1086,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "cross-recovery-scam",
+    "language_group": "cross",
+    "question_type": "comparison",
+    "expected_documents": [
+      "TH-06",
+      "EN-20"
+    ],
+    "retrieved_documents": [
+      "TH-11",
+      "EN-20"
+    ],
+    "retrieved_chunks": [
+      "th-11-0007",
+      "th-11-0013",
+      "en-20-0003",
+      "en-20-0006"
+    ],
+    "review_status": "draft",
+    "latency_ms": 67.9833000031067,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 4,
+    "context_tokens": 1870,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.38685280723454163
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-home-router-security",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-15"
+    ],
+    "retrieved_documents": [
+      "EN-15",
+      "EN-05",
+      "EN-21",
+      "EN-08"
+    ],
+    "retrieved_chunks": [
+      "en-15-0003",
+      "en-15-0002",
+      "en-05-0003",
+      "en-21-0002",
+      "en-08-0163"
+    ],
+    "review_status": "draft",
+    "latency_ms": 55.4310000006808,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 5,
+    "context_tokens": 672,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-mobile-phone-security",
+    "language_group": "en",
+    "question_type": "privacy",
+    "expected_documents": [
+      "EN-16",
+      "EN-24"
+    ],
+    "retrieved_documents": [
+      "EN-24",
+      "EN-16"
+    ],
+    "retrieved_chunks": [
+      "en-24-0001",
+      "en-24-0003",
+      "en-16-0001",
+      "en-16-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 65.00570000207517,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 4,
+    "context_tokens": 523,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.4,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-identity-theft-response",
+    "language_group": "en",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "EN-17"
+    ],
+    "retrieved_documents": [
+      "EN-05",
+      "EN-17"
+    ],
+    "retrieved_chunks": [
+      "en-05-0010",
+      "en-17-0007"
+    ],
+    "review_status": "draft",
+    "latency_ms": 439.6649999980582,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 2,
+    "context_tokens": 192,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.3333333333333333,
+    "entity_f1": 0.5,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.5,
+    "ndcg_at_k": 0.6309297535714575
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "th-fake-police-report",
+    "language_group": "th",
+    "question_type": "scam",
+    "expected_documents": [
+      "TH-04",
+      "TH-06"
+    ],
+    "retrieved_documents": [
+      "TH-06",
+      "TH-03",
+      "TH-10"
+    ],
+    "retrieved_chunks": [
+      "th-06-0001",
+      "th-06-0004",
+      "th-03-0003",
+      "th-10-0002",
+      "th-10-0004"
+    ],
+    "review_status": "draft",
+    "latency_ms": 71.1213000031421,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 5,
+    "context_tokens": 2724,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.6131471927654584
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "th-data-breach-response",
+    "language_group": "th",
+    "question_type": "incident_response",
+    "expected_documents": [
+      "TH-02",
+      "TH-03"
+    ],
+    "retrieved_documents": [
+      "TH-02"
+    ],
+    "retrieved_chunks": [
+      "th-02-0005",
+      "th-02-0003"
+    ],
+    "review_status": "draft",
+    "latency_ms": 400.43619999778457,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 2,
+    "context_tokens": 1398,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 0.6131471927654584
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-compare-mfa-methods",
+    "language_group": "en",
+    "question_type": "comparison",
+    "expected_documents": [
+      "EN-10",
+      "EN-13"
+    ],
+    "retrieved_documents": [
+      "EN-08",
+      "EN-01",
+      "EN-06"
+    ],
+    "retrieved_chunks": [
+      "en-08-0183",
+      "en-01-0002",
+      "en-06-0002",
+      "en-01-0003",
+      "en-06-0006"
+    ],
+    "review_status": "draft",
+    "latency_ms": 457.89639999566134,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 5,
+    "context_tokens": 588,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.0,
+    "precision_at_k": 0.0,
+    "hit_rate_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "ndcg_at_k": 0.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "en-multihop-ransomware-backup",
+    "language_group": "en",
+    "question_type": "multi_hop",
+    "expected_documents": [
+      "EN-11",
+      "EN-12",
+      "EN-22"
+    ],
+    "retrieved_documents": [
+      "EN-22",
+      "EN-12",
+      "EN-11"
+    ],
+    "retrieved_chunks": [
+      "en-22-0041",
+      "en-22-0042",
+      "en-12-0010",
+      "en-12-0040",
+      "en-11-0002"
+    ],
+    "review_status": "draft",
+    "latency_ms": 400.59560000372585,
+    "dense_k": 15,
+    "graph_k": 12,
+    "graph_depth": 2,
+    "fusion_k": 25,
+    "final_context_k": 5,
+    "context_tokens": 568,
+    "chunk_recall_at_k": null,
+    "entity_precision": 1.0,
+    "entity_recall": 0.5,
+    "entity_f1": 0.6666666666666666,
+    "recall_at_k": 1.0,
+    "precision_at_k": 0.6,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "ndcg_at_k": 1.0
+  },
+  {
+    "retriever": "hybrid_dynamic",
+    "question_id": "cross-captive-account-takeover",
+    "language_group": "cross",
+    "question_type": "multi_hop",
+    "expected_documents": [
+      "TH-12",
+      "EN-10"
+    ],
+    "retrieved_documents": [
+      "EN-21",
+      "EN-01",
+      "EN-10",
+      "EN-02",
+      "EN-12"
+    ],
+    "retrieved_chunks": [
+      "en-21-0003",
+      "en-01-0015",
+      "en-10-0007",
+      "en-02-0012",
+      "en-12-0026"
+    ],
+    "review_status": "draft",
+    "latency_ms": 557.7925999969011,
+    "dense_k": 10,
+    "graph_k": 8,
+    "graph_depth": 2,
+    "fusion_k": 18,
+    "final_context_k": 5,
+    "context_tokens": 656,
+    "chunk_recall_at_k": null,
+    "entity_precision": 0.0,
+    "entity_recall": 0.0,
+    "entity_f1": 0.0,
+    "recall_at_k": 0.5,
+    "precision_at_k": 0.2,
+    "hit_rate_at_k": 1.0,
+    "mrr_at_k": 0.3333333333333333,
+    "ndcg_at_k": 0.3065735963827292
+  }
+]

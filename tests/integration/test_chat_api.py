@@ -5,6 +5,7 @@ from typing import Any
 from fastapi.testclient import TestClient
 
 from cybersecurity_advisor.api.dependencies import get_answer_service
+from cybersecurity_advisor.config.settings import Settings, get_settings
 
 
 class FakeAnswerService:
@@ -50,3 +51,15 @@ def test_chat_returns_grounded_answer_and_sources(client: TestClient) -> None:
     assert response.json()["answer"] == "Use phishing-resistant MFA [S1]."
     assert response.json()["sources"][0]["chunk_id"] == "cisa-1"
     assert response.json()["total_latency_ms"] == 24.0
+
+
+def test_chat_rejects_jev_ablation_in_production(client: TestClient) -> None:
+    client.app.dependency_overrides[get_answer_service] = FakeAnswerService
+    client.app.dependency_overrides[get_settings] = lambda: Settings(app_env="production")
+
+    response = client.post(
+        "/api/v1/chat",
+        json={"query": "phishing and MFA", "provider": "ollama", "jev_mode": "none"},
+    )
+
+    assert response.status_code == 403
