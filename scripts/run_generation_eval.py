@@ -85,8 +85,7 @@ def evaluate_experiment(
             },
         )
         if response.status_code >= 400:
-            detail = response.json().get("detail", response.text) if response.content else "unknown"
-            return rows, f"HTTP {response.status_code}: {detail}"
+            return rows, f"HTTP {response.status_code}: {error_detail(response)}"
         body = response.json()
         citation = body.get("citation_validation") or {}
         validity, coverage = deterministic_citation_metrics(body["answer"], len(body["sources"]))
@@ -154,6 +153,13 @@ def evaluate_experiment(
 def average(rows: list[dict[str, Any]], key: str) -> float | None:
     values = [float(row[key]) for row in rows if row.get(key) is not None]
     return mean(values) if values else None
+
+
+def error_detail(response: httpx.Response) -> str:
+    try:
+        return str(response.json().get("detail", response.text))
+    except ValueError:
+        return response.text or "unknown"
 
 
 def summarize(

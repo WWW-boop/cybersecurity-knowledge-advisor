@@ -26,6 +26,21 @@ def test_settings_accept_type_safe_as_jev_api_key_alias(monkeypatch) -> None:
     assert settings.jev_api_key.get_secret_value() == "legacy-test-secret"
 
 
+def test_settings_accept_psu_ai_configuration(monkeypatch) -> None:
+    monkeypatch.setenv("PSU_AI_API_KEY", "test-psu-secret")
+    monkeypatch.setenv("PSU_AI_MODEL", "qwen/qwen3.6-flash")
+    monkeypatch.setenv("PSU_AI_BASE_URL", "https://ai.psu.blue/v1")
+    monkeypatch.setenv("PSU_AI_MAX_OUTPUT_TOKENS", "3000")
+
+    settings = Settings(_env_file=None)
+
+    assert settings.psu_ai_api_key is not None
+    assert settings.psu_ai_api_key.get_secret_value() == "test-psu-secret"
+    assert settings.psu_ai_model == "qwen/qwen3.6-flash"
+    assert settings.psu_ai_base_url == "https://ai.psu.blue/v1"
+    assert settings.psu_ai_max_output_tokens == 3000
+
+
 def test_gte_is_the_default_embedding_model() -> None:
     settings = Settings(_env_file=None)
 

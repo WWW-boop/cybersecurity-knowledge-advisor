@@ -29,7 +29,10 @@ def main() -> None:
     retrieval = read_json(args.root / "retrieval-phase12" / "summary.json")
     generation = read_json(args.root / "generation-local-full" / "summary.json")
     ablation = read_json(args.root / "generation-ablation-smoke" / "summary.json")
-    api_status = read_json(args.root / "generation-api-status" / "summary.json")
+    api = read_json(args.root / "generation-api-full" / "summary.json")[0]
+    qwen_api = read_json(args.root / "generation-qwen36-token3000-full" / "summary.json")[0]
+    qwen_rows = read_json(args.root / "generation-qwen36-token3000-full" / "results.json")
+    qwen_cap_hits = sum((row.get("output_tokens") or 0) >= 3000 for row in qwen_rows)
     questions = load_evaluation_dataset(args.dataset)
     reviewed = sum(question.review_status == "reviewed" for question in questions)
 
@@ -93,11 +96,30 @@ def main() -> None:
     lines.extend(
         [
             "",
-            "## API LLM status",
+            "## API comparison: GPT-4o Mini + Dynamic Hybrid + all JEV",
             "",
-            f"- {api_status[0]['status']}: {api_status[0].get('reason', '')}",
-            "- The runner supports API token/cost metrics once credentials and per-million-token "
-            "prices are supplied.",
+            f"- Questions completed: {api['questions']}",
+            f"- Reference token F1: {value(api, 'avg_reference_token_f1')}",
+            f"- JEV groundedness: {value(api, 'avg_groundedness')}",
+            f"- Citation coverage: {value(api, 'avg_citation_coverage')}",
+            f"- Unsupported claim rate: {value(api, 'avg_unsupported_claim_rate')}",
+            f"- Average latency: {api['avg_total_latency_ms'] / 1000:.3f} seconds",
+            f"- P95 latency: {api['p95_latency_ms'] / 1000:.3f} seconds",
+            f"- Average context: {api['avg_context_tokens']:.1f} tokens / "
+            f"{api['avg_final_context_k']:.2f} chunks",
+            "- API cost remains N/A until project-approved per-token rates are supplied.",
+            "",
+            "## Selected API: Qwen 3.6 Flash (3,000-token ceiling)",
+            "",
+            f"- Questions completed: {qwen_api['questions']}",
+            f"- Reference token F1: {value(qwen_api, 'avg_reference_token_f1')}",
+            f"- JEV groundedness: {value(qwen_api, 'avg_groundedness')}",
+            f"- Citation coverage: {value(qwen_api, 'avg_citation_coverage')}",
+            f"- Unsupported claim rate: {value(qwen_api, 'avg_unsupported_claim_rate')}",
+            f"- Average latency: {qwen_api['avg_total_latency_ms'] / 1000:.3f} seconds",
+            f"- P95 latency: {qwen_api['p95_latency_ms'] / 1000:.3f} seconds",
+            f"- Average output tokens: {qwen_api['avg_output_tokens']:.1f}",
+            f"- Runs at or above the 3,000-token ceiling: {qwen_cap_hits}/{len(qwen_rows)}",
             "",
             "## Preliminary interpretation",
             "",
@@ -105,8 +127,13 @@ def main() -> None:
             "but used more retrieval latency.",
             "- Pre-generation JEV sharply reduced context in the smoke case, while citation JEV "
             "made claim-level groundedness measurable.",
-            "- Final Local-vs-API and ablation conclusions are blocked by missing API credentials "
-            "and incomplete human review, not by missing evaluation code.",
+            "- The GPT-4o Mini comparator was about 3.3x faster and had slightly higher "
+            "reference-token F1, "
+            "but lower citation groundedness and coverage than the local baseline.",
+            "- The selected Qwen 3.6 API improved citation metrics over GPT-4o Mini but used about "
+            "7.7x more output tokens and had latency close to Local Qwen.",
+            "- Final quality conclusions remain blocked by incomplete human review, not by missing "
+            "evaluation code or API execution.",
         ]
     )
     report = args.root / "phase12-report.md"
@@ -117,24 +144,60 @@ def main() -> None:
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    figure, axes = plt.subplots(1, 2, figsize=(13, 5))
+    figure, axes = plt.subplots(1, 3, figsize=(18, 5))
     names = [row["retriever"] for row in retrieval]
     recall_bars = axes[0].bar(names, [row["recall_at_k"] for row in retrieval], color="#2563eb")
     axes[0].set_title("Retrieval Recall@5")
     axes[0].set_ylim(0, 1)
     axes[0].bar_label(recall_bars, fmt="%.3f")
-    stages = ("retrieval", "JEV filter", "generation", "citation JEV")
-    stage_values = (
-        local["avg_retrieval_latency_ms"] / 1000,
-        local["avg_jev_filter_latency_ms"] / 1000,
-        local["avg_generation_latency_ms"] / 1000,
-        local["avg_citation_validation_latency_ms"] / 1000,
+    metrics = ("Ref F1", "Groundedness", "Citation coverage")
+    width = 0.25
+    positions = range(len(metrics))
+    local_bars = axes[1].bar(
+        [position - width for position in positions],
+        [
+            local["avg_reference_token_f1"],
+            local["avg_groundedness"],
+            local["avg_citation_coverage"],
+        ],
+        width,
+        label="Local Qwen 3.5",
     )
-    stage_bars = axes[1].bar(stages, stage_values, color="#16a34a")
-    axes[1].set_title("Average end-to-end latency breakdown")
-    axes[1].set_ylabel("seconds")
-    axes[1].tick_params(axis="x", rotation=20)
-    axes[1].bar_label(stage_bars, fmt="%.2f")
+    api_bars = axes[1].bar(
+        list(positions),
+        [api["avg_reference_token_f1"], api["avg_groundedness"], api["avg_citation_coverage"]],
+        width,
+        label="GPT-4o Mini API",
+    )
+    qwen_bars = axes[1].bar(
+        [position + width for position in positions],
+        [
+            qwen_api["avg_reference_token_f1"],
+            qwen_api["avg_groundedness"],
+            qwen_api["avg_citation_coverage"],
+        ],
+        width,
+        label="Qwen 3.6 API",
+    )
+    axes[1].set_title("Generation quality proxies")
+    axes[1].set_xticks(list(positions), metrics)
+    axes[1].set_ylim(0, 1)
+    axes[1].legend()
+    axes[1].bar_label(local_bars, fmt="%.2f")
+    axes[1].bar_label(api_bars, fmt="%.2f")
+    axes[1].bar_label(qwen_bars, fmt="%.2f")
+    latency_bars = axes[2].bar(
+        ("Local Qwen 3.5", "GPT-4o Mini", "Qwen 3.6 API"),
+        [
+            local["avg_total_latency_ms"] / 1000,
+            api["avg_total_latency_ms"] / 1000,
+            qwen_api["avg_total_latency_ms"] / 1000,
+        ],
+        color=("#16a34a", "#f59e0b", "#7c3aed"),
+    )
+    axes[2].set_title("Average end-to-end latency")
+    axes[2].set_ylabel("seconds")
+    axes[2].bar_label(latency_bars, fmt="%.2f")
     figure.tight_layout()
     figure.savefig(args.root / "phase12-overview.png", dpi=180, bbox_inches="tight")
     plt.close(figure)

@@ -129,8 +129,11 @@ make the same query reproducible across fusion experiments.
 
 ## Answer generation
 
-Configure either `OLLAMA_MODEL` for a local model or `OPENAI_API_KEY` and `OPENAI_MODEL` for the
-OpenAI Responses API. The same hybrid evidence and grounded prompt are used by both providers:
+Configure either `OLLAMA_MODEL` for a local model or `PSU_AI_API_KEY` for the `ai.psu.blue`
+OpenAI-compatible API. The selected API baseline is `qwen/qwen3.6-flash` with a separate
+`PSU_AI_MAX_OUTPUT_TOKENS=3000`; Local Ollama remains capped by
+`GENERATION_MAX_OUTPUT_TOKENS=500`.
+The same hybrid evidence and grounded prompt are used by both providers:
 
 ```powershell
 $body = @{ query = "phishing and MFA"; provider = "ollama"; fusion_method = "rrf" } |

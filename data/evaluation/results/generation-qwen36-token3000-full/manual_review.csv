@@ -1,0 +1,269 @@
+﻿experiment,question_id,answer,reference_answer,correctness_1_to_5,groundedness_1_to_5,language_quality_1_to_5,reviewer,notes
+openai-all-dynamic,th-remote-app,"ตามหลักฐานอ้างอิง [S1] หากเผลอติดตั้งแอปควบคุมระยะไกลหรือสงสัยว่าโทรศัพท์อาจถูกมิจฉาชีพเข้าถึงแล้ว ควรดำเนินการดังนี้:
+
+1. **ตรวจสอบสถานะการถูกควบคุม:** เข้าไปที่การตั้งค่าของเครื่องแล้วลองรีเซ็ตใหม่ หากไม่สามารถเข้าได้ หรือหลังรีเซ็ตหน้าจอเด้งกลับมายังหน้าหลักทันที แสดงว่าอาจถูกโจมตีเรียบร้อยแล้ว ให้หลีกเลี่ยงการกดยืนยันใดๆ ทั้งสิ้น [S1]
+2. **ตัดการเชื่อมต่อเครือข่ายทันที:** เร่งปิดการรับสัญญาณอินเทอร์เน็ตของมือถือ โดยสามารถเปิดโหมดเครื่องบิน (Airplane Mode) ปิดเครื่อง ถอดซิมการ์ด หรือถอดแบตเตอรี่ เพื่อตัดการเชื่อมโยงระหว่างโทรศัพท์ของคุณกับอุปกรณ์ของมิจฉาชีพ [S1]
+
+⚠️ **ข้อสังเกตเพิ่มเติม:** หลักฐานที่จัดเตรียมไว้ครอบคลุมเฉพาะขั้นตอนการแยกอุปกรณ์และตัดการสื่อสารกับมิจฉาชีพในเบื้องต้นเท่านั้น ไม่ครอบคลุมถึงวิธีการกู้คืนระบบ การสำรองข้อมูล รายงานความเสียหายทางธนาคาร/ตำรวจ หรือการล้างเครื่องแบบ Factory Reset อย่างปลอดภัย ซึ่งอาจจำเป็นต้องดำเนินการเพิ่มเติมตามแนวทางทางการจากหน่วยงานราชการหรือผู้เชี่ยวชาญ cybersecurity เพิ่มเติม",หยุดกดยืนยันและตัดอินเทอร์เน็ตทันทีด้วยการเปิดโหมดเครื่องบิน ปิดเครื่อง ถอดซิม หรือถอดแบตเตอรี่ จากนั้นติดต่อธนาคารและหน่วยงานที่เกี่ยวข้อง,,,,,
+openai-all-dynamic,th-sms-url,"จากข้อมูลที่กำหนด มีบริการชื่อ **Cyber Scammer Shield** ซึ่งดำเนินการโดย Thailand Computer Emergency Response Team (ThaiCERT) ออกแบบมาเพื่อช่วยตรวจสอบข้อความ SMS หรือ URL ที่น่าสงสัยก่อนกดลิงก์ [S1][S2] 
+
+โดยผู้ใช้งานสามารถคัดลอกข้อความ SMS หรือนั้นที่สงสัยเข้ามาใน ระบบ เพื่อช่วยประเมินความเสี่ยงเบื้องต้นว่ามีความเชื่อมโยงกับการหลอกลวงออนไลน์หรือไม่ [S2] บริการนี้มุ่งเน้นลดความเสี่ยงและเสริมความปลอดภัยระหว่างการใช้งานดิจิทัล [S1] สามารถเข้าใช้งานผ่านเว็บไซต์ทางการ: https://www.thaicert.or.th/cyber-scammer-shield-th/ [S1]",บริการ Cyber Scammer Shield ของ ThaiCERT ใช้ตรวจสอบข้อความ SMS และ URL ที่น่าสงสัยก่อนคลิกลิงก์,,,,,
+openai-all-dynamic,th-captivecrunch,"อ้างอิงจากหลักฐานที่จัดให้ การโจมตีภายใต้ปฏิบัติการ CaptiveCrunch ผ่านระบบ Captive Portal ดำเนินการตามกลไกหลักดังนี้:
+
+- ผู้โจมตีใช้โครงสร้างพื้นฐานของระบบ Captive Portal ในเครือข่าย Wi-Fi โรงแรมและสถานที่พักต่างๆ เป็นจุดเริ่มต้นในการโจมตี [S2]
+- เมื่อผู้ใช้เชื่อมต่อ Wi-Fi และต้องผ่านกระบวนการยืนยันตัวตนหรือยอมรับเงื่อนไขตามปกติ ระบบจะถูกดัดแปลงหรือแทรกสอดเพื่อแสดงผลการแจ้งเตือนหลอก ให้ผู้ใช้กดดาวน์โหลดและติดตั้ง **“อัปเดตเบราว์เซอร์ปลอม”** [S2]
+- การรันไฟล์อัปเดตปลอมนี้จะเปิดช่องว่างให้มัลแวร์ชื่อ **CornFlake** ติดตั้งลงบนอุปกรณ์ของผู้ใช้โดยปริยาย [S2]
+- มัลแวร์ CornFlake ทำงานในพื้นหลังเพื่อล้วงข้อมูลสำคัญจากอุปกรณ์ เช่น การบันทึกภาพจากเว็บแคมและเสียงจากไมโครโฟน การบันทึกการกดแป้นพิมพ์ (Keylogging) และการขโมยข้อมูลรับรอง (Credentials), Session Cookies และ Access Tokens [S2]
+- ข้อมูลที่สะสมได้นั้นจะถูกนำไปใช้ในการเข้าถึงบัญชีส่วนตัว บริการองค์กร หรือแพลตฟอร์มเป้าหมายเพิ่มเติม [S1][S2]
+
+แนวทางการโจมตีนี้จัดเป็นเทคนิค **Social Engineering** ที่อาศัยความไว้วางใจของผู้ใช้งานที่มีต่อหน้า Captive Portal มาตรฐานของโรงแรม เพื่อลดการตระหนกภัยและบีบให้ผู้ใช้งานกดยินยอมติดตั้งโค้ดอันตราย [S2] 
+
+*(หมายเหตุ: รายละเอียดทั้งหมดสืบค้นและสรุปจากรายงานของ ThaiCERT และ Microsoft Threat Intelligence ที่จัดให้ ซึ่งเป็นข้อมูลด้านข่าวกรองภัยคุกคามและควรอ้างอิงร่วมกับแหล่งข้อมูลทางการเพื่อความรอบคอบ)*",ผู้โจมตีควบคุม captive portal และแก้ไข DNS เพื่อพาเหยื่อไปหน้าเว็บปลอมที่หลอกให้อัปเดตซอฟต์แวร์ รันคำสั่ง หรือกรอก device code จนนำไปสู่การติดตั้งมัลแวร์หรือการยึดบัญชี,,,,,
+openai-all-dynamic,th-premium-sms,"ตามข้อมูลจากภัยคุกคามที่รายงานไว้ มัลแวร์ Android ที่แอบสมัครบริการ Premium SMS ทำงานผ่านขั้นตอนหลักดังนี้:
+
+1. **ระยะการหลอกลวงติดตั้ง:** ผู้โจมตีใช้เทคนิค Social Engineering หลอกให้ผู้ใช้งานดาวน์โหลดไฟล์ APK จากแหล่งภายนอกหรือเว็บไซต์ปลอมที่แอบอ้างเป็นแอปพลิเคชันยอดนิยม [S1]
+2. **ระยะปฏิบัติการอัตโนมัติ:** หลังจากติดตั้งเสร็จสิ้น มัลแวร์จะดำเนินการสมัครบริการ Premium SMS หรือบริการที่มีการเรียกเก็บค่าบริการเพิ่มเติมโดยอัตโนมัติทันที [S1]
+3. **ระยะดักจับรหัสยืนยัน:** มัลแวร์จะเข้าถึงฟังก์ชันของ Android API เพื่อพยายามดักรหัสยืนยันความปลอดภัย เช่น รหัส OTP หรือ TAC จากนั้นนำรหัสดังกล่าวไปใช้ในการยืนยันการสมัครบริการหรืออนุมัติธุรกรรมต่างๆ โดยที่ไม่ได้ขอความยินยอมจากเจ้าของเครื่อง [S1]
+
+กระบวนการทั้งหมดนี้ดำเนินไปโดยที่ผู้ใช้งานไม่ทราบและไม่ยอมตกลง ส่งผลให้เสี่ยงต่อการถูกหักเงินค่าบริการโดยไม่ทราบสาเหตุ และอาจเปิดช่องโหว่ให้เพิ่มความเสี่ยงในการเข้าถึงข้อมูลสำคัญบนอุปกรณ์ [S1]",มัลแวร์หลอกให้ติดตั้งแอป Android แล้วใช้สิทธิ์ของอุปกรณ์เพื่อสมัครหรือยืนยันบริการ Premium SMS โดยเจ้าของเครื่องไม่รู้ตัว ทำให้ถูกเรียกเก็บค่าบริการ,,,,,
+openai-all-dynamic,th-llm-phishing,"จากหลักฐานที่จัดเตรียมไว้ พบว่ามิจฉาชีพไม่ได้ใช้ LLM ในการสร้างเพียงข้อความฟิชชิงแบบเดิม (เช่น อีเมลหรือ SMS) แต่เปลี่ยนแนวทางมาผลิต **เนื้อหาและหน้าเว็บที่ปรับตัวเข้ากับอัลกอริทึมของ AI** เพื่อหลอกล่อผู้ใช้ผ่านช่องทางแนะนำของโมเดลภาษาเอง โดยมีกลไกหลักดังนี้:
+
+- **ออกแบบเนื้อหาให้เชื่อถือได้ทั้งต่อมนุษย์และ AI:** อาชญากรไซเบอร์เขียนเนื้อหาอย่างชาญฉลาดเพื่อให้ผ่านการตรวจสอบและความชอบของโมเดล LLM พร้อมกันกับความน่าเชื่อถือที่ปรากฏในผลลัพธ์หรือคำตอบที่ LLM แนะนำให้ผู้ใช้ทั่วไป [S1]
+- **สร้างเนื้อหาแบบ ""AI-optimized"":** ผู้โจมตีปรับแต่งโครงสร้างเว็บและคำศัพท์ให้ตรงกับลักษณะการจัดอันดับของโมเดลภาษาขนาดใหญ่ ทำให้ระบบ AI ดึงข้อมูลและแนะนำลิงก์ฟิชชิ่งไปยังผู้ใช้มากขึ้น ซึ่งเป็นแนวคิดเดียวกับที่เคยใช้ใน SEO poisoning [S1][S2]
+- **ใช้ความไว้วางใจในเครื่องมือ AI เป็นตัวหลอก:** เนื่องจากผู้ใช้มักเชื่อว่าคำตอบจาก LLM น่าเชื่อถือ การที่ลิงก์หรือหน้าเว็บฟิชชิ่งโผล่ในการสนทนาทำให้เหยื่อลดข้อสงสัย นักวิจัยพบว่า LLM สามารถแนะนำโดเมนที่เกี่ยวข้องน้อยหรือไม่เกี่ยวข้องถึงกว่า 34% ซึ่งผู้โจมตียังคงสามารถจดทะเบียนโดเมนว่างเหล่านี้เพื่อใช้ campañas ฟิชชิงขนาดใหญ่ได้ทันที [S2]
+- **ผลิตเนื้อหาปริมาณมหาศาลอัตโนมัติ:** เทคนิคนี้ถูกนำไปใช้สร้างหน้าฟิชชิ่งที่เขียนด้วย AI จำนวนมาก (เช่น เกิน 17,000 หน้าในภาคคริปโทเคอร์เรนซี) และเริ่มขยายวงกว้างไปยังภาคธุรกิจอื่นๆ เช่น การท่องเที่ยว [S2]
+
+⚠️ **ข้อจำกัดของหลักฐาน:** ข้อมูลจากแหล่งอ้างอิงมุ่งเน้นไปที่การสร้างหน้าเว็บและโดเมนที่หลอกลวงระบบ AI มาก hơnเป็นการร่าง ""ข้อความฟิชชิง"" (text-based phishing) โดยตรง หากต้องการรายละเอียดเชิงลึกเกี่ยวกับเทคนิคการเขียนข้อความฟิชชิงรูปแบบใหม่อาจต้องพึ่งพาหลักฐานเพิ่มเติม [S1][S2]",มิจฉาชีพใช้ LLM สร้างข้อความที่เป็นธรรมชาติและน่าเชื่อถือ ปรับภาษาและบริบทให้ตรงกลุ่มเป้าหมาย และผลิตเนื้อหาได้จำนวนมากเพื่อพาเหยื่อไปยังลิงก์หรือหน้าเข้าสู่ระบบปลอม,,,,,
+openai-all-dynamic,th-fortune-teller,"ตามข้อมูลจากรัฐบาลไทยโดยทีมตอบสนองเหตุการณ์ฉุกเฉินคอมพิวเตอร์ประเทศไทย (ThaiCERT) มิจฉาชีพในคราบหมอดูออนไลน์มักหลอกขอข้อมูลและเงินโดยอาศัย pretext (ข้ออ้าง) ว่าข้อมูลเหล่านั้นจำเป็นสำหรับการดูดวงหรือการ ""เปิดดวง"" [S1] สัญญาณอันตรายที่แสดงถึงการถูกหลอกลวงคือ การที่ผู้สวมรอยหมอดูขอสิ่งต่อไปนี้จากเหยื่อ:
+- เลขบัตรประจำตัวประชาชน
+- วัน/เดือน/ปีเกิด และชื่อ–นามสกุล
+- เบอร์โทรศัพท์ และที่อยู่
+- ข้อมูลบัตรเครดิต และเลข CVV (Card Verification Value)
+- รหัสผ่านสำหรับธุรกรรมทางการเงิน โดยอ้างว่าต้องใช้สำหรับขั้นตอนการเปิดดวง [S1]
+
+หากพบพฤติกรรมลักษณะดังกล่าว ให้ตระหนักไว้ทันทีว่าเป็นมิจฉาชีพ และสามารถแจ้งเหตุได้ทางออนไลน์ที่ thaipoliceonline.go.th หรือติดต่อสายด่วน AOC 1441 ได้ตลอด 24 ชั่วโมง [S1]",มิจฉาชีพสร้างความน่าเชื่อถือในคราบหมอดู แล้วขอข้อมูลส่วนตัวหรือข้อมูลการเงินและอ้างค่าครู ค่าทำพิธี หรือค่าแก้เคราะห์เพื่อให้เหยื่อโอนเงินเพิ่มเติม,,,,,
+openai-all-dynamic,en-phishing,"Based on the provided evidence, here is how individuals can recognize and report phishing messages:
+
+### How to Recognize Phishing Messages
+* **Check for requests of sensitive information:** Be alert if a message asks for passwords, bank account numbers, or Social Security numbers [S2], [S4].
+* **Inspect the sender's address:** Phishing messages often originate from suspicious or mismatched email addresses. For example, a legitimate bank would not typically email from a free consumer domain like `@gmail.com` [S4].
+* **Watch for impersonation and fabricated urgency:** Scammers frequently design messages to look like they are from trusted organizations (e.g., banks, utility companies, credit cards, or payment apps) and may falsely claim to have noticed suspicious account activity or login attempts that never actually occurred [S2], [S3].
+* **Avoid unexpected links and attachments:** These messages often contain embedded stories or urgent claims meant to trick recipients into clicking harmful links or opening attachments that could steal credentials or download malware [S2], [S3], [S5]. When in doubt, verify the claim by contacting the supposedly involved company through a known, official phone number or website rather than using the contact information in the message [S5].
+* **Recognize alternative delivery channels:** Phishing is not limited to email. Attacks can also be delivered via text messages, phone calls, social media direct messages, or even physical postal mail [S3], [S4].
+
+### How to Report Phishing Messages
+* **Phishing emails:** Forward the suspicious email to the Anti-Phishing Working Group at `reportphishing@apwg.org` [S1].
+* **Phishing text messages:** Forward the message to SPAM (`7726`) [S1].
+* **Federal reporting:** File a detailed report with the Federal Trade Commission at `ReportFraud.ftc.gov` [S1].
+* **Law enforcement reporting:** Phishing-related crimes can also be reported to the FBI’s Internet Crime Complaint Center [S4].
+* **Immediate action:** Do not engage with the sender or click any links within the message (including unsubscribe buttons). Safely delete the message after documenting it for reporting purposes [S4].
+
+The provided evidence does not specify exact URLs or contact formats for the FBI’s Internet Crime Complaint Center beyond mentioning its name [S4], and it does not detail technical analysis tools for verifying links.","Check for suspicious sender addresses, urgent requests, sensitive-data requests, links, and attachments. Do not engage or click; report the message through the relevant provider or authority and then delete it.",,,,,
+openai-all-dynamic,en-mfa,"Based on the provided evidence, multi-factor authentication (MFA) protects an account after a password is stolen by requiring **more than just a password** to verify identity and grant access [S2][S3]. Even if a threat actor successfully compromises your username and password, they cannot log in without also possessing the second required authentication factor, such as a physical security key, a one-time code generated by an authenticator app, or a verification passcode sent via text or email [S1][S4]. 
+
+This extra step creates a distinct security barrier that prevents unauthorized users from accessing your systems or data despite having your stolen credentials [S1][S4]. Consequently, the stolen password alone becomes insufficient for login. Note that while all MFA methods add protection, some secondary factors like security keys and authenticator apps are considered more secure and phishing-resistant than others, such as SMS-based codes [S1][S4].","MFA requires another independent factor in addition to the stolen password, so possession of the password alone is insufficient to access the account.",,,,,
+openai-all-dynamic,en-ransomware,"Based on the provided evidence, organizations should implement the following measures to help prevent ransomware attacks and facilitate recovery:
+
+**Prevention and Hardening**
+- **Comprehensive Asset Management:** Maintain a complete inventory of logical (e.g., data, software) and physical IT assets. Identify which systems or data are most critical to health, safety, revenue, or core services, and map their operational interdependencies to inform security planning [S1].
+- **Targeted Security Controls:** Coordinate across the organization to deploy stronger security safeguards on identified critical assets [S1]. Additionally, configure workstations using standard user accounts rather than administrative privileges, and ensure access controls are managed appropriately by IT staff or providers [S5]. Enable any available ransomware protection features in antivirus software [S5].
+- **Detection and Log Analysis:** Regularly examine logs and assess existing detection/prevention systems (e.g., antivirus, EDR, IDS, IPS) to identify indicators of earlier-stage compromises or precursor ""dropper"" malware that could signal an impending attack [S2].
+- **Secure Documentation:** Keep IT asset records stored securely, and maintain physical hard copies on-site [S1].
+
+**Recovery and Restoration**
+- **Offline Backup Strategy:** Maintain at least one backup that is completely disconnected from networks and devices, as ransomware typically spreads to connected storage or cloud services [S3]. Rotate backup drives regularly to ensure currency, and consider storing the offline backup in a different physical location for added resilience [S3].
+- **Cloud Version Recovery:** Where offline hardware backups are impractical, use cloud backup services that retain historical data versions and specifically advertise recovery capabilities after ransomware or malware infection [S3], [S4].
+- **Incident Prioritization:** During restoration, prioritize systems based on criticality, safety impact, revenue dependence, and interconnected workflows [S1]. Concurrently, track which devices or systems were not impacted so they can be deprioritized, streamlining the return to normal business operations [S2].
+- **Acknowledge Double Extortion Risks:** Understand that threat operators often exfiltrate data before encryption and may threaten public data release to financially pressure victims, meaning communication and legal protocols should account for this scenario [S2].
+
+The provided evidence outlines foundational preventive and recovery practices. It does not cover advanced incident response playbooks, regulatory compliance requirements, or detailed technical remediation steps beyond these high-level recommendations [S1–S5].","Maintain asset inventories, patch and monitor systems, use endpoint protection, restrict access, and keep tested offline backups. If attacked, isolate affected systems, investigate the incident, and restore clean systems and data from verified backups.",,,,,
+openai-all-dynamic,en-public-wifi,"Based on the provided evidence, public Wi-Fi is generally safe today due to the widespread adoption of website encryption, which scrambles data to protect it from eavesdroppers [S1]. However, it still carries inherent risks because publicly transmitted information can be intercepted, and attackers may attempt to redirect your connection to malicious webpages [S3]. While most modern websites and mobile apps now use encryption, caution is still advised [S1], [S2].
+
+To minimize risks when using public Wi-Fi, consider the following precautions:
+• **Check for Encryption:** Look for a lock icon or `""https""` in your browser's address bar to confirm the site is encrypting your traffic [S1].
+• **Turn Off Auto-Connect:** Disable settings that automatically link your device to nearby open networks [S3].
+• **Verify the Network Name:** Confirm the legitimate hotspot name with venue staff before connecting to avoid spoofed or rogue networks [S4].
+• **Use a VPN:** Consider deploying a Virtual Private Network (VPN) on your device to add an extra security layer over public connections [S4].
+• **Prefer Cellular or Trusted Networks:** When possible, switch to cellular data or wait until you're on a known, private Wi-Fi network [S3], [S4].
+• **Log Out and Remove Saved Networks:** Disconnect from public hotspots and clear them from your device's memory after use [S4].
+• **Be Cautious with Sensitive Data:** Avoid entering passwords, credit card details, or banking information on public networks unless you've verified the connection is secured [S3].
+
+*Note: The provided evidence addresses general safety and basic precautions for consumers; more advanced technical mitigations (e.g., router configuration, enterprise-grade firewalls) are outside the scope of the supplied materials.*","Public Wi-Fi carries risks even when websites use HTTPS. Verify the network name, disable automatic connection, prefer cellular data for sensitive activity, keep software updated, and disconnect and forget the network after use.",,,,,
+openai-all-dynamic,en-backup,"Based on the provided evidence, offline backups are secured by remaining completely disconnected from any devices or networks, as malware and ransomware commonly spread through connected drives or cloud storage [S1]. To ensure a current offline copy remains available, the evidence recommends using multiple storage devices (such as hard drives) and regularly swapping them out [S1]. For additional physical security, the offline backup should be stored in a different building or separate location [S1].
+
+The supplied evidence does not contain any information on how to test offline backups for recovery. Due to this limitation, I cannot address the testing portion of your question using only the provided material. Let me know if you would like further details on the securing methods outlined above.","Keep at least one backup disconnected from devices and networks, rotate media, protect a copy in a separate location, restrict access, and regularly perform documented restore tests to confirm that the data is usable.",,,,,
+openai-all-dynamic,en-password-manager,"Based on the provided evidence, you can secure a password manager and its master password by following these steps:
+
+* **Strengthen Your Master Password:** Make your master password as strong as possible [S2]. A highly recommended approach is to use a **passphrase** made up of random words (e.g., “crystal onion clay pretzel”); this makes it easy for you to remember while remaining difficult for attackers to guess [S3]. Keep this passphrase confidential, never share it with others, and avoid incorporating personally identifiable details like your street address or pet's name, which could make it guessable [S3]. Always guard this password with the same level of care as your other credentials [S1].
+* **Enable Multi-Factor Authentication (MFA):** If your password manager supports it, activate MFA [S2]. This adds a crucial second layer of security by requiring multiple verification steps to log in, such as combining your master password with a temporary authentication code [S2].
+* **Control Device & Application Access:** Set your password manager to require your master password or biometric verification every time you launch it [S3]. Furthermore, configure your device to automatically lock after a short period of inactivity (approximately 5 minutes or less) to prevent unauthorized individuals from accessing your vault if your screen is left open [S3].
+
+These combined measures significantly reduce the risk of cybercriminals gaining access to your stored accounts [S2].","Choose a reputable password manager, protect it with a long unique master passphrase, enable MFA, keep the device and software updated, and never reuse or share the master password.",,,,,
+openai-all-dynamic,cross-th-to-en-backup,"การสำรองข้อมูลแบบ offline (ออฟไลน์) ช่วยในการกู้คืนจาก ransomware ได้ดังนี้:
+
+- **ตัดวงจรการแพร่กระจายเชื้อ**: Ransomware และมัลแวร์มักแพร่กระจายโดยติดตามเข้าสู่ไดรฟ์ภายนอกหรือบริการคลาวด์ที่เชื่อมต่ออยู่กับเครือข่ายโดยตรง [S1] การสำรองข้อมูลแบบ offline หมายถึงการจัดเก็บข้อมูลที่ไม่ได้เชื่อมต่อกับอุปกรณ์หรือเครือข่ายใดๆ เลย จึงทำให้มัลแวร์ไม่สามารถเข้าถึงหรือเข้ารหัสไฟล์สำรองนี้ได้ [S1]
+- **รับประกันแหล่งกู้คืนที่ปลอดภัย**: หากคุณมีข้อมูลสำรองแบบ offline อย่างน้อย 1 ชุด ไม่ว่าเกิดเหตุโจมตีอย่างไร คุณจะยังคงมีข้อมูลที่ยังไม่ถูกติดเชื้อมาใช้เป็นจุดอ้างอิงในการกู้คืนข้อมูลกลับคืนมาได้ [S1]
+- **วิธีการดูแลรักษาความทันสมัย**: เพื่อให้ออฟไลน์เบ็กอัพยังเก็บข้อมูลล่าสุดอยู่ สามารถใช้อุปกรณ์จัดเก็บข้อมูลหลายชิ้น (เช่น ฮาร์ดดิสก์) หมุนเวียนสลับกันทำ Backup เป็นระยะ และแนะนำให้ย้ายอุปกรณ์ที่สลับออกมาไปเก็บรักษาในอีกอาคารหรือสถานที่ห่างไกล เพื่อกันความเสี่ยงเพิ่มเติม [S1]
+- **สนับสนุนการกู้คืนระบบและซอฟต์แวร์อย่างเต็มรูปแบบ**: เบ็กอัพแบบ offline ไม่ควรมีเพียงไฟล์ข้อมูล แต่ควรเก็บรวมกับ ""image"" ของระบบ (golden images/templates), โค้ดแหล่งที่มา (source code), ไฟล์ executable และสัญญาใบอนุญาตไว้ด้วย [S2] เมื่อระบบหลักล้มเหลว การดึงไฟล์เหล่านี้มาใช้จะช่วยในการ rebuild หรือ redeploy ระบบใหม่ได้รวดเร็วและมีประสิทธิภาพกว่าการลงมือติดตั้งจากศูนย์ โดยเฉพาะกรณี image เดิมอาจไม่รองรับฮาร์ดแวร์หรือแพลตฟอร์มอื่น [S2]
+
+**สรุป**: การสำรองข้อมูลแบบ offline ทำหน้าที่เป็นพื้นที่แยกอิสระทางดิจิทัลที่ ransomware เข้าถึงไม่ได้ ทำให้ผู้ใช้สามารถดึงข้อมูล ระบบปฏิบัติการ หรือซอฟต์แวร์ที่ใช้ backup ไว้กลับมาติดตั้งและกู้คืนการทำงานได้ทันที โดยไม่ต้องอาศัยข้อมูลที่อาจปนเปื้อนมัลแวร์หรือไม่จำเป็นต้องจ่ายค่าไถ่ [S1][S2]",สำเนา offline ไม่ได้เชื่อมต่อกับเครื่องหรือเครือข่ายที่ ransomware เข้ารหัส จึงใช้กู้คืนข้อมูลหลังทำความสะอาดหรือสร้างระบบใหม่ได้ โดยต้องเก็บอย่างปลอดภัยและทดสอบการกู้คืนเป็นประจำ,,,,,
+openai-all-dynamic,cross-en-to-th-scam-shield,"Based on the provided evidence, the service is called **Cyber Scammer Shield**, which is operated by the Thailand Computer Emergency Response Team (ThaiCERT) [S1][S2]. This tool allows users to paste or check suspicious SMS messages and URLs before clicking on them to evaluate potential scam risks and enhance digital safety [S1][S2].",ThaiCERT's Cyber Scammer Shield checks suspicious SMS messages and URLs before users click them.,,,,,
+openai-all-dynamic,cross-th-to-en-authentication,จากหลักฐานที่จัดให้ NIST แนะนำให้ใช้ **Phishing Resistant Authenticators** (อุปกรณ์หรือระบบยืนยันตัวตนที่ต้านทานฟิชชิง) หรือ **MFA ที่ออกแบบมาเพื่อต้านทานการโจมตีแบบฟิชชิง** สำหรับบัญชีออนไลน์ที่มีความสำคัญสูง โดยแนะนำให้เปิดใช้งานแทนวิธีการแบบเดิมอย่างรหัสผ่านที่ส่งทาง SMS ซึ่งมักมีประสิทธิภาพต่ำลงเมื่อเผชิญกับฟิชชิ่ง [S1] นอกจากนี้ยังแนะนำให้ประเมินความพร้อมใช้งานของตัวเลือกต้านทานฟิชชิงในระบบที่มีอยู่ และพิจารณาจัดทำนโยบายที่กำหนดให้ต้องใช้บริการ MFA แบบต้านทานฟิชชิงโดยเฉพาะ [S1],NIST แนะนำตัวตรวจสอบแบบ phishing-resistant ที่ใช้การเข้ารหัสและผูกกับโดเมนของบริการ เช่น FIDO2/WebAuthn security key หรือ passkey แทนวิธีที่ผู้ใช้ต้องกรอกรหัสซึ่งอาจถูกหลอกขโมยได้,,,,,
+openai-all-dynamic,en-definition-phishing,"Based on the provided evidence, here is the breakdown:
+
+**What is Phishing?**
+Phishing is a deceptive cyberattack tactic where criminals send highly convincing messages disguised as trusted entities (such as banks, credit card companies, or internal business leaders) to manipulate recipients into taking harmful actions [S1][S2][S3]. These actions typically involve clicking malicious links, opening dangerous attachments, downloading malware, or voluntarily sharing personal and sensitive account information [S1][S2][S3]. The effectiveness of these campaigns is currently being amplified by artificial intelligence, which is used to craft increasingly realistic-looking deceptive content [S1].
+
+**Communication Channels Used by Attackers**
+Attackers can deliver phishing messages through multiple digital and telecommunication channels, primarily including:
+* Emails [S1][S2]
+* Text messages (SMS) [S2]
+* Direct messages on social media platforms [S2]
+* Phone calls [S2]
+* Other general messaging formats beyond standard email [S1]
+
+These communications are intentionally formatted to mimic legitimate correspondence from trusted individuals or organizations to lower the recipient's guard and prompt a quick, uninformed response [S2].","Phishing is social engineering that impersonates a trusted person or organization to make someone reveal information, open a harmful attachment, or follow a malicious link. It can arrive through email, text, social media, or phone calls.",,,,,
+openai-all-dynamic,en-definition-malware,"Based on the provided evidence:
+
+**What malware is:** Malware refers to any type of code or program created for a malicious purpose [S1]. Cybercriminals frequently use it as a single stage in a broader attack to steal sensitive information, extort victims, commit identity theft, or record keystrokes (such as usernames and passwords) to compromise accounts [S1]. Common categories include info stealers, adware, keyloggers, worms, ransomware, spyware, trojans, and viruses [S1].
+
+**How commonly it reaches a device:** The supplied evidence does not contain information or statistics about how frequently malware successfully reaches or infects a device [S1]. It only advises that following security steps can ""significantly reduce your risk of being affected by malware"" [S1]. Because the evidence is insufficient to answer how commonly malware reaches devices, consulting dedicated threat intelligence reports or updated cybersecurity publications would be necessary for that data.","Malware is software designed to damage, disrupt, spy on, or gain unauthorized access to a device. It commonly arrives through unsafe downloads, malicious links or attachments, untrusted applications, and infected removable media.",,,,,
+openai-all-dynamic,th-definition-data-breach,"จากหลักฐานที่มีให้มา **[S1]** **ไม่มีการระบุคำจำกัดความหรือสาเหตุของ ""เหตุ/เหตุการณ์ข้อมูลส่วนบุคคลรั่วไหล"" โดยตรง** ดังนั้นจึงไม่สามารถตอบส่วนนี้ได้ครบถ้วนจากหลักฐานเพียงอย่างเดียว
+
+สำหรับความเสี่ยงต่อเจ้าของข้อมูลที่ระบุในหลักฐาน มีดังนี้[S1]:
+- ผู้ประสงค์ร้ายอาจเข้าถึงข้อมูลส่วนบุคคลที่เจ้าของไม่ได้ตั้งใจจะเปิดเผย เช่น เพศวิถี อายุ สัญชาติ ศาสนา
+- ข้อมูลถูกขโมยและนำไปใช้ประโยชน์ในทางมิชอบ เช่น รหัสบัตรเอทีเอ็ม (ATM) หรือข้อมูลบัตรเครดิต
+- เกิดการสวมรอยแอบอ้างเป็นตัวตนจริงของเจ้าของข้อมูล
+- ถูกขู่เรียกค่าไถ่โดยอ้างเงื่อนไขว่าจะไม่เปิดเผยข้อมูล
+
+สรุปคือ หลักฐานดังกล่าวให้ความชัดเจนเฉพาะด้าน **ผลกระทบและความเสี่ยง** ต่อเจ้าของข้อมูลเท่านั้น ส่วนนิยามหรือกลไกที่ทำให้เกิดเหตุข้อมูลรั่วไหลนั้นไม่ปรากฏในเนื้อหา หากต้องการคำตอบที่สมบูรณ์แนะนำให้ศึกษาเสริมจากมาตรฐานความปลอดภัยไซเบอร์หรือกฎระเบียบการคุ้มครองข้อมูลส่วนบุคคลเพิ่มเติมครับ",เหตุข้อมูลส่วนบุคคลรั่วไหลคือการที่ข้อมูลถูกเข้าถึง เปิดเผย สูญหาย หรือใช้โดยไม่ได้รับอนุญาต ซึ่งอาจนำไปสู่การสวมรอย ยึดบัญชี ฟิชชิงแบบเจาะจง หรือความเสียหายทางการเงิน,,,,,
+openai-all-dynamic,en-hacked-account-recovery,"Based on the provided evidence, here are the recommended actions after discovering your email or social media account has been hacked:
+
+1. **Secure your device first:** Before attempting recovery, ensure your computer security software is updated, run a malware scan, delete any suspicious software identified, and restart your device [S1].
+2. **Follow official recovery procedures:** Use your specific service provider's account recovery instructions to regain access (official guidance is available for major platforms like Facebook, Google, Instagram, LinkedIn, Microsoft, Pinterest, Reddit, Snapchat, TikTok, WhatsApp, X, Yahoo, and YouTube) [S1].
+3. **Change passwords immediately:** As soon as possible, change the password for the compromised account [S3]. If that password was reused on any other online accounts, replace those passwords with unique, strong ones [S3].
+4. **Notify financial/credit entities if applicable:** If the breach involved a financial institution, contact the bank's fraud department immediately to report it and monitor for unauthorized transactions [S3]. For broader personal account compromises, consider contacting the three major credit bureaus to enable fraud alerts [S3].
+5. **Strengthen ongoing security:** Enable multi-factor authentication on your accounts, ideally moving toward phishing-resistant authentication methods, to help prevent future compromises [S3].
+
+*(Note: While the sources reference a dedicated checklist for steps to take after regaining control of a hacked account, the provided text focuses on immediate device cleaning, following provider recovery guides, password changes, financial/credit notifications, and adding multi-factor authentication as the primary actionable steps.)* [S1][S2][S3]","Use the provider's recovery process, change the password to a unique one, sign out unknown sessions, remove unfamiliar recovery details or applications, enable MFA, check account activity, and warn contacts about messages sent by the attacker.",,,,,
+openai-all-dynamic,en-qr-phishing,"Based on the provided evidence, malicious QR-code scams operate through deception and technical exploitation, but can be mitigated with careful verification practices:
+
+**How Malicious QR-Code Scams Work:**
+* **Created Urgency Through Lies:** Scammers frequently claim there is a problem with your account or flag ""suspicious activity,"" deliberately fabricating urgency to rush you into scanning a code without critical thought [S2].
+* **Redirection to Spoofed Sites:** Scanned codes can route you to counterfeit websites that closely mimic legitimate ones. Entering any login credentials or personal data on these sites allows scammers to steal your information [S2].
+* **Malware Installation & Exploitation:** A malicious QR code can trigger the download and installation of malware [S2]. This payload may lock your device behind a ransom payment, or silently hijack your device's processing power to run background advertisements for profit while causing rapid battery drain [S1].
+
+**How to Avoid Them:**
+* **Question Unexpected Placements:** Remain cautious if you encounter a QR code in an unsolicited or unfamiliar location [S2].
+* **Preview and Inspect Links:** Always inspect the URL associated with a QR code before opening it [S2].
+* **Verify Authenticity:** Even if a destination appears recognizable, carefully check for misspellings or substituted letters that indicate the URL has been spoofed [S2].
+
+*(Note: The provided evidence focuses specifically on consumer-facing anti-phishing and anti-malware guidance and does not cover technical infrastructure details regarding QR code generation or secure scanning protocols.)*","A malicious QR code hides a destination that leads to a fake site or malware. Treat unexpected QR codes like suspicious links, inspect the displayed URL before opening it, and navigate to the organization through a known website or application instead.",,,,,
+openai-all-dynamic,en-tech-support-scam,"Based on the provided evidence, here is how you can recognize and respond to a tech-support scam:
+
+**How to Recognize a Tech-Support Scam**
+- Look for unsolicited contact via phone, email, or text claiming your computer has a problem [S2].
+- Be wary of fake pop-up warnings that mimic well-known brands and urge you to call a displayed phone number for help [S1].
+- Watch for callers or texters who impersonate technicians from reputable technology companies [S1].
+- Be cautious of websites that appear in search results for ""tech support"" or run online display ads designed to collect your call [S1].
+- Notice if the communicator uses elaborate stories, threats, or high-pressure tactics to push you for money or financial details [S2].
+- Remember that authentic security alerts and messages will never instruct you to call a phone number [S2].
+
+**How to Respond**
+- If you are uncertain whether something is a scam, pause and discuss it with a friend, family member, or neighbor to gain perspective [S2].
+- Avoid calling any provided numbers or sharing personal and financial information [S2].
+- If you genuinely suspect a device issue, take control by updating your security software and running a system scan yourself [S2].
+- Seek legitimate assistance through verified channels, such as contacting the official software manufacturer (via their website or listed support line), visiting a trusted local computer repair store, or asking someone you know personally for help [S2].","Unexpected calls or pop-ups claiming an urgent device problem and asking for payment, credentials, or remote access are warning signs. Do not call the supplied number or grant access; close the message and contact the company through a verified channel.",,,,,
+openai-all-dynamic,cross-recovery-scam,"จากหลักฐานที่ส่งมา มีการระบุเฉพาะพฤติกรรมการหลอกลวงของมิจฉาชีพเท่านั้น ไม่ได้บรรยายคุณสมบัติของ “บริการกู้คืนเงินที่ถูกกฎหมาย” ไว้โดยตรง ดังนั้น ความแตกต่างดังกล่าวจึงสรุปจากร่องรอยที่ต้องหลีกเลี่ยง และบ่งชี้ว่าบริการที่ถูกต้องจะต้องไม่ใช้แนวทางเหล่านี้ [S1][S2]:
+
+1. **การเรียกเก็บเงินหรือค่าธรรมเนียมล่วงหน้า**  
+   มิจฉาชีพจะอ้างว่าต้องจ่ายเงินล่วงหน้า ค่ายอดเริ่มต้น หรือค่าบริการเพื่อนำกระบวนการคืนเงิน ในขณะที่หลักฐานเตือนว่าการจ่ายค่าคืนเงินหรือค่าช่วยเหลือล่วงหน้าเป็นสิ่งที่ไม่ควรทำเด็ดขาด และผู้ที่เรียกร้องเช่นนั้นคือมิจฉาชีพทั้งหมด [S2]
+
+2. **การขอข้อมูลส่วนบุคคลและการเงินทันที**  
+   มิจฉาชีพมักขอเลขบัตรประชาชน/SSN, รายละเอียดบัญชีธนาคาร, บัตรเครดิต หรือรหัสผ่าน โดยอ้างว่าเป็นขั้นตอนการคืนเงิน บริการที่ถูกต้องตามกฎหมายจะยึดมาตรฐานการรักษาความปลอดภัยข้อมูลและไม่ขอข้อมูลอ่อนไหวเพียงเพื่อวัตถุประสงค์ในการคืนเงิน [S2]
+
+3. **ช่องทางการติดต่อและบทบาทที่อ้างถึง**  
+   มิจฉาชีพมักเริ่มติดต่อแบบไม่ทราบมาก่อน (โทรศัพท์, อีเมล, ข้อความ, โซเชียลมีเดีย, ไปรษณีย์) โดยใช้ข้อมูลที่ซื้อมาสร้างเรื่องราวให้ดูน่าเชื่อถือ พร้อมแสร้งอ้างว่าเป็นหน่วยงานราชการ, กลุ่มผู้บริโภค, ทนายความ, หรือบริษัทเดิมที่เอาเงินไป [S1] บริการหรือหน่วยงานที่ถูกต้องจะดำเนินการผ่านช่องทางทางการที่ตรวจสอบได้ และไม่นิยมเริ่มช่วยเหลือแบบสุ่มพร้อมข้อเสนอที่เร่งด่วน
+
+4. **รูปแบบการชำระเงินที่ยืนยัน**  
+   มิจฉาชีพจะพยายามให้ผู้เสียหายจ่ายค่าธรรมเนียมด้วยวิธีที่ติดตามยากหรือจับตัวลำบากเท่านั้น เช่น เงินสด, การ์ดของขวัญ, คริปโทเคอร์เรนซี, โอนผ่าน Western Union/MoneyGram หรือแอปพลิเคชันชำระเงินใดๆ ส่วนช่องทางที่ถูกต้องต้องเป็นระบบบัญชีธนาคารหรือช่องทางธุรกรรมมาตรฐานที่มีบันทึกตรวจสอบย้อนกลับได้ [S2]
+
+⚠️ **ข้อจำกัดของหลักฐาน**: เอกสารที่กำหนดให้กล่าวถึงเฉพาะกลไกของ Refund and Recovery Scams เท่านั้น ไม่ได้อธิบายขั้นตอนการตรวจสอบใบอนุญาต, มาตรฐานจริยธรรม, หรือกรอบกฎหมายของผู้ให้บริการกู้คืนเงินที่ถูกต้อง หากต้องการยืนยันความชอบธรรมของผู้ให้บริการใด ควรตรวจสอบข้อมูลจากแหล่งทางการของรัฐบาลหรือหน่วยงานกำกับดูแลเพิ่มเติม [S1][S2]
+
+**สรุป**：บริการกู้คืนเงินที่ถูกต้องจะทำงานผ่านช่องทางทางการ มีโครงสร้างค่าใช้จ่ายที่โปร่งใส ไม่เรียกเก็บเงินหรือขอข้อมูลอ่อนไหวก่อนการ recover funds ได้จริง และไม่บังคับใช้วิธีการชำระเงินแบบจับยาก ขณะที่มิจฉาชีพจะใช้การติดต่อแบบไม่แจ้งล่วงหน้า แสร้งอ้างสถานะองค์กร ยึดติดกับการเรียกเก็บเงินล่วงหน้า และกำหนดวิธีการชำระเงินที่ไร้ระบบติดตาม [S1][S2]",มิจฉาชีพมักติดต่อหาเหยื่อเอง รับประกันว่าจะได้เงินคืน และเรียกค่าธรรมเนียมหรือข้อมูลการเงินล่วงหน้า ส่วนการแจ้งเหตุที่ถูกต้องต้องเริ่มจากช่องทางทางการที่ตรวจสอบได้และไม่รับประกันผลหรือขอให้โอนเงินเพื่อปลดล็อกเงินคืน,,,,,
+openai-all-dynamic,en-home-router-security,"Based on the provided evidence, strengthening the security of a home router and its connected devices involves the following basic changes:
+
+**For the Router:**
+- Replacing default administrative usernames, passwords, and the network name with unique identifiers that avoid personal details or the router's brand name [S2].
+- Enabling encryption through the wireless security configuration [S2].
+- Regularly reviewing and installing hardware and software/firmware updates [S2].
+
+**For Connected Devices:**
+- Changing any factory-default usernames and passwords to unique, non-reused credentials [S1].
+- Enabling two-factor authentication wherever the option is available [S1].
+- Configuring available security features, such as encryption protocols or passcode lockouts [S1].
+- Turning on automatic updates for all devices to ensure security patches are applied promptly and cover known system vulnerabilities [S3].
+
+These modifications address common attack vectors by removing default credentials, closing configuration gaps, and ensuring software weaknesses are patched [S2], [S3].","Change default administrator credentials, use strong Wi-Fi encryption and a unique password, install firmware and device updates, disable unused remote-management features, and review which devices are connected to the network.",,,,,
+openai-all-dynamic,en-mobile-phone-security,"Based on the provided evidence, users should implement the following controls to protect their mobile phones and data:
+
+- **Screen Lock & Strong Authentication:** Set the phone to automatically lock when inactive and require a PIN or passcode to unlock it. A minimum of six digits is recommended [S2], [S3]. Biometric options such as fingerprint, facial recognition, or retina scanning can also be enabled [S3].
+- **Data Encryption:** Enable device-level encryption so that onboard storage and information remain inaccessible without the correct credentials, even if the physical device is handled [S1]. Most modern iOS and Android devices include encryption by default [S1].
+- **Regular Software Updates:** Keep the operating system and installed applications up to date to patch known security vulnerabilities [S2].
+- **Remote Tracking & Remote Wipe:** Activate built-in location services (such as Find My iPhone or Google's Find My Device) to help locate a misplaced phone and perform a remote data wipe if it is lost or stolen [S1], [S2].
+- **Data Backups:** Establish a routine to back up phone data to prevent permanent loss in case the device is damaged, lost, or compromised [S2].
+- **Physical Security:** Treat the phone like a wallet by keeping it physically secure and within your immediate possession to reduce theft risk [S1].
+
+These measures collectively help protect sensitive personal information, account numbers, passwords, and communications stored on the device [S2].","Use a strong screen lock, enable automatic updates and device-location or remote-wipe features, install applications only from trusted stores, review permissions, back up important data, and avoid automatically joining unknown Wi-Fi networks.",,,,,
+openai-all-dynamic,en-identity-theft-response,"Based on the provided evidence, if you notice signs of identity theft or suspect someone is using your personal information, you should go to IdentityTheft.gov to report the incident and obtain a personalized recovery plan [S1][S2]. On that website, you will find specific steps to take based on the exact type of information you believe was compromised [S2]. Additionally, if the incident involved clicking a link or opening an attachment that may have downloaded harmful software, you should update your computer’s security software and run a scan to identify and remove any identified threats [S2].","Contact affected institutions, secure compromised accounts, preserve evidence, report the identity theft through the applicable official channel, review financial or credit records, and use fraud alerts or a credit freeze where those controls apply.",,,,,
+openai-all-dynamic,th-fake-police-report,"จากหลักฐานที่มีอยู่ สามารถสรุปคำตอบได้ดังนี้ครับ:
+
+**🔍 มิจฉาชีพหลอกลวงอย่างไร**
+- มิจฉาชีพสร้างเพจปลอมโดยตั้งชื่อเรียกดึงดูด เช่น “ศูนย์ช่วยเหลือเหยื่อไซเบอร์” หรือ “รับแจ้งความออนไลน์” แล้วยิงโฆษณาบน Facebook โดยเล็งเป้าหมายไปที่คนเพิ่งถูกหลอกขายของออนไลน์และกำลังเครียดอยากได้เงินคืน [S1]
+- โฆษณาจะอ้างว่า “รับแจ้งความออนไลน์ ช่วยตามเงินคืน 100% ดำเนินการรวดเร็ว” เมื่อผู้เสียหายร้อนใจจึงรีบทักแชทเข้าไป [S1]
+- หลังติดต่อเข้ามา มิจฉาชีพจะใช้วิธีหลอกถามข้อมูลส่วนตัวเพื่อนำไปใช้ในการลงทะเบียนหรือขั้นตอนอื่นๆ ต่อไป [S1]
+
+**✅ ควรตรวจสอบช่องทางใด**
+- การแจ้งความออนไลน์ที่เป็นทางการ **มีเพียงช่องทางเดียว** คือ เว็บไซต์ของสำนักงานตำรวจแห่งชาติ (thaipoliceonline.go.th) หรือสายด่วน AOC 1441 ที่เปิดบริการตลอด 24 ชั่วโมง [S2]
+- ทางการไม่มีนโยบายรับแจ้งความหรือติดตามการคืนเงินผ่านช่องทางแชทส่วนตัว เช่น Facebook หรือ Line อย่างเด็ดขาด [S2]
+- ควรตั้งสติ ตรวจสอบแหล่งที่มาของข้อมูลให้ละเอียดก่อนส่งข้อมูลหรือทำการโอนใดใดๆ และช่วยกันแชร์ข้อมูลข่าวสารที่ถูกต้องเพื่อลดความเสี่ยงในการตกเป็นเหยื่อ [S2]
+
+⚠️ **ข้อจำกัดของหลักฐาน**: เอกสารที่ระบุเฉพาะเจาะจงถึงขั้นตอนที่ 1 และ 2 ของกลโกง (ส่วนที่เหลืออีก 3 ขั้นตอนที่เรียกกันว่า “5 ขั้นตอน” ถูกตัดเนื้อหาออกไป) ดังนั้นอาจยังขาดข้อมูลบางส่วนของวิธีการหลอกลวงฉบับสมบูรณ์ หากต้องการศึกษาเพิ่มเติมแนะนำให้เข้าถึงบทความต้นฉบับโดยตรง [S1]",มิจฉาชีพสร้างเพจหรือบัญชีปลอม อ้างเป็นตำรวจหรือเจ้าหน้าที่และเรียกเงินหรือข้อมูลเพื่อรับแจ้งเหตุหรือติดตามเงินคืน ควรหยุดติดต่อและตรวจสอบผ่านเว็บไซต์ Thai Police Online หรือสายด่วน 1441 ที่เข้าถึงเอง,,,,,
+openai-all-dynamic,th-data-breach-response,"จากข้อมูลอ้างอิงที่ระบุไว้ มีแนวทางการจัดการบัญชีและธุรกรรมการเงินเมื่อพบการรั่วไหลของข้อมูลส่วนบุคคลดังนี้:
+
+• **ติดตามสถานะธุรกรรมอย่างต่อเนื่อง:** หมั่นตรวจสอบประวัติการทำธุรกรรมทางการเงินเป็นประจำ เพื่อดูว่ามีรายการโอนเงินเข้า-ออกที่ผิดปกติหรือไม่ [S1]
+• **ติดต่อธนาคารเมื่อพบความผิดปกติ:** หากตรวจพบรายการหรือยอดเงินที่มีความไม่ปกติให้รีบติดต่อธนาคารโดยเร็ว [S1]
+• **แจ้งเหตุรั่วไหลให้ธนาคารทราบ:** แจ้งให้ธนาคารรับทราบเรื่องการรั่วไหลของข้อมูลส่วนบุคคล เพื่อให้ธนาคารดำเนินการเพิ่มกลไกการตรวจสอบตัวตน (Authentication) หรือมอบคำแนะนำด้านการรักษาความปลอดภัยที่เหมาะสมเพิ่มเติม [S1]
+• **ระงับการตอบโต้จากผู้ติดต่อที่น่าสงสัย:** ห้ามโอน จ่ายเงิน ส่งข้อมูลสำคัญ หรือกดคลิกลิงก์/ไฟล์แนบ จากอีเมล SMS หรือสาย calls ที่มาจากผู้ไม่รู้จัก ซึ่งอาจนำข้อมูลที่รั่วไหลไปปลอมตัวเป็นเจ้าหน้าที่เพื่อสร้างความน่าเชื่อถือ [S2]
+• **ตรวจสอบยืนยันกับช่องทางทางการก่อน:** หากได้รับการติดต่อหรือขอข้อมูลในลักษณะที่ไม่แน่ใจว่าเป็นตัวแทนของจริง ให้หยุดทุกการทำธุรกรรมทันที แล้วใช้เวลาตรวจสอบข้อเท็จจริงกับหน่วยงานต้นทางก่อนเสมอ [S2]
+
+*หมายเหตุ: แนวทางข้างต้นอ้างอิงเฉพาะจากเอกสารที่จัดเตรียมมาให้ [S1][S2] สำหรับสถานการณ์จริงอาจจำเป็นต้องพิจารณาปัจจัยแวดล้อมเพิ่มเติมหรือขอคำปรึกษาจากธนาคารและผู้เชี่ยวชาญด้านความปลอดภัยไซเบอร์โดยตรง*",เปลี่ยนรหัสผ่านที่เกี่ยวข้องและไม่ใช้รหัสเดิมซ้ำ เปิด MFA ตรวจสอบและออกจากเซสชันที่ไม่รู้จัก เฝ้าดูธุรกรรม ติดต่อธนาคารทันทีเมื่อพบความผิดปกติ และเก็บหลักฐานเพื่อแจ้งหน่วยงานที่เกี่ยวข้อง,,,,,
+openai-all-dynamic,en-compare-mfa-methods,"Based on the provided evidence, SMS codes, authenticator apps, and security keys differ in their resistance to phishing attacks as follows:
+
+- **SMS Codes:** These are **explicitly not considered phishing-resistant**. Authenticators that rely on the manual entry of a code, such as one-time passwords delivered via SMS, do not cryptographically bind the output to the specific website or login session being authenticated [S1]. This technical gap allows attackers to display a fraudulent login page, capture the manually entered code, and successfully relay it to the real verifier [S1]. Additionally, scammers commonly exploit social engineering to trick users into voluntarily handing over these text or email verification codes [S2].
+
+- **Authenticator Apps and Security Keys:** These are recommended as **safer, phishing-resistant alternatives** [S1, S2]. According to the guidelines, true phishing resistance requires cryptographic authentication rather than manual code entry [S1]. Cryptographic mechanisms automatically bind the authentication request to the specific, legitimate domain and session, which prevents attackers from hijacking the login flow through phishing sites [S1]. While receiving a verification passcode via text or email is better than having no second factor at all, opting for an authenticator app or security key is advised whenever available due to their superior protection [S2].",SMS codes add protection but can be exposed by SIM swapping or entered into a phishing site. Authenticator-app codes avoid the mobile network but can still be phished. Origin-bound security keys or passkeys provide stronger phishing resistance because they authenticate the legitimate service cryptographically.,,,,,
+openai-all-dynamic,en-multihop-ransomware-backup,"Based on the provided evidence, the necessity of these recovery components stems from how modern ransomware operates and the most reliable ways to restore systems:
+
+**Tested Offline Backups**
+Ransomware actively spreads to and corrupts connected hard drives, shared network storage, and some cloud environments [S1]. Keeping at least one backup completely disconnected from any devices or networks ensures a clean, uninfected dataset remains available when attackers encrypt or destroy primary files [S1]. Regularly rotating physical storage devices or choosing cloud providers that retain version history and specifically advertise ransomware recovery features guarantees that backups remain recent and uncompromised [S1].
+
+**Clean Rebuilding**
+Restoring encrypted files is often not enough, as malware may persist within the operating system or software configurations. Maintaining ""golden images"" (preconfigured OS and application templates) allows organizations to rapidly deploy completely fresh, secure environments for critical infrastructure like servers or virtual machines [S2]. While imaging is faster than manual reinstallation, keeping offline backups of source code, executables, and spare hardware ensures recovery can succeed even when images aren't compatible with different hardware or platform requirements [S2].
+
+**System Isolation**
+The provided evidence does not include information about ""system isolation"" as a recovery step. Therefore, I cannot verify or explain its specific role based strictly on the supplied sources. Additional documentation would be required to address that component.
+
+**Why They Are Combined**
+According to the evidence, pairing strictly offline backups with clean, template-driven rebuilding addresses both data integrity and system security [S1][S2]. Offline backups protect against the secondary encryption of recovery files, while golden-image rebuilding eliminates hidden malware remnants and speeds up operational recovery. Together, they prevent attackers from exploiting the restoration process itself.","Isolation limits further encryption and spread, while clean rebuilding removes persistence before data is restored. A disconnected backup avoids being encrypted with production data, and prior restore testing confirms that the backup is complete and usable.",,,,,
+openai-all-dynamic,cross-captive-account-takeover,"จากการอ้างอิงหลักฐานที่ได้รับ สามารถตอบคำถามได้ดังนี้:
+
+**1. การโจมตีผ่านเว็บปลอม (เช่น captive portal ปลอมหรือหน้าเว็บหลอกลวง) นำไปสู่การยึดบัญชีได้อย่างไร**
+เมื่อผู้ใช้ถูกชักนำให้ดำเนินการตามขั้นตอนบนเว็บปลอม ผู้โจมตีจะรับทราบชื่อผู้ใช้และรหัสผ่านโดยตรง [S1] สิ่งนี้ทำให้เกิดสถานะข้อมูลรับรองที่ถูกบุกรุก (compromised credentials) ซึ่งเป็นช่องทางหลักสำหรับการเข้าถึงระบบเริ่มต้น [S2] หากบัญชีขาดกลไกป้องกันชั้นที่สอง ผู้โจมตีสามารถใช้ข้อมูลที่รั่วไหลนี้เข้าสู่ระบบ จัดการข้อมูลหรือควบคุมบัญชีได้ง่ายขึ้นโดยปราศจากอุปสรรคด้านความปลอดภัยเพิ่มเติม [S1]
+
+**2. ประเภทของ MFA ที่ช่วยลดความเสี่ยง**
+เอกสารแนะนำการปรับใช้ **MFA ที่ต้านทานฟิชชิง (Phishing-Resistant MFA)** สำหรับบริการทุกประเภท โดยเฉพาะอีเมล, VPN และระบบสำคัญ [S2] รูปแบบที่ช่วยลดความเสี่ยงได้ดีคือ **Password-less MFA** ซึ่งละทิ้งรหัสผ่านเดิมไปเลย ใช้ปัจจัยยืนยัน 2 อย่างขึ้นไปแทน เช่น ลายนิ้วมือ, การสแกนใบหน้า, รหัส PIN บนอุปกรณ์, หรือกุญแจเข้ารหัส (cryptographic key) [S2] กลยุทธ์นี้ปลอดภัยกว่า เพราะแม้ผู้โจมตีได้ชื่อผู้ใช้และรหัสผ่านจากเว็บปลอมมาก็จริง จะไม่สามารถข้ามผ่านปัจจัยยืนยันร่างกายหรืออุปกรณ์จริงเหล่านั้นได้ [S1][S2] 
+
+อย่างไรก็ตาม เอกสารเตือนว่ารูปแบบ MFA บางชนิดเช่น One-Time Pins (OTPs) หรือรหัสผ่านส่งทาง SMS ยังคงมีความอ่อนไหวต่อเทคนิคฟิชริง/เว็บปลอม จึงไม่ควรเป็นตัวเลือกหลักในการลดความเสี่ยง [S1]
+
+*(หมายเหตุ: หลักฐานที่กำหนดไม่ได้กล่าวถึง ""captive portal"" โดยตรง แต่ได้อธิบายกลไกการดักจับข้อมูลรับรองผ่านเว็บปลอมหรืออีเมลหลอกลวงในบริบทเดียวกัน จึงสามารถประยุกต์ใช้แนวคิดได้ตามหลักฐาน)*",หน้า captive portal ปลอมอาจหลอกให้เหยื่อรันคำสั่ง ติดตั้งมัลแวร์ หรือกรอก device code ทำให้ผู้โจมตีขโมยข้อมูลรับรองหรือ token แล้วเข้าบัญชีได้ การใช้ security key หรือ passkey แบบ WebAuthn ที่ผูกกับโดเมนช่วยต้านหน้าฟิชชิงได้ดีกว่ารหัสที่ผู้ใช้ต้องกรอก,,,,,

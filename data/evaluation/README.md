@@ -37,6 +37,26 @@ The runner exports automatic generation/system metrics, claim-groundedness metri
 resource usage, API cost when price arguments are supplied, a manual-review sheet, and a Matplotlib
 chart. JEV ablation overrides are rejected when `APP_ENV=production`.
 
+For the PSU API comparison, put these values in the ignored local `.env` and restart the API:
+
+```dotenv
+PSU_AI_API_KEY=your-ai-psu-blue-key
+PSU_AI_MODEL=qwen/qwen3.6-flash
+PSU_AI_BASE_URL=https://ai.psu.blue/v1
+PSU_AI_MAX_OUTPUT_TOKENS=3000
+```
+
+Then run the matching Dynamic Hybrid + all-JEV experiment:
+
+```powershell
+uv run --no-sync python scripts/run_generation_eval.py --providers openai `
+  --jev-modes all --dynamic-modes dynamic `
+  --output data/evaluation/results/generation-api-full
+```
+
+The `openai` provider name is retained as the backward-compatible selector for this
+OpenAI-compatible gateway.
+
 Prepare the evidence-label review queue and combine the experiment artifacts with:
 
 ```powershell

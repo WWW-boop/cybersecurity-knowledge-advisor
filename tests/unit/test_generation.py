@@ -9,9 +9,24 @@ from cybersecurity_advisor.generation.answering import (
     AnswerService,
     GenerationResult,
     OllamaProvider,
-    OpenAIResponsesProvider,
+    OpenAICompatibleProvider,
     build_context,
 )
+
+
+def api_llm_response(request: httpx.Request) -> httpx.Response:
+    payload = json.loads(request.content)
+    assert request.url.path == "/v1/chat/completions"
+    assert [message["role"] for message in payload["messages"]] == ["system", "user"]
+    assert payload["stream"] is False
+    return httpx.Response(
+        200,
+        json={
+            "model": "api-model",
+            "choices": [{"message": {"content": "API answer [S1]"}}],
+            "usage": {"prompt_tokens": 20, "completion_tokens": 5},
+        },
+    )
 
 
 def test_answer_service_sends_only_jev_validated_evidence_to_generator() -> None:
@@ -115,27 +130,13 @@ def test_build_context_numbers_sources_and_respects_limit() -> None:
     ("provider", "expected_answer", "expected_usage"),
     [
         (
-            OpenAIResponsesProvider(
+            OpenAICompatibleProvider(
                 api_key="test",
                 model="api-model",
                 base_url="https://api.example/v1",
                 timeout=1,
                 max_output_tokens=100,
-                transport=httpx.MockTransport(
-                    lambda request: httpx.Response(
-                        200,
-                        json={
-                            "model": "api-model",
-                            "output": [
-                                {
-                                    "type": "message",
-                                    "content": [{"type": "output_text", "text": "API answer [S1]"}],
-                                }
-                            ],
-                            "usage": {"input_tokens": 20, "output_tokens": 5},
-                        },
-                    )
-                ),
+                transport=httpx.MockTransport(api_llm_response),
             ),
             "API answer [S1]",
             (20, 5),
@@ -165,7 +166,7 @@ def test_build_context_numbers_sources_and_respects_limit() -> None:
     ],
 )
 def test_generation_providers_return_common_result(
-    provider: OpenAIResponsesProvider | OllamaProvider,
+    provider: OpenAICompatibleProvider | OllamaProvider,
     expected_answer: str,
     expected_usage: tuple[int, int],
 ) -> None:

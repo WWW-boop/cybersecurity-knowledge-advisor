@@ -12,7 +12,7 @@ from cybersecurity_advisor.generation.answering import (
     AnswerService,
     GenerationError,
     OllamaProvider,
-    OpenAIResponsesProvider,
+    OpenAICompatibleProvider,
     ProviderName,
 )
 from cybersecurity_advisor.graph.retrieval import (
@@ -157,18 +157,18 @@ def get_answer_service(
 ) -> AnswerService:
     """Compose hybrid retrieval with the requested configured LLM provider."""
 
-    def provider_factory(provider: ProviderName) -> OpenAIResponsesProvider | OllamaProvider:
+    def provider_factory(provider: ProviderName) -> OpenAICompatibleProvider | OllamaProvider:
         common = {
             "timeout": settings.generation_timeout_seconds,
-            "max_output_tokens": settings.generation_max_output_tokens,
         }
         if provider == "openai":
-            if settings.openai_api_key is None or not settings.openai_model:
-                raise GenerationError("OpenAI credentials and model are not configured")
-            return OpenAIResponsesProvider(
-                api_key=settings.openai_api_key.get_secret_value(),
-                model=settings.openai_model,
-                base_url=settings.openai_base_url,
+            if settings.psu_ai_api_key is None or not settings.psu_ai_model:
+                raise GenerationError("API LLM credentials and model are not configured")
+            return OpenAICompatibleProvider(
+                api_key=settings.psu_ai_api_key.get_secret_value(),
+                model=settings.psu_ai_model,
+                base_url=settings.psu_ai_base_url,
+                max_output_tokens=settings.psu_ai_max_output_tokens,
                 **common,
             )
         if not settings.ollama_model:
@@ -176,6 +176,7 @@ def get_answer_service(
         return OllamaProvider(
             model=settings.ollama_model,
             base_url=settings.ollama_url,
+            max_output_tokens=settings.generation_max_output_tokens,
             temperature=settings.generation_temperature,
             **common,
         )

@@ -45,13 +45,34 @@ The eight Fixed/Dynamic x JEV configurations completed on one question. This pro
 | ollama-all-fixed | 0.590 | 1.000 | 901.000 | 8.398 |
 | ollama-all-dynamic | 0.590 | 1.000 | 901.000 | 8.487 |
 
-## API LLM status
+## API comparison: GPT-4o Mini + Dynamic Hybrid + all JEV
 
-- skipped: HTTP 503: OpenAI credentials and model are not configured
-- The runner supports API token/cost metrics once credentials and per-million-token prices are supplied.
+- Questions completed: 30
+- Reference token F1: 0.294
+- JEV groundedness: 0.517
+- Citation coverage: 0.656
+- Unsupported claim rate: 0.389
+- Average latency: 4.699 seconds
+- P95 latency: 6.231 seconds
+- Average context: 539.2 tokens / 2.30 chunks
+- API cost remains N/A until project-approved per-token rates are supplied.
+
+## Selected API: Qwen 3.6 Flash (3,000-token ceiling)
+
+- Questions completed: 30
+- Reference token F1: 0.218
+- JEV groundedness: 0.658
+- Citation coverage: 0.792
+- Unsupported claim rate: 0.221
+- Average latency: 15.072 seconds
+- P95 latency: 20.743 seconds
+- Average output tokens: 1789.8
+- Runs at or above the 3,000-token ceiling: 0/30
 
 ## Preliminary interpretation
 
 - Hybrid Dynamic had the highest Recall@5 and improved MRR over fixed Hybrid, but used more retrieval latency.
 - Pre-generation JEV sharply reduced context in the smoke case, while citation JEV made claim-level groundedness measurable.
-- Final Local-vs-API and ablation conclusions are blocked by missing API credentials and incomplete human review, not by missing evaluation code.
+- The GPT-4o Mini comparator was about 3.3x faster and had slightly higher reference-token F1, but lower citation groundedness and coverage than the local baseline.
+- The selected Qwen 3.6 API improved citation metrics over GPT-4o Mini but used about 7.7x more output tokens and had latency close to Local Qwen.
+- Final quality conclusions remain blocked by incomplete human review, not by missing evaluation code or API execution.

@@ -212,10 +212,10 @@ JEV must be used in three roles:
 
 ## API LLM
 
-Choose one:
-
-- OpenAI API
-- Azure OpenAI
+- **Selected gateway: `https://ai.psu.blue/v1`**
+- **Selected API baseline: `qwen/qwen3.6-flash`**
+- Uses the OpenAI-compatible Chat Completions protocol
+- Configure `PSU_AI_API_KEY`; legacy `OPENAI_*` names remain accepted as aliases
 
 ## Other Infrastructure
 
@@ -407,8 +407,10 @@ REDIS_URL=redis://localhost:6379/0
 JEV_API_URL=
 JEV_API_KEY=
 
-OPENAI_API_KEY=
-OPENAI_MODEL=
+PSU_AI_API_KEY=
+PSU_AI_MODEL=qwen/qwen3.6-flash
+PSU_AI_BASE_URL=https://ai.psu.blue/v1
+PSU_AI_MAX_OUTPUT_TOKENS=3000
 
 AZURE_OPENAI_ENDPOINT=
 AZURE_OPENAI_API_KEY=
@@ -2313,13 +2315,38 @@ Only validated evidence reaches generator context.
 
 ## Phase 10 — LLM Layer
 
-Status: **complete**. The shared context/prompt pipeline, OpenAI Responses API provider, Ollama
+Status: **complete**. The shared context/prompt pipeline, OpenAI-compatible Chat Completions provider, Ollama
 provider, `/api/v1/chat`, citations, token usage, and latency reporting are implemented and tested.
 The live Ollama GPU benchmark selected `qwen3.5:4b` as the local baseline. A live end-to-end smoke
 test returned HTTP 200 with five hybrid sources, token usage, and latency while Ollama reported the
 model fully loaded on the GPU. Qwen thinking is disabled so the configured output budget is used
-for the grounded answer. The OpenAI adapter is covered with a deterministic provider test; a live
-OpenAI smoke test remains optional until API credentials are configured.
+for the grounded answer. The API adapter targets `https://ai.psu.blue/v1` with
+`qwen/qwen3.6-flash` as the selected baseline and is covered by a deterministic protocol test.
+Initial PSU smoke tests found that Qwen 3.6 Flash could exhaust the shared 500-token budget on
+reasoning without answer content for RAG prompts. GPT-4o Mini was therefore retained as a
+speed-focused comparison while the required Qwen output ceiling was calibrated.
+
+A controlled 1,500-token smoke test confirmed that this is not a Local GPU ceiling. Local
+`qwen3.5:4b` stopped naturally after 108 output tokens in 15.72 seconds with VRAM unchanged at about
+2.98 GB. API `qwen/qwen3.6-flash` consumed 1,502 completion tokens in 13.46 seconds and still ended
+mid-sentence, because the gateway counts its hidden reasoning against the same completion budget.
+The 1,500-token artifact is kept as diagnostic evidence.
+
+Further Qwen 3.6 Flash diagnostics increased the temporary API budget until a complete answer was
+returned. A 2,000-token run still consumed 2,002 completion tokens and hit the limit. At a
+3,000-token ceiling, the model stopped naturally after 1,295 completion tokens, returned a complete
+Thai answer, and took 11.84 seconds end to end. This n=1 result establishes a workable ceiling for
+future Qwen API evaluation.
+
+The subsequent 30-question Qwen 3.6 Flash run completed after one transient PSU HTTP 500 was retried.
+No completed answer hit the 3,000-token ceiling (maximum 2,456; average 1,789.8). It achieved
+reference-token F1 0.218, groundedness 0.658, citation coverage 0.792, unsupported-claim rate 0.221,
+average latency 15.07 seconds, and P95 latency 20.74 seconds. It improved citation metrics over
+GPT-4o Mini but was about 3.2x slower and used about 7.7x more output tokens. Local Qwen retained the
+strongest citation metrics. These automatic proxies do not replace the pending human review.
+Based on this completed comparison, Qwen 3.6 Flash is the selected PSU API model with its own
+3,000-token ceiling. Local Qwen remains at 500 tokens because it does not consume hidden reasoning
+tokens. GPT-4o Mini remains a speed-focused comparison result, not the selected production model.
 
 Implement:
 
@@ -2359,7 +2386,7 @@ Every factual claim receives validation status.
 
 ## Phase 12 — Evaluation
 
-Status: **implementation complete and locally evaluated; final sign-off pending external inputs**.
+Status: **implementation complete and evaluated with Local and PSU API LLMs; final sign-off pending human review**.
 The 30-question Thai, English, and cross-language dataset covers every planned category. Retrieval
 evaluation now compares Dense, Graph, fixed Hybrid, and Dynamic Hybrid with document/chunk/entity,
 ranking, latency, and adaptive-budget metrics. Generation evaluation covers reference-token F1,
@@ -2371,9 +2398,14 @@ The live 30-question retrieval run found Recall@5 of 0.822 Dense, 0.256 Graph, 0
 and 0.850 Dynamic Hybrid. The live Qwen 3.5 4B + Dynamic Hybrid + all-JEV run completed all 30
 questions with preliminary JEV groundedness 0.752, citation coverage 0.874, unsupported-claim rate
 0.176, average latency 15.30 seconds, and P95 latency 22.06 seconds. These are not final research
-claims: all 30 labels/answers still require a named independent human reviewer, and Local-vs-API
-execution is recorded as skipped until OpenAI credentials are supplied. The runnable comparison
-code is complete; no API or human-review result is fabricated.
+claims: all 30 labels/answers still require a named independent human reviewer. The live PSU API
+comparison using GPT-4o Mini completed all 30 questions with reference-token F1 0.294, groundedness 0.517,
+citation coverage 0.656, unsupported-claim rate 0.389, average latency 4.70 seconds, and P95 latency
+6.23 seconds. It was about 3.3x faster than Local Qwen, while Local Qwen produced substantially
+stronger citation metrics. The selected Qwen 3.6 Flash API completed 30 questions at a 3,000-token
+ceiling with groundedness 0.658, citation coverage 0.792, unsupported-claim rate 0.221, and average
+latency 15.07 seconds. The runnable comparison code and execution are complete; no human-review
+result is fabricated.
 
 Implement:
 

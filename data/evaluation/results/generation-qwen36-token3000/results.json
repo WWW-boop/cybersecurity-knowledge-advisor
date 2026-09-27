@@ -1,0 +1,58 @@
+[
+  {
+    "experiment": "openai-all-dynamic",
+    "provider": "openai",
+    "model": "qwen/qwen3.6-flash",
+    "jev_mode": "all",
+    "dynamic_k": true,
+    "question_id": "th-remote-app",
+    "language_group": "th",
+    "question_type": "incident_response",
+    "review_status": "draft",
+    "answer": "จากข้อมูลในเอกสารที่ให้มา กรณีเผลอติดตั้งแอปควบคุมระยะไกลจากมิจฉาชีพ มีแนวทางการรับมือเบื้องต้นดังนี้ [S1]:\n\n- **การตรวจสอบสถานะ**: สามารถเข้าไปที่การตั้งค่าของโทรศัพท์และทดลองรีเซ็ตเครื่อง หากการรีเซ็ตไม่สำเร็จ หรือหน้าจอเด้งกลับมายังหน้าหลักทันที อาจเป็นสัญญาณว่าระบบกำลังถูกควบคุมอยู่ ในจุดนี้แนะนำให้หลีกเลี่ยงการกดยืนยันคำสั่งใด ๆ เด็ดขาด [S1]\n- **การตัดการเชื่อมต่อเครือข่าย**: หากแน่ใจหรือมีเหตุผลที่ต้องสงสัยว่าแอปถูกติดตั้งจริง ให้ปิดการรับสัญญาณอินเทอร์เน็ตของโทรศัพท์โดยเร็วที่สุด ซึ่งสามารถทำได้หลายรูปแบบ เช่น เปิดโหมดเครื่องบิน (Airplane Mode), ปิดเครื่อง, ถอดซิมการ์ด หรือถอดแบตเตอรี่ เพื่อหยุดการสื่อสารระหว่างอุปกรณ์ของคุณกับแพลตฟอร์มของมิจฉาชีพ [S1]\n\nข้อมูลข้างต้นเป็นการสรุปจากหลักฐานที่คุณกำหนดให้ โดยควรนำไปใช้ควบคู่กับการปรึกษาแนวทางมาตรฐานจากหน่วยงานรัฐหรือผู้เชี่ยวชาญด้านความปลอดภัยไซเบอร์เพื่อความมั่นใจเพิ่มเติม [S1]",
+    "reference_answer": "หยุดกดยืนยันและตัดอินเทอร์เน็ตทันทีด้วยการเปิดโหมดเครื่องบิน ปิดเครื่อง ถอดซิม หรือถอดแบตเตอรี่ จากนั้นติดต่อธนาคารและหน่วยงานที่เกี่ยวข้อง",
+    "source_ids": [
+      "TH-03"
+    ],
+    "source_chunks": [
+      "th-03-0006"
+    ],
+    "context_document_recall": 0.5,
+    "reference_token_f1": 0.2954796030871003,
+    "answer_relevance": 0.25,
+    "citation_accuracy": 0.75,
+    "citation_coverage": 1.0,
+    "groundedness": 0.75,
+    "unsupported_claim_rate": 0.25,
+    "total_latency_ms": 11843.441100005293,
+    "wall_latency_ms": 32982.783000014024,
+    "retrieval_latency_ms": 99.41649998654611,
+    "jev_filter_latency_ms": 558.810699993046,
+    "generation_latency_ms": 10607.112400000915,
+    "citation_validation_latency_ms": 576.0959000035655,
+    "input_tokens": 419,
+    "output_tokens": 1295,
+    "context_tokens": 901,
+    "final_context_k": 1,
+    "jev_passed": 1,
+    "process_cpu_seconds": 1.96875,
+    "process_memory_mib": 1922.13671875,
+    "estimated_api_cost_usd": null,
+    "retrieval_budget": {
+      "intent": "education",
+      "complexity": 0.2,
+      "dense_k": 10,
+      "graph_k": 8,
+      "graph_depth": 2,
+      "fusion_k": 18,
+      "context_k_min": 2,
+      "context_k_max": 5,
+      "context_token_budget": 3000,
+      "score_gap": 0.25,
+      "score_threshold": 0.15,
+      "selected_context_k": 1,
+      "estimated_context_tokens": 901
+    },
+    "gpu_vram_mib": null
+  }
+]

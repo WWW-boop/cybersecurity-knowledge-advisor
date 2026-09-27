@@ -118,17 +118,13 @@ def build_prompt(query: str, context: str) -> str:
 
 
 def _openai_output_text(payload: dict[str, Any]) -> str:
-    return "".join(
-        str(content.get("text", ""))
-        for item in payload.get("output", [])
-        if item.get("type") == "message"
-        for content in item.get("content", [])
-        if content.get("type") == "output_text"
-    ).strip()
+    choices = payload.get("choices") or []
+    content = choices[0].get("message", {}).get("content") if choices else None
+    return str(content or "").strip()
 
 
-class OpenAIResponsesProvider:
-    """Generate answers through the OpenAI Responses API."""
+class OpenAICompatibleProvider:
+    """Generate answers through an OpenAI-compatible Chat Completions API."""
 
     def __init__(
         self,
@@ -151,28 +147,31 @@ class OpenAIResponsesProvider:
         try:
             with httpx.Client(timeout=self.timeout, transport=self.transport) as client:
                 response = client.post(
-                    f"{self.base_url}/responses",
+                    f"{self.base_url}/chat/completions",
                     headers={"Authorization": f"Bearer {self.api_key}"},
                     json={
                         "model": self.model,
-                        "instructions": instructions,
-                        "input": prompt,
-                        "max_output_tokens": self.max_output_tokens,
+                        "messages": [
+                            {"role": "system", "content": instructions},
+                            {"role": "user", "content": prompt},
+                        ],
+                        "max_tokens": self.max_output_tokens,
+                        "stream": False,
                     },
                 )
                 response.raise_for_status()
                 payload = response.json()
         except (httpx.HTTPError, ValueError) as error:
-            raise GenerationError("OpenAI generation unavailable") from error
+            raise GenerationError("API LLM generation unavailable") from error
         answer = _openai_output_text(payload)
         if not answer:
-            raise GenerationError("OpenAI returned no text")
+            raise GenerationError("API LLM returned no text")
         usage = payload.get("usage") or {}
         return GenerationResult(
             answer=answer,
             model=str(payload.get("model") or self.model),
-            input_tokens=usage.get("input_tokens"),
-            output_tokens=usage.get("output_tokens"),
+            input_tokens=usage.get("prompt_tokens"),
+            output_tokens=usage.get("completion_tokens"),
         )
 
 

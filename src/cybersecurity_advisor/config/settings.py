@@ -61,9 +61,19 @@ class Settings(BaseSettings):
     jev_citation_validation_enabled: bool = True
     jev_citation_min_confidence: float = Field(default=0.7, ge=0, le=1)
 
-    openai_api_key: SecretStr | None = None
-    openai_model: str | None = None
-    openai_base_url: str = "https://api.openai.com/v1"
+    psu_ai_api_key: SecretStr | None = Field(
+        default=None,
+        validation_alias=AliasChoices("PSU_AI_API_KEY", "OPENAI_API_KEY"),
+    )
+    psu_ai_model: str | None = Field(
+        default="qwen/qwen3.6-flash",
+        validation_alias=AliasChoices("PSU_AI_MODEL", "OPENAI_MODEL"),
+    )
+    psu_ai_base_url: str = Field(
+        default="https://ai.psu.blue/v1",
+        validation_alias=AliasChoices("PSU_AI_BASE_URL", "OPENAI_BASE_URL"),
+    )
+    psu_ai_max_output_tokens: int = Field(default=3000, ge=1, le=8192)
     azure_openai_endpoint: str | None = None
     azure_openai_api_key: SecretStr | None = None
     azure_openai_deployment: str | None = None
