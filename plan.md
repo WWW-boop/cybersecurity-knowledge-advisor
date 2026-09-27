@@ -2232,6 +2232,11 @@ works.
 
 ## Phase 6 — JEV Entity Validation
 
+Status: **complete and live-tested**. With JEV enabled, the project API successfully validated
+`Credentials`, `Account`, and `Multi-Factor Authentication` as `same` decisions with confidence
+from 0.93 to 1.00 using JEV service model `jev-1.13.0`. The accepted decisions were then preserved
+in Graph Retrieval provenance and used by Hybrid Retrieval before fusion.
+
 Implement JEV before graph traversal.
 
 Acceptance:
@@ -2331,6 +2336,16 @@ Every factual claim receives validation status.
 ---
 
 ## Phase 12 — Evaluation
+
+Status: **in progress**. The versioned evaluation-question schema and JSONL loader are implemented.
+The existing seed set has been expanded into 30 Thai, English, and cross-language questions in
+`data/evaluation/questions.v0.1.jsonl`. Every planned question category is represented with draft
+document labels and reference answers. Human review, relevant-chunk completion, and later
+expansion toward the full 100–200 question target remain pending before final research claims.
+The first `scripts/run_eval.py` baseline now exports per-question and summary JSON/CSV for Dense,
+Graph, and Hybrid document retrieval, including Recall@K, Precision@K, Hit Rate@K, MRR, NDCG, and
+warm latency statistics. Its preliminary draft-label results are stored under
+`data/evaluation/results/retrieval-baseline/`.
 
 Implement:
 

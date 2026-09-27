@@ -1,0 +1,41 @@
+[
+  {
+    "retriever": "dense",
+    "questions": 30,
+    "top_k": 5,
+    "recall_at_k": 0.8222222222222222,
+    "precision_at_k": 0.24000000000000002,
+    "hit_rate_at_k": 0.9666666666666667,
+    "mrr_at_k": 0.9166666666666666,
+    "ndcg_at_k": 0.8306573596382729,
+    "avg_latency_ms": 68.39752000038668,
+    "p50_latency_ms": 55.09650000021793,
+    "p95_latency_ms": 132.50749999133404
+  },
+  {
+    "retriever": "graph",
+    "questions": 30,
+    "top_k": 5,
+    "recall_at_k": 0.25555555555555554,
+    "precision_at_k": 0.08666666666666667,
+    "hit_rate_at_k": 0.3333333333333333,
+    "mrr_at_k": 0.25555555555555554,
+    "ndcg_at_k": 0.2203930923618718,
+    "avg_latency_ms": 72.44238666462479,
+    "p50_latency_ms": 42.011299992736895,
+    "p95_latency_ms": 276.60610000020824
+  },
+  {
+    "retriever": "hybrid",
+    "questions": 30,
+    "top_k": 5,
+    "recall_at_k": 0.8444444444444444,
+    "precision_at_k": 0.25333333333333335,
+    "hit_rate_at_k": 0.9666666666666667,
+    "mrr_at_k": 0.8333333333333334,
+    "ndcg_at_k": 0.7964978656216924,
+    "avg_latency_ms": 130.6291766658736,
+    "p50_latency_ms": 92.80890000081854,
+    "p95_latency_ms": 298.97770000388846
+  }
+]
