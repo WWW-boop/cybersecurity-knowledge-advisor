@@ -163,10 +163,15 @@ def get_answer_service(
             "timeout": settings.generation_timeout_seconds,
         }
         if provider == "openai":
-            if settings.psu_ai_api_key is None or not settings.psu_ai_model:
+            api_key = (
+                settings.psu_ai_api_key.get_secret_value()
+                if settings.psu_ai_api_key is not None
+                else ""
+            )
+            if not api_key or not settings.psu_ai_model:
                 raise GenerationError("API LLM credentials and model are not configured")
             return OpenAICompatibleProvider(
-                api_key=settings.psu_ai_api_key.get_secret_value(),
+                api_key=api_key,
                 model=settings.psu_ai_model,
                 base_url=settings.psu_ai_base_url,
                 max_output_tokens=settings.psu_ai_max_output_tokens,

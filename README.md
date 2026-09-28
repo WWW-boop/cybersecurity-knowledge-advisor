@@ -151,6 +151,58 @@ claims then receive deterministic citation checks and batched JEV semantic verdi
 `JEV_ENTITY_VALIDATION_ENABLED`, `JEV_PREGEN_FILTER_ENABLED`, and
 `JEV_CITATION_VALIDATION_ENABLED` flags only for the documented no-JEV baseline.
 
+## LINE Messaging API
+
+The LINE adapter accepts signed text-message webhooks at `POST /api/v1/line/webhook`, runs the
+existing Dynamic Hybrid + configured JEV answer pipeline in a background task, and replies through
+the LINE Reply API. Successful answers are rendered as a Flex Message with a bounded answer
+preview, up to two HTTPS source buttons, and quick replies for common questions. Verification
+requests with an empty `events` list return HTTP 200 without loading the embedding model or
+connecting to the retrieval services.
+
+Create a Messaging API channel in LINE Developers Console and put its credentials only in the
+ignored local `.env`:
+
+```dotenv
+LINE_CHANNEL_SECRET=your-channel-secret
+LINE_CHANNEL_ACCESS_TOKEN=your-channel-access-token
+LINE_PROVIDER=openai
+LINE_DYNAMIC_K=true
+```
+
+`LINE_PROVIDER=openai` uses the configured `PSU_AI_*` gateway. Use `ollama` only when
+`OLLAMA_MODEL` is configured and Ollama is reachable from the API process. Start all required RAG
+services and the API, then expose this webhook URL through a public HTTPS endpoint with a trusted
+certificate:
+
+```text
+https://your-public-host.example/api/v1/line/webhook
+```
+
+Enter the URL under the channel's Messaging API settings, click **Verify**, enable **Use webhook**,
+and disable the LINE Official Account's automatic response messages to avoid duplicate answers.
+The webhook verifies `X-Line-Signature` against the exact raw request body before parsing JSON.
+Image, audio, file, and sticker messages receive a text-only support notice.
+
+The Phase 12 dataset and generated answers still require independent human review. Treat the LINE
+channel as a supervised pilot and do not present its cybersecurity answers as production-approved
+guidance until that review is complete.
+
+For a temporary Cloudflare Quick Tunnel on Windows, install the project-local verified binary once,
+start the API, and then launch the tunnel. The installer stores the executable under the ignored
+`.tools/` directory and verifies its SHA-256 against the official GitHub release metadata.
+
+```powershell
+.\scripts\install_cloudflared.ps1
+.\scripts\start_line_tunnel.ps1 -CheckOnly
+.\scripts\start_line_tunnel.ps1
+```
+
+The last command prints a random `https://*.trycloudflare.com` URL. Append
+`/api/v1/line/webhook`, set that complete URL in LINE Developers Console, click **Verify**, and
+enable **Use webhook**. The URL changes whenever the Quick Tunnel is restarted, so use a named
+Cloudflare Tunnel and a controlled domain for a stable deployment.
+
 ## Evaluation
 
 `scripts/run_eval.py` compares Dense, Graph, fixed Hybrid, and Dynamic Hybrid retrieval and exports
