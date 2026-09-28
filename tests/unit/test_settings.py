@@ -50,6 +50,36 @@ def test_gte_is_the_default_embedding_model() -> None:
     assert settings.qdrant_collection == "cybersecurity_chunks_gte"
 
 
+def test_blank_embedding_device_uses_automatic_selection(monkeypatch) -> None:
+    monkeypatch.setenv("EMBEDDING_DEVICE", "  ")
+
+    settings = Settings(_env_file=None)
+
+    assert settings.embedding_device is None
+
+
+def test_embedding_device_is_trimmed(monkeypatch) -> None:
+    monkeypatch.setenv("EMBEDDING_DEVICE", " cpu ")
+
+    settings = Settings(_env_file=None)
+
+    assert settings.embedding_device == "cpu"
+
+
+def test_settings_accept_line_credentials_without_exposing_values(monkeypatch) -> None:
+    monkeypatch.setenv("LINE_CHANNEL_SECRET", "test-line-secret")
+    monkeypatch.setenv("LINE_CHANNEL_ACCESS_TOKEN", "test-line-access-token")
+
+    settings = Settings(_env_file=None)
+
+    assert settings.line_channel_secret is not None
+    assert settings.line_channel_access_token is not None
+    assert str(settings.line_channel_secret) == "**********"
+    assert str(settings.line_channel_access_token) == "**********"
+    assert settings.line_provider == "openai"
+    assert settings.line_dynamic_k is True
+
+
 def test_rrf_is_the_default_hybrid_fusion_policy() -> None:
     settings = Settings(_env_file=None)
 

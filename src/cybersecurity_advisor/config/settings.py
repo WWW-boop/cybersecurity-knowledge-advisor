@@ -3,7 +3,7 @@
 from functools import lru_cache
 from typing import Literal
 
-from pydantic import AliasChoices, Field, SecretStr
+from pydantic import AliasChoices, Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -83,6 +83,14 @@ class Settings(BaseSettings):
     generation_max_output_tokens: int = Field(default=500, ge=1, le=8192)
     generation_max_context_chars: int = Field(default=12000, ge=1000, le=100000)
     generation_temperature: float = Field(default=0.1, ge=0, le=2)
+
+    line_channel_secret: SecretStr | None = None
+    line_channel_access_token: SecretStr | None = None
+    line_provider: Literal["openai", "ollama"] = "openai"
+    line_dynamic_k: bool = True
+    line_reply_timeout_seconds: float = Field(default=15.0, gt=0, le=120)
+    line_reply_max_chars: int = Field(default=5000, ge=2, le=5000)
+
     embedding_model: str = "Alibaba-NLP/gte-multilingual-base"
     embedding_revision: str = "9bbca17d9273fd0d03d5725c7a4b0f6b45142062"
     embedding_code_revision: str = "40ced75c3017eb27626c9d4ea981bde21a2662f4"
@@ -90,6 +98,15 @@ class Settings(BaseSettings):
     embedding_device: str | None = None
     embedding_batch_size: int = Field(default=8, ge=1)
     embedding_max_length: int = Field(default=1024, ge=128)
+
+    @field_validator("embedding_device", mode="before")
+    @classmethod
+    def normalize_embedding_device(cls, value: object) -> object:
+        """Treat a blank environment value as automatic device selection."""
+        if isinstance(value, str):
+            normalized = value.strip()
+            return normalized or None
+        return value
 
 
 @lru_cache
