@@ -53,7 +53,7 @@ def test_rejects_empty_reply_text() -> None:
         split_line_text("  ")
 
 
-def test_builds_grounded_answer_flex_message_with_safe_source_buttons() -> None:
+def test_builds_grounded_answer_flex_message_with_source_names_only() -> None:
     message = build_answer_flex_message(
         "How do I prevent phishing?",
         {
@@ -72,11 +72,11 @@ def test_builds_grounded_answer_flex_message_with_safe_source_buttons() -> None:
     bubble = message["contents"]
     assert bubble["header"]["contents"][0]["text"] == "CYBER CARE"
     assert bubble["body"]["contents"][3]["text"] == "Check the sender and enable MFA."
-    assert bubble["body"]["contents"][4]["text"] == "อ้างอิงจาก 4 แหล่งข้อมูล"
-    assert [button["action"]["uri"] for button in bubble["footer"]["contents"]] == [
-        "https://example.com/one",
-        "https://example.com/two",
-    ]
+    assert bubble["body"]["contents"][4]["text"] == (
+        "อ้างอิง:\n• Source one\n• Unsafe source\n• Source two\n• Source three"
+    )
+    assert "footer" not in bubble
+    assert "https://example.com/one" not in json.dumps(message)
     assert len(message["quickReply"]["items"]) == 3
 
 
@@ -88,6 +88,16 @@ def test_removes_all_supported_source_marker_styles_from_flex_answer() -> None:
 
     answer = message["contents"]["body"]["contents"][3]["text"]
     assert answer == "First, second, and third."
+
+
+def test_keeps_answer_steps_on_separate_lines() -> None:
+    message = build_answer_flex_message(
+        "คำถาม",
+        {"answer": "1. ปิด Wi-Fi  \n2. เปลี่ยนรหัสผ่าน\n\n3. ตรวจสอบบัญชี", "sources": []},
+    )
+
+    answer = message["contents"]["body"]["contents"][3]["text"]
+    assert answer == "1. ปิด Wi-Fi\n2. เปลี่ยนรหัสผ่าน\n\n3. ตรวจสอบบัญชี"
 
 
 def test_long_answer_is_returned_as_one_truncated_flex_card() -> None:

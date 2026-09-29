@@ -19,7 +19,7 @@ class ChatRequest(BaseModel):
     """Question, provider, and reproducible hybrid retrieval controls."""
 
     query: Query
-    provider: Literal["openai", "ollama"]
+    provider: Literal["openai"] = "openai"
     top_k: int = Field(default=5, ge=1, le=25)
     dense_k: int = Field(default=10, ge=1, le=50)
     graph_k: int = Field(default=10, ge=1, le=50)
@@ -44,7 +44,7 @@ class Source(BaseModel):
 
 class ChatResponse(BaseModel):
     answer: str
-    provider: Literal["openai", "ollama"]
+    provider: Literal["openai"]
     model: str
     sources: list[Source]
     input_tokens: int | None

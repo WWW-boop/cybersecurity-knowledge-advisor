@@ -11,7 +11,6 @@ from cybersecurity_advisor.config.settings import Settings, get_settings
 from cybersecurity_advisor.generation.answering import (
     AnswerService,
     GenerationError,
-    OllamaProvider,
     OpenAICompatibleProvider,
     ProviderName,
 )
@@ -156,35 +155,24 @@ def get_answer_service(
     retriever: HybridRetrieverDependency,
     settings: SettingsDependency,
 ) -> AnswerService:
-    """Compose hybrid retrieval with the requested configured LLM provider."""
+    """Compose hybrid retrieval with the API LLM."""
 
-    def provider_factory(provider: ProviderName) -> OpenAICompatibleProvider | OllamaProvider:
-        common = {
-            "timeout": settings.generation_timeout_seconds,
-        }
-        if provider == "openai":
-            api_key = (
-                settings.psu_ai_api_key.get_secret_value()
-                if settings.psu_ai_api_key is not None
-                else ""
-            )
-            if not api_key or not settings.psu_ai_model:
-                raise GenerationError("API LLM credentials and model are not configured")
-            return OpenAICompatibleProvider(
-                api_key=api_key,
-                model=settings.psu_ai_model,
-                base_url=settings.psu_ai_base_url,
-                max_output_tokens=settings.psu_ai_max_output_tokens,
-                **common,
-            )
-        if not settings.ollama_model:
-            raise GenerationError("Ollama model is not configured")
-        return OllamaProvider(
-            model=settings.ollama_model,
-            base_url=settings.ollama_url,
-            max_output_tokens=settings.generation_max_output_tokens,
-            temperature=settings.generation_temperature,
-            **common,
+    def provider_factory(provider: ProviderName) -> OpenAICompatibleProvider:
+        if provider != "openai":
+            raise GenerationError("Unsupported answer provider")
+        api_key = (
+            settings.psu_ai_api_key.get_secret_value()
+            if settings.psu_ai_api_key is not None
+            else ""
+        )
+        if not api_key or not settings.psu_ai_model:
+            raise GenerationError("API LLM credentials and model are not configured")
+        return OpenAICompatibleProvider(
+            api_key=api_key,
+            model=settings.psu_ai_model,
+            base_url=settings.psu_ai_base_url,
+            max_output_tokens=settings.psu_ai_max_output_tokens,
+            timeout=settings.generation_timeout_seconds,
         )
 
     return AnswerService(

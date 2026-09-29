@@ -9,6 +9,7 @@ from typing import Any
 from fastapi.testclient import TestClient
 
 from cybersecurity_advisor.api.routers.line import (
+    answer_line_query,
     get_line_answerer,
     get_line_reply_sender,
 )
@@ -24,7 +25,6 @@ class FakeAnswerer:
 
     def __call__(self, query: str, settings: Settings) -> dict[str, Any]:
         self.queries.append(query)
-        assert settings.line_provider == "openai"
         return {
             "answer": "ใช้ MFA และเปลี่ยนรหัสผ่าน [S1]",
             "sources": [
@@ -66,6 +66,23 @@ def empty_access_token_settings() -> Settings:
         line_channel_secret=CHANNEL_SECRET,
         line_channel_access_token="",
     )
+
+
+def test_line_answer_query_uses_api_provider(monkeypatch) -> None:
+    class FakeService:
+        def answer(self, query: str, provider_name: str, **retrieval: Any) -> dict[str, Any]:
+            assert provider_name == "openai"
+            return {"answer": "Test answer"}
+
+    monkeypatch.setattr(
+        "cybersecurity_advisor.api.routers.line.get_hybrid_retriever", lambda: object()
+    )
+    monkeypatch.setattr(
+        "cybersecurity_advisor.api.routers.line.get_answer_service",
+        lambda retriever, settings: FakeService(),
+    )
+
+    assert answer_line_query("test", line_settings()) == {"answer": "Test answer"}
 
 
 def test_accepts_line_verification_webhook_without_loading_answer_service(
@@ -148,9 +165,8 @@ def test_answers_active_text_message_in_background(client: TestClient) -> None:
     assert len(messages) == 1
     assert messages[0]["type"] == "flex"
     assert messages[0]["contents"]["body"]["contents"][3]["text"] == ("ใช้ MFA และเปลี่ยนรหัสผ่าน")
-    assert messages[0]["contents"]["footer"]["contents"][0]["action"]["uri"] == (
-        "https://example.com/security-guide"
-    )
+    assert messages[0]["contents"]["body"]["contents"][4]["text"] == ("อ้างอิง:\n• Security guide")
+    assert "footer" not in messages[0]["contents"]
 
 
 def test_replies_with_supported_type_message_for_non_text_input(client: TestClient) -> None:

@@ -6,7 +6,6 @@ import hmac
 import re
 from collections.abc import Mapping, Sequence
 from typing import Any
-from urllib.parse import urlparse
 
 import httpx
 
@@ -15,7 +14,7 @@ LINE_TEXT_LIMIT = 5000
 LINE_REPLY_MESSAGE_LIMIT = 5
 FLEX_ANSWER_PREVIEW_LIMIT = 1200
 FLEX_ALT_TEXT_LIMIT = 400
-FLEX_SOURCE_BUTTON_LIMIT = 2
+FLEX_SOURCE_LABEL_LIMIT = 5
 SOURCE_MARKER_PATTERN = re.compile(r"(?:\[\s*S\s*\d+\s*\]|S\s*\[\s*\d+\s*\])", re.IGNORECASE)
 
 type LineMessage = dict[str, Any]
@@ -70,9 +69,13 @@ def split_line_text(
     return messages
 
 
-def _truncate(text: str, limit: int) -> str:
+def _truncate(text: str, limit: int, *, preserve_lines: bool = False) -> str:
     """Return compact card text without exceeding its component budget."""
-    normalized = " ".join(text.split())
+    normalized = (
+        "\n".join(" ".join(line.split()) for line in text.splitlines()).strip()
+        if preserve_lines
+        else " ".join(text.split())
+    )
     if len(normalized) <= limit:
         return normalized
     return normalized[: limit - 1].rstrip() + "…"
@@ -84,17 +87,6 @@ def strip_source_markers(text: str) -> str:
     cleaned = re.sub(r"[ \t]+([,.;:!?])", r"\1", cleaned)
     cleaned = re.sub(r"[ \t]{2,}", " ", cleaned)
     return cleaned.strip()
-
-
-def _https_url(value: object) -> str | None:
-    """Accept only absolute HTTPS links for source buttons."""
-    if not isinstance(value, str):
-        return None
-    normalized = value.strip()
-    parsed = urlparse(normalized)
-    if parsed.scheme.casefold() != "https" or not parsed.netloc:
-        return None
-    return normalized
 
 
 def build_answer_flex_message(query: str, result: Mapping[str, Any]) -> LineMessage:
@@ -112,27 +104,10 @@ def build_answer_flex_message(query: str, result: Mapping[str, Any]) -> LineMess
         if isinstance(raw_sources, list)
         else []
     )
-    source_buttons: list[LineMessage] = []
-    seen_urls: set[str] = set()
-    for source in sources:
-        url = _https_url(source.get("url"))
-        if url is None or url in seen_urls:
-            continue
-        seen_urls.add(url)
-        source_buttons.append(
-            {
-                "type": "button",
-                "style": "link",
-                "height": "sm",
-                "action": {
-                    "type": "uri",
-                    "label": f"แหล่งข้อมูล {len(source_buttons) + 1}",
-                    "uri": url,
-                },
-            }
-        )
-        if len(source_buttons) == FLEX_SOURCE_BUTTON_LIMIT:
-            break
+    source_labels = list(
+        dict.fromkeys(str(source.get("citation") or "").strip() for source in sources)
+    )
+    source_labels = [label for label in source_labels if label]
 
     body_contents: list[LineMessage] = [
         {
@@ -154,18 +129,22 @@ def build_answer_flex_message(query: str, result: Mapping[str, Any]) -> LineMess
         {"type": "separator", "margin": "lg"},
         {
             "type": "text",
-            "text": _truncate(answer, FLEX_ANSWER_PREVIEW_LIMIT),
+            "text": _truncate(answer, FLEX_ANSWER_PREVIEW_LIMIT, preserve_lines=True),
             "size": "sm",
             "color": "#263238",
             "wrap": True,
             "margin": "lg",
         },
     ]
-    if sources:
+    if source_labels:
+        labels = source_labels[:FLEX_SOURCE_LABEL_LIMIT]
+        references = "อ้างอิง:\n" + "\n".join(f"• {_truncate(label, 160)}" for label in labels)
+        if len(source_labels) > FLEX_SOURCE_LABEL_LIMIT:
+            references += f"\n• และอีก {len(source_labels) - FLEX_SOURCE_LABEL_LIMIT} แหล่งข้อมูล"
         body_contents.append(
             {
                 "type": "text",
-                "text": f"อ้างอิงจาก {len(sources)} แหล่งข้อมูล",
+                "text": references,
                 "size": "xs",
                 "color": "#607D8B",
                 "margin": "lg",
@@ -205,15 +184,6 @@ def build_answer_flex_message(query: str, result: Mapping[str, Any]) -> LineMess
             "contents": body_contents,
         },
     }
-    if source_buttons:
-        bubble["footer"] = {
-            "type": "box",
-            "layout": "vertical",
-            "spacing": "sm",
-            "paddingAll": "12px",
-            "contents": source_buttons,
-        }
-
     return {
         "type": "flex",
         "altText": _truncate(f"Cyber Care: {question}", FLEX_ALT_TEXT_LIMIT),

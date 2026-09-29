@@ -55,24 +55,8 @@ if (-not (Test-Path -LiteralPath $envFile -PathType Leaf)) {
         $issues.Add("JEV_API_KEY (or TYPE_SAFE) is empty in .env")
     }
 
-    $provider = Get-EnvValue "LINE_PROVIDER"
-    if ([string]::IsNullOrWhiteSpace($provider)) {
-        $provider = "openai"
-    }
-    switch ($provider.ToLowerInvariant()) {
-        "openai" {
-            if ([string]::IsNullOrWhiteSpace((Get-EnvValue "PSU_AI_API_KEY"))) {
-                $issues.Add("PSU_AI_API_KEY is empty while LINE_PROVIDER=openai")
-            }
-        }
-        "ollama" {
-            if ([string]::IsNullOrWhiteSpace((Get-EnvValue "OLLAMA_MODEL"))) {
-                $issues.Add("OLLAMA_MODEL is empty while LINE_PROVIDER=ollama")
-            }
-        }
-        default {
-            $issues.Add("LINE_PROVIDER must be openai or ollama")
-        }
+    if ([string]::IsNullOrWhiteSpace((Get-EnvValue "PSU_AI_API_KEY"))) {
+        $issues.Add("PSU_AI_API_KEY is empty")
     }
 }
 

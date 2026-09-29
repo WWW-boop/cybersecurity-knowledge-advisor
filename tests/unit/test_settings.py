@@ -76,7 +76,6 @@ def test_settings_accept_line_credentials_without_exposing_values(monkeypatch) -
     assert settings.line_channel_access_token is not None
     assert str(settings.line_channel_secret) == "**********"
     assert str(settings.line_channel_access_token) == "**********"
-    assert settings.line_provider == "openai"
     assert settings.line_dynamic_k is True
 
 

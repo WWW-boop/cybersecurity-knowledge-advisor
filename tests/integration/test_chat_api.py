@@ -11,11 +11,11 @@ from cybersecurity_advisor.config.settings import Settings, get_settings
 class FakeAnswerService:
     def answer(self, query: str, provider_name: str, **retrieval: Any) -> dict[str, Any]:
         assert query == "phishing and MFA"
-        assert provider_name == "ollama"
+        assert provider_name == "openai"
         assert retrieval["method"] == "rrf"
         return {
             "answer": "Use phishing-resistant MFA [S1].",
-            "provider": "ollama",
+            "provider": "openai",
             "model": "qwen-test",
             "sources": [
                 {
@@ -42,7 +42,6 @@ def test_chat_returns_grounded_answer_and_sources(client: TestClient) -> None:
         "/api/v1/chat",
         json={
             "query": "phishing and MFA",
-            "provider": "ollama",
             "fusion_method": "rrf",
         },
     )
@@ -59,7 +58,18 @@ def test_chat_rejects_jev_ablation_in_production(client: TestClient) -> None:
 
     response = client.post(
         "/api/v1/chat",
-        json={"query": "phishing and MFA", "provider": "ollama", "jev_mode": "none"},
+        json={"query": "phishing and MFA", "jev_mode": "none"},
     )
 
     assert response.status_code == 403
+
+
+def test_chat_rejects_ollama_provider(client: TestClient) -> None:
+    client.app.dependency_overrides[get_answer_service] = FakeAnswerService
+
+    response = client.post(
+        "/api/v1/chat",
+        json={"query": "phishing and MFA", "provider": "ollama"},
+    )
+
+    assert response.status_code == 422

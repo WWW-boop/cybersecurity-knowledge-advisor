@@ -43,7 +43,7 @@ def answer_line_query(query: str, settings: Settings) -> dict[str, Any]:
     service = get_answer_service(get_hybrid_retriever(), settings)
     return service.answer(
         query,
-        settings.line_provider,
+        "openai",
         top_k=5,
         dense_k=10,
         graph_k=10,

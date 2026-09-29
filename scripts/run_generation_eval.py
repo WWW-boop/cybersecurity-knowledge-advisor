@@ -293,7 +293,7 @@ def parser() -> argparse.ArgumentParser:
         "--dataset", type=Path, default=Path("data/evaluation/questions.v0.1.jsonl")
     )
     command.add_argument("--api-url", default="http://localhost:8000")
-    command.add_argument("--providers", nargs="+", choices=("ollama", "openai"), default=["ollama"])
+    command.add_argument("--providers", nargs="+", choices=("openai",), default=["openai"])
     command.add_argument(
         "--jev-modes",
         nargs="+",
