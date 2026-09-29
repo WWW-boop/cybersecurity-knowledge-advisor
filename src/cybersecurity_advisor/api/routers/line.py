@@ -66,6 +66,7 @@ def answer_line_query(query: str, settings: Settings, session_key: str | None) -
         score_threshold=None,
         method=None,
         dynamic_k=settings.line_dynamic_k,
+        generate_follow_ups=True,
     )
     if session_key:
         conversations.add(session_key, query, result["answer"])

@@ -78,6 +78,29 @@ def test_builds_grounded_answer_flex_message_with_source_names_only() -> None:
     assert "footer" not in bubble
     assert "https://example.com/one" not in json.dumps(message)
     assert len(message["quickReply"]["items"]) == 3
+    assert message["quickReply"]["items"][0]["action"]["text"] == "แล้วควรทำอะไรต่อ?"
+
+
+def test_builds_answer_specific_quick_replies_with_line_limits() -> None:
+    message = build_answer_flex_message(
+        "บัญชีถูกแฮ็ก",
+        {
+            "answer": "เปลี่ยนรหัสผ่านและเปิด 2FA",
+            "sources": [],
+            "follow_up_questions": [
+                "แล้วควรเปิด 2FA ของบัญชีนี้อย่างไร?",
+                "จะตรวจสอบการเข้าสู่ระบบที่น่าสงสัยได้อย่างไร?",
+                "จะตรวจสอบการเข้าสู่ระบบที่น่าสงสัยได้อย่างไร?",
+            ],
+        },
+    )
+
+    actions = [item["action"] for item in message["quickReply"]["items"]]
+    assert len(actions) == 3
+    assert actions[0]["text"] == "แล้วควรเปิด 2FA ของบัญชีนี้อย่างไร?"
+    assert actions[1]["text"] == "จะตรวจสอบการเข้าสู่ระบบที่น่าสงสัยได้อย่างไร?"
+    assert actions[2]["text"] == "แล้วควรทำอะไรต่อ?"
+    assert all(len(action["label"]) <= 20 and len(action["text"]) <= 300 for action in actions)
 
 
 def test_removes_all_supported_source_marker_styles_from_flex_answer() -> None:

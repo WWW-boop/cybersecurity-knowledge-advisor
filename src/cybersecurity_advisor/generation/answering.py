@@ -1,6 +1,7 @@
 """Context building and API answer generation."""
 
 import ctypes
+import html
 import logging
 import re
 import sys
@@ -130,7 +131,13 @@ def build_context(
     return "\n\n".join(blocks), sources
 
 
-def build_prompt(query: str, context: str, history: Sequence[ConversationTurn] = ()) -> str:
+def build_prompt(
+    query: str,
+    context: str,
+    history: Sequence[ConversationTurn] = (),
+    *,
+    generate_follow_ups: bool = False,
+) -> str:
     """Create the provider-neutral user prompt."""
     evidence = context or "No relevant evidence was retrieved."
     previous_turns = "".join(
@@ -141,15 +148,51 @@ def build_prompt(query: str, context: str, history: Sequence[ConversationTurn] =
         for previous_question, previous_answer in history[-3:]
     )
     history_block = f"<history>\n{previous_turns}</history>\n" if previous_turns else ""
+    output = (
+        "Return exactly <response><answer>plain-text answer in at most four short steps"
+        "</answer><followups><question>first follow-up</question><question>second follow-up"
+        "</question><question>third follow-up</question></followups></response>. "
+        "Write three distinct, short questions in the user's language that the USER can ask "
+        "the assistant next. Each must mention the topic or clearly refer to this answer. "
+        "Ask about useful next steps or details, not unknown facts about the user's situation. "
+        "Do not ask the user to provide information or answer yes/no. "
+        "Cite supported claims only inside <answer>. Do not add a markdown fence."
+        if generate_follow_ups
+        else (
+            "Answer directly in plain text, in at most four short steps. "
+            "Cite only supported claims."
+        )
+    )
     return (
         "<request>\n"
         f"{history_block}"
         f"<question>{escape(query)}</question>\n"
         f"<evidence>{escape(evidence)}</evidence>\n"
-        "<output>Answer directly in plain text, in at most four short steps. "
-        "Cite only supported claims.</output>\n"
+        f"<output>{output}</output>\n"
         "</request>"
     )
+
+
+def split_answer_follow_ups(text: str) -> tuple[str, list[str]]:
+    """Separate the answer from same-call LINE follow-up suggestions."""
+    answer_match = re.search(r"<answer>(.*?)</answer>", text, flags=re.IGNORECASE | re.DOTALL)
+    if not answer_match:
+        return text, []
+    answer = html.unescape(answer_match.group(1)).strip()
+    if not answer:
+        return text, []
+    followups_match = re.search(
+        r"<followups>(.*?)</followups>", text, flags=re.IGNORECASE | re.DOTALL
+    )
+    questions = []
+    if followups_match:
+        for raw_question in re.findall(
+            r"<question>(.*?)</question>", followups_match.group(1), flags=re.IGNORECASE | re.DOTALL
+        ):
+            question = " ".join(html.unescape(raw_question).split())
+            if question and question not in questions:
+                questions.append(question[:300])
+    return answer, questions[:3]
 
 
 def _is_follow_up(query: str) -> bool:
@@ -307,6 +350,7 @@ class AnswerService:
         cpu_started = process_time()
         query = re.sub(r"\bransomeware\b", "ransomware", query, flags=re.IGNORECASE)
         history: Sequence[ConversationTurn] = retrieval.pop("history", ())
+        generate_follow_ups = retrieval.pop("generate_follow_ups", False)
         retrieval_query = f"{history[-1][0]} {query}" if history and _is_follow_up(query) else query
         use_pregen_filter = retrieval.pop("use_pregen_filter", True)
         use_citation_validation = retrieval.pop("use_citation_validation", True)
@@ -340,17 +384,26 @@ class AnswerService:
 
         provider = self.provider_factory(provider_name)
         generation_started = perf_counter()
-        generated = provider.generate(SYSTEM_PROMPT, build_prompt(query, context, history))
+        generated = provider.generate(
+            SYSTEM_PROMPT,
+            build_prompt(query, context, history, generate_follow_ups=generate_follow_ups),
+        )
+        answer, follow_up_questions = (
+            split_answer_follow_ups(generated.answer)
+            if generate_follow_ups
+            else (generated.answer, [])
+        )
         generation_ms = (perf_counter() - generation_started) * 1000
         citation_validation_ms = 0.0
         citation_summary = None
         if citation_validator is not None:
             citation_started = perf_counter()
-            citation_result = citation_validator.validate(generated.answer, sources)
+            citation_result = citation_validator.validate(answer, sources)
             citation_validation_ms = (perf_counter() - citation_started) * 1000
             citation_summary = citation_result.summary()
         return {
-            "answer": generated.answer,
+            "answer": answer,
+            "follow_up_questions": follow_up_questions,
             "provider": generated.provider or provider_name,
             "model": generated.model,
             "sources": sources,

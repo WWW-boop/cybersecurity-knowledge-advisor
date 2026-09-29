@@ -168,7 +168,9 @@ Until JEV credentials are available, disable all three
 The LINE adapter accepts signed text-message webhooks at `POST /api/v1/line/webhook`, runs the
 existing Dynamic Hybrid + configured JEV answer pipeline in a background task, and replies through
 the LINE Reply API. Successful answers are rendered as a Flex Message with a bounded answer
-preview, up to five source names without links, and quick replies for common questions. Verification
+preview, up to five source names without links, and three answer-specific follow-up quick replies
+generated in the same LLM call. If the model omits them, the bot uses generic follow-up prompts
+instead of unrelated topic buttons. Verification
 requests with an empty `events` list return HTTP 200 without loading the embedding model or
 connecting to the retrieval services.
 

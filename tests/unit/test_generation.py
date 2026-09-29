@@ -16,6 +16,7 @@ from cybersecurity_advisor.generation.answering import (
     OpenAICompatibleProvider,
     build_context,
     build_prompt,
+    split_answer_follow_ups,
 )
 
 
@@ -196,6 +197,62 @@ def test_generation_prompts_are_xml_and_escape_untrusted_text() -> None:
     assert "โดน &lt;phishing&gt; &amp; คลิกลิงก์" in follow_up
     assert "ปิดหน้าเว็บ &lt;script&gt;" in follow_up
     assert "<question>แล้วต้องทำอย่างไร?</question>" in follow_up
+
+
+def test_line_prompt_requests_answer_specific_follow_ups_in_one_response() -> None:
+    prompt = build_prompt("โดนฟิชชิงทำอย่างไร?", "", generate_follow_ups=True)
+
+    assert "<followups>" in prompt
+    assert "three distinct" in prompt
+    assert "the USER can ask" in prompt
+    assert "<answer>" in prompt
+
+
+def test_splits_xml_answer_and_deduplicates_follow_ups() -> None:
+    answer, questions = split_answer_follow_ups(
+        "<response><answer>ปิดหน้าเว็บ &amp; สแกนเครื่อง [S1]</answer>"
+        "<followups><question>แล้วต้องตรวจอะไร?</question>"
+        "<question>แล้วต้องตรวจอะไร?</question>"
+        "<question>จะเปลี่ยนรหัสผ่านอย่างไร?</question></followups></response>"
+    )
+
+    assert answer == "ปิดหน้าเว็บ & สแกนเครื่อง [S1]"
+    assert questions == ["แล้วต้องตรวจอะไร?", "จะเปลี่ยนรหัสผ่านอย่างไร?"]
+    assert split_answer_follow_ups("plain answer") == ("plain answer", [])
+
+
+def test_line_answer_validates_plain_answer_not_follow_up_xml() -> None:
+    class Retriever:
+        def search(self, query: str, **kwargs) -> list[dict]:
+            assert "generate_follow_ups" not in kwargs
+            return []
+
+    class Provider:
+        def generate(self, instructions: str, prompt: str) -> GenerationResult:
+            assert "<followups>" in prompt
+            return GenerationResult(
+                "<response><answer>เปลี่ยนรหัสผ่าน</answer>"
+                "<followups><question>แล้วเปิด 2FA อย่างไร?</question>"
+                "</followups></response>",
+                "test-model",
+            )
+
+    class Validator:
+        def validate(self, answer: str, sources: list[dict]) -> SimpleNamespace:
+            assert answer == "เปลี่ยนรหัสผ่าน"
+            return SimpleNamespace(summary=lambda: {"ok": True})
+
+    service = AnswerService(
+        Retriever(),
+        lambda provider: Provider(),
+        max_context_chars=1000,
+        citation_validator=Validator(),
+    )
+
+    result = service.answer("บัญชีถูกแฮ็ก", "openai", generate_follow_ups=True)
+
+    assert result["answer"] == "เปลี่ยนรหัสผ่าน"
+    assert result["follow_up_questions"] == ["แล้วเปิด 2FA อย่างไร?"]
 
 
 def test_answer_service_uses_previous_question_for_follow_up_retrieval() -> None:

@@ -16,6 +16,11 @@ FLEX_ANSWER_PREVIEW_LIMIT = 1200
 FLEX_ALT_TEXT_LIMIT = 400
 FLEX_SOURCE_LABEL_LIMIT = 5
 SOURCE_MARKER_PATTERN = re.compile(r"(?:\[\s*S\s*\d+\s*\]|S\s*\[\s*\d+\s*\])", re.IGNORECASE)
+DEFAULT_FOLLOW_UPS = (
+    "แล้วควรทำอะไรต่อ?",
+    "แล้วต้องตรวจอะไรอีก?",
+    "แล้วป้องกันซ้ำอย่างไร?",
+)
 
 type LineMessage = dict[str, Any]
 
@@ -108,6 +113,22 @@ def build_answer_flex_message(query: str, result: Mapping[str, Any]) -> LineMess
         dict.fromkeys(str(source.get("citation") or "").strip() for source in sources)
     )
     source_labels = [label for label in source_labels if label]
+    raw_follow_ups = result.get("follow_up_questions")
+    follow_ups = []
+    if isinstance(raw_follow_ups, list):
+        for item in raw_follow_ups:
+            if not isinstance(item, str):
+                continue
+            question_text = _truncate(strip_source_markers(item), 300)
+            if question_text and question_text != question and question_text not in follow_ups:
+                follow_ups.append(question_text)
+            if len(follow_ups) == 3:
+                break
+    for default in DEFAULT_FOLLOW_UPS:
+        if len(follow_ups) == 3:
+            break
+        if default not in follow_ups:
+            follow_ups.append(default)
 
     body_contents: list[LineMessage] = [
         {
@@ -194,26 +215,11 @@ def build_answer_flex_message(query: str, result: Mapping[str, Any]) -> LineMess
                     "type": "action",
                     "action": {
                         "type": "message",
-                        "label": "ป้องกันฟิชชิง",
-                        "text": "ควรป้องกันฟิชชิงอย่างไร?",
+                        "label": _truncate(follow_up, 20),
+                        "text": follow_up,
                     },
-                },
-                {
-                    "type": "action",
-                    "action": {
-                        "type": "message",
-                        "label": "บัญชีถูกแฮ็ก",
-                        "text": "บัญชีถูกแฮ็กควรทำอย่างไร?",
-                    },
-                },
-                {
-                    "type": "action",
-                    "action": {
-                        "type": "message",
-                        "label": "รหัสผ่านปลอดภัย",
-                        "text": "ตั้งรหัสผ่านอย่างไรให้ปลอดภัย?",
-                    },
-                },
+                }
+                for follow_up in follow_ups
             ]
         },
     }

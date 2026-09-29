@@ -32,6 +32,7 @@ class FakeAnswerer:
         self.queries.append((query, session_key))
         return {
             "answer": "ใช้ MFA และเปลี่ยนรหัสผ่าน [S1]",
+            "follow_up_questions": ["แล้วเปิด MFA อย่างไร?", "ควรตรวจบัญชีไหนอีก?"],
             "sources": [
                 {
                     "url": "https://example.com/security-guide",
@@ -77,6 +78,7 @@ def test_line_answer_query_uses_api_provider(monkeypatch) -> None:
     class FakeService:
         def answer(self, query: str, provider_name: str, **retrieval: Any) -> dict[str, Any]:
             assert provider_name == "openai"
+            assert retrieval["generate_follow_ups"] is True
             return {"answer": "Test answer"}
 
     monkeypatch.setattr(
@@ -205,6 +207,7 @@ def test_answers_active_text_message_in_background(client: TestClient) -> None:
     assert messages[0]["contents"]["body"]["contents"][3]["text"] == ("ใช้ MFA และเปลี่ยนรหัสผ่าน")
     assert messages[0]["contents"]["body"]["contents"][4]["text"] == ("อ้างอิง:\n• Security guide")
     assert "footer" not in messages[0]["contents"]
+    assert messages[0]["quickReply"]["items"][0]["action"]["text"] == ("แล้วเปิด MFA อย่างไร?")
 
 
 def test_rich_menu_reset_clears_line_history_without_calling_model(client: TestClient) -> None:
