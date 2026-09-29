@@ -10,10 +10,13 @@ from neo4j import GraphDatabase
 from cybersecurity_advisor.config.settings import Settings, get_settings
 from cybersecurity_advisor.generation.answering import (
     AnswerService,
+    FallbackProvider,
     GenerationError,
+    OllamaProvider,
     OpenAICompatibleProvider,
     ProviderName,
 )
+from cybersecurity_advisor.generation.conversation import ConversationStore
 from cybersecurity_advisor.graph.retrieval import (
     GraphRetriever,
     Neo4jGraphRepository,
@@ -24,6 +27,12 @@ from cybersecurity_advisor.jev.pregen_filter import JevPreGenerationFilter
 from cybersecurity_advisor.retrieval.hybrid import HybridRetriever
 
 SettingsDependency = Annotated[Settings, Depends(get_settings)]
+
+
+@lru_cache
+def get_conversation_store() -> ConversationStore:
+    """Share short-lived conversation context across Chat and LINE requests."""
+    return ConversationStore()
 
 
 @lru_cache
@@ -155,9 +164,9 @@ def get_answer_service(
     retriever: HybridRetrieverDependency,
     settings: SettingsDependency,
 ) -> AnswerService:
-    """Compose hybrid retrieval with the API LLM."""
+    """Compose hybrid retrieval with API-first, local-fallback generation."""
 
-    def provider_factory(provider: ProviderName) -> OpenAICompatibleProvider:
+    def provider_factory(provider: ProviderName) -> FallbackProvider:
         if provider != "openai":
             raise GenerationError("Unsupported answer provider")
         api_key = (
@@ -165,14 +174,24 @@ def get_answer_service(
             if settings.psu_ai_api_key is not None
             else ""
         )
-        if not api_key or not settings.psu_ai_model:
-            raise GenerationError("API LLM credentials and model are not configured")
-        return OpenAICompatibleProvider(
-            api_key=api_key,
-            model=settings.psu_ai_model,
-            base_url=settings.psu_ai_base_url,
-            max_output_tokens=settings.psu_ai_max_output_tokens,
-            timeout=settings.generation_timeout_seconds,
+        primary = (
+            OpenAICompatibleProvider(
+                api_key=api_key,
+                model=settings.psu_ai_model,
+                base_url=settings.psu_ai_base_url,
+                max_output_tokens=settings.psu_ai_max_output_tokens,
+                timeout=settings.psu_ai_failover_timeout_seconds,
+            )
+            if api_key and settings.psu_ai_model
+            else None
+        )
+        return FallbackProvider(
+            primary,
+            OllamaProvider(
+                model=settings.ollama_model,
+                base_url=settings.ollama_base_url,
+                timeout=settings.generation_timeout_seconds,
+            ),
         )
 
     return AnswerService(

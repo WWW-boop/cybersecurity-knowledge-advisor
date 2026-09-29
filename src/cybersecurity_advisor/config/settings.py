@@ -73,6 +73,9 @@ class Settings(BaseSettings):
         validation_alias=AliasChoices("PSU_AI_BASE_URL", "OPENAI_BASE_URL"),
     )
     psu_ai_max_output_tokens: int = Field(default=3000, ge=1, le=8192)
+    psu_ai_failover_timeout_seconds: float = Field(default=20.0, gt=0, le=120)
+    ollama_base_url: str = "http://localhost:11434"
+    ollama_model: str = "qwen3.5:2b"
     azure_openai_endpoint: str | None = None
     azure_openai_api_key: SecretStr | None = None
     azure_openai_deployment: str | None = None

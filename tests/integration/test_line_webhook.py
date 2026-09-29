@@ -8,7 +8,12 @@ from typing import Any
 
 from fastapi.testclient import TestClient
 
+from cybersecurity_advisor.api.dependencies import get_conversation_store
 from cybersecurity_advisor.api.routers.line import (
+    EXAMPLES_MESSAGE,
+    EXAMPLES_REPLY,
+    RESET_MESSAGE,
+    _line_session_key,
     answer_line_query,
     get_line_answerer,
     get_line_reply_sender,
@@ -21,10 +26,10 @@ CHANNEL_SECRET = "test-channel-secret"  # noqa: S105 - explicit test credential
 
 class FakeAnswerer:
     def __init__(self) -> None:
-        self.queries: list[str] = []
+        self.queries: list[tuple[str, str | None]] = []
 
-    def __call__(self, query: str, settings: Settings) -> dict[str, Any]:
-        self.queries.append(query)
+    def __call__(self, query: str, settings: Settings, session_key: str | None) -> dict[str, Any]:
+        self.queries.append((query, session_key))
         return {
             "answer": "ใช้ MFA และเปลี่ยนรหัสผ่าน [S1]",
             "sources": [
@@ -82,7 +87,39 @@ def test_line_answer_query_uses_api_provider(monkeypatch) -> None:
         lambda retriever, settings: FakeService(),
     )
 
-    assert answer_line_query("test", line_settings()) == {"answer": "Test answer"}
+    assert answer_line_query("test", line_settings(), None) == {"answer": "Test answer"}
+
+
+def test_line_answer_query_remembers_only_the_same_user(monkeypatch) -> None:
+    histories = []
+
+    class FakeService:
+        def answer(self, query: str, provider_name: str, **retrieval: Any) -> dict[str, Any]:
+            histories.append(retrieval["history"])
+            return {"answer": f"ตอบ: {query}"}
+
+    monkeypatch.setattr(
+        "cybersecurity_advisor.api.routers.line.get_hybrid_retriever", lambda: object()
+    )
+    monkeypatch.setattr(
+        "cybersecurity_advisor.api.routers.line.get_answer_service",
+        lambda retriever, settings: FakeService(),
+    )
+    get_conversation_store.cache_clear()
+
+    answer_line_query("โดนฟิชชิง", line_settings(), "line:direct:alice")
+    answer_line_query("แล้วทำอย่างไร?", line_settings(), "line:direct:alice")
+    answer_line_query("บัญชีถูกแฮ็ก", line_settings(), "line:direct:bob")
+
+    assert histories == [(), (("โดนฟิชชิง", "ตอบ: โดนฟิชชิง"),), ()]
+
+
+def test_line_history_is_scoped_to_the_chat_room() -> None:
+    assert _line_session_key({"type": "user", "userId": "alice"}) == "line:direct:alice"
+    assert _line_session_key({"type": "group", "groupId": "group-a", "userId": "alice"}) == (
+        "line:group-a:alice"
+    )
+    assert _line_session_key({"type": "group", "userId": "alice"}) is None
 
 
 def test_accepts_line_verification_webhook_without_loading_answer_service(
@@ -146,6 +183,7 @@ def test_answers_active_text_message_in_background(client: TestClient) -> None:
                     "mode": "active",
                     "webhookEventId": "event-1",
                     "replyToken": "reply-1",
+                    "source": {"type": "user", "userId": "alice"},
                     "message": {"id": "message-1", "type": "text", "text": "บัญชีถูกแฮ็ก"},
                 }
             ],
@@ -158,7 +196,7 @@ def test_answers_active_text_message_in_background(client: TestClient) -> None:
 
     assert response.status_code == 200
     assert response.json() == {"accepted_events": 1}
-    assert answerer.queries == ["บัญชีถูกแฮ็ก"]
+    assert answerer.queries == [("บัญชีถูกแฮ็ก", "line:direct:alice")]
     assert len(sender.replies) == 1
     reply_token, messages = sender.replies[0]
     assert reply_token == "reply-1"  # noqa: S105 - explicit fake token
@@ -167,6 +205,66 @@ def test_answers_active_text_message_in_background(client: TestClient) -> None:
     assert messages[0]["contents"]["body"]["contents"][3]["text"] == ("ใช้ MFA และเปลี่ยนรหัสผ่าน")
     assert messages[0]["contents"]["body"]["contents"][4]["text"] == ("อ้างอิง:\n• Security guide")
     assert "footer" not in messages[0]["contents"]
+
+
+def test_rich_menu_reset_clears_line_history_without_calling_model(client: TestClient) -> None:
+    answerer = FakeAnswerer()
+    sender = FakeSender()
+    client.app.dependency_overrides[get_settings] = line_settings
+    client.app.dependency_overrides[get_line_answerer] = lambda: answerer
+    client.app.dependency_overrides[get_line_reply_sender] = lambda: sender
+    conversations = get_conversation_store()
+    conversations.add("line:direct:alice", "ก่อนหน้า", "คำตอบก่อนหน้า")
+    body = json.dumps(
+        {
+            "events": [
+                {
+                    "type": "message",
+                    "replyToken": "reply-reset",
+                    "source": {"type": "user", "userId": "alice"},
+                    "message": {"type": "text", "text": RESET_MESSAGE},
+                }
+            ]
+        },
+        ensure_ascii=False,
+    ).encode()
+
+    response = client.post("/api/v1/line/webhook", content=body, headers=signed_headers(body))
+
+    assert response.status_code == 200
+    assert answerer.queries == []
+    assert conversations.get("line:direct:alice") == ()
+    assert sender.replies[0][1][0]["text"] == "เริ่มแชตใหม่แล้วครับ ถามเรื่องที่ต้องการได้เลย"
+
+
+def test_rich_menu_examples_reply_without_model_or_reset(client: TestClient) -> None:
+    answerer = FakeAnswerer()
+    sender = FakeSender()
+    client.app.dependency_overrides[get_settings] = line_settings
+    client.app.dependency_overrides[get_line_answerer] = lambda: answerer
+    client.app.dependency_overrides[get_line_reply_sender] = lambda: sender
+    conversations = get_conversation_store()
+    conversations.add("line:direct:alice", "ก่อนหน้า", "คำตอบก่อนหน้า")
+    body = json.dumps(
+        {
+            "events": [
+                {
+                    "type": "message",
+                    "replyToken": "reply-examples",
+                    "source": {"type": "user", "userId": "alice"},
+                    "message": {"type": "text", "text": EXAMPLES_MESSAGE},
+                }
+            ]
+        },
+        ensure_ascii=False,
+    ).encode()
+
+    response = client.post("/api/v1/line/webhook", content=body, headers=signed_headers(body))
+
+    assert response.status_code == 200
+    assert answerer.queries == []
+    assert conversations.get("line:direct:alice") == (("ก่อนหน้า", "คำตอบก่อนหน้า"),)
+    assert sender.replies[0][1] == [{"type": "text", "text": EXAMPLES_REPLY}]
 
 
 def test_replies_with_supported_type_message_for_non_text_input(client: TestClient) -> None:

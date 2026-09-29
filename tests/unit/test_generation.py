@@ -9,7 +9,10 @@ import pytest
 from cybersecurity_advisor.generation.answering import (
     SYSTEM_PROMPT,
     AnswerService,
+    FallbackProvider,
+    GenerationError,
     GenerationResult,
+    OllamaProvider,
     OpenAICompatibleProvider,
     build_context,
     build_prompt,
@@ -184,6 +187,76 @@ def test_generation_prompts_are_xml_and_escape_untrusted_text() -> None:
     assert "<evidence>[S1] Keep &lt;script&gt; &amp; backup files separate.</evidence>" in request
     assert "<script>" not in request
 
+    follow_up = build_prompt(
+        "แล้วต้องทำอย่างไร?",
+        evidence,
+        (("โดน <phishing> & คลิกลิงก์", "ปิดหน้าเว็บ <script>"),),
+    )
+    assert "<history>" in follow_up
+    assert "โดน &lt;phishing&gt; &amp; คลิกลิงก์" in follow_up
+    assert "ปิดหน้าเว็บ &lt;script&gt;" in follow_up
+    assert "<question>แล้วต้องทำอย่างไร?</question>" in follow_up
+
+
+def test_answer_service_uses_previous_question_for_follow_up_retrieval() -> None:
+    class Retriever:
+        def search(self, query: str, **kwargs) -> list[dict]:
+            assert query == "โดนฟิชชิง แล้วต้องทำอย่างไร?"
+            return []
+
+    class Provider:
+        def generate(self, instructions: str, prompt: str) -> GenerationResult:
+            assert "<history>" in prompt
+            assert "โดนฟิชชิง" in prompt
+            return GenerationResult("ตรวจบัญชีที่เกี่ยวข้อง", "test-model")
+
+    service = AnswerService(Retriever(), lambda provider: Provider(), max_context_chars=1000)
+
+    result = service.answer(
+        "แล้วต้องทำอย่างไร?",
+        "openai",
+        history=(("โดนฟิชชิง", "เปลี่ยนรหัสผ่าน"),),
+    )
+
+    assert result["answer"] == "ตรวจบัญชีที่เกี่ยวข้อง"
+
+
+def test_answer_service_does_not_mix_previous_topic_into_new_retrieval() -> None:
+    class Retriever:
+        def search(self, query: str, **kwargs) -> list[dict]:
+            assert query == "โดน ransomware ทำอย่างไร?"
+            return []
+
+    class Provider:
+        def generate(self, instructions: str, prompt: str) -> GenerationResult:
+            assert "โดนฟิชชิง" in prompt
+            return GenerationResult("แยกเครื่องออกจากเครือข่าย", "test-model")
+
+    service = AnswerService(Retriever(), lambda provider: Provider(), max_context_chars=1000)
+
+    service.answer(
+        "โดน ransomware ทำอย่างไร?",
+        "openai",
+        history=(("โดนฟิชชิง", "เปลี่ยนรหัสผ่าน"),),
+    )
+
+
+def test_answer_service_reports_actual_fallback_provider() -> None:
+    class Retriever:
+        def search(self, query: str, **kwargs) -> list[dict]:
+            return []
+
+    class Provider:
+        def generate(self, instructions: str, prompt: str) -> GenerationResult:
+            return GenerationResult("ใช้ MFA", "qwen3.5:2b", provider="ollama")
+
+    service = AnswerService(Retriever(), lambda provider: Provider(), max_context_chars=1000)
+
+    result = service.answer("ทำอย่างไร?", "openai")
+
+    assert result["provider"] == "ollama"
+    assert result["model"] == "qwen3.5:2b"
+
 
 def test_api_generation_provider_returns_result() -> None:
     provider = OpenAICompatibleProvider(
@@ -199,3 +272,59 @@ def test_api_generation_provider_returns_result() -> None:
 
     assert result.answer == "API answer [S1]"
     assert (result.input_tokens, result.output_tokens) == (20, 5)
+
+
+def test_fallback_provider_uses_local_only_when_api_fails() -> None:
+    local_calls = []
+
+    def respond(request: httpx.Request) -> httpx.Response:
+        local_calls.append(json.loads(request.content))
+        return httpx.Response(
+            200,
+            json={
+                "model": "qwen3.5:2b",
+                "response": "แยกเครื่องออกจากเครือข่าย [S1]",
+                "prompt_eval_count": 100,
+                "eval_count": 20,
+            },
+        )
+
+    local = OllamaProvider(
+        model="qwen3.5:2b",
+        base_url="http://localhost:11434",
+        timeout=1,
+        transport=httpx.MockTransport(respond),
+    )
+
+    class Primary:
+        def __init__(self, unavailable: bool) -> None:
+            self.unavailable = unavailable
+
+        def generate(self, instructions: str, prompt: str) -> GenerationResult:
+            if self.unavailable:
+                raise GenerationError("API LLM generation unavailable")
+            return GenerationResult("API answer", "api-model")
+
+    assert FallbackProvider(Primary(False), local).generate("system", "question").answer == (
+        "API answer"
+    )
+    assert local_calls == []
+    result = FallbackProvider(Primary(True), local).generate("system", "question")
+    assert result.provider == "ollama"
+    assert result.model == "qwen3.5:2b"
+    assert (result.input_tokens, result.output_tokens) == (100, 20)
+    assert local_calls[0]["system"] == "system"
+    assert local_calls[0]["prompt"] == "question"
+    assert local_calls[0]["stream"] is False
+
+
+def test_fallback_provider_reports_failure_when_both_unavailable() -> None:
+    local = OllamaProvider(
+        model="missing",
+        base_url="http://localhost:11434",
+        timeout=1,
+        transport=httpx.MockTransport(lambda request: httpx.Response(404)),
+    )
+
+    with pytest.raises(GenerationError, match="Local Ollama generation unavailable"):
+        FallbackProvider(None, local).generate("system", "question")

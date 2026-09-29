@@ -1,13 +1,18 @@
 """End-to-end grounded answer API."""
 
 from typing import Annotated, Any, Literal
+from uuid import uuid4
 
 from fastapi import APIRouter, HTTPException
 from neo4j.exceptions import Neo4jError, ServiceUnavailable
 from pydantic import BaseModel, Field, StringConstraints
 from qdrant_client.http.exceptions import ApiException, ResponseHandlingException
 
-from cybersecurity_advisor.api.dependencies import AnswerServiceDependency, SettingsDependency
+from cybersecurity_advisor.api.dependencies import (
+    AnswerServiceDependency,
+    SettingsDependency,
+    get_conversation_store,
+)
 from cybersecurity_advisor.generation.answering import GenerationError
 from cybersecurity_advisor.jev.entity_validation import JevError
 
@@ -19,6 +24,9 @@ class ChatRequest(BaseModel):
     """Question, provider, and reproducible hybrid retrieval controls."""
 
     query: Query
+    session_id: str | None = Field(
+        default=None, min_length=32, max_length=32, pattern=r"^[0-9a-f]{32}$"
+    )
     provider: Literal["openai"] = "openai"
     top_k: int = Field(default=5, ge=1, le=25)
     dense_k: int = Field(default=10, ge=1, le=50)
@@ -43,8 +51,9 @@ class Source(BaseModel):
 
 
 class ChatResponse(BaseModel):
+    session_id: str
     answer: str
-    provider: Literal["openai"]
+    provider: Literal["openai", "ollama"]
     model: str
     sources: list[Source]
     input_tokens: int | None
@@ -86,9 +95,12 @@ def chat(
                 "use_pregen_filter": ablation[1],
                 "use_citation_validation": ablation[2],
             }
-        return service.answer(
+        session_id = request.session_id or uuid4().hex
+        conversations = get_conversation_store()
+        result = service.answer(
             request.query,
             request.provider,
+            history=conversations.get(f"api:{session_id}"),
             top_k=request.top_k,
             dense_k=request.dense_k,
             graph_k=request.graph_k,
@@ -100,6 +112,8 @@ def chat(
             dynamic_k=request.dynamic_k,
             **options,
         )
+        conversations.add(f"api:{session_id}", request.query, result["answer"])
+        return {**result, "session_id": session_id}
     except GenerationError as error:
         raise HTTPException(status_code=503, detail=str(error)) from error
     except JevError as error:

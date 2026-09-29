@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="th">
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  html, body { width: 2500px; height: 1686px; margin: 0; }
+  body { font-family: "Thonburi", "Arial Unicode MS", sans-serif; background: #081d2d; color: white; }
+  main { display: grid; grid-template-columns: 834px 833px 833px; grid-template-rows: 843px 843px; }
+  section { position: relative; overflow: hidden; }
+  .hero { grid-column: 1 / 4; padding: 112px 150px; background: linear-gradient(110deg, #10364d 0%, #155a63 68%, #1d827e 100%); }
+  .hero::after { content: ""; position: absolute; right: -160px; top: -270px; width: 920px; height: 920px; border: 26px solid #ffffff25; border-radius: 50%; }
+  .brand { display: flex; align-items: center; gap: 28px; font: 700 54px sans-serif; letter-spacing: 2px; color: #b6f4e9; }
+  .brand-mark { display: grid; place-items: center; width: 76px; height: 76px; border-radius: 20px; background: #b6f4e9; color: #0f5261; font: 800 44px sans-serif; }
+  .hero-content { display: flex; align-items: center; gap: 80px; margin-top: 105px; }
+  .hero-icon { display: grid; place-items: center; flex: none; width: 260px; height: 260px; border-radius: 72px; background: #d9fbf2; color: #13566a; box-shadow: 0 25px 70px #071d2b55; }
+  .hero-icon svg { width: 156px; height: 156px; }
+  h1 { margin: 0; font-size: 146px; line-height: 1.25; font-weight: 700; }
+  .hero p { margin: 20px 0 0; font-size: 65px; color: #d6f7f0; }
+  .hero .hint { margin-top: 35px; display: inline-block; padding: 18px 42px; border-radius: 100px; background: #ffffff26; color: white; font-size: 48px; }
+  .tile { padding: 90px 75px; border-top: 10px solid #081d2d; border-right: 10px solid #081d2d; background: #10374e; }
+  .tile:last-child { border-right: 0; }
+  .tile:nth-child(3) { background: #123e53; }
+  .tile:nth-child(4) { background: #17394a; }
+  .tile-icon { display: grid; place-items: center; width: 188px; height: 188px; border-radius: 52px; background: #164e63; color: #b6f4e9; }
+  .tile-icon svg { width: 102px; height: 102px; }
+  h2 { margin: 78px 0 10px; font-size: 85px; line-height: 1.25; white-space: nowrap; }
+  .tile p { margin: 0; font-size: 47px; color: #bfd6de; white-space: nowrap; }
+  .arrow { position: absolute; right: 74px; bottom: 73px; font: 400 82px sans-serif; color: #91d7d3; }
+</style>
+<main>
+  <section class="hero">
+    <div class="brand"><span class="brand-mark">✦</span> CYBER CARE AI</div>
+    <div class="hero-content">
+      <div class="hero-icon"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 27a14 14 0 0 1 14-14h52a14 14 0 0 1 14 14v48a14 14 0 0 1-14 14H46L20 108V27Z"/><path d="M41 50h38M41 67h24"/></svg></div>
+      <div><h1>ถาม AI ได้เลย</h1><p>เล่าเรื่องที่เจอ ถามต่อได้ ไม่ต้องเลือกหมวด</p><span class="hint">แตะเพื่อพิมพ์คำถาม ↗</span></div>
+    </div>
+  </section>
+  <section class="tile">
+    <div class="tile-icon"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M60 13 104 32v29c0 28-18 43-44 51-26-8-44-23-44-51V32L60 13Z"/><path d="M60 40v27M60 82h.1"/></svg></div>
+    <h2>เล่าเหตุการณ์</h2><p>ให้ AI ช่วยประเมิน</p><span class="arrow">↗</span>
+  </section>
+  <section class="tile">
+    <div class="tile-icon"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M25 20h70v78H25zM42 43h37M42 61h37M42 79h23"/><path d="m39 20 7-9h28l7 9"/></svg></div>
+    <h2>ตัวอย่างคำถาม</h2><p>ไม่รู้จะเริ่มตรงไหน?</p><span class="arrow">↗</span>
+  </section>
+  <section class="tile">
+    <div class="tile-icon"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M97 37A42 42 0 1 0 102 66M97 15v23H74"/></svg></div>
+    <h2>เริ่มแชตใหม่</h2><p>ล้างบริบทเดิม</p><span class="arrow">↗</span>
+  </section>
+</main>
+</html>

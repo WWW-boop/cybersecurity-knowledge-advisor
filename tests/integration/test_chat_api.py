@@ -50,6 +50,28 @@ def test_chat_returns_grounded_answer_and_sources(client: TestClient) -> None:
     assert response.json()["answer"] == "Use phishing-resistant MFA [S1]."
     assert response.json()["sources"][0]["chunk_id"] == "cisa-1"
     assert response.json()["total_latency_ms"] == 24.0
+    assert len(response.json()["session_id"]) == 32
+
+
+def test_chat_reuses_session_history_only_for_matching_id(client: TestClient) -> None:
+    histories = []
+
+    class RecordingService(FakeAnswerService):
+        def answer(self, query: str, provider_name: str, **retrieval: Any) -> dict[str, Any]:
+            histories.append(retrieval["history"])
+            return super().answer(query, provider_name, **retrieval)
+
+    client.app.dependency_overrides[get_answer_service] = RecordingService
+    first = client.post("/api/v1/chat", json={"query": "phishing and MFA", "fusion_method": "rrf"})
+    session_id = first.json()["session_id"]
+    second = client.post(
+        "/api/v1/chat",
+        json={"query": "phishing and MFA", "fusion_method": "rrf", "session_id": session_id},
+    )
+    client.post("/api/v1/chat", json={"query": "phishing and MFA", "fusion_method": "rrf"})
+
+    assert second.json()["session_id"] == session_id
+    assert histories == [(), (("phishing and MFA", "Use phishing-resistant MFA [S1]."),), ()]
 
 
 def test_chat_rejects_jev_ablation_in_production(client: TestClient) -> None:
