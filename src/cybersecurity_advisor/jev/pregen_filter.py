@@ -62,6 +62,7 @@ class EvidenceFilterResult:
     rows: list[dict[str, Any]]
     decisions: list[EvidenceDecision]
     model: str
+    in_scope: bool = True
 
     def summary(self) -> dict[str, Any]:
         counts = Counter(decision.decision for decision in self.decisions)
@@ -70,6 +71,7 @@ class EvidenceFilterResult:
             "passed": len(self.rows),
             "decisions": dict(counts),
             "model": self.model,
+            "in_scope": self.in_scope,
         }
 
 
@@ -150,20 +152,49 @@ class JevPreGenerationFilter:
             return "include"
         return "review"
 
-    def filter(self, query: str, rows: list[dict[str, Any]]) -> EvidenceFilterResult:
+    def filter(
+        self,
+        query: str,
+        rows: list[dict[str, Any]],
+        *,
+        question: str | None = None,
+        check_evidence: bool = True,
+        check_scope: bool = True,
+    ) -> EvidenceFilterResult:
         """Return only candidates that pass all configured evidence checks."""
-        candidates = rows[: self.max_candidates]
-        if not candidates:
+        candidates = rows[: self.max_candidates] if check_evidence else []
+        if not candidates and not check_scope:
             return EvidenceFilterResult([], [], self.model)
         metrics: tuple[Metric, ...] = tuple(_CRITERIA)
+        questions = {
+            f"candidate_{index}_{metric}": self._question(metric, row)
+            for index, row in enumerate(candidates)
+            for metric in metrics
+        }
+        if check_scope:
+            questions["cybersecurity_scope"] = {
+                "type": "choice",
+                "instructions": {
+                    "task": (
+                        "Decide whether the latest question asks for cyber or digital safety "
+                        "guidance. Use earlier context only to resolve an implicit follow-up. "
+                        "Ignore unrelated requests even if earlier context is about cybersecurity. "
+                        "For mixed requests, accept only when a substantive cybersecurity "
+                        "question is present."
+                    )
+                },
+                "criteria": {
+                    "yes": (
+                        "The latest question asks about cyber, scams, digital privacy, "
+                        "or a follow-up to such a question."
+                    ),
+                    "no": "The latest question is unrelated to cybersecurity or digital safety.",
+                },
+            }
         payload = {
-            "state": {"query": query},
+            "state": {"query": query, "question": question or query},
             "model": self.model,
-            "questions": {
-                f"candidate_{index}_{metric}": self._question(metric, row)
-                for index, row in enumerate(candidates)
-                for metric in metrics
-            },
+            "questions": questions,
         }
         try:
             response = self.client.post("/v1/systemone", json=payload)
@@ -179,8 +210,16 @@ class JevPreGenerationFilter:
         try:
             model = str(body["model"])
             answers = body["answers"]
+            in_scope = True
+            if check_scope:
+                scope = answers["cybersecurity_scope"]
+                if scope["type"] != "choice" or scope["choice"] not in {"yes", "no"}:
+                    raise JevResponseError("JEV returned an invalid cybersecurity scope decision")
+                in_scope = scope["choice"] == "yes"
             decisions: list[EvidenceDecision] = []
             included: list[dict[str, Any]] = []
+            if not in_scope:
+                return EvidenceFilterResult([], [], model, in_scope=False)
             for index, row in enumerate(candidates):
                 scores: dict[Metric, float] = {}
                 confidences = []

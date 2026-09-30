@@ -153,15 +153,17 @@ the last three question-answer pairs per session for 30 minutes in process memor
 when the API restarts and is not shared across multiple API workers.
 
 The response contains the answer, numbered sources, provider-reported token counts, and separate
-retrieval/JEV/generation latency. Before generation, JEV checks every fused candidate for relevance,
+retrieval/JEV/generation latency. Before retrieval, JEV checks whether the latest question concerns
+cybersecurity or digital safety. Unrelated questions receive a brief refusal without searching or calling
+the answer model, and do not enter conversation history. Before generation, JEV checks fused candidates for relevance,
 answer evidence, contradiction, and prompt injection; only `include` candidates reach the prompt.
 Use `dynamic_k=true` to apply the final score-gap/token cutoff after this filter. Generated factual
 claims then receive deterministic citation checks and batched JEV semantic verdicts in the
 `citation_validation` response field. When no evidence passes, the model can still give cautious
 general guidance without citations; uncited advice is reported as ungrounded by this validator.
-Until JEV credentials are available, disable all three
-`JEV_ENTITY_VALIDATION_ENABLED`, `JEV_PREGEN_FILTER_ENABLED`, and
-`JEV_CITATION_VALIDATION_ENABLED` flags only for the documented no-JEV baseline.
+`JEV_API_KEY` (or `TYPE_SAFE`) is required for chat and LINE scope checks. Disabling
+`JEV_ENTITY_VALIDATION_ENABLED`, `JEV_PREGEN_FILTER_ENABLED`, or
+`JEV_CITATION_VALIDATION_ENABLED` does not disable the scope check.
 
 ## LINE Messaging API
 

@@ -68,7 +68,7 @@ def answer_line_query(query: str, settings: Settings, session_key: str | None) -
         dynamic_k=settings.line_dynamic_k,
         generate_follow_ups=True,
     )
-    if session_key:
+    if session_key and result.get("provider") != "policy":
         conversations.add(session_key, query, result["answer"])
     return result
 

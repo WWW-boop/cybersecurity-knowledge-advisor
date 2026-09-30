@@ -53,7 +53,7 @@ class Source(BaseModel):
 class ChatResponse(BaseModel):
     session_id: str
     answer: str
-    provider: Literal["openai", "ollama"]
+    provider: Literal["openai", "ollama", "policy"]
     model: str
     sources: list[Source]
     input_tokens: int | None
@@ -112,7 +112,8 @@ def chat(
             dynamic_k=request.dynamic_k,
             **options,
         )
-        conversations.add(f"api:{session_id}", request.query, result["answer"])
+        if result["provider"] != "policy":
+            conversations.add(f"api:{session_id}", request.query, result["answer"])
         return {**result, "session_id": session_id}
     except GenerationError as error:
         raise HTTPException(status_code=503, detail=str(error)) from error

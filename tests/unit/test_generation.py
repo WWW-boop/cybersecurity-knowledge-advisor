@@ -72,6 +72,7 @@ def test_answer_service_sends_only_jev_validated_evidence_to_generator(
     class FilterResult:
         def __init__(self) -> None:
             self.rows = rows[:1]
+            self.in_scope = True
 
         def summary(self) -> dict:
             return {"candidates": 2, "passed": 1, "model": "jev-test"}
@@ -120,8 +121,15 @@ def test_answer_service_gives_general_guidance_when_jev_rejects_all_evidence() -
             return [{"chunk_id": "irrelevant", "content": "Unrelated text"}]
 
     class EvidenceFilter:
-        def filter(self, query: str, rows: list[dict]) -> SimpleNamespace:
-            return SimpleNamespace(rows=[], summary=lambda: {"passed": 0})
+        def filter(self, query: str, rows: list[dict], **kwargs) -> SimpleNamespace:
+            assert kwargs == {"check_scope": False}
+            return SimpleNamespace(rows=[], in_scope=True, summary=lambda: {"passed": 0})
+
+    class ScopeFilter:
+        def filter(self, query: str, rows: list[dict], **kwargs) -> SimpleNamespace:
+            assert rows == []
+            assert kwargs == {"question": query, "check_evidence": False}
+            return SimpleNamespace(in_scope=True)
 
     class Provider:
         def generate(self, instructions: str, prompt: str) -> GenerationResult:
@@ -134,6 +142,7 @@ def test_answer_service_gives_general_guidance_when_jev_rejects_all_evidence() -
         lambda provider: Provider(),
         max_context_chars=1000,
         pregen_filter=EvidenceFilter(),
+        scope_filter=ScopeFilter(),
     )
 
     result = service.answer("What should I do after a ransomware attack?", "openai")
@@ -142,6 +151,36 @@ def test_answer_service_gives_general_guidance_when_jev_rejects_all_evidence() -
     assert result["sources"] == []
     assert result["jev_filter"] == {"passed": 0}
     assert result["retrieval_budget"] is None
+
+
+def test_answer_service_refuses_non_cyber_question_without_generating() -> None:
+    class Retriever:
+        def search(self, query: str, **kwargs) -> list[dict]:
+            pytest.fail("Out-of-scope questions must not reach retrieval")
+
+    class EvidenceFilter:
+        def filter(self, query: str, rows: list[dict], **kwargs) -> SimpleNamespace:
+            assert kwargs == {"question": "วันนี้อากาศเป็นอย่างไร", "check_evidence": False}
+            return SimpleNamespace(
+                in_scope=False,
+                model="jev-test",
+                summary=lambda: {"in_scope": False},
+            )
+
+    def unexpected_provider(provider: str) -> None:
+        pytest.fail("Out-of-scope questions must not reach the answer model")
+
+    service = AnswerService(
+        Retriever(), unexpected_provider, max_context_chars=1000, scope_filter=EvidenceFilter()
+    )
+
+    result = service.answer("วันนี้อากาศเป็นอย่างไร", "openai", use_pregen_filter=False)
+
+    assert result["provider"] == "policy"
+    assert result["answer"] == "ขออภัย ผมตอบได้เฉพาะคำถามเกี่ยวกับความปลอดภัยไซเบอร์ครับ"
+    assert result["sources"] == []
+    assert result["jev_filter"] == {"in_scope": False}
+    assert result["retrieval_latency_ms"] == 0
 
 
 def test_build_context_numbers_sources_and_respects_limit() -> None:

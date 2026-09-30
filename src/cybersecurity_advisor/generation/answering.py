@@ -35,6 +35,9 @@ from evidence-backed claims.
 If evidence is missing, still answer cautiously without citations.
 Use previous turns only when the latest question refers to them. If it introduces a new
 topic or incident, ignore the history. Cite only current evidence.
+Answer only the cybersecurity or digital safety parts of the latest question.
+For unrelated questions, politely say that you can only help with cybersecurity;
+do not answer the unrelated request or suggest unrelated follow-up questions.
 </rules>
 </system>"""
 
@@ -338,12 +341,14 @@ class AnswerService:
         max_context_chars: int,
         pregen_filter: Any | None = None,
         citation_validator: Any | None = None,
+        scope_filter: Any | None = None,
     ) -> None:
         self.retriever = retriever
         self.provider_factory = provider_factory
         self.max_context_chars = max_context_chars
         self.pregen_filter = pregen_filter
         self.citation_validator = citation_validator
+        self.scope_filter = scope_filter
 
     def answer(self, query: str, provider_name: ProviderName, **retrieval: Any) -> dict[str, Any]:
         total_started = perf_counter()
@@ -352,6 +357,40 @@ class AnswerService:
         history: Sequence[ConversationTurn] = retrieval.pop("history", ())
         generate_follow_ups = retrieval.pop("generate_follow_ups", False)
         retrieval_query = f"{history[-1][0]} {query}" if history and _is_follow_up(query) else query
+        scope_ms = 0.0
+        if self.scope_filter is not None:
+            scope_started = perf_counter()
+            scope_result = self.scope_filter.filter(
+                retrieval_query, [], question=query, check_evidence=False
+            )
+            scope_ms = (perf_counter() - scope_started) * 1000
+            if not scope_result.in_scope:
+                answer = (
+                    "ขออภัย ผมตอบได้เฉพาะคำถามเกี่ยวกับความปลอดภัยไซเบอร์ครับ"
+                    if re.search(r"[\u0e00-\u0e7f]", query)
+                    else "Sorry, I can only help with cybersecurity questions."
+                )
+                return {
+                    "answer": answer,
+                    "follow_up_questions": [],
+                    "provider": "policy",
+                    "model": scope_result.model,
+                    "sources": [],
+                    "input_tokens": None,
+                    "output_tokens": None,
+                    "retrieval_latency_ms": 0.0,
+                    "generation_latency_ms": 0.0,
+                    "jev_filter_latency_ms": scope_ms,
+                    "jev_filter": scope_result.summary(),
+                    "citation_validation_latency_ms": 0.0,
+                    "citation_validation": None,
+                    "context_tokens": 0,
+                    "final_context_k": 0,
+                    "process_cpu_seconds": process_time() - cpu_started,
+                    "process_memory_mib": process_memory_mib(),
+                    "total_latency_ms": (perf_counter() - total_started) * 1000,
+                    "retrieval_budget": None,
+                }
         use_pregen_filter = retrieval.pop("use_pregen_filter", True)
         use_citation_validation = retrieval.pop("use_citation_validation", True)
         pregen_filter = self.pregen_filter if use_pregen_filter else None
@@ -370,14 +409,18 @@ class AnswerService:
         retrieval_started = perf_counter()
         rows = self.retriever.search(retrieval_query, **retrieval)
         retrieval_ms = (perf_counter() - retrieval_started) * 1000
-        jev_filter_ms = 0.0
-        jev_summary = None
+        jev_filter_ms = scope_ms
+        jev_summary = {"in_scope": True} if self.scope_filter is not None else None
         if pregen_filter is not None:
             filter_started = perf_counter()
-            result = pregen_filter.filter(retrieval_query, rows)
-            jev_filter_ms = (perf_counter() - filter_started) * 1000
-            rows = result.rows
+            result = (
+                pregen_filter.filter(retrieval_query, rows, check_scope=False)
+                if self.scope_filter is not None
+                else pregen_filter.filter(retrieval_query, rows)
+            )
+            jev_filter_ms += (perf_counter() - filter_started) * 1000
             jev_summary = result.summary()
+            rows = result.rows
         if dynamic_budget is not None:
             rows = select_dynamic_context(rows, dynamic_budget)
         context, sources = build_context(rows, max_chars=self.max_context_chars)

@@ -119,13 +119,11 @@ HybridRetrieverDependency = Annotated[HybridRetriever, Depends(get_hybrid_retrie
 
 
 @lru_cache
-def get_jev_pregen_filter() -> JevPreGenerationFilter | None:
-    """Build the process-wide JEV evidence filter when enabled."""
+def get_jev_scope_filter() -> JevPreGenerationFilter:
+    """Build the mandatory JEV question-scope check shared with evidence filtering."""
     settings = get_settings()
-    if not settings.jev_pregen_filter_enabled:
-        return None
     if settings.jev_api_key is None:
-        raise HTTPException(status_code=503, detail="JEV pre-generation credentials not configured")
+        raise HTTPException(status_code=503, detail="JEV scope credentials not configured")
     return JevPreGenerationFilter(
         httpx.Client(
             base_url=settings.jev_api_url.rstrip("/"),
@@ -139,6 +137,14 @@ def get_jev_pregen_filter() -> JevPreGenerationFilter | None:
         contradiction_threshold=settings.jev_contradiction_threshold,
         injection_threshold=settings.jev_injection_threshold,
     )
+
+
+@lru_cache
+def get_jev_pregen_filter() -> JevPreGenerationFilter | None:
+    """Reuse the scope client for evidence filtering when enabled."""
+    if not get_settings().jev_pregen_filter_enabled:
+        return None
+    return get_jev_scope_filter()
 
 
 @lru_cache
@@ -200,6 +206,7 @@ def get_answer_service(
         max_context_chars=settings.generation_max_context_chars,
         pregen_filter=get_jev_pregen_filter(),
         citation_validator=get_jev_citation_validator(),
+        scope_filter=get_jev_scope_filter(),
     )
 
 
@@ -212,11 +219,10 @@ def close_graph_retriever() -> None:
     if get_graph_retriever.cache_info().currsize:
         get_graph_retriever().close()
         get_graph_retriever.cache_clear()
-    if get_jev_pregen_filter.cache_info().currsize:
-        evidence_filter = get_jev_pregen_filter()
-        if evidence_filter is not None:
-            evidence_filter.close()
-        get_jev_pregen_filter.cache_clear()
+    get_jev_pregen_filter.cache_clear()
+    if get_jev_scope_filter.cache_info().currsize:
+        get_jev_scope_filter().close()
+        get_jev_scope_filter.cache_clear()
     if get_jev_citation_validator.cache_info().currsize:
         citation_validator = get_jev_citation_validator()
         if citation_validator is not None:

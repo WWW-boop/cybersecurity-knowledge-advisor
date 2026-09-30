@@ -19,13 +19,17 @@ def answer(yes: float) -> dict:
 def test_filter_batches_metrics_and_only_returns_validated_evidence() -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         payload = json.loads(request.content)
-        assert payload["state"] == {"query": "How does MFA stop phishing?"}
-        assert len(payload["questions"]) == 8
+        assert payload["state"] == {
+            "query": "How does MFA stop phishing?",
+            "question": "How does MFA stop phishing?",
+        }
+        assert len(payload["questions"]) == 9
         return httpx.Response(
             200,
             json={
                 "model": "jev-test",
                 "answers": {
+                    "cybersecurity_scope": answer(0.99),
                     "candidate_0_relevance": answer(0.95),
                     "candidate_0_answer_evidence": answer(0.90),
                     "candidate_0_contradiction": answer(0.05),
@@ -52,3 +56,45 @@ def test_filter_batches_metrics_and_only_returns_validated_evidence() -> None:
     assert result.rows[0]["jev"]["decision"] == "include"
     assert result.decisions[1].decision == "drop"
     assert result.summary()["decisions"] == {"include": 1, "drop": 1}
+
+
+def test_filter_rejects_non_cyber_question_even_without_evidence() -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        payload = json.loads(request.content)
+        assert payload["state"] == {
+            "query": "What is the weather?",
+            "question": "What is the weather?",
+        }
+        assert list(payload["questions"]) == ["cybersecurity_scope"]
+        return httpx.Response(
+            200,
+            json={
+                "model": "jev-test",
+                "answers": {"cybersecurity_scope": answer(0.01)},
+            },
+        )
+
+    evidence_filter = JevPreGenerationFilter(
+        httpx.Client(base_url="https://api.example", transport=httpx.MockTransport(handler))
+    )
+
+    result = evidence_filter.filter("What is the weather?", [])
+
+    assert result.in_scope is False
+    assert result.rows == []
+    assert result.summary()["in_scope"] is False
+
+
+def test_evidence_filter_skips_jev_call_when_no_candidates_remain() -> None:
+    def unexpected_request(request: httpx.Request) -> httpx.Response:
+        raise AssertionError("No evidence questions should be sent")
+
+    evidence_filter = JevPreGenerationFilter(
+        httpx.Client(
+            base_url="https://api.example", transport=httpx.MockTransport(unexpected_request)
+        )
+    )
+
+    result = evidence_filter.filter("How does MFA work?", [], check_scope=False)
+
+    assert result.rows == []

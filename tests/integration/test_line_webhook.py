@@ -116,6 +116,25 @@ def test_line_answer_query_remembers_only_the_same_user(monkeypatch) -> None:
     assert histories == [(), (("โดนฟิชชิง", "ตอบ: โดนฟิชชิง"),), ()]
 
 
+def test_line_refusal_does_not_enter_conversation_history(monkeypatch) -> None:
+    class FakeService:
+        def answer(self, query: str, provider_name: str, **retrieval: Any) -> dict[str, Any]:
+            return {"answer": "ตอบเฉพาะเรื่องไซเบอร์", "provider": "policy"}
+
+    monkeypatch.setattr(
+        "cybersecurity_advisor.api.routers.line.get_hybrid_retriever", lambda: object()
+    )
+    monkeypatch.setattr(
+        "cybersecurity_advisor.api.routers.line.get_answer_service",
+        lambda retriever, settings: FakeService(),
+    )
+    get_conversation_store.cache_clear()
+
+    answer_line_query("วันนี้อากาศเป็นอย่างไร", line_settings(), "line:direct:alice")
+
+    assert get_conversation_store().get("line:direct:alice") == ()
+
+
 def test_line_history_is_scoped_to_the_chat_room() -> None:
     assert _line_session_key({"type": "user", "userId": "alice"}) == "line:direct:alice"
     assert _line_session_key({"type": "group", "groupId": "group-a", "userId": "alice"}) == (

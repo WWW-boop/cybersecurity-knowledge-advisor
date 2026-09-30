@@ -74,6 +74,37 @@ def test_chat_reuses_session_history_only_for_matching_id(client: TestClient) ->
     assert histories == [(), (("phishing and MFA", "Use phishing-resistant MFA [S1]."),), ()]
 
 
+def test_chat_refuses_non_cyber_question_without_saving_history(client: TestClient) -> None:
+    histories = []
+
+    class PolicyService:
+        def answer(self, query: str, provider_name: str, **retrieval: Any) -> dict[str, Any]:
+            histories.append(retrieval["history"])
+            return {
+                "answer": "Sorry, I can only help with cybersecurity questions.",
+                "provider": "policy",
+                "model": "jev-test",
+                "sources": [],
+                "input_tokens": None,
+                "output_tokens": None,
+                "retrieval_latency_ms": 0.0,
+                "generation_latency_ms": 0.0,
+                "total_latency_ms": 1.0,
+            }
+
+    client.app.dependency_overrides[get_answer_service] = PolicyService
+    first = client.post("/api/v1/chat", json={"query": "What is the weather?"})
+    second = client.post(
+        "/api/v1/chat",
+        json={"query": "What is the weather?", "session_id": first.json()["session_id"]},
+    )
+
+    assert first.status_code == 200
+    assert first.json()["provider"] == "policy"
+    assert second.status_code == 200
+    assert histories == [(), ()]
+
+
 def test_chat_rejects_jev_ablation_in_production(client: TestClient) -> None:
     client.app.dependency_overrides[get_answer_service] = FakeAnswerService
     client.app.dependency_overrides[get_settings] = lambda: Settings(app_env="production")

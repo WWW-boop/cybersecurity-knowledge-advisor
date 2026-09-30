@@ -10,6 +10,7 @@ from cybersecurity_advisor.api.dependencies import (
     get_hybrid_retriever,
     get_jev_citation_validator,
     get_jev_pregen_filter,
+    get_jev_scope_filter,
 )
 from cybersecurity_advisor.api.main import create_app
 from cybersecurity_advisor.config.settings import get_settings
@@ -24,6 +25,7 @@ def client() -> TestClient:
     get_hybrid_retriever.cache_clear()
     get_jev_citation_validator.cache_clear()
     get_jev_pregen_filter.cache_clear()
+    get_jev_scope_filter.cache_clear()
     with TestClient(create_app()) as test_client:
         yield test_client
     get_settings.cache_clear()
@@ -33,3 +35,4 @@ def client() -> TestClient:
     get_hybrid_retriever.cache_clear()
     get_jev_citation_validator.cache_clear()
     get_jev_pregen_filter.cache_clear()
+    get_jev_scope_filter.cache_clear()
