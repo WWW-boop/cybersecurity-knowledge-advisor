@@ -173,7 +173,7 @@ class JevPreGenerationFilter:
         }
         if check_scope:
             questions["cybersecurity_scope"] = {
-                "type": "choice",
+                "type": "noul",
                 "instructions": {
                     "task": (
                         "Decide whether the latest question asks for cyber or digital safety "
@@ -184,11 +184,11 @@ class JevPreGenerationFilter:
                     )
                 },
                 "criteria": {
-                    "yes": (
+                    "true": (
                         "The latest question asks about cyber, scams, digital privacy, "
                         "or a follow-up to such a question."
                     ),
-                    "no": "The latest question is unrelated to cybersecurity or digital safety.",
+                    "false": "The latest question is unrelated to cybersecurity or digital safety.",
                 },
             }
         payload = {
@@ -213,9 +213,9 @@ class JevPreGenerationFilter:
             in_scope = True
             if check_scope:
                 scope = answers["cybersecurity_scope"]
-                if scope["type"] != "choice" or scope["choice"] not in {"yes", "no"}:
+                if scope["type"] != "noul":
                     raise JevResponseError("JEV returned an invalid cybersecurity scope decision")
-                in_scope = scope["choice"] == "yes"
+                in_scope = self._probability(scope["noul"], "cybersecurity scope") > 0.5
             decisions: list[EvidenceDecision] = []
             included: list[dict[str, Any]] = []
             if not in_scope:

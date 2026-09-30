@@ -3,7 +3,9 @@
 import json
 
 import httpx
+import pytest
 
+from cybersecurity_advisor.jev.entity_validation import JevResponseError
 from cybersecurity_advisor.jev.pregen_filter import JevPreGenerationFilter
 
 
@@ -16,6 +18,10 @@ def answer(yes: float) -> dict:
     }
 
 
+def noul_answer(yes: float) -> dict:
+    return {"type": "noul", "noul": yes}
+
+
 def test_filter_batches_metrics_and_only_returns_validated_evidence() -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         payload = json.loads(request.content)
@@ -24,12 +30,14 @@ def test_filter_batches_metrics_and_only_returns_validated_evidence() -> None:
             "question": "How does MFA stop phishing?",
         }
         assert len(payload["questions"]) == 9
+        assert payload["questions"]["cybersecurity_scope"]["type"] == "noul"
+        assert set(payload["questions"]["cybersecurity_scope"]["criteria"]) == {"true", "false"}
         return httpx.Response(
             200,
             json={
                 "model": "jev-test",
                 "answers": {
-                    "cybersecurity_scope": answer(0.99),
+                    "cybersecurity_scope": noul_answer(0.99),
                     "candidate_0_relevance": answer(0.95),
                     "candidate_0_answer_evidence": answer(0.90),
                     "candidate_0_contradiction": answer(0.05),
@@ -66,11 +74,12 @@ def test_filter_rejects_non_cyber_question_even_without_evidence() -> None:
             "question": "What is the weather?",
         }
         assert list(payload["questions"]) == ["cybersecurity_scope"]
+        assert payload["questions"]["cybersecurity_scope"]["type"] == "noul"
         return httpx.Response(
             200,
             json={
                 "model": "jev-test",
-                "answers": {"cybersecurity_scope": answer(0.01)},
+                "answers": {"cybersecurity_scope": noul_answer(0.01)},
             },
         )
 
@@ -83,6 +92,42 @@ def test_filter_rejects_non_cyber_question_even_without_evidence() -> None:
     assert result.in_scope is False
     assert result.rows == []
     assert result.summary()["in_scope"] is False
+
+
+@pytest.mark.parametrize(("probability", "expected"), [(0.5, False), (0.51, True)])
+def test_scope_noul_uses_strict_majority(probability: float, expected: bool) -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            200,
+            json={
+                "model": "jev-test",
+                "answers": {"cybersecurity_scope": noul_answer(probability)},
+            },
+        )
+
+    evidence_filter = JevPreGenerationFilter(
+        httpx.Client(base_url="https://api.example", transport=httpx.MockTransport(handler))
+    )
+
+    assert evidence_filter.filter("How do I secure my account?", []).in_scope is expected
+
+
+def test_scope_noul_rejects_invalid_probability() -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            200,
+            json={
+                "model": "jev-test",
+                "answers": {"cybersecurity_scope": {"type": "noul", "noul": "yes"}},
+            },
+        )
+
+    evidence_filter = JevPreGenerationFilter(
+        httpx.Client(base_url="https://api.example", transport=httpx.MockTransport(handler))
+    )
+
+    with pytest.raises(JevResponseError, match="non-numeric cybersecurity scope"):
+        evidence_filter.filter("How do I secure my account?", [])
 
 
 def test_evidence_filter_skips_jev_call_when_no_candidates_remain() -> None:
